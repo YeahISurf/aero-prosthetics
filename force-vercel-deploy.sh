@@ -7,7 +7,7 @@ echo "Deployment trigger: $(date)" > .vercel-deploy-trigger
 
 # Add, commit, and push the change
 git add .vercel-deploy-trigger
-git commit -m "Force Vercel deployment with latest changes"
+git commit -m "Force Vercel deployment with latest changes (using ESLint error workaround)"
 git push origin main
 
 echo "Deployment trigger pushed to GitHub. Vercel should now deploy the latest version."

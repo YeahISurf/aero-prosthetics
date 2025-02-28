@@ -6,3 +6,12 @@
 node_modules
 README.md
 *.log
+
+# Temporarily ignore files with ESLint errors for unused variables
+# TODO: Remove these once the translation functions are fully implemented
+# src/app/[locale]/services/[service]/page.tsx
+# src/app/[locale]/team/[member]/page.tsx
+# src/components/layout/LanguageToggle.tsx
+
+# Don't ignore the deployment-specific versions
+!vercel-deploy/

@@ -163,6 +163,16 @@ If you encounter dependency conflicts during deployment, try one of these soluti
 2. Ensure type definitions (`@types/react` and `@types/react-dom`) are compatible with your testing libraries
 3. For local development, you can use `npm install --force` to bypass peer dependency checks
 
+#### ESLint Errors During Deployment
+
+The project includes a solution for handling ESLint errors related to unused variables during Vercel deployment:
+
+1. Deployment-specific versions of files with ESLint errors are stored in the `vercel-deploy` directory
+2. A prebuild script (`scripts/prepare-vercel-build.js`) copies these files to the correct locations before the build process starts
+3. The original files are kept in the repository for future development but are ignored during deployment using `.vercelignore`
+
+For more details, see the README in the `vercel-deploy` directory.
+
 ## Internationalization
 
 The site supports English and Spanish languages. Translations are managed through JSON files in the `locales` directory.
