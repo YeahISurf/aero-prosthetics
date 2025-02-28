@@ -145,6 +145,16 @@ No additional configuration is needed as the `vercel.json` file handles the buil
 
 > **Note:** The `--legacy-peer-deps` flag is required due to dependency conflicts between React 19 and some testing libraries that expect React 18.
 
+#### Forcing Vercel to Deploy Latest Changes
+
+If Vercel is not deploying the latest commit, you can use the included script to force a new deployment:
+
+```bash
+./force-vercel-deploy.sh
+```
+
+This script creates a small change that triggers a new commit and push, forcing Vercel to recognize and deploy the latest version of your code.
+
 #### Troubleshooting Deployment Issues
 
 If you encounter dependency conflicts during deployment, try one of these solutions:
