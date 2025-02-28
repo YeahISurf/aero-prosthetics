@@ -136,11 +136,12 @@ The site can be deployed to Vercel or Google Cloud.
 To deploy this project to Vercel:
 
 1. Connect your GitHub repository to Vercel
-2. Configure the following build settings:
+2. The project includes a `vercel.json` configuration file that sets up:
    - Framework Preset: Next.js
    - Build Command: `npm run build`
    - Install Command: `npm install --legacy-peer-deps`
-   - Output Directory: `.next`
+
+No additional configuration is needed as the `vercel.json` file handles the build settings automatically.
 
 > **Note:** The `--legacy-peer-deps` flag is required due to dependency conflicts between React 19 and some testing libraries that expect React 18.
 
