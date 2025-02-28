@@ -1,6 +1,5 @@
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-import Image from 'next/image';
 
 // Mock data for services - in a real implementation, this would come from the CMS
 const services = [
@@ -44,6 +43,8 @@ const services = [
 
 export default function ServicesOverview() {
   const t = useTranslations('home.services');
+  const ctaT = useTranslations('cta');
+  const learnMoreText = ctaT('learnMore');
 
   return (
     <section className="section">
@@ -62,7 +63,7 @@ export default function ServicesOverview() {
                   href={`/services/${service.id}`}
                   className="text-primary-500 font-medium hover:text-primary-600 inline-flex items-center"
                 >
-                  {useTranslations('cta')('learnMore')}
+                  {learnMoreText}
                   <svg 
                     xmlns="http://www.w3.org/2000/svg" 
                     className="h-4 w-4 ml-1" 

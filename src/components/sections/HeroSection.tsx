@@ -1,6 +1,5 @@
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-import Image from 'next/image';
 
 export default function HeroSection() {
   const t = useTranslations('home.hero');

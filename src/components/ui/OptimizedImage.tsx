@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { defaultImageLoader, shouldLazyLoad, generateSrcSet } from '@/lib/performance/imageLoader';
+import { defaultImageLoader, shouldLazyLoad } from '@/lib/performance/imageLoader';
 
 interface OptimizedImageProps {
   src: string;
@@ -60,15 +60,6 @@ export default function OptimizedImage({
     };
   }, [src, lazy, isIntersecting]);
 
-  // Generate responsive widths based on image size
-  const responsiveWidths = [
-    Math.round(width * 0.25),
-    Math.round(width * 0.5),
-    Math.round(width * 0.75),
-    width,
-    Math.round(width * 1.5),
-    Math.round(width * 2),
-  ].filter((w) => w > 0 && w <= 1920); // Cap at 1920px
 
   // Only render the image if it's high priority or has intersected the viewport
   const shouldRender = !lazy || isIntersecting;

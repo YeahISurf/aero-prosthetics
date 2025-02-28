@@ -8,6 +8,8 @@ import { usePathname } from 'next/navigation';
 export default function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const t = useTranslations('navigation');
+  const ctaT = useTranslations('cta');
+  const requestInfoText = ctaT('requestInfo');
   const pathname = usePathname();
 
   const toggleMenu = () => {
@@ -130,7 +132,7 @@ export default function MobileMenu() {
               {t('resources')}
             </Link>
             <Link href="/en/contact" onClick={closeMenu} className="btn-primary w-full text-center">
-              {useTranslations('cta')('requestInfo')}
+              {requestInfoText}
             </Link>
           </nav>
         </div>

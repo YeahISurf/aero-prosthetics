@@ -1,10 +1,8 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-import { useTranslations } from 'next-intl';
 
 export default function SkipToContent() {
-  const t = useTranslations();
   const [mounted, setMounted] = useState(false);
 
   // Only run on client-side to avoid hydration mismatch

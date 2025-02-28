@@ -31,7 +31,7 @@ export default function PrivacyPolicyPage({ params: { locale } }: Props) {
           <section className="mb-8">
             <h2 className="text-2xl font-semibold mb-4">Introduction</h2>
             <p>
-              Aero Prosthetics ("we," "our," or "us") is committed to protecting your privacy and safeguarding your personal health information. This Privacy Policy explains how we collect, use, disclose, and protect your information when you visit our website or use our services.
+              Aero Prosthetics (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) is committed to protecting your privacy and safeguarding your personal health information. This Privacy Policy explains how we collect, use, disclose, and protect your information when you visit our website or use our services.
             </p>
             <p>
               As a healthcare provider, we are subject to the Health Insurance Portability and Accountability Act of 1996 (HIPAA) and its implementing regulations. We are committed to maintaining the privacy and security of your protected health information (PHI) in accordance with HIPAA and other applicable laws.
@@ -74,7 +74,7 @@ export default function PrivacyPolicyPage({ params: { locale } }: Props) {
           <section className="mb-8">
             <h2 className="text-2xl font-semibold mb-4">HIPAA Compliance</h2>
             <p>
-              As a covered entity under HIPAA, we maintain the privacy and security of your PHI in accordance with HIPAA's Privacy Rule and Security Rule. We implement appropriate administrative, physical, and technical safeguards to protect your PHI from unauthorized access, use, or disclosure.
+              As a covered entity under HIPAA, we maintain the privacy and security of your PHI in accordance with HIPAA&apos;s Privacy Rule and Security Rule. We implement appropriate administrative, physical, and technical safeguards to protect your PHI from unauthorized access, use, or disclosure.
             </p>
             <p>
               We will not use or disclose your PHI for marketing purposes without your written authorization. We will not sell your PHI under any circumstances.

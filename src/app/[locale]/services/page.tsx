@@ -82,6 +82,9 @@ export default function ServicesPage({ params: { locale } }: Props) {
   unstable_setRequestLocale(locale);
   
   const t = useTranslations('services');
+  const ctaT = useTranslations('cta');
+  const learnMoreText = ctaT('learnMore');
+  const contactUsText = ctaT('contactUs');
 
   return (
     <>
@@ -109,7 +112,7 @@ export default function ServicesPage({ params: { locale } }: Props) {
                     href={`/services/${service.id}`}
                     className="text-primary-500 font-medium hover:text-primary-600 inline-flex items-center"
                   >
-                    {useTranslations('cta')('learnMore')}
+                    {learnMoreText}
                     <svg 
                       xmlns="http://www.w3.org/2000/svg" 
                       className="h-4 w-4 ml-1" 
@@ -225,7 +228,7 @@ export default function ServicesPage({ params: { locale } }: Props) {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact" className="btn bg-white text-primary-600 hover:bg-gray-100">
-                {useTranslations('cta')('contactUs')}
+                {contactUsText}
               </Link>
             </div>
           </div>

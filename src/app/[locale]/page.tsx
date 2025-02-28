@@ -1,7 +1,4 @@
-import { useTranslations } from "next-intl";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
-import Link from "next/link";
-import Image from "next/image";
 
 import HeroSection from "@/components/sections/HeroSection";
 import DifferentiatorsSection from "@/components/sections/DifferentiatorsSection";

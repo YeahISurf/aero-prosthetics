@@ -5,7 +5,6 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 export default function LanguageToggle() {
-  const t = useTranslations('footer');
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();

@@ -86,7 +86,7 @@ export default function MedicalDisclaimerPage({ params: { locale } }: Props) {
               This website may contain links to third-party websites or content from third-party sources. These links and content are provided for convenience and informational purposes only. Aero Prosthetics has no control over the content of these third-party websites and is not responsible for their content, accuracy, legality, or any other aspect of these websites.
             </p>
             <p>
-              The inclusion of any link does not imply endorsement by Aero Prosthetics of the linked website or its content. Use of any linked website is at the user's own risk.
+              The inclusion of any link does not imply endorsement by Aero Prosthetics of the linked website or its content. Use of any linked website is at the user&apos;s own risk.
             </p>
           </section>
 

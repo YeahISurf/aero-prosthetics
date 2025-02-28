@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useTranslations } from 'next-intl';
+import Link from 'next/link';
 import { contactSchema, ContactFormData } from '@/lib/validation/contactSchema';
 
 export default function ContactForm() {
@@ -224,9 +225,9 @@ export default function ContactForm() {
           </p>
           <p className="text-sm text-gray-700">
             For more information about how we protect your health information, please review our{' '}
-            <a href="/en/legal/privacy" className="text-primary-600 hover:text-primary-500">
+            <Link href="/en/legal/privacy" className="text-primary-600 hover:text-primary-500">
               Privacy Policy
-            </a>.
+            </Link>.
           </p>
         </div>
 
@@ -245,9 +246,9 @@ export default function ContactForm() {
             <div className="ml-3 text-sm">
               <label htmlFor="consent" className="font-medium text-gray-700">
                 I consent to the processing of my personal data according to the{' '}
-                <a href="/en/legal/privacy" className="text-primary-600 hover:text-primary-500">
+                <Link href="/en/legal/privacy" className="text-primary-600 hover:text-primary-500">
                   Privacy Policy
-                </a>
+                </Link>
                 . <span className="text-secondary-red-500">*</span>
               </label>
               {errors.consent && (

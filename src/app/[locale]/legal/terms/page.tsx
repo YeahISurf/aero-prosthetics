@@ -31,7 +31,7 @@ export default function TermsOfServicePage({ params: { locale } }: Props) {
           <section className="mb-8">
             <h2 className="text-2xl font-semibold mb-4">Introduction</h2>
             <p>
-              Welcome to the Aero Prosthetics website. These Terms of Service ("Terms") govern your access to and use of the Aero Prosthetics website, including any content, functionality, and services offered on or through the website (the "Website").
+              Welcome to the Aero Prosthetics website. These Terms of Service (&quot;Terms&quot;) govern your access to and use of the Aero Prosthetics website, including any content, functionality, and services offered on or through the website (the &quot;Website&quot;).
             </p>
             <p>
               Please read these Terms carefully before using our Website. By using the Website, you accept and agree to be bound by these Terms. If you do not agree to these Terms, you must not access or use the Website.
@@ -119,7 +119,7 @@ export default function TermsOfServicePage({ params: { locale } }: Props) {
           <section className="mb-8">
             <h2 className="text-2xl font-semibold mb-4">Indemnification</h2>
             <p>
-              You agree to defend, indemnify, and hold harmless Aero Prosthetics, its affiliates, licensors, and service providers, and its and their respective officers, directors, employees, contractors, agents, licensors, suppliers, successors, and assigns from and against any claims, liabilities, damages, judgments, awards, losses, costs, expenses, or fees (including reasonable attorneys' fees) arising out of or relating to your violation of these Terms or your use of the Website, including, but not limited to, any use of the Website's content, services, and products other than as expressly authorized in these Terms.
+              You agree to defend, indemnify, and hold harmless Aero Prosthetics, its affiliates, licensors, and service providers, and its and their respective officers, directors, employees, contractors, agents, licensors, suppliers, successors, and assigns from and against any claims, liabilities, damages, judgments, awards, losses, costs, expenses, or fees (including reasonable attorneys&apos; fees) arising out of or relating to your violation of these Terms or your use of the Website, including, but not limited to, any use of the Website&apos;s content, services, and products other than as expressly authorized in these Terms.
             </p>
           </section>
 

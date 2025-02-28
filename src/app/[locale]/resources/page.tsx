@@ -267,7 +267,7 @@ export default function ResourcesPage({ params: { locale } }: Props) {
                     <p className="text-sm text-gray-600">{testimonial.location}</p>
                   </div>
                 </div>
-                <blockquote className="text-gray-700 italic">"{testimonial.quote}"</blockquote>
+                <blockquote className="text-gray-700 italic">&quot;{testimonial.quote}&quot;</blockquote>
               </div>
             ))}
           </div>
