@@ -2,6 +2,8 @@
 
 A bilingual (English/Spanish) website for Aero Prosthetics, a division of Aero Mobility Inc., specializing in prosthetic and orthotic solutions.
 
+[![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-blue.svg)](https://github.com/YeahISurf/aero-prosthetics)
+
 ## Project Status
 
 ### Completed Components
@@ -129,6 +131,27 @@ npm run test:coverage
 
 The site can be deployed to Vercel or Google Cloud.
 
+#### Vercel Deployment
+
+To deploy this project to Vercel:
+
+1. Connect your GitHub repository to Vercel
+2. Configure the following build settings:
+   - Framework Preset: Next.js
+   - Build Command: `npm run build`
+   - Install Command: `npm install --legacy-peer-deps`
+   - Output Directory: `.next`
+
+> **Note:** The `--legacy-peer-deps` flag is required due to dependency conflicts between React 19 and some testing libraries that expect React 18.
+
+#### Troubleshooting Deployment Issues
+
+If you encounter dependency conflicts during deployment, try one of these solutions:
+
+1. Use the `--legacy-peer-deps` flag in your install command
+2. Ensure type definitions (`@types/react` and `@types/react-dom`) are compatible with your testing libraries
+3. For local development, you can use `npm install --force` to bypass peer dependency checks
+
 ## Internationalization
 
 The site supports English and Spanish languages. Translations are managed through JSON files in the `locales` directory.
@@ -153,3 +176,15 @@ The site is designed to be WCAG 2.1 AA compliant:
 - Keyboard navigation
 - Sufficient color contrast
 - Screen reader compatibility
+
+## Contributing
+
+Contributions to improve the Aero Prosthetics website are welcome. Please follow these steps:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+Please ensure your code follows the project's coding standards and includes appropriate tests.
