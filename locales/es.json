@@ -1,0 +1,344 @@
+{
+  "meta": {
+    "title": "Aero Prosthetics - Soluciones Protésicas Avanzadas",
+    "description": "Aero Prosthetics ofrece soluciones protésicas y ortopédicas de vanguardia con atención personalizada y apoyo integral."
+  },
+  "navigation": {
+    "home": "Inicio",
+    "about": "Nosotros",
+    "services": "Servicios",
+    "team": "Nuestro Equipo",
+    "locations": "Ubicaciones",
+    "contact": "Contacto",
+    "resources": "Recursos para Pacientes"
+  },
+  "cta": {
+    "requestInfo": "Solicitar Información",
+    "makeAppointment": "Programar una Cita",
+    "learnMore": "Más Información",
+    "contactUs": "Contáctenos"
+  },
+  "home": {
+    "hero": {
+      "title": "Soluciones Protésicas Innovadoras para Mejorar la Movilidad",
+      "subtitle": "Empoderando vidas a través de atención personalizada y tecnología de vanguardia",
+      "cta": "Descubra Nuestros Servicios"
+    },
+    "differentiators": {
+      "title": "Por Qué Elegir Aero Prosthetics",
+      "items": [
+        {
+          "title": "Tecnología de Vanguardia",
+          "description": "Impresión 3D avanzada y diseños personalizados para un ajuste y función óptimos"
+        },
+        {
+          "title": "Atención Personalizada",
+          "description": "Planes de tratamiento individualizados adaptados a sus necesidades únicas"
+        },
+        {
+          "title": "Apoyo Integral",
+          "description": "Servicios completos de rehabilitación y asistencia continua"
+        },
+        {
+          "title": "Equipo Experimentado",
+          "description": "Especialistas con amplia formación y experiencia"
+        }
+      ]
+    },
+    "services": {
+      "title": "Nuestros Servicios",
+      "description": "Soluciones protésicas y ortopédicas integrales para todas las necesidades",
+      "viewAll": "Ver Todos los Servicios"
+    },
+    "testimonials": {
+      "title": "Lo Que Dicen Nuestros Pacientes",
+      "viewAll": "Leer Más Testimonios"
+    },
+    "locations": {
+      "title": "Nuestras Ubicaciones",
+      "anaheim": {
+        "title": "Anaheim Hills",
+        "address": "1001 N Weir Canyon Road",
+        "city": "Anaheim Hills, CA 92807",
+        "phone": "714-385-1000"
+      },
+      "victorville": {
+        "title": "Victorville",
+        "address": "17189 Yuma Street",
+        "city": "Victorville, CA 92395",
+        "phone": "760-245-1000"
+      },
+      "directions": "Obtener Indicaciones"
+    }
+  },
+  "about": {
+    "mission": {
+      "title": "Nuestra Misión",
+      "description": "Empoderar a las personas a través de soluciones protésicas personalizadas e innovadoras que mejoren la movilidad, la independencia y la calidad de vida, fomentando la compasión, la educación y el apoyo a largo plazo."
+    },
+    "values": {
+      "title": "Nuestros Valores Fundamentales",
+      "items": [
+        {
+          "title": "Atención Centrada en el Paciente",
+          "description": "Priorizamos sus necesidades y objetivos únicos en cada decisión"
+        },
+        {
+          "title": "Innovación",
+          "description": "Buscamos continuamente soluciones avanzadas para mejorar los resultados"
+        },
+        {
+          "title": "Compasión",
+          "description": "Abordamos cada interacción con empatía y comprensión"
+        },
+        {
+          "title": "Excelencia",
+          "description": "Mantenemos los más altos estándares en todos los aspectos de nuestra práctica"
+        }
+      ]
+    },
+    "team": {
+      "title": "Nuestro Equipo",
+      "description": "Conozca a nuestro dedicado equipo de especialistas comprometidos con su cuidado",
+      "viewAll": "Conocer a Todo Nuestro Equipo"
+    },
+    "history": {
+      "title": "Nuestra Historia",
+      "description": "Fundada con la visión de transformar la atención protésica a través de la innovación y la personalización, Aero Prosthetics se ha convertido en un líder en soluciones protésicas y ortopédicas avanzadas en el sur de California."
+    }
+  },
+  "services": {
+    "title": "Nuestros Servicios",
+    "description": "Soluciones protésicas y ortopédicas integrales adaptadas a sus necesidades",
+    "categories": [
+      {
+        "title": "Prótesis de Miembros Inferiores",
+        "description": "Soluciones protésicas personalizadas para amputaciones por debajo de la rodilla, por encima de la rodilla y parciales del pie"
+      },
+      {
+        "title": "Prótesis de Miembros Superiores",
+        "description": "Opciones protésicas avanzadas para amputaciones de mano, muñeca, codo y hombro"
+      },
+      {
+        "title": "Prótesis Pediátricas",
+        "description": "Soluciones protésicas especializadas diseñadas para las necesidades únicas y el crecimiento de los niños"
+      },
+      {
+        "title": "Ortesis",
+        "description": "Soluciones de soporte personalizadas para condiciones de columna vertebral, miembros inferiores y superiores"
+      },
+      {
+        "title": "Prendas de Compresión",
+        "description": "Soluciones de compresión de grado médico para diversas condiciones"
+      },
+      {
+        "title": "Productos para Mastectomía",
+        "description": "Formas de seno especializadas y productos post-mastectomía"
+      },
+      {
+        "title": "Cascos Craneales",
+        "description": "Cascos diseñados a medida para tratar la plagiocefalia en bebés"
+      },
+      {
+        "title": "Soportes Personalizados",
+        "description": "Soluciones de soporte personalizadas para escoliosis, condiciones cervicales y lesiones de rodilla"
+      }
+    ],
+    "process": {
+      "title": "Nuestro Proceso",
+      "steps": [
+        {
+          "title": "Consulta Inicial",
+          "description": "Evaluación integral de sus necesidades y objetivos"
+        },
+        {
+          "title": "Diseño Personalizado",
+          "description": "Diseño y medición personalizados para un ajuste óptimo"
+        },
+        {
+          "title": "Fabricación",
+          "description": "Creación de su dispositivo protésico u ortopédico personalizado"
+        },
+        {
+          "title": "Ajuste y Adaptación",
+          "description": "Ajuste preciso y adaptaciones necesarias para su comodidad"
+        },
+        {
+          "title": "Entrenamiento y Apoyo",
+          "description": "Orientación sobre el uso y apoyo continuo para resultados óptimos"
+        }
+      ]
+    }
+  },
+  "team": {
+    "title": "Nuestro Equipo",
+    "description": "Conozca a nuestros especialistas dedicados comprometidos con su cuidado",
+    "categories": {
+      "practitioners": "Profesionales",
+      "technicians": "Técnicos",
+      "support": "Personal de Apoyo"
+    },
+    "viewProfile": "Ver Perfil",
+    "values": {
+      "title": "Valores de Nuestro Equipo",
+      "description": "Los principios que guían nuestro enfoque de atención al paciente",
+      "items": [
+        {
+          "title": "Experiencia",
+          "description": "Nuestro equipo mantiene el más alto nivel de conocimientos y habilidades profesionales"
+        },
+        {
+          "title": "Innovación",
+          "description": "Exploramos continuamente nuevas tecnologías y técnicas para mejorar los resultados"
+        },
+        {
+          "title": "Colaboración",
+          "description": "Trabajamos juntos en todas las disciplinas para proporcionar una atención integral"
+        }
+      ]
+    },
+    "careers": {
+      "title": "Únase a Nuestro Equipo",
+      "description": "¿Interesado en una carrera con Aero Prosthetics? Siempre estamos buscando profesionales talentosos que compartan nuestro compromiso con la excelencia y la atención al paciente.",
+      "cta": "Contáctenos Sobre Carreras"
+    }
+  },
+  "locations": {
+    "title": "Nuestras Ubicaciones",
+    "description": "Visite una de nuestras convenientes ubicaciones en el sur de California",
+    "anaheim": {
+      "title": "Anaheim Hills",
+      "address": "1001 N Weir Canyon Road",
+      "city": "Anaheim Hills, CA 92807",
+      "phone": "714-385-1000",
+      "hours": {
+        "title": "Horario de Atención",
+        "monday": "Lunes: 8:00 AM - 5:00 PM",
+        "tuesday": "Martes: 8:00 AM - 5:00 PM",
+        "wednesday": "Miércoles: 8:00 AM - 5:00 PM",
+        "thursday": "Jueves: 8:00 AM - 5:00 PM",
+        "friday": "Viernes: 8:00 AM - 4:00 PM",
+        "saturday": "Sábado: Cerrado",
+        "sunday": "Domingo: Cerrado"
+      }
+    },
+    "victorville": {
+      "title": "Victorville",
+      "address": "17189 Yuma Street",
+      "city": "Victorville, CA 92395",
+      "phone": "760-245-1000",
+      "hours": {
+        "title": "Horario de Atención",
+        "monday": "Lunes: 8:00 AM - 5:00 PM",
+        "tuesday": "Martes: 8:00 AM - 5:00 PM",
+        "wednesday": "Miércoles: 8:00 AM - 5:00 PM",
+        "thursday": "Jueves: 8:00 AM - 5:00 PM",
+        "friday": "Viernes: 8:00 AM - 4:00 PM",
+        "saturday": "Sábado: Cerrado",
+        "sunday": "Domingo: Cerrado"
+      }
+    },
+    "directions": "Obtener Indicaciones"
+  },
+  "contact": {
+    "title": "Contáctenos",
+    "description": "Estamos aquí para responder sus preguntas y brindarle asistencia",
+    "form": {
+      "title": "Envíenos un Mensaje",
+      "firstName": "Nombre",
+      "lastName": "Apellido",
+      "email": "Correo Electrónico",
+      "phone": "Número de Teléfono",
+      "subject": "Asunto",
+      "message": "Mensaje",
+      "preferredLocation": "Ubicación Preferida",
+      "preferredContact": "Método de Contacto Preferido",
+      "submit": "Enviar",
+      "required": "Campo requerido",
+      "success": "Su mensaje ha sido enviado con éxito. Nos pondremos en contacto con usted pronto.",
+      "error": "Hubo un error al enviar su mensaje. Por favor, inténtelo de nuevo."
+    },
+    "info": {
+      "title": "Información de Contacto",
+      "email": "info@aeroprosthetics.com",
+      "phone": "Consultas Generales: 714-385-1000"
+    },
+    "insurance": {
+      "title": "Información de Seguro",
+      "description": "Trabajamos con la mayoría de los principales proveedores de seguros. Contáctenos para verificar su cobertura.",
+      "accepted": "Planes de Seguro Aceptados"
+    }
+  },
+  "resources": {
+    "title": "Recursos para Pacientes",
+    "description": "Materiales educativos e información para apoyar su proceso",
+    "education": {
+      "title": "Materiales Educativos",
+      "description": "Recursos para ayudarle a entender su dispositivo protésico u ortopédico"
+    },
+    "insurance": {
+      "title": "Información de Seguro",
+      "description": "Detalles sobre cobertura de seguro y asistencia financiera"
+    },
+    "faq": {
+      "title": "Preguntas Frecuentes",
+      "description": "Respuestas a preguntas comunes sobre nuestros servicios y atención"
+    },
+    "testimonials": {
+      "title": "Testimonios de Pacientes",
+      "description": "Historias y experiencias de nuestros pacientes"
+    },
+    "care": {
+      "title": "Guías de Cuidado",
+      "description": "Instrucciones para mantener su dispositivo protésico u ortopédico"
+    }
+  },
+  "legal": {
+    "privacy": {
+      "title": "Política de Privacidad",
+      "description": "Información sobre cómo recopilamos, utilizamos y protegemos sus datos"
+    },
+    "terms": {
+      "title": "Términos de Servicio",
+      "description": "Términos y condiciones para utilizar nuestros servicios"
+    },
+    "accessibility": {
+      "title": "Declaración de Accesibilidad",
+      "description": "Nuestro compromiso con la accesibilidad digital"
+    },
+    "disclaimer": {
+      "title": "Descargo de Responsabilidad Médica",
+      "description": "Información importante sobre el contenido médico en nuestro sitio web"
+    }
+  },
+  "footer": {
+    "company": {
+      "title": "Aero Prosthetics",
+      "description": "Una División de Aero Mobility Inc."
+    },
+    "quickLinks": {
+      "title": "Enlaces Rápidos",
+      "home": "Inicio",
+      "about": "Nosotros",
+      "services": "Servicios",
+      "team": "Nuestro Equipo",
+      "locations": "Ubicaciones",
+      "contact": "Contacto",
+      "resources": "Recursos para Pacientes"
+    },
+    "locations": {
+      "title": "Ubicaciones",
+      "anaheim": "Anaheim Hills",
+      "victorville": "Victorville"
+    },
+    "social": {
+      "title": "Conéctese Con Nosotros",
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn",
+      "youtube": "YouTube"
+    },
+    "copyright": "© 2025 Aero Prosthetics. Todos los derechos reservados.",
+    "language": "Idioma"
+  }
+}
