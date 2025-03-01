@@ -34,6 +34,10 @@ const filesToCopy = [
   {
     source: 'vercel-deploy/src/app/[locale]/contact/page.tsx',
     destination: 'src/app/[locale]/contact/page.tsx'
+  },
+  {
+    source: 'vercel-deploy/src/app/[locale]/legal/accessibility/page.tsx',
+    destination: 'src/app/[locale]/legal/accessibility/page.tsx'
   }
 ];
 
