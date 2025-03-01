@@ -9,8 +9,12 @@ import {
   victorvilleLocationData 
 } from '@/lib/seo/schema';
 
+// Updated Props type to be compatible with Next.js 15
+type Params = { locale: string };
+
 type Props = {
-  params: { locale: string };
+  params: Params;
+  searchParams: Record<string, string | string[] | undefined>;
 };
 
 export async function generateMetadata({ params: { locale } }: Props) {

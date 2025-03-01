@@ -4,8 +4,12 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { constructMetadata } from '@/lib/seo/metadata';
 
+// Updated Props type to be compatible with Next.js 15
+type Params = { locale: string; member: string };
+
 type Props = {
-  params: { locale: string; member: string };
+  params: Params;
+  searchParams: Record<string, string | string[] | undefined>;
 };
 
 // Mock data for team members - in a real implementation, this would come from the CMS
