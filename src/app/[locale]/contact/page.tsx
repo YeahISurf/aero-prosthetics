@@ -1,13 +1,13 @@
-import { useTranslations } from 'next-intl';
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import ContactForm from '@/components/forms/ContactForm';
 import { constructMetadata } from '@/lib/seo/metadata';
 
 type Props = {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 };
 
-export async function generateMetadata({ params: { locale } }: Props) {
+export async function generateMetadata({ params }: Props) {
+  const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'contact' });
 
   return constructMetadata({
@@ -17,16 +17,22 @@ export async function generateMetadata({ params: { locale } }: Props) {
   });
 }
 
-export default function ContactPage({ params: { locale } }: Props) {
+export default async function ContactPage({ params }: Props) {
+  const { locale } = await params;
   // Enable static rendering
   unstable_setRequestLocale(locale);
+
+  // Use getTranslations instead of useTranslations for async server components
+  const t = await getTranslations({ locale, namespace: 'contact' });
+  const contactInfoT = await getTranslations({ locale, namespace: 'contact.info' });
+  const insuranceT = await getTranslations({ locale, namespace: 'contact.insurance' });
 
   return (
     <div className="bg-gray-50">
       <div className="container-custom py-12 md:py-16 lg:py-20">
         <div className="max-w-3xl mx-auto text-center mb-12">
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">{useTranslations('contact')('title')}</h1>
-          <p className="text-xl text-gray-700">{useTranslations('contact')('description')}</p>
+          <h1 className="text-3xl md:text-4xl font-bold mb-4">{t('title')}</h1>
+          <p className="text-xl text-gray-700">{t('description')}</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -36,7 +42,7 @@ export default function ContactPage({ params: { locale } }: Props) {
 
           <div>
             <div className="bg-white rounded-lg shadow-md p-6 md:p-8 mb-8">
-              <h3 className="text-xl font-semibold mb-4">{useTranslations('contact.info')('title')}</h3>
+              <h3 className="text-xl font-semibold mb-4">{contactInfoT('title')}</h3>
               <div className="space-y-4">
                 <div className="flex items-start">
                   <div className="flex-shrink-0 mt-1">
@@ -57,7 +63,7 @@ export default function ContactPage({ params: { locale } }: Props) {
                   </div>
                   <div className="ml-3">
                     <p className="text-sm font-medium text-gray-900">Email</p>
-                    <p className="text-sm text-gray-700">{useTranslations('contact.info')('email')}</p>
+                    <p className="text-sm text-gray-700">{contactInfoT('email')}</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -79,16 +85,16 @@ export default function ContactPage({ params: { locale } }: Props) {
                   </div>
                   <div className="ml-3">
                     <p className="text-sm font-medium text-gray-900">Phone</p>
-                    <p className="text-sm text-gray-700">{useTranslations('contact.info')('phone')}</p>
+                    <p className="text-sm text-gray-700">{contactInfoT('phone')}</p>
                   </div>
                 </div>
               </div>
             </div>
 
             <div className="bg-white rounded-lg shadow-md p-6 md:p-8">
-              <h3 className="text-xl font-semibold mb-4">{useTranslations('contact.insurance')('title')}</h3>
-              <p className="text-gray-700 mb-4">{useTranslations('contact.insurance')('description')}</p>
-              <p className="text-sm font-medium text-gray-900">{useTranslations('contact.insurance')('accepted')}</p>
+              <h3 className="text-xl font-semibold mb-4">{insuranceT('title')}</h3>
+              <p className="text-gray-700 mb-4">{insuranceT('description')}</p>
+              <p className="text-sm font-medium text-gray-900">{insuranceT('accepted')}</p>
               <ul className="mt-2 space-y-1 text-sm text-gray-700">
                 <li>Medicare</li>
                 <li>Medicaid</li>

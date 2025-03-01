@@ -1,12 +1,12 @@
-import { useTranslations } from 'next-intl';
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import { constructMetadata } from '@/lib/seo/metadata';
 
 type Props = {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 };
 
-export async function generateMetadata({ params: { locale } }: Props) {
+export async function generateMetadata({ params }: Props) {
+  const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'legal.privacy' });
 
   return constructMetadata({
@@ -16,11 +16,13 @@ export async function generateMetadata({ params: { locale } }: Props) {
   });
 }
 
-export default function PrivacyPolicyPage({ params: { locale } }: Props) {
+export default async function PrivacyPolicyPage({ params }: Props) {
+  const { locale } = await params;
   // Enable static rendering
   unstable_setRequestLocale(locale);
   
-  const t = useTranslations('legal.privacy');
+  // Use getTranslations instead of useTranslations for async server components
+  const t = await getTranslations({ locale, namespace: 'legal.privacy' });
   
   return (
     <div className="container-custom py-12">
