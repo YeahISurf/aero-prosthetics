@@ -26,6 +26,10 @@ const filesToCopy = [
   {
     source: 'vercel-deploy/src/components/layout/LanguageToggle.tsx',
     destination: 'src/components/layout/LanguageToggle.tsx'
+  },
+  {
+    source: 'vercel-deploy/src/app/[locale]/about/page.tsx',
+    destination: 'src/app/[locale]/about/page.tsx'
   }
 ];
 

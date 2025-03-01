@@ -168,10 +168,30 @@ If you encounter dependency conflicts during deployment, try one of these soluti
 The project includes a solution for handling ESLint errors related to unused variables during Vercel deployment:
 
 1. Deployment-specific versions of files with ESLint errors are stored in the `vercel-deploy` directory
-2. A prebuild script (`scripts/prepare-vercel-build.js`) copies these files to the correct locations before the build process starts
+2. A prebuild script (`scripts/prepare-vercel-build.cjs`) copies these files to the correct locations before the build process starts
 3. The original files are kept in the repository for future development but are ignored during deployment using `.vercelignore`
 
 For more details, see the README in the `vercel-deploy` directory.
+
+#### TypeScript Errors in Next.js 15
+
+Next.js 15 introduced a breaking change where `params` and `searchParams` are now Promises rather than synchronous objects. This affects pages that use these properties, particularly in the `generateMetadata` function and page components.
+
+The deployment-specific version of the about page (`src/app/[locale]/about/page.tsx`) has been updated to handle this change by:
+
+1. Updating the `Props` type to use Promise for params:
+   ```typescript
+   type Props = {
+     params: Promise<{ locale: string }>;
+   };
+   ```
+
+2. Using `await` to access the params values:
+   ```typescript
+   const { locale } = await params;
+   ```
+
+3. Using `getTranslations` instead of `useTranslations` for async server components.
 
 ## Internationalization
 
