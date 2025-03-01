@@ -20,6 +20,7 @@ The following files have deployment-specific versions:
 - `src/app/[locale]/team/[member]/page.tsx`
 - `src/components/layout/LanguageToggle.tsx`
 - `src/app/[locale]/about/page.tsx`
+- `src/app/[locale]/contact/page.tsx`
 
 ## Future Development
 

@@ -177,7 +177,7 @@ For more details, see the README in the `vercel-deploy` directory.
 
 Next.js 15 introduced a breaking change where `params` and `searchParams` are now Promises rather than synchronous objects. This affects pages that use these properties, particularly in the `generateMetadata` function and page components.
 
-The deployment-specific version of the about page (`src/app/[locale]/about/page.tsx`) has been updated to handle this change by:
+The deployment-specific versions of the about and contact pages have been updated to handle this change by:
 
 1. Updating the `Props` type to use Promise for params:
    ```typescript
@@ -191,7 +191,7 @@ The deployment-specific version of the about page (`src/app/[locale]/about/page.
    const { locale } = await params;
    ```
 
-3. Using `getTranslations` instead of `useTranslations` for async server components.
+3. Using `getTranslations` instead of `useTranslations` for async server components, since React hooks cannot be used in async functions.
 
 ## Internationalization
 
