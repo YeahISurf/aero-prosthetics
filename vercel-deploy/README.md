@@ -22,6 +22,7 @@ The following files have deployment-specific versions:
 - `src/app/[locale]/about/page.tsx`
 - `src/app/[locale]/contact/page.tsx`
 - `src/app/[locale]/legal/accessibility/page.tsx`
+- `src/app/[locale]/legal/disclaimer/page.tsx`
 
 ## Future Development
 

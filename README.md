@@ -177,7 +177,7 @@ For more details, see the README in the `vercel-deploy` directory.
 
 Next.js 15 introduced a breaking change where `params` and `searchParams` are now Promises rather than synchronous objects. This affects pages that use these properties, particularly in the `generateMetadata` function and page components.
 
-The deployment-specific versions of the about, contact, and legal/accessibility pages have been updated to handle this change by:
+The deployment-specific versions of the about, contact, legal/accessibility, and legal/disclaimer pages have been updated to handle this change by:
 
 1. Updating the `Props` type to use Promise for params:
    ```typescript
