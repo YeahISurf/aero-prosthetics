@@ -8,6 +8,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import SchemaScript from "@/components/ui/SchemaScript";
 import SkipToContent from "@/components/ui/SkipToContent";
+import ClientFontsStylesheet from "@/components/ui/ClientFontsStylesheet";
 import { generateMedicalOrganizationSchema, organizationData } from "@/lib/seo/schema";
 import "../../app/globals.css";
 
@@ -77,12 +78,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <style jsx global>{`
-        :root {
-          --font-geist-sans: ${geistSans.style.fontFamily};
-          --font-geist-mono: ${geistMono.style.fontFamily};
-        }
-      `}</style>
+      <ClientFontsStylesheet geistSans={geistSans} geistMono={geistMono} />
       <head>
         <SchemaScript schema={organizationSchema} />
       </head>
