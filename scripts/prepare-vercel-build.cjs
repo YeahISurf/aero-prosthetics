@@ -16,6 +16,10 @@ const path = require('path');
 // Files to copy from vercel-deploy to their respective locations
 const filesToCopy = [
   {
+    source: 'vercel-deploy/src/app/[locale]/page.tsx',
+    destination: 'src/app/[locale]/page.tsx'
+  },
+  {
     source: 'vercel-deploy/src/app/[locale]/services/[service]/page.tsx',
     destination: 'src/app/[locale]/services/[service]/page.tsx'
   },
