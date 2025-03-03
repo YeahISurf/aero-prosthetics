@@ -17,7 +17,7 @@ type Props = {
   searchParams: Record<string, string | string[] | undefined>;
 };
 
-export async function generateMetadata({ params: { locale } }: Props) {
+export async function generateMetadata({ params: { locale } }: any) {
   const t = await getTranslations({ locale, namespace: 'locations' });
 
   return constructMetadata({
@@ -27,7 +27,7 @@ export async function generateMetadata({ params: { locale } }: Props) {
   });
 }
 
-export default function LocationsPage({ params: { locale } }: Props) {
+export default function LocationsPage({ params: { locale } }: any) {
   // Enable static rendering
   unstable_setRequestLocale(locale);
   
