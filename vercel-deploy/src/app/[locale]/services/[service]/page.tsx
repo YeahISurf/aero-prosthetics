@@ -1,11 +1,10 @@
-import { useTranslations } from 'next-intl';
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { constructMetadata } from '@/lib/seo/metadata';
 
 type Props = {
-  params: { locale: string; service: string };
+  params: Promise<{ locale: string; service: string }>;
 };
 
 // Mock data for services - in a real implementation, this would come from the CMS
@@ -172,7 +171,8 @@ const services = [
   },
 ];
 
-export async function generateMetadata({ params: { locale, service } }: Props) {
+export async function generateMetadata({ params }: Props) {
+  const { locale, service } = await params;
   const serviceData = services.find((s) => s.id === service);
   if (!serviceData) return {};
 
@@ -186,14 +186,16 @@ export async function generateMetadata({ params: { locale, service } }: Props) {
   });
 }
 
-export default function ServiceDetailPage({ params: { locale, service } }: Props) {
+export default async function ServiceDetailPage({ params }: Props) {
+  const { locale, service } = await params;
   // Enable static rendering
   unstable_setRequestLocale(locale);
   
   const serviceData = services.find((s) => s.id === service);
   if (!serviceData) notFound();
   
-  // NOTE: Translation function removed for deployment - will be added back in future development
+  // Get translations for CTA section
+  const ctaT = await getTranslations({ locale, namespace: 'cta' });
 
   return (
     <>
@@ -310,7 +312,7 @@ export default function ServiceDetailPage({ params: { locale, service } }: Props
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact" className="btn bg-white text-primary-600 hover:bg-gray-100">
-                {useTranslations('cta')('contactUs')}
+                {ctaT('contactUs')}
               </Link>
               <Link href="/services" className="btn bg-transparent border-2 border-white text-white hover:bg-white/10">
                 Explore Other Services
