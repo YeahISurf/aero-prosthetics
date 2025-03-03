@@ -20,12 +20,24 @@ const filesToCopy = [
     destination: 'src/app/[locale]/page.tsx'
   },
   {
+    source: 'vercel-deploy/src/app/[locale]/services/page.tsx',
+    destination: 'src/app/[locale]/services/page.tsx'
+  },
+  {
     source: 'vercel-deploy/src/app/[locale]/services/[service]/page.tsx',
     destination: 'src/app/[locale]/services/[service]/page.tsx'
   },
   {
+    source: 'vercel-deploy/src/app/[locale]/team/page.tsx',
+    destination: 'src/app/[locale]/team/page.tsx'
+  },
+  {
     source: 'vercel-deploy/src/app/[locale]/team/[member]/page.tsx',
     destination: 'src/app/[locale]/team/[member]/page.tsx'
+  },
+  {
+    source: 'vercel-deploy/src/app/[locale]/resources/page.tsx',
+    destination: 'src/app/[locale]/resources/page.tsx'
   },
   {
     source: 'vercel-deploy/src/components/layout/LanguageToggle.tsx',
