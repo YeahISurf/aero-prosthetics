@@ -10,7 +10,6 @@ import CTASection from "@/components/sections/CTASection";
 // Define type for params to match Next.js 15 with React 19 requirements
 type Props = {
   params: Promise<{ locale: string }>;
-  searchParams: Record<string, string | string[] | undefined>;
 };
 
 export async function generateMetadata({ params }: Props) {
