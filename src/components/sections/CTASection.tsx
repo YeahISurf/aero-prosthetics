@@ -15,10 +15,10 @@ export default function CTASection() {
             Contact us today to schedule a consultation and learn how our personalized prosthetic solutions can enhance your mobility and quality of life.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact" className="btn bg-white text-primary-600 hover:bg-gray-100">
+            <Link href="/en/contact" className="btn bg-white text-primary-600 hover:bg-gray-100">
               {t('contactUs')}
             </Link>
-            <Link href="/services" className="btn bg-transparent border-2 border-white text-white hover:bg-white/10">
+            <Link href="/en/services" className="btn bg-transparent border-2 border-white text-white hover:bg-white/10">
               {t('learnMore')}
             </Link>
           </div>

@@ -21,10 +21,10 @@ export default function HeroSection() {
               {t('subtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/services" className="btn bg-white text-primary-600 hover:bg-gray-100">
+              <Link href="/en/services" className="btn bg-white text-primary-600 hover:bg-gray-100">
                 {t('cta')}
               </Link>
-              <Link href="/contact" className="btn bg-transparent border-2 border-white text-white hover:bg-white/10">
+              <Link href="/en/contact" className="btn bg-transparent border-2 border-white text-white hover:bg-white/10">
                 {useTranslations('cta')('contactUs')}
               </Link>
             </div>

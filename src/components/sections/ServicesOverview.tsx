@@ -60,7 +60,7 @@ export default function ServicesOverview() {
                 <h3 className="text-xl font-semibold mb-3 text-gray-900">{service.title}</h3>
                 <p className="text-gray-700 mb-4">{service.description}</p>
                 <Link 
-                  href={`/services/${service.id}`}
+                  href={`/en/services/${service.id}`}
                   className="text-primary-500 font-medium hover:text-primary-600 inline-flex items-center"
                 >
                   {learnMoreText}
@@ -85,7 +85,7 @@ export default function ServicesOverview() {
         </div>
         
         <div className="mt-12 text-center">
-          <Link href="/services" className="btn-primary">
+          <Link href="/en/services" className="btn-primary">
             {t('viewAll')}
           </Link>
         </div>

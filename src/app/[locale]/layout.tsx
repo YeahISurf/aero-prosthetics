@@ -76,11 +76,17 @@ export default async function LocaleLayout({
   const organizationSchema = generateMedicalOrganizationSchema(organizationData);
 
   return (
-    <html lang={locale} className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang={locale} suppressHydrationWarning>
+      <style jsx global>{`
+        :root {
+          --font-geist-sans: ${geistSans.style.fontFamily};
+          --font-geist-mono: ${geistMono.style.fontFamily};
+        }
+      `}</style>
       <head>
         <SchemaScript schema={organizationSchema} />
       </head>
-      <body className="flex flex-col min-h-screen">
+      <body className="flex flex-col min-h-screen" suppressHydrationWarning>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <SkipToContent />
           <Header />

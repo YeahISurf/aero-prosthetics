@@ -92,7 +92,7 @@ export default function LocationsSection() {
         </div>
         
         <div className="mt-12 text-center">
-          <Link href="/locations" className="btn-primary">
+          <Link href="/en/locations" className="btn-primary">
             {useTranslations('navigation')('locations')}
           </Link>
         </div>

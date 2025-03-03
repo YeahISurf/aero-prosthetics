@@ -147,7 +147,7 @@ export default function TestimonialsSection() {
         </div>
         
         <div className="mt-12 text-center">
-          <Link href="/resources#testimonials" className="btn-secondary">
+          <Link href="/en/resources#testimonials" className="btn-secondary">
             {t('viewAll')}
           </Link>
         </div>
