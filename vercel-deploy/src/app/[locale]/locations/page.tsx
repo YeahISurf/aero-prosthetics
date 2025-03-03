@@ -1,4 +1,3 @@
-import { useTranslations } from 'next-intl';
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
 import { constructMetadata } from '@/lib/seo/metadata';
@@ -9,11 +8,14 @@ import {
   victorvilleLocationData 
 } from '@/lib/seo/schema';
 
-// Define type for params
-type Params = { locale: string };
+// Define type for params to match Next.js 15 with React 19 requirements
+type Props = {
+  params: Promise<{ locale: string }>;
+};
 
-export async function generateMetadata({ params }: { params: Params }) {
-  const t = await getTranslations({ locale: params.locale, namespace: 'locations' });
+export async function generateMetadata({ params }: Props) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'locations' });
 
   return constructMetadata({
     title: t('title'),
@@ -22,11 +24,13 @@ export async function generateMetadata({ params }: { params: Params }) {
   });
 }
 
-export default function LocationsPage({ params }: { params: Params }) {
+export default async function LocationsPage({ params }: Props) {
+  const { locale } = await params;
   // Enable static rendering
-  unstable_setRequestLocale(params.locale);
+  unstable_setRequestLocale(locale);
   
-  const t = useTranslations('locations');
+  // Use getTranslations instead of useTranslations for async server components
+  const t = await getTranslations({ locale, namespace: 'locations' });
 
   // Generate location schemas
   const anaheimSchema = generateLocalBusinessSchema(anaheimLocationData);
@@ -368,10 +372,10 @@ export default function LocationsPage({ params }: { params: Params }) {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact" className="btn bg-white text-primary-600 hover:bg-gray-100">
-                {useTranslations('cta')('contactUs')}
+                {t('cta.contactUs')}
               </Link>
               <Link href="/services" className="btn bg-transparent border-2 border-white text-white hover:bg-white/10">
-                {useTranslations('cta')('learnMore')}
+                {t('cta.learnMore')}
               </Link>
             </div>
           </div>
