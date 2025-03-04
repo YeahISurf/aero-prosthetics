@@ -1,15 +1,10 @@
-import { useTranslations } from 'next-intl';
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { constructMetadata } from '@/lib/seo/metadata';
 
-// Updated Props type to be compatible with Next.js 15
-type Params = { locale: string; member: string };
-
 type Props = {
-  params: Params;
-  searchParams: Record<string, string | string[] | undefined>;
+  params: Promise<{ locale: string; member: string }>;
 };
 
 // Mock data for team members - in a real implementation, this would come from the CMS
@@ -112,7 +107,8 @@ const teamMembers = [
   },
 ];
 
-export async function generateMetadata({ params: { locale, member } }: Props) {
+export async function generateMetadata({ params }: Props) {
+  const { locale, member } = await params;
   const memberData = teamMembers.find((m) => m.id === member);
   if (!memberData) return {};
 
@@ -126,14 +122,16 @@ export async function generateMetadata({ params: { locale, member } }: Props) {
   });
 }
 
-export default function TeamMemberPage({ params: { locale, member } }: Props) {
+export default async function TeamMemberPage({ params }: Props) {
+  const { locale, member } = await params;
   // Enable static rendering
   unstable_setRequestLocale(locale);
   
   const memberData = teamMembers.find((m) => m.id === member);
   if (!memberData) notFound();
   
-  // NOTE: Translation function removed for deployment - will be added back in future development
+  // Get translations for CTA section
+  const ctaT = await getTranslations({ locale, namespace: 'cta' });
 
   return (
     <>
@@ -308,7 +306,7 @@ export default function TeamMemberPage({ params: { locale, member } }: Props) {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact" className="btn bg-white text-primary-600 hover:bg-gray-100">
-                {useTranslations('cta')('contactUs')}
+                {ctaT('contactUs')}
               </Link>
               <Link href="/team" className="btn bg-transparent border-2 border-white text-white hover:bg-white/10">
                 View All Team Members

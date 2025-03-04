@@ -206,6 +206,10 @@
   "locations": {
     "title": "Our Locations",
     "description": "Visit one of our convenient Southern California locations",
+    "cta": {
+      "contactUs": "Contact Us",
+      "learnMore": "Learn More"
+    },
     "anaheim": {
       "title": "Anaheim Hills",
       "address": "1001 N Weir Canyon Road",

@@ -1,17 +1,13 @@
-import { useTranslations } from 'next-intl';
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
 import { constructMetadata } from '@/lib/seo/metadata';
 
-// Updated Props type to be compatible with Next.js 15
-type Params = { locale: string };
-
 type Props = {
-  params: Params;
-  searchParams: Record<string, string | string[] | undefined>;
+  params: Promise<{ locale: string }>;
 };
 
-export async function generateMetadata({ params: { locale } }: Props) {
+export async function generateMetadata({ params }: Props) {
+  const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'services' });
 
   return constructMetadata({
@@ -81,12 +77,14 @@ const services = [
   },
 ];
 
-export default function ServicesPage({ params: { locale } }: Props) {
+export default async function ServicesPage({ params }: Props) {
+  const { locale } = await params;
   // Enable static rendering
   unstable_setRequestLocale(locale);
   
-  const t = useTranslations('services');
-  const ctaT = useTranslations('cta');
+  // Use getTranslations instead of useTranslations for async server components
+  const t = await getTranslations({ locale, namespace: 'services' });
+  const ctaT = await getTranslations({ locale, namespace: 'cta' });
   const learnMoreText = ctaT('learnMore');
   const contactUsText = ctaT('contactUs');
 

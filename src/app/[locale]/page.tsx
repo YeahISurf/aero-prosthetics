@@ -7,12 +7,9 @@ import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import LocationsSection from "@/components/sections/LocationsSection";
 import CTASection from "@/components/sections/CTASection";
 
-// Updated Props type to be compatible with Next.js 15
-type Params = { locale: string };
-
+// Define type for params to match Next.js 15 with React 19 requirements
 type Props = {
-  params: Params;
-  searchParams: Record<string, string | string[] | undefined>;
+  params: Promise<{ locale: string }>;
 };
 
 export async function generateMetadata({ params }: Props) {
@@ -26,9 +23,7 @@ export async function generateMetadata({ params }: Props) {
 }
 
 export default async function Home({ params }: Props) {
-  // Await the params object
   const { locale } = await params;
-  
   // Enable static rendering
   unstable_setRequestLocale(locale);
 

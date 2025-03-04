@@ -36,7 +36,7 @@ export default function HeroSection() {
     }, 5000);
     
     return () => clearInterval(interval);
-  }, []);
+  }, [testimonials.length]);
   
   const parallaxOffset = scrollY * 0.3;
 

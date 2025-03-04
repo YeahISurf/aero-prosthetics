@@ -1,13 +1,13 @@
-import { useTranslations } from 'next-intl';
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
 import { constructMetadata } from '@/lib/seo/metadata';
 
 type Props = {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 };
 
-export async function generateMetadata({ params: { locale } }: Props) {
+export async function generateMetadata({ params }: Props) {
+  const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'team' });
 
   return constructMetadata({
@@ -81,11 +81,14 @@ const teamMembers = [
   },
 ];
 
-export default function TeamPage({ params: { locale } }: Props) {
+export default async function TeamPage({ params }: Props) {
+  const { locale } = await params;
   // Enable static rendering
   unstable_setRequestLocale(locale);
   
-  const t = useTranslations('team');
+  // Use getTranslations instead of useTranslations for async server components
+  const t = await getTranslations({ locale, namespace: 'team' });
+  const ctaT = await getTranslations({ locale, namespace: 'cta' });
 
   return (
     <>
@@ -247,7 +250,7 @@ export default function TeamPage({ params: { locale } }: Props) {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact" className="btn bg-white text-primary-600 hover:bg-gray-100">
-                {useTranslations('cta')('contactUs')}
+                {ctaT('contactUs')}
               </Link>
             </div>
           </div>
