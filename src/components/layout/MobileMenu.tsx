@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { usePathname } from 'next/navigation';
 
 export default function MobileMenu() {
@@ -11,6 +11,7 @@ export default function MobileMenu() {
   const ctaT = useTranslations('cta');
   const requestInfoText = ctaT('requestInfo');
   const pathname = usePathname();
+  const locale = useLocale();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -69,16 +70,16 @@ export default function MobileMenu() {
         <div className="absolute top-full left-0 right-0 bg-white shadow-md z-50">
           <nav className="container-custom py-4 flex flex-col space-y-4">
             <Link
-              href="/en"
+              href={`/${locale}`}
               onClick={closeMenu}
               className={`text-sm font-medium transition-colors ${
-                pathname === '/en' ? 'text-primary-500' : 'text-gray-700 hover:text-primary-500'
+                pathname === `/${locale}` ? 'text-primary-500' : 'text-gray-700 hover:text-primary-500'
               }`}
             >
               {t('home')}
             </Link>
             <Link
-              href="/en/about"
+              href={`/${locale}/about`}
               onClick={closeMenu}
               className={`text-sm font-medium transition-colors ${
                 isActive('/about') ? 'text-primary-500' : 'text-gray-700 hover:text-primary-500'
@@ -87,7 +88,7 @@ export default function MobileMenu() {
               {t('about')}
             </Link>
             <Link
-              href="/en/services"
+              href={`/${locale}/services`}
               onClick={closeMenu}
               className={`text-sm font-medium transition-colors ${
                 isActive('/services') ? 'text-primary-500' : 'text-gray-700 hover:text-primary-500'
@@ -96,7 +97,7 @@ export default function MobileMenu() {
               {t('services')}
             </Link>
             <Link
-              href="/en/team"
+              href={`/${locale}/team`}
               onClick={closeMenu}
               className={`text-sm font-medium transition-colors ${
                 isActive('/team') ? 'text-primary-500' : 'text-gray-700 hover:text-primary-500'
@@ -105,7 +106,7 @@ export default function MobileMenu() {
               {t('team')}
             </Link>
             <Link
-              href="/en/locations"
+              href={`/${locale}/locations`}
               onClick={closeMenu}
               className={`text-sm font-medium transition-colors ${
                 isActive('/locations') ? 'text-primary-500' : 'text-gray-700 hover:text-primary-500'
@@ -114,7 +115,7 @@ export default function MobileMenu() {
               {t('locations')}
             </Link>
             <Link
-              href="/en/contact"
+              href={`/${locale}/contact`}
               onClick={closeMenu}
               className={`text-sm font-medium transition-colors ${
                 isActive('/contact') ? 'text-primary-500' : 'text-gray-700 hover:text-primary-500'
@@ -123,7 +124,7 @@ export default function MobileMenu() {
               {t('contact')}
             </Link>
             <Link
-              href="/en/resources"
+              href={`/${locale}/resources`}
               onClick={closeMenu}
               className={`text-sm font-medium transition-colors ${
                 isActive('/resources') ? 'text-primary-500' : 'text-gray-700 hover:text-primary-500'
@@ -131,7 +132,7 @@ export default function MobileMenu() {
             >
               {t('resources')}
             </Link>
-            <Link href="/en/contact" onClick={closeMenu} className="btn-primary w-full text-center">
+            <Link href={`/${locale}/contact`} onClick={closeMenu} className="btn-primary w-full text-center">
               {requestInfoText}
             </Link>
           </nav>

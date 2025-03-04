@@ -28,20 +28,14 @@ type Props = {
 };
 
 export async function generateMetadata({
-  params: { locale },
+  params,
 }: Props): Promise<Metadata> {
+  const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "meta" });
 
   return {
     title: t("title"),
     description: t("description"),
-    viewport: {
-      width: 'device-width',
-      initialScale: 1,
-      maximumScale: 5,
-    },
-    themeColor: '#0055B8', // Primary blue
-    colorScheme: 'light',
     formatDetection: {
       telephone: true,
       email: true,
@@ -54,10 +48,24 @@ export async function generateMetadata({
   };
 }
 
+// Add separate viewport export for Next.js 15 compatibility
+export function generateViewport() {
+  return {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
+    themeColor: '#0055B8', // Primary blue
+    colorScheme: 'light',
+  };
+}
+
 export default async function LocaleLayout({
   children,
-  params: { locale },
+  params,
 }: Props) {
+  // Await the params object
+  const { locale } = await params;
+  
   // Validate locale
   const isValidLocale = ["en", "es"].includes(locale);
   if (!isValidLocale) notFound();

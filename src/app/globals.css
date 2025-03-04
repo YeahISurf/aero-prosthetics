@@ -7,11 +7,10 @@
   --foreground: #2D3748;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #1A202C;
-    --foreground: #F7FAFC;
-  }
+/* Dark mode is now class-based instead of using prefers-color-scheme */
+.dark {
+  --background: #1A202C;
+  --foreground: #F7FAFC;
 }
 
 @layer base {

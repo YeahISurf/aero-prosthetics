@@ -7,6 +7,7 @@ A bilingual (English/Spanish) website for Aero Prosthetics, a division of Aero M
 ## Project Status
 
 ### Completed Components
+- ✅ Image organization and asset management
 - ✅ Project structure and architecture
 - ✅ Multilingual support (English/Spanish)
 - ✅ Core pages (Home, About, Services, Team, Locations, Contact, Resources)
@@ -21,6 +22,19 @@ A bilingual (English/Spanish) website for Aero Prosthetics, a division of Aero M
 - ✅ Testing implementation (Jest and React Testing Library)
 - ✅ Performance optimization (Core Web Vitals improvements)
 - 🔄 Actual content population (currently using placeholder content)
+
+## Image Management
+
+The project includes an organized structure for managing image assets in the `/public/uploads/` directory:
+
+- **`/uploads/hero/`** - Hero section images (homepage banners, page headers)
+- **`/uploads/testimonials/`** - Testimonial user avatars and related images
+- **`/uploads/services/`** - Service-specific images, icons, and illustrations
+- **`/uploads/locations/`** - Location photos, facility images, maps
+- **`/uploads/team/`** - Team member portraits and photos
+- **`/uploads/gallery/`** - Miscellaneous gallery images and general purpose photos
+
+For detailed usage instructions and naming conventions, see the [Image Uploads README](/public/uploads/README.md).
 
 ## Features
 

@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
+import { useLocale } from 'next-intl';
 import LanguageToggle from './LanguageToggle';
 import Logo from '../ui/Logo';
 import MobileMenu from './MobileMenu';
@@ -10,6 +11,7 @@ import MobileMenu from './MobileMenu';
 export default function Header() {
   const t = useTranslations('navigation');
   const pathname = usePathname();
+  const locale = useLocale();
 
   const isActive = (path: string) => {
     return pathname.startsWith(`/${path}`);
@@ -26,15 +28,15 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <Link 
-              href="/en" 
+              href={`/${locale}`} 
               className={`text-sm font-medium transition-colors ${
-                pathname === '/en' ? 'text-primary-500' : 'text-gray-700 hover:text-primary-500'
+                pathname === `/${locale}` ? 'text-primary-500' : 'text-gray-700 hover:text-primary-500'
               }`}
             >
               {t('home')}
             </Link>
             <Link 
-              href="/en/about" 
+              href={`/${locale}/about`} 
               className={`text-sm font-medium transition-colors ${
                 isActive('/about') ? 'text-primary-500' : 'text-gray-700 hover:text-primary-500'
               }`}
@@ -42,7 +44,7 @@ export default function Header() {
               {t('about')}
             </Link>
             <Link 
-              href="/en/services" 
+              href={`/${locale}/services`} 
               className={`text-sm font-medium transition-colors ${
                 isActive('/services') ? 'text-primary-500' : 'text-gray-700 hover:text-primary-500'
               }`}
@@ -50,7 +52,7 @@ export default function Header() {
               {t('services')}
             </Link>
             <Link 
-              href="/en/team" 
+              href={`/${locale}/team`} 
               className={`text-sm font-medium transition-colors ${
                 isActive('/team') ? 'text-primary-500' : 'text-gray-700 hover:text-primary-500'
               }`}
@@ -58,7 +60,7 @@ export default function Header() {
               {t('team')}
             </Link>
             <Link 
-              href="/en/locations" 
+              href={`/${locale}/locations`} 
               className={`text-sm font-medium transition-colors ${
                 isActive('/locations') ? 'text-primary-500' : 'text-gray-700 hover:text-primary-500'
               }`}
@@ -66,7 +68,7 @@ export default function Header() {
               {t('locations')}
             </Link>
             <Link 
-              href="/en/contact" 
+              href={`/${locale}/contact`} 
               className={`text-sm font-medium transition-colors ${
                 isActive('/contact') ? 'text-primary-500' : 'text-gray-700 hover:text-primary-500'
               }`}
@@ -74,7 +76,7 @@ export default function Header() {
               {t('contact')}
             </Link>
             <Link 
-              href="/en/resources" 
+              href={`/${locale}/resources`} 
               className={`text-sm font-medium transition-colors ${
                 isActive('/resources') ? 'text-primary-500' : 'text-gray-700 hover:text-primary-500'
               }`}
@@ -85,7 +87,7 @@ export default function Header() {
 
           <div className="flex items-center space-x-4">
             <LanguageToggle />
-            <Link href="/en/contact" className="hidden md:inline-flex btn-primary">
+            <Link href={`/${locale}/contact`} className="hidden md:inline-flex btn-primary">
               {useTranslations('cta')('requestInfo')}
             </Link>
             <MobileMenu />

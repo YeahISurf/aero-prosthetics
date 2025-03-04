@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aero Prosthetics Website Preview</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0066cc;
+            --secondary-color: #e6f2ff;
+            --text-color: #333;
+            --border-color: #ddd;
+            --accent-color: #ff9500;
+            --success-color: #28a745;
+            --shadow-color: rgba(0, 0, 0, 0.2);
+        }
+        
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            overflow: hidden;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #fafafa;
+        }
+        
+        .header {
+            background-color: var(--secondary-color);
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .title {
+            margin: 0;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .title .logo {
+            font-size: 1.3em;
+            margin-right: 5px;
+            color: var(--primary-color);
+        }
+        
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 4px;
+        }
+        
+        .navbar {
+            background-color: #f8f9fa;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        button, select {
+            background-color: white;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 6px 12px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            color: var(--text-color);
+        }
+        
+        button:hover {
+            background-color: var(--secondary-color);
+            border-color: var(--primary-color);
+        }
+        
+        button.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .icon-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            padding: 0;
+        }
+        
+        .url-bar {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 0.9rem;
+            background-color: white;
+        }
+        
+        .content-area {
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .device-sidebar {
+            width: 220px;
+            background-color: #f0f0f0;
+            border-right: 1px solid var(--border-color);
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .sidebar-section {
+            margin-bottom: 10px;
+        }
+        
+        .sidebar-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .device-option {
+            padding: 8px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+        }
+        
+        .device-option:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .device-option.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .device-option i {
+            width: 16px;
+            text-align: center;
+        }
+        
+        .iframe-container {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            transition: width 0.3s ease, height 0.3s ease;
+            transform-origin: center;
+        }
+        
+        .device-frame {
+            border: 12px solid #222;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            margin: 20px auto;
+            transition: all 0.3s ease;
+            height: calc(100% - 40px);
+            box-sizing: border-box;
+            overflow: hidden;
+            background-color: white;
+            position: relative;
+        }
+        
+        .device-frame.mobile::before {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 5px;
+            background-color: #444;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 5px;
+            z-index: 1;
+        }
+        
+        .device-frame.tablet::before {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: #444;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .device-toolbar {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 20px;
+            display: flex;
+            gap: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 8px 12px;
+            border-radius: 50px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+        }
+        
+        .device-toolbar button {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: none;
+            color: #333;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+        
+        .device-toolbar button:hover {
+            background-color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .device-toolbar .zoom-level {
+            color: white;
+            padding: 0 10px;
+            display: flex;
+            align-items: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .status-bar {
+            background-color: #f5f5f5;
+            padding: 8px 20px;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .pixel-display {
+            padding: 3px 8px;
+            background-color: #e6e6e6;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 0.85rem;
+        }
+        
+        .loading-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+        
+        .loading-indicator.ready {
+            background-color: var(--success-color);
+        }
+        
+        .loading-indicator.loading {
+            background-color: var(--accent-color);
+            animation: pulse 1.5s infinite;
+        }
+        
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: var(--success-color);
+            color: white;
+            border-radius: 4px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        /* Animation for rotate */
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+        
+        @media (max-width: 768px) {
+            .controls {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .navbar {
+                flex-wrap: wrap;
+            }
+            
+            .url-bar {
+                order: 3;
+                width: 100%;
+                margin-top: 10px;
+            }
+            
+            .device-sidebar {
+                width: 180px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">
+                <i class="fas fa-laptop-medical logo"></i>
+                Aero Prosthetics Responsive Viewer
+            </h1>
+            
+            <div class="controls">
+                <div class="control-group">
+                    <label for="locale-select">Language:</label>
+                    <select id="locale-select">
+                        <option value="en">English</option>
+                        <option value="es">Español</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label for="page-select">Page:</label>
+                    <select id="page-select">
+                        <option value="">Home</option>
+                        <option value="about">About</option>
+                        <option value="services">Services</option>
+                        <option value="team">Team</option>
+                        <option value="locations">Locations</option>
+                        <option value="contact">Contact</option>
+                        <option value="resources">Resources</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <div class="button-group">
+                        <button id="toggle-sidebar-btn" title="Toggle Device Sidebar">
+                            <i class="fas fa-columns"></i> Devices
+                        </button>
+                        <button id="screenshot-btn" title="Take Screenshot">
+                            <i class="fas fa-camera"></i> Capture
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="navbar">
+            <button class="icon-button" id="back-button" title="Back"><i class="fas fa-arrow-left"></i></button>
+            <button class="icon-button" id="forward-button" title="Forward"><i class="fas fa-arrow-right"></i></button>
+            <button class="icon-button" id="refresh-button" title="Refresh"><i class="fas fa-redo-alt"></i></button>
+            <input type="text" class="url-bar" id="url-bar" value="http://localhost:3000/en" readonly>
+        </div>
+        
+        <div class="content-area">
+            <div class="device-sidebar" id="device-sidebar">
+                <div class="sidebar-section">
+                    <div class="sidebar-title"><i class="fas fa-desktop"></i> Responsive</div>
+                    <div class="device-option" data-device="responsive" data-width="100%" data-height="100%" data-frame="false">
+                        <i class="fas fa-arrows-alt"></i> Full Width
+                    </div>
+                </div>
+                
+                <div class="sidebar-section">
+                    <div class="sidebar-title"><i class="fas fa-laptop"></i> Desktop</div>
+                    <div class="device-option" data-device="desktop-large" data-width="1920px" data-height="1080px" data-frame="false">
+                        <i class="fas fa-desktop"></i> Large (1920×1080)
+                    </div>
+                    <div class="device-option" data-device="desktop" data-width="1366px" data-height="768px" data-frame="false">
+                        <i class="fas fa-desktop"></i> Standard (1366×768)
+                    </div>
+                    <div class="device-option" data-device="laptop" data-width="1280px" data-height="800px" data-frame="false">
+                        <i class="fas fa-laptop"></i> Laptop (1280×800)
+                    </div>
+                    <div class="device-option" data-device="macbook" data-width="1440px" data-height="900px" data-frame="false">
+                        <i class="fas fa-laptop"></i> MacBook (1440×900)
+                    </div>
+                </div>
+                
+                <div class="sidebar-section">
+                    <div class="sidebar-title"><i class="fas fa-tablet-alt"></i> Tablet</div>
+                    <div class="device-option" data-device="ipad" data-width="768px" data-height="1024px" data-frame="true" data-type="tablet">
+                        <i class="fas fa-tablet-alt"></i> iPad (768×1024)
+                    </div>
+                    <div class="device-option" data-device="ipad-pro" data-width="834px" data-height="1112px" data-frame="true" data-type="tablet">
+                        <i class="fas fa-tablet-alt"></i> iPad Pro (834×1112)
+                    </div>
+                    <div class="device-option" data-device="galaxy-tab" data-width="800px" data-height="1280px" data-frame="true" data-type="tablet">
+                        <i class="fas fa-tablet-alt"></i> Galaxy Tab (800×1280)
+                    </div>
+                </div>
+                
+                <div class="sidebar-section">
+                    <div class="sidebar-title"><i class="fas fa-mobile-alt"></i> Mobile</div>
+                    <div class="device-option" data-device="iphone-13" data-width="390px" data-height="844px" data-frame="true" data-type="mobile">
+                        <i class="fas fa-mobile-alt"></i> iPhone 13 (390×844)
+                    </div>
+                    <div class="device-option" data-device="iphone-se" data-width="375px" data-height="667px" data-frame="true" data-type="mobile">
+                        <i class="fas fa-mobile-alt"></i> iPhone SE (375×667)
+                    </div>
+                    <div class="device-option" data-device="pixel-6" data-width="412px" data-height="915px" data-frame="true" data-type="mobile">
+                        <i class="fas fa-mobile-alt"></i> Pixel 6 (412×915)
+                    </div>
+                    <div class="device-option" data-device="galaxy-s21" data-width="360px" data-height="800px" data-frame="true" data-type="mobile">
+                        <i class="fas fa-mobile-alt"></i> Galaxy S21 (360×800)
+                    </div>
+                </div>
+            </div>
+            
+            <div class="iframe-container" id="iframe-container">
+                <iframe id="site-iframe" src="http://localhost:3000/en" title="Aero Prosthetics Website" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
+                
+                <div class="device-toolbar" id="device-toolbar">
+                    <button id="rotate-btn" title="Rotate Device"><i class="fas fa-sync-alt"></i></button>
+                    <button id="zoom-out-btn" title="Zoom Out"><i class="fas fa-search-minus"></i></button>
+                    <div class="zoom-level" id="zoom-level">100%</div>
+                    <button id="zoom-in-btn" title="Zoom In"><i class="fas fa-search-plus"></i></button>
+                    <button id="zoom-reset-btn" title="Reset Zoom"><i class="fas fa-expand"></i></button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="status-bar">
+            <div class="status-item">
+                <span class="loading-indicator ready" id="load-indicator"></span>
+                <span id="load-status">Ready</span>
+            </div>
+            <div class="status-item">
+                <i class="fas fa-expand-arrows-alt"></i>
+                <span class="pixel-display" id="viewport-size">Viewport: Full Width</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="toast" id="toast">Screenshot captured!</div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const iframe = document.getElementById('site-iframe');
+            const iframeContainer = document.getElementById('iframe-container');
+            const deviceSidebar = document.getElementById('device-sidebar');
+            const deviceToolbar = document.getElementById('device-toolbar');
+            const deviceOptions = document.querySelectorAll('.device-option');
+            const localeSelect = document.getElementById('locale-select');
+            const pageSelect = document.getElementById('page-select');
+            const backButton = document.getElementById('back-button');
+            const forwardButton = document.getElementById('forward-button');
+            const refreshButton = document.getElementById('refresh-button');
+            const urlBar = document.getElementById('url-bar');
+            const viewportSize = document.getElementById('viewport-size');
+            const loadStatus = document.getElementById('load-status');
+            const loadIndicator = document.getElementById('load-indicator');
+            const toggleSidebarBtn = document.getElementById('toggle-sidebar-btn');
+            const screenshotBtn = document.getElementById('screenshot-btn');
+            const rotateBtn = document.getElementById('rotate-btn');
+            const zoomInBtn = document.getElementById('zoom-in-btn');
+            const zoomOutBtn = document.getElementById('zoom-out-btn');
+            const zoomResetBtn = document.getElementById('zoom-reset-btn');
+            const zoomLevel = document.getElementById('zoom-level');
+            const toast = document.getElementById('toast');
+            
+            let baseUrl = 'http://localhost:3000';
+            let currentFrame = null;
+            let currentZoom = 100;
+            let isRotated = false;
+            let currentDevice = 'responsive';
+            
+            // Mark responsive as active by default
+            document.querySelector('.device-option[data-device="responsive"]').classList.add('active');
+            
+            // Event handlers for device options
+            deviceOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove active class from all options
+                    deviceOptions.forEach(opt => opt.classList.remove('active'));
+                    
+                    // Add active class to clicked option
+                    this.classList.add('active');
+                    
+                    // Get device data
+                    const device = this.dataset.device;
+                    const width = this.dataset.width;
+                    const height = this.dataset.height;
+                    const useFrame = this.dataset.frame === 'true';
+                    const deviceType = this.dataset.type || '';
+                    
+                    currentDevice = device;
+                    updateDeviceView(device, width, height, useFrame, deviceType);
+                });
+            });
+            
+            // Update the iframe based on device selection
+            function updateDeviceView(device, width, height, useFrame, deviceType) {
+                if (currentFrame) {
+                    iframe.style.width = '100%';
+                    iframe.style.height = '100%';
+                    iframe.style.transform = 'scale(1)';
+                    currentFrame.remove();
+                    currentFrame = null;
+                    currentZoom = 100;
+                    zoomLevel.textContent = '100%';
+                }
+                
+                // Toggle device toolbar visibility
+                deviceToolbar.classList.toggle('hidden', device === 'responsive');
+                
+                if (useFrame) {
+                    const frame = document.createElement('div');
+                    frame.className = `device-frame ${deviceType}`;
+                    
+                    // Set dimensions based on rotation
+                    if (isRotated) {
+                        frame.style.width = height;
+                        frame.style.height = width;
+                        viewportSize.textContent = `Viewport: ${height} × ${width}`;
+                    } else {
+                        frame.style.width = width;
+                        frame.style.height = height;
+                        viewportSize.textContent = `Viewport: ${width} × ${height}`;
+                    }
+                    
+                    iframeContainer.appendChild(frame);
+                    frame.appendChild(iframe);
+                    currentFrame = frame;
+                } else {
+                    iframeContainer.appendChild(iframe);
+                    
+                    if (isRotated && device !== 'responsive') {
+                        iframe.style.width = height;
+                        iframe.style.height = width;
+                        viewportSize.textContent = `Viewport: ${height} × ${width}`;
+                    } else {
+                        iframe.style.width = width;
+                        
+                        if (device === 'responsive') {
+                            viewportSize.textContent = 'Viewport: Full Width';
+                        } else {
+                            viewportSize.textContent = `Viewport: ${width} × ${height}`;
+                        }
+                    }
+                }
+                
+                // Update zoom
+                updateZoom();
+            }
+            
+            // Update the iframe URL based on selections
+            function updateIframeUrl() {
+                const locale = localeSelect.value;
+                const page = pageSelect.value;
+                const path = page ? `/${locale}/${page}` : `/${locale}`;
+                const url = `${baseUrl}${path}`;
+                
+                loadStatus.textContent = 'Loading...';
+                loadIndicator.classList.remove('ready');
+                loadIndicator.classList.add('loading');
+                
+                iframe.src = url;
+                urlBar.value = url;
+            }
+            
+            // Handle zoom
+            function updateZoom() {
+                iframe.style.transform = `scale(${currentZoom / 100})`;
+                zoomLevel.textContent = `${currentZoom}%`;
+            }
+            
+            // Toggle sidebar
+            toggleSidebarBtn.addEventListener('click', function() {
+                deviceSidebar.classList.toggle('hidden');
+                // Adjust toggle button text
+                this.innerHTML = deviceSidebar.classList.contains('hidden') ? 
+                    '<i class="fas fa-columns"></i> Show Devices' : 
+                    '<i class="fas fa-columns"></i> Hide Devices';
+            });
+            
+            // Screenshot functionality (demo - would need server implementation for real use)
+            screenshotBtn.addEventListener('click', function() {
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 2000);
+            });
+            
+            // Rotate device
+            rotateBtn.addEventListener('click', function() {
+                if (currentDevice === 'responsive') return;
+                
+                isRotated = !isRotated;
+                this.classList.toggle('active', isRotated);
+                
+                // Find the active device option
+                const activeOption = document.querySelector('.device-option.active');
+                if (activeOption) {
+                    const width = activeOption.dataset.width;
+                    const height = activeOption.dataset.height;
+                    const useFrame = activeOption.dataset.frame === 'true';
+                    const deviceType = activeOption.dataset.type || '';
+                    
+                    updateDeviceView(currentDevice, width, height, useFrame, deviceType);
+                }
+            });
+            
+            // Zoom controls
+            zoomInBtn.addEventListener('click', function() {
+                if (currentZoom < 200) {
+                    currentZoom += 10;
+                    updateZoom();
+                }
+            });
+            
+            zoomOutBtn.addEventListener('click', function() {
+                if (currentZoom > 50) {
+                    currentZoom -= 10;
+                    updateZoom();
+                }
+            });
+            
+            zoomResetBtn.addEventListener('click', function() {
+                currentZoom = 100;
+                updateZoom();
+            });
+            
+            // Event listeners for navigation
+            localeSelect.addEventListener('change', updateIframeUrl);
+            pageSelect.addEventListener('change', updateIframeUrl);
+            
+            refreshButton.addEventListener('click', function() {
+                loadStatus.textContent = 'Reloading...';
+                loadIndicator.classList.remove('ready');
+                loadIndicator.classList.add('loading');
+                iframe.src = iframe.src;
+            });
+            
+            backButton.addEventListener('click', function() {
+                try {
+                    iframe.contentWindow.history.back();
+                } catch (e) {
+                    console.error('Cannot access iframe history', e);
+                }
+            });
+            
+            forwardButton.addEventListener('click', function() {
+                try {
+                    iframe.contentWindow.history.forward();
+                } catch (e) {
+                    console.error('Cannot access iframe history', e);
+                }
+            });
+            
+            // Handle iframe load events
+            iframe.addEventListener('load', function() {
+                loadStatus.textContent = 'Ready';
+                loadIndicator.classList.remove('loading');
+                loadIndicator.classList.add('ready');
+                
+                try {
+                    // Update URL bar to reflect iframe's current URL
+                    const iframeUrl = iframe.contentWindow.location.href;
+                    urlBar.value = iframeUrl;
+                    
+                    // Parse current URL to highlight correct options in dropdowns
+                    const urlParts = iframe.contentWindow.location.pathname.split('/');
+                    if (urlParts.length > 1) {
+                        // Update locale select if it exists in the URL
+                        const localeFromUrl = urlParts[1];
+                        if (localeFromUrl && Array.from(localeSelect.options).some(opt => opt.value === localeFromUrl)) {
+                            localeSelect.value = localeFromUrl;
+                        }
+                        
+                        // Update page select if it exists in the URL
+                        if (urlParts.length > 2) {
+                            const pageFromUrl = urlParts[2];
+                            if (pageFromUrl && Array.from(pageSelect.options).some(opt => opt.value === pageFromUrl)) {
+                                pageSelect.value = pageFromUrl;
+                            } else {
+                                pageSelect.value = '';  // Set to home if no match
+                            }
+                        }
+                    }
+                } catch (e) {
+                    console.error('Cannot access iframe location', e);
+                }
+            });
+            
+            // Initial setup
+            updateIframeUrl();
+        });
+    </script>
+</body>
+</html>

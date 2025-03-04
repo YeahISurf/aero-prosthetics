@@ -1,12 +1,13 @@
 "use client";
 
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import LanguageToggle from './LanguageToggle';
 
 export default function Footer() {
   const t = useTranslations('footer');
   const nav = useTranslations('navigation');
+  const locale = useLocale();
 
   return (
     <footer className="bg-gray-900 text-white">
@@ -53,32 +54,32 @@ export default function Footer() {
             <h3 className="text-xl font-bold text-white mb-4">{t('quickLinks.title')}</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/en" className="text-gray-300 hover:text-white">
+                <Link href={`/${locale}`} className="text-gray-300 hover:text-white">
                   {nav('home')}
                 </Link>
               </li>
               <li>
-                <Link href="/en/about" className="text-gray-300 hover:text-white">
+                <Link href={`/${locale}/about`} className="text-gray-300 hover:text-white">
                   {nav('about')}
                 </Link>
               </li>
               <li>
-                <Link href="/en/services" className="text-gray-300 hover:text-white">
+                <Link href={`/${locale}/services`} className="text-gray-300 hover:text-white">
                   {nav('services')}
                 </Link>
               </li>
               <li>
-                <Link href="/en/team" className="text-gray-300 hover:text-white">
+                <Link href={`/${locale}/team`} className="text-gray-300 hover:text-white">
                   {nav('team')}
                 </Link>
               </li>
               <li>
-                <Link href="/en/contact" className="text-gray-300 hover:text-white">
+                <Link href={`/${locale}/contact`} className="text-gray-300 hover:text-white">
                   {nav('contact')}
                 </Link>
               </li>
               <li>
-                <Link href="/en/resources" className="text-gray-300 hover:text-white">
+                <Link href={`/${locale}/resources`} className="text-gray-300 hover:text-white">
                   {nav('resources')}
                 </Link>
               </li>
@@ -111,13 +112,13 @@ export default function Footer() {
               <LanguageToggle />
             </div>
             <div className="space-y-2">
-              <Link href="/en/legal/privacy" className="block text-gray-300 hover:text-white">
+              <Link href={`/${locale}/legal/privacy`} className="block text-gray-300 hover:text-white">
                 {useTranslations('legal.privacy')('title')}
               </Link>
-              <Link href="/en/legal/terms" className="block text-gray-300 hover:text-white">
+              <Link href={`/${locale}/legal/terms`} className="block text-gray-300 hover:text-white">
                 {useTranslations('legal.terms')('title')}
               </Link>
-              <Link href="/en/legal/accessibility" className="block text-gray-300 hover:text-white">
+              <Link href={`/${locale}/legal/accessibility`} className="block text-gray-300 hover:text-white">
                 {useTranslations('legal.accessibility')('title')}
               </Link>
             </div>
