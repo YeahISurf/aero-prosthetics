@@ -107,10 +107,10 @@ export default function HeroSection() {
               }}
             >
               <div className="aspect-[4/3] relative">
-                {/* This would be replaced with your actual hero image */}
+                {/* Hero image */}
                 <Image 
-                  src="/placeholder-team.jpg"
-                  alt="Advanced prosthetic technology"
+                  src="/uploads/hero/why-carbon-fiber-is-the-preferred-material-for-prosthetic-devices-large.jpg"
+                  alt="Carbon fiber prosthetic technology"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover"
