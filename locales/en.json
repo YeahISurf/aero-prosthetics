@@ -16,16 +16,40 @@
     "requestInfo": "Request Information",
     "makeAppointment": "Make an Appointment",
     "learnMore": "Learn More",
-    "contactUs": "Contact Us"
+    "contactUs": "Contact Us",
+    "section": {
+      "badge": "Premium Prosthetic Solutions",
+      "title": "Ready to Experience the Aero Prosthetics Difference?",
+      "description": "Contact us today to schedule a consultation and learn how our personalized prosthetic solutions can enhance your mobility and quality of life.",
+      "stats": [
+        { "value": "15+", "label": "Years Experience" },
+        { "value": "97%", "label": "Satisfaction Rate" },
+        { "value": "4,500+", "label": "Patients Served" },
+        { "value": "2", "label": "Premium Locations" }
+      ],
+      "testimonial": {
+        "quote": "Choosing Aero Prosthetics was the best decision I made in my recovery journey.",
+        "author": "Michael Johnson, Patient since 2022"
+      }
+    }
   },
   "home": {
     "hero": {
       "title": "Innovative Prosthetic Solutions for Enhanced Mobility",
       "subtitle": "Empowering lives through personalized care and cutting-edge technology",
-      "cta": "Discover Our Services"
+      "cta": "Discover Our Services",
+      "badge": "Premium Prosthetic Solutions",
+      "imageCaption": "Advanced materials for maximum comfort and performance",
+      "trustBadge": "TRUSTED BY LEADING INSTITUTIONS",
+      "testimonials": [
+        { "quote": "\"The prosthetic has changed my life. I can now run again.\"", "name": "Michael S." },
+        { "quote": "\"Exceptional quality and care. Worth every penny.\"", "name": "Sarah T." },
+        { "quote": "\"Their advanced technology made all the difference.\"", "name": "James R." }
+      ]
     },
     "differentiators": {
       "title": "Why Choose Aero Prosthetics",
+      "subtitle": "Discover how our premium approach to prosthetics sets us apart and delivers exceptional results for our patients.",
       "items": [
         {
           "title": "Cutting-Edge Technology",
@@ -43,32 +67,210 @@
           "title": "Experienced Team",
           "description": "Specialists with extensive training and expertise"
         }
+      ],
+      "stats": [
+        { "value": "98%", "label": "Patient Satisfaction" },
+        { "value": "1,500+", "label": "Custom Solutions" },
+        { "value": "< 0.5%", "label": "Return Rate" },
+        { "value": "24/7", "label": "Support Available" }
       ]
     },
     "services": {
       "title": "Our Services",
       "description": "Comprehensive prosthetic and orthotic solutions for all needs",
-      "viewAll": "View All Services"
+      "viewAll": "View All Services",
+      "sectionBadge": "Premium Solutions",
+      "technologyShowcase": {
+        "title": "Cutting-Edge Technology",
+        "description": "Our premium prosthetic solutions incorporate the latest advancements in materials science, 3D printing, and microprocessor technology to deliver unparalleled comfort and performance.",
+        "features": [
+          "Carbon fiber and titanium alloy components",
+          "Advanced microprocessor knee and ankle systems",
+          "Custom 3D-printed socket interfaces"
+        ]
+      },
+      "serviceItems": [
+        {
+          "id": "lower-limb-prosthetics",
+          "title": "Lower Limb Prosthetics",
+          "description": "Custom-designed prosthetic solutions for below-knee, above-knee, and partial foot amputations.",
+          "details": "Featuring microprocessor knees, energy-storing feet, and waterproof options.",
+          "certification": "ABC Certified",
+          "technology": "Microprocessor Technology",
+          "successRate": "97%"
+        },
+        {
+          "id": "upper-limb-prosthetics",
+          "title": "Upper Limb Prosthetics",
+          "description": "Advanced prosthetic options for hand, wrist, elbow, and shoulder amputations.",
+          "details": "Including myoelectric hands, activity-specific terminal devices, and passive cosmetic options.",
+          "certification": "FDA Approved",
+          "technology": "Myoelectric Control",
+          "successRate": "94%"
+        },
+        {
+          "id": "pediatric-prosthetics",
+          "title": "Pediatric Prosthetics",
+          "description": "Specialized prosthetic solutions designed for children's unique needs and growth.",
+          "details": "Adjustable components to accommodate growth, lightweight materials, and vibrant customization options.",
+          "certification": "Pediatric Specialty",
+          "technology": "Growth Adaptable",
+          "successRate": "98%"
+        },
+        {
+          "id": "orthotics",
+          "title": "Orthotics",
+          "description": "Custom bracing solutions for spine, lower limb, and upper limb conditions.",
+          "details": "Carbon fiber components, 3D-printed custom braces, and sport-specific orthoses.",
+          "certification": "BOC Certified",
+          "technology": "3D-Printed Custom",
+          "successRate": "96%"
+        },
+        {
+          "id": "compression-garments",
+          "title": "Compression Garments",
+          "description": "Medical-grade compression solutions for various conditions.",
+          "details": "Custom-fitted garments with antimicrobial properties and moisture-wicking technology.",
+          "certification": "Medical Grade",
+          "technology": "Moisture-Wicking",
+          "successRate": "98%"
+        },
+        {
+          "id": "mastectomy-products",
+          "title": "Mastectomy Products",
+          "description": "Specialized breast forms and post-mastectomy products.",
+          "details": "Silicone forms with temperature equalization, custom nipple prostheses, and post-surgical garments.",
+          "certification": "FDA Approved",
+          "technology": "Temperature Equalizing",
+          "successRate": "99%"
+        }
+      ]
     },
     "testimonials": {
       "title": "What Our Patients Say",
-      "viewAll": "Read More Testimonials"
+      "viewAll": "Read More Testimonials",
+      "sectionTagline": "Client Success Stories",
+      "subtitle": "Discover how our premium prosthetic solutions have transformed lives and restored confidence.",
+      "items": [
+        {
+          "id": 1,
+          "name": "Michael Johnson",
+          "location": "Anaheim, CA",
+          "quote": "The team at Aero Prosthetics changed my life. Their personalized approach and cutting-edge technology gave me back my mobility and confidence.",
+          "profession": "Former Athlete",
+          "product": "Lower Limb Prosthetic",
+          "yearsSince": 3,
+          "rating": 5,
+          "mobilityImprovement": "85%",
+          "qualityOfLife": "90%"
+        },
+        {
+          "id": 2,
+          "name": "Sarah Williams",
+          "location": "Victorville, CA",
+          "quote": "After struggling with ill-fitting prosthetics for years, I finally found Aero Prosthetics. Their custom solutions and ongoing support have made all the difference.",
+          "profession": "Teacher",
+          "product": "Below-Knee Prosthetic",
+          "yearsSince": 2,
+          "rating": 5,
+          "mobilityImprovement": "92%",
+          "qualityOfLife": "88%"
+        },
+        {
+          "id": 3,
+          "name": "David Martinez",
+          "location": "Los Angeles, CA",
+          "quote": "The pediatric team at Aero Prosthetics has been amazing with my son. They understand children's unique needs and have helped him thrive.",
+          "profession": "Parent",
+          "product": "Pediatric Upper Limb Prosthetic",
+          "yearsSince": 1,
+          "rating": 5,
+          "mobilityImprovement": "80%",
+          "qualityOfLife": "95%"
+        },
+        {
+          "id": 4,
+          "name": "Jennifer Lee",
+          "location": "San Bernardino, CA",
+          "quote": "I appreciate the comprehensive care I receive at Aero Prosthetics. From initial consultation to ongoing adjustments, they've been there every step of the way.",
+          "profession": "Software Engineer",
+          "product": "Custom Orthotic Solution",
+          "yearsSince": 4,
+          "rating": 5,
+          "mobilityImprovement": "87%",
+          "qualityOfLife": "93%"
+        }
+      ],
+      "metrics": {
+        "productSatisfaction": {
+          "value": "97%",
+          "label": "Product Satisfaction"
+        },
+        "hospitalsClinics": {
+          "value": "100+",
+          "label": "Hospitals & Clinics"
+        },
+        "patientsServed": {
+          "value": "4,500+",
+          "label": "Patients Served"
+        },
+        "industryExperience": {
+          "value": "15+ yrs",
+          "label": "Industry Experience"
+        }
+      }
     },
     "locations": {
       "title": "Our Locations",
+      "sectionBadge": "Premium Care Centers",
+      "subtitle": "Our state-of-the-art facilities are designed to provide the highest level of care and comfort during your prosthetic journey.",
       "anaheim": {
         "title": "Anaheim Hills",
         "address": "1001 N Weir Canyon Road",
         "city": "Anaheim Hills, CA 92807",
-        "phone": "714-385-1000"
+        "phone": "714-385-1000",
+        "established": 2010,
+        "size": "5,600 sq ft",
+        "rating": 4.9,
+        "specialists": 8,
+        "specialFeatures": ["State-of-the-art scanning equipment", "In-house fabrication lab", "Private fitting rooms"],
+        "accessibility": ["Wheelchair accessible", "Reserved parking", "ADA compliant facilities"],
+        "hours": [
+          { "day": "Monday - Thursday", "hours": "8:00 AM - 5:00 PM" },
+          { "day": "Friday", "hours": "8:00 AM - 4:00 PM" },
+          { "day": "Saturday - Sunday", "hours": "Closed" }
+        ]
       },
       "victorville": {
         "title": "Victorville",
         "address": "17189 Yuma Street",
         "city": "Victorville, CA 92395",
-        "phone": "760-245-1000"
+        "phone": "760-245-1000",
+        "established": 2015,
+        "size": "4,200 sq ft",
+        "rating": 4.8,
+        "specialists": 6,
+        "specialFeatures": ["3D scanning technology", "Custom fitting lab", "Children's play area"],
+        "accessibility": ["Ground floor location", "Wide doorways", "Accessible restrooms"],
+        "hours": [
+          { "day": "Monday - Thursday", "hours": "8:30 AM - 5:30 PM" },
+          { "day": "Friday", "hours": "8:30 AM - 3:00 PM" },
+          { "day": "Saturday - Sunday", "hours": "Closed" }
+        ]
       },
-      "directions": "Get Directions"
+      "directions": "Get Directions",
+      "viewDetails": "View Details",
+      "teamLabel": "Our Team",
+      "specialistsLabel": "specialists available",
+      "hoursLabel": "Hours of Operation",
+      "featuresLabel": "Facility Features",
+      "virtualConsultation": {
+        "badge": "New Service",
+        "title": "Virtual Consultations Available",
+        "description": "Unable to visit us in person? Schedule a virtual consultation with our specialists from the comfort of your home.",
+        "feature": "Secure, HIPAA-compliant video platform",
+        "cta": "Schedule Now"
+      }
     }
   },
   "about": {

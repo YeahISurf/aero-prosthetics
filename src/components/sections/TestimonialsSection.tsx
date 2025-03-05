@@ -1,61 +1,40 @@
 "use client";
 
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
-// Enhanced data for testimonials with additional details
-const testimonials = [
-  {
-    id: 1,
-    name: 'Michael Johnson',
-    location: 'Anaheim, CA',
-    quote: 'The team at Aero Prosthetics changed my life. Their personalized approach and cutting-edge technology gave me back my mobility and confidence.',
-    image: '/placeholder-avatar.jpg',
-    rating: 5,
-    profession: 'Former Athlete',
-    product: 'Lower Limb Prosthetic',
-    yearsSince: 3
-  },
-  {
-    id: 2,
-    name: 'Sarah Williams',
-    location: 'Victorville, CA',
-    quote: 'After struggling with ill-fitting prosthetics for years, I finally found Aero Prosthetics. Their custom solutions and ongoing support have made all the difference.',
-    image: '/placeholder-avatar.jpg',
-    rating: 5,
-    profession: 'Teacher',
-    product: 'Below-Knee Prosthetic',
-    yearsSince: 2
-  },
-  {
-    id: 3,
-    name: 'David Martinez',
-    location: 'Los Angeles, CA',
-    quote: 'The pediatric team at Aero Prosthetics has been amazing with my son. They understand children\'s unique needs and have helped him thrive.',
-    image: '/placeholder-avatar.jpg',
-    rating: 5,
-    profession: 'Parent',
-    product: 'Pediatric Upper Limb Prosthetic',
-    yearsSince: 1
-  },
-  {
-    id: 4,
-    name: 'Jennifer Lee',
-    location: 'San Bernardino, CA',
-    quote: 'I appreciate the comprehensive care I receive at Aero Prosthetics. From initial consultation to ongoing adjustments, they\'ve been there every step of the way.',
-    image: '/placeholder-avatar.jpg',
-    rating: 5,
-    profession: 'Software Engineer',
-    product: 'Custom Orthotic Solution',
-    yearsSince: 4
-  },
-];
+// Define TypeScript interfaces for the testimonial data
+interface Testimonial {
+  id: number;
+  name: string;
+  location: string;
+  quote: string;
+  profession: string;
+  product: string;
+  yearsSince: number;
+  rating: number;
+  mobilityImprovement: string;
+  qualityOfLife: string;
+}
+
+interface Metrics {
+  productSatisfaction: { value: string; label: string };
+  hospitalsClinics: { value: string; label: string };
+  patientsServed: { value: string; label: string };
+  industryExperience: { value: string; label: string };
+}
+
 
 export default function TestimonialsSection() {
   const t = useTranslations('home.testimonials');
+  const locale = useLocale();
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  
+  // Get testimonials from localization files
+  const testimonials = t.raw('items') as Testimonial[];
+  const metrics = t.raw('metrics') as Metrics;
 
   // Auto-rotation for testimonials
   useEffect(() => {
@@ -94,12 +73,12 @@ export default function TestimonialsSection() {
         <div className="text-center max-w-3xl mx-auto mb-16">
           {/* Enhanced premium section header */}
           <span className="inline-block px-3 py-1 text-sm font-medium bg-blue-100 text-blue-700 rounded-full mb-4">
-            Client Success Stories
+            {t('sectionTagline')}
           </span>
           <h2 className="section-title text-gray-900 mb-4">{t('title')}</h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-300 via-blue-400 to-blue-300 mx-auto mb-6"></div>
           <p className="text-lg text-gray-700">
-            Discover how our premium prosthetic solutions have transformed lives and restored confidence.
+            {t('subtitle')}
           </p>
         </div>
         
@@ -118,7 +97,7 @@ export default function TestimonialsSection() {
               {/* Light premium card accent */}
               <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-300 via-blue-400 to-blue-300"></div>
               
-              {testimonials.map((testimonial, index) => (
+              {testimonials.map((testimonial: Testimonial, index: number) => (
                 <div
                   key={testimonial.id}
                   className={`transition-all duration-700 ease-in-out ${
@@ -141,7 +120,7 @@ export default function TestimonialsSection() {
                         <p className="text-gray-500 text-sm mt-1">{testimonial.location}</p>
                         
                         <div className="flex justify-center mt-3">
-                          {[...Array(testimonial.rating)].map((_, i) => (
+                          {[...Array(testimonial.rating)].map((_: unknown, i: number) => (
                             <svg
                               key={i}
                               xmlns="http://www.w3.org/2000/svg"
@@ -184,20 +163,20 @@ export default function TestimonialsSection() {
                         <div className="grid grid-cols-2 gap-4 mt-6 pt-6 border-t border-gray-100">
                           <div className="bg-green-50 rounded-lg p-4">
                             <p className="text-xs text-green-700 uppercase font-bold mb-1">Mobility Improvement</p>
-                            <div className="flex items-center">
-                              <div className="flex-1 bg-gray-200 rounded-full h-2">
-                                <div className="bg-green-500 h-2 rounded-full" style={{ width: '85%' }}></div>
+                                <div className="flex items-center">
+                                  <div className="flex-1 bg-gray-200 rounded-full h-2">
+                                    <div className="bg-green-500 h-2 rounded-full" style={{ width: testimonial.mobilityImprovement }}></div>
+                                  </div>
+                                  <span className="ml-2 text-green-700 font-bold">{testimonial.mobilityImprovement}</span>
+                                </div>
                               </div>
-                              <span className="ml-2 text-green-700 font-bold">85%</span>
-                            </div>
-                          </div>
-                          <div className="bg-blue-50 rounded-lg p-4">
-                            <p className="text-xs text-blue-700 uppercase font-bold mb-1">Quality of Life</p>
-                            <div className="flex items-center">
-                              <div className="flex-1 bg-gray-200 rounded-full h-2">
-                                <div className="bg-blue-500 h-2 rounded-full" style={{ width: '90%' }}></div>
-                              </div>
-                              <span className="ml-2 text-blue-700 font-bold">90%</span>
+                              <div className="bg-blue-50 rounded-lg p-4">
+                                <p className="text-xs text-blue-700 uppercase font-bold mb-1">Quality of Life</p>
+                                <div className="flex items-center">
+                                  <div className="flex-1 bg-gray-200 rounded-full h-2">
+                                    <div className="bg-blue-500 h-2 rounded-full" style={{ width: testimonial.qualityOfLife }}></div>
+                                  </div>
+                                  <span className="ml-2 text-blue-700 font-bold">{testimonial.qualityOfLife}</span>
                             </div>
                           </div>
                         </div>
@@ -233,7 +212,7 @@ export default function TestimonialsSection() {
               
               {/* Dots indicator */}
               <div className="flex space-x-2">
-                {testimonials.map((_, index) => (
+                {testimonials.map((_: unknown, index: number) => (
                   <button
                     key={index}
                     onClick={() => setTestimonialIndex(index)}
@@ -281,8 +260,8 @@ export default function TestimonialsSection() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </div>
-              <h4 className="text-3xl font-bold text-gray-900">97%</h4>
-              <p className="text-gray-600">Product Satisfaction</p>
+              <h4 className="text-3xl font-bold text-gray-900">{metrics.productSatisfaction.value}</h4>
+              <p className="text-gray-600">{metrics.productSatisfaction.label}</p>
             </div>
             <div className="text-center">
               <div className="w-20 h-20 flex items-center justify-center rounded-full bg-gradient-to-br from-amber-50 to-amber-100/70 text-amber-600 mx-auto mb-4">
@@ -290,8 +269,8 @@ export default function TestimonialsSection() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                 </svg>
               </div>
-              <h4 className="text-3xl font-bold text-gray-900">100+</h4>
-              <p className="text-gray-600">Hospitals & Clinics</p>
+              <h4 className="text-3xl font-bold text-gray-900">{metrics.hospitalsClinics.value}</h4>
+              <p className="text-gray-600">{metrics.hospitalsClinics.label}</p>
             </div>
             <div className="text-center">
               <div className="w-20 h-20 flex items-center justify-center rounded-full bg-gradient-to-br from-green-50 to-green-100/70 text-green-600 mx-auto mb-4">
@@ -299,8 +278,8 @@ export default function TestimonialsSection() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
                 </svg>
               </div>
-              <h4 className="text-3xl font-bold text-gray-900">4,500+</h4>
-              <p className="text-gray-600">Patients Served</p>
+              <h4 className="text-3xl font-bold text-gray-900">{metrics.patientsServed.value}</h4>
+              <p className="text-gray-600">{metrics.patientsServed.label}</p>
             </div>
             <div className="text-center">
               <div className="w-20 h-20 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-50 to-blue-100/70 text-blue-600 mx-auto mb-4">
@@ -308,15 +287,15 @@ export default function TestimonialsSection() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h4 className="text-3xl font-bold text-gray-900">15+ yrs</h4>
-              <p className="text-gray-600">Industry Experience</p>
+              <h4 className="text-3xl font-bold text-gray-900">{metrics.industryExperience.value}</h4>
+              <p className="text-gray-600">{metrics.industryExperience.label}</p>
             </div>
           </div>
         </div>
         
         <div className="mt-12 text-center">
           <Link 
-            href="/en/resources#testimonials" 
+            href={`/${locale}/resources#testimonials`}
             className="btn-secondary bg-gradient-to-r from-blue-600 to-blue-500 text-white hover:shadow-lg transition-all px-8 py-3 rounded-lg border-0"
           >
             {t('viewAll')}

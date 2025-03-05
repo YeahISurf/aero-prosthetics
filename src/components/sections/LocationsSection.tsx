@@ -1,39 +1,33 @@
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import Link from 'next/link';
 
-// Location details with enhanced information
-const locationDetails = {
-  anaheim: {
-    specialists: 8,
-    established: 2010,
-    size: "5,600 sq ft",
-    specialFeatures: ["State-of-the-art scanning equipment", "In-house fabrication lab", "Private fitting rooms"],
-    accessibility: ["Wheelchair accessible", "Reserved parking", "ADA compliant facilities"],
-    hours: [
-      { day: "Monday - Thursday", hours: "8:00 AM - 5:00 PM" },
-      { day: "Friday", hours: "8:00 AM - 4:00 PM" },
-      { day: "Saturday - Sunday", hours: "Closed" }
-    ],
-    rating: 4.9
-  },
-  victorville: {
-    specialists: 6,
-    established: 2015,
-    size: "4,200 sq ft",
-    specialFeatures: ["3D scanning technology", "Custom fitting lab", "Children's play area"],
-    accessibility: ["Ground floor location", "Wide doorways", "Accessible restrooms"],
-    hours: [
-      { day: "Monday - Thursday", hours: "8:30 AM - 5:30 PM" },
-      { day: "Friday", hours: "8:30 AM - 3:00 PM" },
-      { day: "Saturday - Sunday", hours: "Closed" }
-    ],
-    rating: 4.8
-  }
-};
+// Define TypeScript interfaces for the location data
+interface LocationHours {
+  day: string;
+  hours: string;
+}
+
+interface LocationDetails {
+  title: string;
+  address: string;
+  city: string;
+  phone: string;
+  established: number;
+  size: string;
+  rating: number;
+  specialists: number;
+  specialFeatures: string[];
+  accessibility: string[];
+  hours: LocationHours[];
+}
 
 export default function LocationsSection() {
   const t = useTranslations('home.locations');
-  const details = locationDetails;
+  const locale = useLocale();
+  
+  // Get location details from localization files with proper type casting
+  const anaheim = t.raw('anaheim') as unknown as LocationDetails;
+  const victorville = t.raw('victorville') as unknown as LocationDetails;
 
   return (
     <section className="section relative pt-24 pb-32 overflow-hidden">
@@ -48,12 +42,12 @@ export default function LocationsSection() {
       <div className="container-custom relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="inline-block px-3 py-1 text-sm font-medium bg-primary-100 text-primary-700 rounded-full mb-4">
-            Premium Care Centers
+            {t('sectionBadge')}
           </span>
           <h2 className="section-title text-gray-900 mb-4">{t('title')}</h2>
           <div className="w-24 h-1 bg-gradient-to-r from-primary-300 via-primary-400 to-primary-300 mx-auto mb-6"></div>
           <p className="text-lg text-gray-700">
-            Our state-of-the-art facilities are designed to provide the highest level of care and comfort during your prosthetic journey.
+            {t('subtitle')}
           </p>
         </div>
         
@@ -100,16 +94,16 @@ export default function LocationsSection() {
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">{t('anaheim.title')}</h3>
                   <div className="flex items-center">
                     <div className="flex">
-                      {[...Array(5)].map((_, i) => (
-                        <svg key={i} className={`w-4 h-4 ${i < Math.floor(details.anaheim.rating) ? 'text-amber-400' : 'text-gray-300'}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                      {[...Array(5)].map((_, i: number) => (
+                        <svg key={i} className={`w-4 h-4 ${i < Math.floor(anaheim.rating || 5) ? 'text-amber-400' : 'text-gray-300'}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                         </svg>
                       ))}
                     </div>
-                    <span className="text-sm text-gray-600 ml-2">{details.anaheim.rating}/5</span>
+                    <span className="text-sm text-gray-600 ml-2">{anaheim.rating || 5}/5</span>
                   </div>
                 </div>
-                <span className="px-2 py-1 bg-primary-100 text-primary-700 text-xs font-medium rounded-full">Est. {details.anaheim.established}</span>
+                <span className="px-2 py-1 bg-primary-100 text-primary-700 text-xs font-medium rounded-full">Est. {anaheim.established}</span>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -122,7 +116,7 @@ export default function LocationsSection() {
                   
                   {/* Specialists */}
                   <div>
-                    <h4 className="text-sm uppercase tracking-wider text-gray-500 mb-2">Our Team</h4>
+                    <h4 className="text-sm uppercase tracking-wider text-gray-500 mb-2">{t('teamLabel')}</h4>
                     <div className="flex items-center">
                       <div className="mr-3">
                         <div className="flex -space-x-2">
@@ -133,15 +127,15 @@ export default function LocationsSection() {
                           ))}
                         </div>
                       </div>
-                      <p className="text-sm text-gray-700">{details.anaheim.specialists} specialists available</p>
+                      <p className="text-sm text-gray-700">{anaheim.specialists} {t('specialistsLabel')}</p>
                     </div>
                   </div>
                 </div>
                 
                 <div>
-                  <h4 className="text-sm uppercase tracking-wider text-gray-500 mb-2">Hours of Operation</h4>
+                  <h4 className="text-sm uppercase tracking-wider text-gray-500 mb-2">{t('hoursLabel')}</h4>
                   <ul className="space-y-1">
-                    {details.anaheim.hours.map((item, index) => (
+                    {anaheim.hours.map((item: LocationHours, index: number) => (
                       <li key={index} className="flex justify-between text-sm">
                         <span className="text-gray-600">{item.day}</span>
                         <span className="font-medium text-gray-800">{item.hours}</span>
@@ -153,9 +147,9 @@ export default function LocationsSection() {
               
               {/* Features Badges */}
               <div className="mb-6">
-                <h4 className="text-sm uppercase tracking-wider text-gray-500 mb-2">Facility Features</h4>
+                <h4 className="text-sm uppercase tracking-wider text-gray-500 mb-2">{t('featuresLabel')}</h4>
                 <div className="flex flex-wrap gap-2">
-                  {details.anaheim.accessibility.map((feature, index) => (
+                  {anaheim.accessibility.map((feature: string, index: number) => (
                     <span key={`acc-${index}`} className="px-2 py-1 bg-green-50 text-green-700 text-xs font-medium rounded-full flex items-center">
                       <svg className="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -176,10 +170,10 @@ export default function LocationsSection() {
                   {t('directions')}
                 </a>
                 <Link 
-                  href="/en/locations/anaheim" 
+                  href={`/${locale}/locations/anaheim`}
                   className="btn bg-white text-primary-600 border border-primary-500 hover:bg-primary-50 text-center"
                 >
-                  View Details
+                  {t('viewDetails')}
                 </Link>
               </div>
             </div>
@@ -227,16 +221,16 @@ export default function LocationsSection() {
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">{t('victorville.title')}</h3>
                   <div className="flex items-center">
                     <div className="flex">
-                      {[...Array(5)].map((_, i) => (
-                        <svg key={i} className={`w-4 h-4 ${i < Math.floor(details.victorville.rating) ? 'text-amber-400' : 'text-gray-300'}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                      {[...Array(5)].map((_, i: number) => (
+                        <svg key={i} className={`w-4 h-4 ${i < Math.floor(victorville.rating || 5) ? 'text-amber-400' : 'text-gray-300'}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                         </svg>
                       ))}
                     </div>
-                    <span className="text-sm text-gray-600 ml-2">{details.victorville.rating}/5</span>
+                    <span className="text-sm text-gray-600 ml-2">{victorville.rating || 5}/5</span>
                   </div>
                 </div>
-                <span className="px-2 py-1 bg-primary-100 text-primary-700 text-xs font-medium rounded-full">Est. {details.victorville.established}</span>
+                <span className="px-2 py-1 bg-primary-100 text-primary-700 text-xs font-medium rounded-full">Est. {victorville.established}</span>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -249,7 +243,7 @@ export default function LocationsSection() {
                   
                   {/* Specialists */}
                   <div>
-                    <h4 className="text-sm uppercase tracking-wider text-gray-500 mb-2">Our Team</h4>
+                    <h4 className="text-sm uppercase tracking-wider text-gray-500 mb-2">{t('teamLabel')}</h4>
                     <div className="flex items-center">
                       <div className="mr-3">
                         <div className="flex -space-x-2">
@@ -260,15 +254,15 @@ export default function LocationsSection() {
                           ))}
                         </div>
                       </div>
-                      <p className="text-sm text-gray-700">{details.victorville.specialists} specialists available</p>
+                      <p className="text-sm text-gray-700">{victorville.specialists} {t('specialistsLabel')}</p>
                     </div>
                   </div>
                 </div>
                 
                 <div>
-                  <h4 className="text-sm uppercase tracking-wider text-gray-500 mb-2">Hours of Operation</h4>
+                  <h4 className="text-sm uppercase tracking-wider text-gray-500 mb-2">{t('hoursLabel')}</h4>
                   <ul className="space-y-1">
-                    {details.victorville.hours.map((item, index) => (
+                    {victorville.hours.map((item: LocationHours, index: number) => (
                       <li key={index} className="flex justify-between text-sm">
                         <span className="text-gray-600">{item.day}</span>
                         <span className="font-medium text-gray-800">{item.hours}</span>
@@ -280,9 +274,9 @@ export default function LocationsSection() {
               
               {/* Features Badges */}
               <div className="mb-6">
-                <h4 className="text-sm uppercase tracking-wider text-gray-500 mb-2">Facility Features</h4>
+                <h4 className="text-sm uppercase tracking-wider text-gray-500 mb-2">{t('featuresLabel')}</h4>
                 <div className="flex flex-wrap gap-2">
-                  {details.victorville.accessibility.map((feature, index) => (
+                  {victorville.accessibility.map((feature: string, index: number) => (
                     <span key={`acc-${index}`} className="px-2 py-1 bg-green-50 text-green-700 text-xs font-medium rounded-full flex items-center">
                       <svg className="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -303,10 +297,10 @@ export default function LocationsSection() {
                   {t('directions')}
                 </a>
                 <Link 
-                  href="/en/locations/victorville" 
+                  href={`/${locale}/locations/victorville`}
                   className="btn bg-white text-primary-600 border border-primary-500 hover:bg-primary-50 text-center"
                 >
-                  View Details
+                  {t('viewDetails')}
                 </Link>
               </div>
             </div>
@@ -321,29 +315,29 @@ export default function LocationsSection() {
           
           <div className="relative z-10 flex flex-col md:flex-row items-center justify-between">
             <div className="md:w-2/3 mb-6 md:mb-0">
-              <span className="inline-block px-2 py-1 bg-white/10 text-white/90 rounded-md text-sm font-medium mb-3">New Service</span>
-              <h3 className="text-2xl md:text-3xl font-bold mb-3">Virtual Consultations Available</h3>
-              <p className="text-white/80 mb-2">Unable to visit us in person? Schedule a virtual consultation with our specialists from the comfort of your home.</p>
+              <span className="inline-block px-2 py-1 bg-white/10 text-white/90 rounded-md text-sm font-medium mb-3">{t('virtualConsultation.badge')}</span>
+              <h3 className="text-2xl md:text-3xl font-bold mb-3">{t('virtualConsultation.title')}</h3>
+              <p className="text-white/80 mb-2">{t('virtualConsultation.description')}</p>
               <div className="flex items-center mt-4">
                 <svg className="h-5 w-5 text-primary-300 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <p className="text-sm text-primary-200">Secure, HIPAA-compliant video platform</p>
+                <p className="text-sm text-primary-200">{t('virtualConsultation.feature')}</p>
               </div>
             </div>
             <div>
               <Link 
-                href="/en/contact" 
+                href={`/${locale}/contact`}
                 className="btn bg-white text-blue-600 hover:bg-blue-50 shadow-lg transition-all inline-block"
               >
-                Schedule Now
+                {t('virtualConsultation.cta')}
               </Link>
             </div>
           </div>
         </div>
         
         <div className="mt-12 text-center">
-          <Link href="/en/locations" className="btn-primary bg-gradient-to-r from-primary-500 to-primary-400 shadow-lg hover:shadow-xl transition-all px-8 py-3 rounded-lg">
+          <Link href={`/${locale}/locations`} className="btn-primary bg-gradient-to-r from-primary-500 to-primary-400 shadow-lg hover:shadow-xl transition-all px-8 py-3 rounded-lg">
             {useTranslations('navigation')('locations')}
           </Link>
         </div>

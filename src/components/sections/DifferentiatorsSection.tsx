@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl';
 
-// Define SVG icons for each differentiator
+// Define SVG icons for each differentiator (maps to the items in translation file)
 const ICONS = [
   // Innovation icon
   <svg key="innovation" xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -20,18 +20,15 @@ const ICONS = [
   </svg>
 ];
 
-// Statistics for each differentiator
-const STATS = [
-  { value: "98%", label: "Patient Satisfaction" },
-  { value: "1,500+", label: "Custom Solutions" },
-  { value: "< 0.5%", label: "Return Rate" },
-  { value: "24/7", label: "Support Available" }
-];
-
 export default function DifferentiatorsSection() {
   const t = useTranslations('home.differentiators');
   const items = t.raw('items') as Array<{ title: string; description: string }>;
+  const stats = t.raw('stats') as Array<{ value: string; label: string }>;
 
+  // Ensure we have valid arrays to prevent rendering errors
+  const safeItems = items || [];
+  const safeStats = stats || [];
+  
   return (
     <section className="section relative overflow-hidden">
       {/* Light and clean gradient background */}
@@ -49,21 +46,21 @@ export default function DifferentiatorsSection() {
             <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-blue-300 via-blue-400 to-blue-300"></span>
           </h2>
           <p className="text-lg text-gray-700 mt-6">
-            Discover how our premium approach to prosthetics sets us apart and delivers exceptional results for our patients.
+            {t('subtitle')}
           </p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
-          {items.map((item, index) => (
+          {safeItems.map((item, index) => (
             <div 
               key={index} 
-              className="bg-gradient-to-b from-white via-blue-50/10 to-white rounded-xl shadow-lg p-8 transition-all duration-300 hover:translate-y-[-8px] hover:shadow-xl relative overflow-hidden group"
+              className="bg-gradient-to-b from-white via-blue-50/10 to-white rounded-xl shadow-lg p-8 transition-all duration-300 hover:translate-y-[-2px] hover:shadow-md relative overflow-hidden group"
             >
               {/* Subtle blue corner accent */}
               <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-blue-100/30 to-transparent"></div>
               
               {/* Icon container with fancy border */}
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-50 to-blue-100/70 text-blue-600 rounded-xl flex items-center justify-center mb-6 shadow-inner border border-blue-100 group-hover:bg-blue-500 group-hover:text-white transition-colors duration-300">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-50 to-blue-100/70 text-blue-600 rounded-xl flex items-center justify-center mb-6 shadow-inner border border-blue-100 group-hover:bg-blue-300 group-hover:text-blue-700 transition-colors duration-300">
                 {ICONS[index % ICONS.length]}
               </div>
               
@@ -73,17 +70,19 @@ export default function DifferentiatorsSection() {
               {/* Statistics - added for premium feel */}
               <div className="pt-4 mt-4 border-t border-gray-100">
                 <div className="flex items-center">
-                  <span className="text-xl font-bold text-blue-600">{STATS[index % STATS.length].value}</span>
-                  <span className="ml-2 text-sm text-gray-500">{STATS[index % STATS.length].label}</span>
+                  {safeStats.length > 0 && (
+                    <>
+                      <span className="text-xl font-bold text-blue-600">
+                        {safeStats[Math.min(index, safeStats.length - 1)].value}
+                      </span>
+                      <span className="ml-2 text-sm text-gray-500">
+                        {safeStats[Math.min(index, safeStats.length - 1)].label}
+                      </span>
+                    </>
+                  )}
                 </div>
               </div>
               
-              {/* Subtle interaction indicator */}
-              <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </div>
             </div>
           ))}
         </div>

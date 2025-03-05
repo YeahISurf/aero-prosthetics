@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
@@ -8,19 +7,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import SchemaScript from "@/components/ui/SchemaScript";
 import SkipToContent from "@/components/ui/SkipToContent";
-import ClientFontsStylesheet from "@/components/ui/ClientFontsStylesheet";
 import { generateMedicalOrganizationSchema, organizationData } from "@/lib/seo/schema";
-import "../../app/globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 type Props = {
   children: React.ReactNode;
@@ -36,26 +23,6 @@ export async function generateMetadata({
   return {
     title: t("title"),
     description: t("description"),
-    formatDetection: {
-      telephone: true,
-      email: true,
-      address: true,
-    },
-    icons: {
-      icon: '/favicon.ico',
-      apple: '/apple-icon.png',
-    },
-  };
-}
-
-// Add separate viewport export for Next.js 15 compatibility
-export function generateViewport() {
-  return {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 5,
-    themeColor: '#0055B8', // Primary blue
-    colorScheme: 'light',
   };
 }
 
@@ -85,20 +52,15 @@ export default async function LocaleLayout({
   const organizationSchema = generateMedicalOrganizationSchema(organizationData);
 
   return (
-    <html lang={locale} suppressHydrationWarning>
-      <ClientFontsStylesheet geistSans={geistSans} geistMono={geistMono} />
-      <head>
-        <SchemaScript schema={organizationSchema} />
-      </head>
-      <body className="flex flex-col min-h-screen" suppressHydrationWarning>
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          <SkipToContent />
-          <Header />
-          <main id="main-content" className="flex-grow">{children}</main>
-          <Footer />
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <>
+      <SchemaScript schema={organizationSchema} />
+      <NextIntlClientProvider locale={locale} messages={messages}>
+        <SkipToContent />
+        <Header />
+        <main id="main-content" className="flex-grow">{children}</main>
+        <Footer />
+      </NextIntlClientProvider>
+    </>
   );
 }
 

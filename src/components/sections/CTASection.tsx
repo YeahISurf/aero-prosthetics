@@ -1,8 +1,16 @@
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import Link from 'next/link';
 
 export default function CTASection() {
   const t = useTranslations('cta');
+  const locale = useLocale();
+  const ctaSection = t.raw('section') as {
+    badge: string;
+    title: string;
+    description: string;
+    stats: Array<{ value: string; label: string }>;
+    testimonial: { quote: string; author: string };
+  };
 
   return (
     <section className="relative py-24 md:py-32 overflow-hidden">
@@ -25,50 +33,40 @@ export default function CTASection() {
             {/* Premium headline with subtle accent */}
             <div className="text-center mb-12">
               <span className="inline-block px-4 py-1 rounded-full bg-blue-100/50 text-blue-700 text-sm font-medium mb-6 backdrop-blur-sm border border-blue-200/30">
-                Premium Prosthetic Solutions
+                {ctaSection.badge}
               </span>
               <h2 className="text-3xl md:text-5xl font-bold mb-6 text-gray-900 leading-tight">
-                Ready to Experience the Aero Prosthetics Difference?
+                {ctaSection.title}
               </h2>
               
               {/* Blue accent line */}
               <div className="w-32 h-1 bg-gradient-to-r from-blue-300 to-blue-400 mx-auto mb-8"></div>
               
               <p className="text-xl md:text-2xl text-gray-700 mb-8 leading-relaxed">
-                Contact us today to schedule a consultation and learn how our personalized prosthetic solutions can enhance your mobility and quality of life.
+                {ctaSection.description}
               </p>
             </div>
             
             {/* Premium quality indicators - lighter style */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-              <div className="bg-blue-50/70 rounded-lg p-4 backdrop-blur-sm border border-blue-100/50 text-center">
-                <div className="text-blue-600 font-bold text-2xl md:text-3xl mb-1">15+</div>
-                <div className="text-gray-700 text-sm">Years Experience</div>
-              </div>
-              <div className="bg-blue-50/70 rounded-lg p-4 backdrop-blur-sm border border-blue-100/50 text-center">
-                <div className="text-blue-600 font-bold text-2xl md:text-3xl mb-1">97%</div>
-                <div className="text-gray-700 text-sm">Satisfaction Rate</div>
-              </div>
-              <div className="bg-blue-50/70 rounded-lg p-4 backdrop-blur-sm border border-blue-100/50 text-center">
-                <div className="text-blue-600 font-bold text-2xl md:text-3xl mb-1">4,500+</div>
-                <div className="text-gray-700 text-sm">Patients Served</div>
-              </div>
-              <div className="bg-blue-50/70 rounded-lg p-4 backdrop-blur-sm border border-blue-100/50 text-center">
-                <div className="text-blue-600 font-bold text-2xl md:text-3xl mb-1">2</div>
-                <div className="text-gray-700 text-sm">Premium Locations</div>
-              </div>
+              {ctaSection.stats.map((stat, index) => (
+                <div key={index} className="bg-blue-50/70 rounded-lg p-4 backdrop-blur-sm border border-blue-100/50 text-center">
+                  <div className="text-blue-600 font-bold text-2xl md:text-3xl mb-1">{stat.value}</div>
+                  <div className="text-gray-700 text-sm">{stat.label}</div>
+                </div>
+              ))}
             </div>
             
             {/* Premium CTA buttons - lighter, cleaner style */}
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link 
-                href="/en/contact" 
+                href={`/${locale}/contact`}
                 className="btn px-8 py-4 bg-gradient-to-r from-blue-400 to-blue-300 text-white hover:shadow-lg hover:from-blue-300 hover:to-blue-200 transition-all duration-300 rounded-full font-semibold text-lg shadow-md border border-blue-200/50 hover:scale-105"
               >
                 {t('contactUs')}
               </Link>
               <Link 
-                href="/en/services" 
+                href={`/${locale}/services`}
                 className="btn px-8 py-4 bg-white border border-blue-200 text-blue-600 hover:bg-blue-50/50 transition-all duration-300 rounded-full font-semibold text-lg"
               >
                 {t('learnMore')}
@@ -78,9 +76,9 @@ export default function CTASection() {
             {/* Premium testimonial snippet - cleaner style */}
             <div className="mt-12 pt-6 border-t border-blue-100 text-center">
               <p className="text-gray-700 italic">
-                &ldquo;Choosing Aero Prosthetics was the best decision I made in my recovery journey.&rdquo;
+                &ldquo;{ctaSection.testimonial.quote}&rdquo;
               </p>
-              <p className="text-blue-600 text-sm mt-2">— Michael Johnson, Patient since 2022</p>
+              <p className="text-blue-600 text-sm mt-2">— {ctaSection.testimonial.author}</p>
             </div>
           </div>
         </div>

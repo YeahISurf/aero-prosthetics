@@ -16,16 +16,40 @@
     "requestInfo": "Solicitar Información",
     "makeAppointment": "Programar una Cita",
     "learnMore": "Más Información",
-    "contactUs": "Contáctenos"
+    "contactUs": "Contáctenos",
+    "section": {
+      "badge": "Soluciones Protésicas Premium",
+      "title": "¿Listo para Experimentar la Diferencia de Aero Prosthetics?",
+      "description": "Contáctenos hoy para programar una consulta y conocer cómo nuestras soluciones protésicas personalizadas pueden mejorar su movilidad y calidad de vida.",
+      "stats": [
+        { "value": "15+", "label": "Años de Experiencia" },
+        { "value": "97%", "label": "Tasa de Satisfacción" },
+        { "value": "4,500+", "label": "Pacientes Atendidos" },
+        { "value": "2", "label": "Ubicaciones Premium" }
+      ],
+      "testimonial": {
+        "quote": "Elegir Aero Prosthetics fue la mejor decisión que tomé en mi proceso de recuperación.",
+        "author": "Michael Johnson, Paciente desde 2022"
+      }
+    }
   },
   "home": {
     "hero": {
       "title": "Soluciones Protésicas Innovadoras para Mejorar la Movilidad",
       "subtitle": "Empoderando vidas a través de atención personalizada y tecnología de vanguardia",
-      "cta": "Descubra Nuestros Servicios"
+      "cta": "Descubra Nuestros Servicios",
+      "badge": "Soluciones Protésicas Premium",
+      "imageCaption": "Materiales avanzados para máxima comodidad y rendimiento",
+      "trustBadge": "CONFIANZA DE INSTITUCIONES LÍDERES",
+      "testimonials": [
+        { "quote": "\"La prótesis ha cambiado mi vida. Ahora puedo correr de nuevo.\"", "name": "Miguel S." },
+        { "quote": "\"Calidad excepcional y atención. Vale cada centavo.\"", "name": "Sara T." },
+        { "quote": "\"Su tecnología avanzada hizo toda la diferencia.\"", "name": "Jaime R." }
+      ]
     },
     "differentiators": {
       "title": "Por Qué Elegir Aero Prosthetics",
+      "subtitle": "Descubra cómo nuestro enfoque de primera calidad en prótesis nos distingue y ofrece resultados excepcionales para nuestros pacientes.",
       "items": [
         {
           "title": "Tecnología de Vanguardia",
@@ -43,32 +67,210 @@
           "title": "Equipo Experimentado",
           "description": "Especialistas con amplia formación y experiencia"
         }
+      ],
+      "stats": [
+        { "value": "98%", "label": "Satisfacción del Paciente" },
+        { "value": "1,500+", "label": "Soluciones Personalizadas" },
+        { "value": "< 0.5%", "label": "Tasa de Devolución" },
+        { "value": "24/7", "label": "Soporte Disponible" }
       ]
     },
     "services": {
       "title": "Nuestros Servicios",
       "description": "Soluciones protésicas y ortopédicas integrales para todas las necesidades",
-      "viewAll": "Ver Todos los Servicios"
+      "viewAll": "Ver Todos los Servicios",
+      "sectionBadge": "Soluciones Premium",
+      "technologyShowcase": {
+        "title": "Tecnología de Vanguardia",
+        "description": "Nuestras soluciones protésicas premium incorporan los últimos avances en ciencia de materiales, impresión 3D y tecnología de microprocesadores para ofrecer un confort y rendimiento incomparables.",
+        "features": [
+          "Componentes de fibra de carbono y aleación de titanio",
+          "Sistemas avanzados de rodilla y tobillo con microprocesador",
+          "Interfaces de socket impresas en 3D personalizadas"
+        ]
+      },
+      "serviceItems": [
+        {
+          "id": "lower-limb-prosthetics",
+          "title": "Prótesis de Miembros Inferiores",
+          "description": "Soluciones protésicas personalizadas para amputaciones por debajo de la rodilla, por encima de la rodilla y parciales del pie.",
+          "details": "Con rodillas con microprocesador, pies con almacenamiento de energía y opciones impermeables.",
+          "certification": "Certificado ABC",
+          "technology": "Tecnología de Microprocesador",
+          "successRate": "97%"
+        },
+        {
+          "id": "upper-limb-prosthetics",
+          "title": "Prótesis de Miembros Superiores",
+          "description": "Opciones protésicas avanzadas para amputaciones de mano, muñeca, codo y hombro.",
+          "details": "Incluyendo manos mioeléctricas, dispositivos terminales específicos para actividades y opciones cosméticas pasivas.",
+          "certification": "Aprobado por FDA",
+          "technology": "Control Mioeléctrico",
+          "successRate": "94%"
+        },
+        {
+          "id": "pediatric-prosthetics",
+          "title": "Prótesis Pediátricas",
+          "description": "Soluciones protésicas especializadas diseñadas para las necesidades únicas y el crecimiento de los niños.",
+          "details": "Componentes ajustables para adaptarse al crecimiento, materiales ligeros y opciones de personalización vibrantes.",
+          "certification": "Especialidad Pediátrica",
+          "technology": "Adaptable al Crecimiento",
+          "successRate": "98%"
+        },
+        {
+          "id": "orthotics",
+          "title": "Ortesis",
+          "description": "Soluciones de soporte personalizadas para condiciones de columna vertebral, miembros inferiores y superiores.",
+          "details": "Componentes de fibra de carbono, órtesis personalizadas impresas en 3D y órtesis específicas para deportes.",
+          "certification": "Certificado BOC",
+          "technology": "Personalizado Impreso en 3D",
+          "successRate": "96%"
+        },
+        {
+          "id": "compression-garments",
+          "title": "Prendas de Compresión",
+          "description": "Soluciones de compresión de grado médico para diversas condiciones.",
+          "details": "Prendas a medida con propiedades antimicrobianas y tecnología de absorción de humedad.",
+          "certification": "Grado Médico",
+          "technology": "Absorción de Humedad",
+          "successRate": "98%"
+        },
+        {
+          "id": "mastectomy-products",
+          "title": "Productos para Mastectomía",
+          "description": "Formas de seno especializadas y productos post-mastectomía.",
+          "details": "Formas de silicona con ecualización de temperatura, prótesis de pezón personalizadas y prendas posquirúrgicas.",
+          "certification": "Aprobado por FDA",
+          "technology": "Ecualización de Temperatura",
+          "successRate": "99%"
+        }
+      ]
     },
     "testimonials": {
       "title": "Lo Que Dicen Nuestros Pacientes",
-      "viewAll": "Leer Más Testimonios"
+      "viewAll": "Leer Más Testimonios",
+      "sectionTagline": "Historias de Éxito de Nuestros Clientes",
+      "subtitle": "Descubra cómo nuestras soluciones protésicas premium han transformado vidas y restaurado la confianza.",
+      "items": [
+        {
+          "id": 1,
+          "name": "Miguel Johnson",
+          "location": "Anaheim, CA",
+          "quote": "El equipo de Aero Prosthetics cambió mi vida. Su enfoque personalizado y tecnología de vanguardia me devolvieron la movilidad y la confianza.",
+          "profession": "Ex Atleta",
+          "product": "Prótesis de Miembro Inferior",
+          "yearsSince": 3,
+          "rating": 5,
+          "mobilityImprovement": "85%",
+          "qualityOfLife": "90%"
+        },
+        {
+          "id": 2,
+          "name": "Sara Williams",
+          "location": "Victorville, CA",
+          "quote": "Después de luchar con prótesis mal ajustadas durante años, finalmente encontré Aero Prosthetics. Sus soluciones personalizadas y apoyo continuo han marcado toda la diferencia.",
+          "profession": "Maestra",
+          "product": "Prótesis Debajo de la Rodilla",
+          "yearsSince": 2,
+          "rating": 5,
+          "mobilityImprovement": "92%",
+          "qualityOfLife": "88%"
+        },
+        {
+          "id": 3,
+          "name": "David Martínez",
+          "location": "Los Ángeles, CA",
+          "quote": "El equipo pediátrico de Aero Prosthetics ha sido increíble con mi hijo. Entienden las necesidades únicas de los niños y lo han ayudado a prosperar.",
+          "profession": "Padre",
+          "product": "Prótesis Pediátrica de Miembro Superior",
+          "yearsSince": 1,
+          "rating": 5,
+          "mobilityImprovement": "80%",
+          "qualityOfLife": "95%"
+        },
+        {
+          "id": 4,
+          "name": "Jennifer Lee",
+          "location": "San Bernardino, CA",
+          "quote": "Aprecio la atención integral que recibo en Aero Prosthetics. Desde la consulta inicial hasta los ajustes continuos, han estado ahí en cada paso del camino.",
+          "profession": "Ingeniera de Software",
+          "product": "Solución Ortopédica Personalizada",
+          "yearsSince": 4,
+          "rating": 5,
+          "mobilityImprovement": "87%",
+          "qualityOfLife": "93%"
+        }
+      ],
+      "metrics": {
+        "productSatisfaction": {
+          "value": "97%",
+          "label": "Satisfacción con el Producto"
+        },
+        "hospitalsClinics": {
+          "value": "100+",
+          "label": "Hospitales y Clínicas"
+        },
+        "patientsServed": {
+          "value": "4,500+",
+          "label": "Pacientes Atendidos"
+        },
+        "industryExperience": {
+          "value": "15+ años",
+          "label": "Experiencia en la Industria"
+        }
+      }
     },
     "locations": {
       "title": "Nuestras Ubicaciones",
+      "sectionBadge": "Centros de Atención Premium",
+      "subtitle": "Nuestras instalaciones de vanguardia están diseñadas para proporcionar el más alto nivel de atención y comodidad durante su proceso protésico.",
       "anaheim": {
         "title": "Anaheim Hills",
         "address": "1001 N Weir Canyon Road",
         "city": "Anaheim Hills, CA 92807",
-        "phone": "714-385-1000"
+        "phone": "714-385-1000",
+        "established": 2010,
+        "size": "5,600 pies cuadrados",
+        "rating": 4.9,
+        "specialists": 8,
+        "specialFeatures": ["Equipo de escaneo de última generación", "Laboratorio de fabricación interno", "Salas de ajuste privadas"],
+        "accessibility": ["Accesible para sillas de ruedas", "Estacionamiento reservado", "Instalaciones que cumplen con ADA"],
+        "hours": [
+          { "day": "Lunes - Jueves", "hours": "8:00 AM - 5:00 PM" },
+          { "day": "Viernes", "hours": "8:00 AM - 4:00 PM" },
+          { "day": "Sábado - Domingo", "hours": "Cerrado" }
+        ]
       },
       "victorville": {
         "title": "Victorville",
         "address": "17189 Yuma Street",
         "city": "Victorville, CA 92395",
-        "phone": "760-245-1000"
+        "phone": "760-245-1000",
+        "established": 2015,
+        "size": "4,200 pies cuadrados",
+        "rating": 4.8,
+        "specialists": 6,
+        "specialFeatures": ["Tecnología de escaneo 3D", "Laboratorio de ajuste personalizado", "Área de juegos para niños"],
+        "accessibility": ["Ubicación en planta baja", "Puertas anchas", "Baños accesibles"],
+        "hours": [
+          { "day": "Lunes - Jueves", "hours": "8:30 AM - 5:30 PM" },
+          { "day": "Viernes", "hours": "8:30 AM - 3:00 PM" },
+          { "day": "Sábado - Domingo", "hours": "Cerrado" }
+        ]
       },
-      "directions": "Obtener Indicaciones"
+      "directions": "Obtener Indicaciones",
+      "viewDetails": "Ver Detalles",
+      "teamLabel": "Nuestro Equipo",
+      "specialistsLabel": "especialistas disponibles",
+      "hoursLabel": "Horario de Atención",
+      "featuresLabel": "Características de la Instalación",
+      "virtualConsultation": {
+        "badge": "Nuevo Servicio",
+        "title": "Consultas Virtuales Disponibles",
+        "description": "¿No puede visitarnos en persona? Programe una consulta virtual con nuestros especialistas desde la comodidad de su hogar.",
+        "feature": "Plataforma de video segura y compatible con HIPAA",
+        "cta": "Programar Ahora"
+      }
     }
   },
   "about": {

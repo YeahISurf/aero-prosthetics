@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Preloader Demo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            background: "#ffffff",
+            foreground: "#2D3748",
+            primary: {
+              50: "#E6F0FA",
+              100: "#CCE0F5",
+              200: "#99C2EB",
+              300: "#66A3E0",
+              400: "#3385D6",
+              500: "#0055B8", // Primary Blue
+              600: "#003A7E", // Primary Dark Blue
+              700: "#002C5F",
+              800: "#001D3F",
+              900: "#000F20",
+            },
+            secondary: {
+              teal: {
+                500: "#00A3B4", // Secondary Teal
+              }
+            },
+            gray: {
+              50: "#F5F7FA", // Light Gray
+              100: "#E2E8F0", // Medium Gray
+              700: "#4A5568", // Dark Gray
+              900: "#2D3748", // Very Dark Gray
+            },
+          },
+          keyframes: {
+            'pulse-wide': {
+              '0%, 100%': { 
+                transform: 'translateX(-100%)' 
+              },
+              '50%': { 
+                transform: 'translateX(100%)' 
+              },
+            },
+            'spin': {
+              '0%': { transform: 'rotate(0deg)' },
+              '100%': { transform: 'rotate(360deg)' },
+            },
+          },
+          animation: {
+            'pulse-wide': 'pulse-wide 2s ease-in-out infinite',
+            'spin': 'spin 1s linear infinite',
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Add any additional styles here */
+    .dark {
+      --background: #1A202C;
+      --foreground: #F7FAFC;
+    }
+  </style>
+</head>
+<body class="bg-background text-foreground">
+  <!-- Preloader -->
+  <div class="fixed inset-0 z-50 flex items-center justify-center bg-background transition-opacity duration-500">
+    <div class="relative flex flex-col items-center">
+      <!-- Premium circular spinner -->
+      <div class="relative w-16 h-16">
+        <!-- Outer circle -->
+        <div class="absolute inset-0 rounded-full border-4 border-gray-100 dark:border-gray-700 opacity-30"></div>
+        
+        <!-- Animated gradient spinner -->
+        <div class="absolute inset-0 rounded-full border-t-4 border-primary-500 animate-spin"></div>
+        
+        <!-- Inner glow -->
+        <div class="absolute inset-2 rounded-full bg-white dark:bg-gray-900 shadow-inner"></div>
+        
+        <!-- Center dot -->
+        <div class="absolute inset-[30%] rounded-full bg-primary-500 shadow-lg"></div>
+      </div>
+      
+      <!-- Animated loading bar -->
+      <div class="mt-8 w-32 h-1 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+        <div class="h-full bg-gradient-to-r from-primary-300 via-primary-500 to-secondary-teal-500 animate-pulse-wide rounded-full"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toggle Dark Mode Button -->
+  <div class="fixed bottom-4 right-4">
+    <button 
+      id="dark-mode-toggle"
+      class="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-md"
+      onclick="document.documentElement.classList.toggle('dark')"
+    >
+      Toggle Dark Mode
+    </button>
+  </div>
+
+  <script>
+    // Additional JavaScript (not needed for this demo)
+  </script>
+</body>
+</html>
