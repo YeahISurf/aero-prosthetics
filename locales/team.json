@@ -1,0 +1,53 @@
+{
+  "meta": {
+    "title": "Our Team | Aero Prosthetics",
+    "description": "Meet the dedicated professionals at Aero Prosthetics committed to providing exceptional prosthetic and orthotic care."
+  },
+  "hero": {
+    "title": "Our Team",
+    "subtitle": "Dedicated professionals committed to your mobility and quality of life"
+  },
+  "leadership": {
+    "title": "Leadership Team",
+    "description": "Our leadership team brings decades of combined experience in prosthetics, orthotics, and patient care."
+  },
+  "clinicians": {
+    "title": "Clinical Team",
+    "description": "Our certified prosthetists and orthotists are experts in their field with advanced training and education."
+  },
+  "technicians": {
+    "title": "Technical Team",
+    "description": "Our skilled technicians craft custom prosthetic and orthotic devices with precision and attention to detail."
+  },
+  "support": {
+    "title": "Support Team",
+    "description": "Our administrative and patient care coordinators ensure a seamless experience throughout your journey."
+  },
+  "values": {
+    "title": "Our Team Values",
+    "description": "Every member of our team is guided by these core principles:",
+    "items": [
+      {
+        "title": "Patient-Centered Care",
+        "description": "We put patients first in everything we do, focusing on individual needs and goals."
+      },
+      {
+        "title": "Clinical Excellence",
+        "description": "We maintain the highest standards of clinical practice and continuous education."
+      },
+      {
+        "title": "Compassion",
+        "description": "We approach each patient with empathy, understanding, and respect."
+      },
+      {
+        "title": "Innovation",
+        "description": "We embrace new technologies and approaches to improve patient outcomes."
+      }
+    ]
+  },
+  "careers": {
+    "title": "Join Our Team",
+    "description": "We're always looking for talented professionals to join our team. Visit our careers page to learn more about current opportunities.",
+    "button": "View Careers"
+  }
+} 

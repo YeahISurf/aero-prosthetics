@@ -332,133 +332,55 @@ The website implements several performance optimizations:
 ├── middleware.ts           # Next.js middleware for i18n
 ```
 
-## Getting Started
+## Development Setup
 
 ### Prerequisites
-
-- Node.js 20 or later
-- npm, yarn, or pnpm
+- Node.js (v18 or newer)
+- npm or yarn
 
 ### Installation
-
 1. Clone the repository
-2. Install dependencies:
+   ```bash
+   git clone https://github.com/YeahISurf/aero-prosthetics.git
+   cd aero-prosthetics
+   ```
+
+2. Install dependencies
    ```bash
    npm install
    ```
-3. Set up environment variables:
-   ```
-   CONTENTFUL_SPACE_ID=your_space_id
-   CONTENTFUL_ACCESS_TOKEN=your_access_token
-   ```
 
-### Development
-
-Run the development server:
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) to view the site.
-
-### Build
-
-Build for production:
-
-```bash
-npm run build
-```
-
-### Testing
-
-Run tests:
-
-```bash
-npm test
-```
-
-Run tests in watch mode:
-
-```bash
-npm run test:watch
-```
-
-Generate test coverage report:
-
-```bash
-npm run test:coverage
-```
-
-### Deployment
-
-The site can be deployed to Vercel or Google Cloud.
-
-#### Vercel Deployment
-
-To deploy this project to Vercel:
-
-1. Connect your GitHub repository to Vercel
-2. The project includes a `vercel.json` configuration file that sets up:
-   - Framework Preset: Next.js
-   - Build Command: `npm run build`
-   - Install Command: `npm install --legacy-peer-deps`
-
-No additional configuration is needed as the `vercel.json` file handles the build settings automatically.
-
-> **Note:** The `--legacy-peer-deps` flag is required due to dependency conflicts between React 19 and some testing libraries that expect React 18.
-
-#### Forcing Vercel to Deploy Latest Changes
-
-If Vercel is not deploying the latest commit, you can use the included script to force a new deployment:
-
-```bash
-./force-vercel-deploy.sh
-```
-
-This script creates a small change that triggers a new commit and push, forcing Vercel to recognize and deploy the latest version of your code.
-
-#### Troubleshooting Deployment Issues
-
-If you encounter dependency conflicts during deployment, try one of these solutions:
-
-1. Use the `--legacy-peer-deps` flag in your install command
-2. Ensure type definitions (`@types/react` and `@types/react-dom`) are compatible with your testing libraries
-3. For local development, you can use `npm install --force` to bypass peer dependency checks
-
-#### ESLint Errors During Deployment
-
-The project includes a solution for handling ESLint errors related to unused variables during Vercel deployment:
-
-1. Deployment-specific versions of files with ESLint errors are stored in the `vercel-deploy` directory
-2. A prebuild script (`scripts/prepare-vercel-build.cjs`) copies these files to the correct locations before the build process starts
-3. The original files are kept in the repository for future development but are ignored during deployment using `.vercelignore`
-
-For more details, see the README in the `vercel-deploy` directory.
-
-#### TypeScript Errors in Next.js 15
-
-Next.js 15 introduced a breaking change where `params` and `searchParams` are now Promises rather than synchronous objects. This affects pages that use these properties, particularly in the `generateMetadata` function and page components.
-
-The deployment-specific versions of the about, contact, legal/accessibility, and legal/disclaimer pages have been updated to handle this change by:
-
-1. Updating the `Props` type to use Promise for params:
-   ```typescript
-   type Props = {
-     params: Promise<{ locale: string }>;
-   };
+3. Start the development server
+   ```bash
+   npm run dev
    ```
 
-2. Using `await` to access the params values:
-   ```typescript
-   const { locale } = await params;
+### Debugging
+The project includes debugging scripts for Next.js:
+
+1. Setup debugging (first time only)
+   ```bash
+   ./setup-debug.ps1
    ```
 
-3. Using `getTranslations` instead of `useTranslations` for async server components, since React hooks cannot be used in async functions.
+2. Start the server with debugging enabled
+   ```bash
+   ./start-debug.ps1
+   ```
 
-## Internationalization
+3. Connect to the debugger using Chrome DevTools or VS Code:
+   - For Chrome: Navigate to chrome://inspect in your browser
+   - For VS Code: Use the 'Next.js: debug server-side' configuration
 
-The site supports English and Spanish languages. Translations are managed through JSON files in the `locales` directory.
+## Internationalization (i18n)
+
+The website supports English and Spanish languages using next-intl. Translations are stored in JSON files in the `locales` directory:
+- `locales/en.json` - English translations
+- `locales/es.json` - Spanish translations
+
+### Known Issues
+- Missing translation files for certain routes (e.g., `/team` page) may cause build errors
+- Route parameters need to be properly awaited in Next.js 15 (see error: "Route '/[locale]' used `params.locale`")
 
 ## SEO
 
