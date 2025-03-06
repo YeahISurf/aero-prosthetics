@@ -1,6 +1,6 @@
 "use client";
 
-import { useTranslations, useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { useState, useEffect, useCallback } from 'react';
 
 // Define TypeScript interfaces for the testimonial data
