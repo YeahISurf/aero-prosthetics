@@ -43,97 +43,76 @@ export default function Header() {
         scrolled ? 'py-2' : 'py-4'
       }`}
       role="banner"
+      aria-label="Main navigation"
     >
       <div className="container-custom">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Logo />
+            
+            {/* Desktop navigation */}
+            <nav className="hidden md:flex ml-10 space-x-8" aria-label="Main Menu">
+              <Link 
+                href={`/${locale}/`} 
+                className={`text-sm font-medium ${pathname === `/${locale}` ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
+                aria-current={pathname === `/${locale}` ? 'page' : undefined}
+              >
+                {t('home')}
+              </Link>
+              
+              <Link 
+                href={`/${locale}/about`} 
+                className={`text-sm font-medium ${isActive('about') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
+                aria-current={isActive('about') ? 'page' : undefined}
+              >
+                {t('about')}
+              </Link>
+              
+              <Link 
+                href={`/${locale}/services`} 
+                className={`text-sm font-medium ${isActive('services') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
+                aria-current={isActive('services') ? 'page' : undefined}
+              >
+                {t('services')}
+              </Link>
+              
+              <Link 
+                href={`/${locale}/locations`} 
+                className={`text-sm font-medium ${isActive('locations') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
+                aria-current={isActive('locations') ? 'page' : undefined}
+              >
+                {t('locations')}
+              </Link>
+              
+              <Link 
+                href={`/${locale}/resources`} 
+                className={`text-sm font-medium ${isActive('resources') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
+                aria-current={isActive('resources') ? 'page' : undefined}
+              >
+                {t('resources')}
+              </Link>
+            </nav>
           </div>
-
-          {/* Desktop Navigation */}
-          <nav 
-            className="hidden md:flex items-center space-x-8"
-            role="navigation"
-            aria-label="Main Navigation"
-          >
-            <Link 
-              href={`/${locale}`} 
-              className={`text-sm font-medium transition-colors ${
-                pathname === `/${locale}` ? 'text-primary-500 font-semibold' : 'text-gray-700 hover:text-primary-500'
-              }`}
-              aria-current={pathname === `/${locale}` ? 'page' : undefined}
-            >
-              {t('home')}
-            </Link>
-            <Link 
-              href={`/${locale}/about`} 
-              className={`text-sm font-medium transition-colors ${
-                isActive('about') ? 'text-primary-500 font-semibold' : 'text-gray-700 hover:text-primary-500'
-              }`}
-              aria-current={isActive('about') ? 'page' : undefined}
-            >
-              {t('about')}
-            </Link>
-            <Link 
-              href={`/${locale}/services`} 
-              className={`text-sm font-medium transition-colors ${
-                isActive('services') ? 'text-primary-500 font-semibold' : 'text-gray-700 hover:text-primary-500'
-              }`}
-              aria-current={isActive('services') ? 'page' : undefined}
-            >
-              {t('services')}
-            </Link>
-            <Link 
-              href={`/${locale}/team`} 
-              className={`text-sm font-medium transition-colors ${
-                isActive('team') ? 'text-primary-500 font-semibold' : 'text-gray-700 hover:text-primary-500'
-              }`}
-              aria-current={isActive('team') ? 'page' : undefined}
-            >
-              {t('team')}
-            </Link>
-            <Link 
-              href={`/${locale}/locations`} 
-              className={`text-sm font-medium transition-colors ${
-                isActive('locations') ? 'text-primary-500 font-semibold' : 'text-gray-700 hover:text-primary-500'
-              }`}
-              aria-current={isActive('locations') ? 'page' : undefined}
-            >
-              {t('locations')}
-            </Link>
-            <Link 
-              href={`/${locale}/contact`} 
-              className={`text-sm font-medium transition-colors ${
-                isActive('contact') ? 'text-primary-500 font-semibold' : 'text-gray-700 hover:text-primary-500'
-              }`}
-              aria-current={isActive('contact') ? 'page' : undefined}
-            >
-              {t('contact')}
-            </Link>
-            <Link 
-              href={`/${locale}/resources`} 
-              className={`text-sm font-medium transition-colors ${
-                isActive('resources') ? 'text-primary-500 font-semibold' : 'text-gray-700 hover:text-primary-500'
-              }`}
-              aria-current={isActive('resources') ? 'page' : undefined}
-            >
-              {t('resources')}
-            </Link>
-          </nav>
-
-          <div className="flex items-center space-x-4">
-            <ThemeToggle />
-            <LanguageToggle />
+          
+          <div className="flex items-center space-x-2 md:space-x-4">
+            <div className="flex items-center">
+              <LanguageToggle />
+              <ThemeToggle />
+            </div>
             
-            <Link 
-              href={`/${locale}/contact`} 
-              className="hidden md:inline-flex btn-primary"
-              aria-label={cta('requestInfo')}
-            >
-              {cta('requestInfo')}
-            </Link>
+            <div className="hidden md:block">
+              <Link 
+                href={`/${locale}/contact`} 
+                className="btn btn-primary"
+                aria-label={cta('contactUs')}
+              >
+                {cta('contactUs')}
+              </Link>
+            </div>
             
-            <MobileMenu />
+            <div className="md:hidden">
+              <MobileMenu />
+            </div>
           </div>
         </div>
       </div>

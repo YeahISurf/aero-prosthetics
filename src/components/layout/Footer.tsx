@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
-import LanguageToggle from './LanguageToggle';
+import FooterLanguageToggle from './FooterLanguageToggle';
 import { throttle } from '@/lib/utils';
 
 export default function Footer() {
@@ -98,7 +98,7 @@ export default function Footer() {
         <div className="container-custom relative z-10 py-10 md:py-14">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Company Info */}
-            <div className="transition-all duration-300 hover:translate-y-[-5px]">
+            <div className="transition-all duration-300">
               <h3 className="text-xl font-bold text-white mb-5">{t('company.title')}</h3>
               <p className="text-white/90 mb-5">{t('company.description')}</p>
               <div className="flex space-x-5 mb-6">
@@ -212,7 +212,7 @@ export default function Footer() {
             </div>
 
             {/* Quick Links */}
-            <div className="transition-all duration-300 hover:translate-y-[-5px]">
+            <div className="transition-all duration-300">
               <h3 className="text-xl font-bold text-white mb-5">{t('quickLinks.title')}</h3>
               <nav aria-label="Footer navigation">
                 <ul className="space-y-3">
@@ -269,7 +269,7 @@ export default function Footer() {
             </div>
 
             {/* Locations */}
-            <div className="transition-all duration-300 hover:translate-y-[-5px]">
+            <div className="transition-all duration-300">
               <h3 className="text-xl font-bold text-white mb-5">{t('locations.title')}</h3>
               <div className="space-y-6">
                 <address className="not-italic" itemScope itemType="http://schema.org/MedicalClinic">
@@ -310,10 +310,10 @@ export default function Footer() {
             </div>
 
             {/* Language & Legal */}
-            <div className="transition-all duration-300 hover:translate-y-[-5px]">
+            <div className="transition-all duration-300">
               <h3 className="text-xl font-bold text-white mb-5">{t('language')}</h3>
               <div className="mb-8">
-                <LanguageToggle />
+                <FooterLanguageToggle />
               </div>
               <h3 className="text-xl font-bold text-white mb-5">Legal</h3>
               <nav aria-label="Legal navigation">

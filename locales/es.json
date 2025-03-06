@@ -233,7 +233,7 @@
     "locations": {
       "title": "Nuestras Ubicaciones",
       "sectionBadge": "Centros de Atención Premium",
-      "subtitle": "Nuestras instalaciones de vanguardia están diseñadas para proporcionar el más alto nivel de atención y comodidad durante su recorrido protésico.",
+      "subtitle": "Nuestras instalaciones de última generación están diseñadas para proporcionar el más alto nivel de atención y comodidad durante su proceso protésico.",
       "anaheim": {
         "title": "Anaheim Hills",
         "address": "1001 N Weir Canyon Road",
@@ -271,6 +271,13 @@
           { "day": "Domingo", "hours": "Cerrado" }
         ],
         "accessibility": ["Accesible para Sillas de Ruedas", "Amplio Estacionamiento", "Cumple con ADA"]
+      },
+      "virtualConsultation": {
+        "badge": "Atención Virtual",
+        "title": "Consultas Virtuales",
+        "description": "Obtenga asesoramiento protésico experto desde la comodidad de su hogar con nuestros servicios seguros de telesalud.",
+        "feature": "Consultas convenientes, privadas y personalizadas para pacientes que no pueden visitar nuestras ubicaciones físicas.",
+        "cta": "Programar una Consulta Virtual"
       },
       "teamLabel": "Nuestro Equipo",
       "specialistsLabel": "Especialistas",
@@ -431,18 +438,26 @@
   },
   "locations": {
     "title": "Nuestras Ubicaciones",
-    "description": "Visite una de nuestras convenientes ubicaciones en el sur de California para atención personalizada de prótesis y órtesis.",
-    "directions": "Obtener Indicaciones",
+    "description": "Visite una de nuestras convenientes ubicaciones en el sur de California para recibir atención personalizada de prótesis y órtesis.",
+    "directions": "Obtener Direcciones",
+    "sectionBadge": "Centros de Atención Premium",
+    "subtitle": "Nuestras instalaciones de vanguardia están diseñadas para proporcionar el más alto nivel de atención y comodidad durante su experiencia protésica.",
+    "hoursLabel": "Horario",
+    "primaryPhone": "714-385-1000",
+    "services": {
+      "title": "Servicios Ofrecidos"
+    },
     "cta": {
       "title": "¿Listo para Programar una Visita?",
       "description": "Contáctenos hoy para programar una cita en una de nuestras convenientes ubicaciones.",
       "schedule": "Programar una Cita",
       "appointment": "Reservar Cita",
-      "services": "Ver Nuestros Servicios"
+      "services": "Ver Nuestros Servicios",
+      "call": "Llámenos Ahora"
     },
     "overview": {
       "title": "Nuestras Ubicaciones",
-      "description": "Tenemos dos ubicaciones convenientes para atenderle en el sur de California."
+      "description": "Contamos con dos ubicaciones convenientes para atenderle en el sur de California."
     },
     "anaheim": {
       "title": "Anaheim Hills",
@@ -456,7 +471,7 @@
         "parking": "Estacionamiento Reservado",
         "modern": "Instalaciones Modernas",
         "wifi": "WiFi Gratuito",
-        "childFriendly": "Apto para Niños"
+        "childFriendly": "Amigable para Niños"
       },
       "imageAlt": {
         "exterior": "Exterior de la ubicación de Anaheim Hills",
@@ -469,16 +484,15 @@
         "fittings": "Adaptaciones Expertas",
         "pediatric": "Atención Pediátrica"
       },
-      "hours": {
-        "title": "Horario de Atención",
-        "monday": "9:00 AM - 5:00 PM",
-        "tuesday": "9:00 AM - 5:00 PM",
-        "wednesday": "9:00 AM - 5:00 PM",
-        "thursday": "9:00 AM - 5:00 PM",
-        "friday": "9:00 AM - 5:00 PM",
-        "saturday": "Cerrado",
-        "sunday": "Cerrado"
-      }
+      "hours": [
+        { "day": "Lunes", "hours": "9:00 AM - 5:00 PM" },
+        { "day": "Martes", "hours": "9:00 AM - 5:00 PM" },
+        { "day": "Miércoles", "hours": "9:00 AM - 5:00 PM" },
+        { "day": "Jueves", "hours": "9:00 AM - 5:00 PM" },
+        { "day": "Viernes", "hours": "9:00 AM - 5:00 PM" },
+        { "day": "Sábado", "hours": "Cerrado" },
+        { "day": "Domingo", "hours": "Cerrado" }
+      ]
     },
     "victorville": {
       "title": "Victorville",
@@ -486,12 +500,12 @@
       "city": "Victorville, CA 92395",
       "phone": "760-245-1000",
       "overview": "Nuestra ubicación en Victorville proporciona servicios completos de prótesis y órtesis con un enfoque en la comodidad del paciente.",
-      "description": "Las instalaciones de Victorville incluyen tecnología de escaneo avanzada, áreas de adaptación personalizadas y un equipo de profesionales experimentados listos para ayudar.",
+      "description": "Las instalaciones de Victorville incluyen tecnología avanzada de escaneo, áreas de adaptación personalizadas y un equipo de profesionales experimentados listos para ayudar.",
       "facilities": {
-        "accessible": "Totalmente Accesible",
+        "accessible": "Completamente Accesible",
         "parking": "Amplio Estacionamiento",
         "modern": "Equipo Moderno",
-        "wifi": "WiFi Gratuito"
+        "wifi": "WiFi de Cortesía"
       },
       "imageAlt": {
         "exterior": "Exterior de la ubicación de Victorville",
@@ -504,16 +518,15 @@
         "fittings": "Adaptaciones Personalizadas",
         "evaluation": "Evaluación de la Marcha"
       },
-      "hours": {
-        "title": "Horario de Atención",
-        "monday": "9:00 AM - 5:00 PM",
-        "tuesday": "9:00 AM - 5:00 PM",
-        "wednesday": "9:00 AM - 5:00 PM",
-        "thursday": "9:00 AM - 5:00 PM",
-        "friday": "9:00 AM - 5:00 PM",
-        "saturday": "Cerrado",
-        "sunday": "Cerrado"
-      }
+      "hours": [
+        { "day": "Lunes", "hours": "9:00 AM - 5:00 PM" },
+        { "day": "Martes", "hours": "9:00 AM - 5:00 PM" },
+        { "day": "Miércoles", "hours": "9:00 AM - 5:00 PM" },
+        { "day": "Jueves", "hours": "9:00 AM - 5:00 PM" },
+        { "day": "Viernes", "hours": "9:00 AM - 5:00 PM" },
+        { "day": "Sábado", "hours": "Cerrado" },
+        { "day": "Domingo", "hours": "Cerrado" }
+      ]
     },
     "learnMore": "Saber Más",
     "facilities": "Características de las Instalaciones",

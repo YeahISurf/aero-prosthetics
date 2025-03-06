@@ -7,6 +7,8 @@ import ThemeProvider from "@/components/ui/ThemeProvider";
 
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import MobileNavBar from "@/components/layout/MobileNavBar";
+import PullToRefresh from "@/components/ui/PullToRefresh";
 import SchemaScript from "@/components/ui/SchemaScript";
 import SkipToContent from "@/components/ui/SkipToContent";
 import { generateMedicalOrganizationSchema, organizationData } from "@/lib/seo/schema";
@@ -61,8 +63,11 @@ export default async function LocaleLayout({
           <ThemeProvider>
             <SkipToContent />
             <Header />
-            <main id="main-content" className="flex-grow">{children}</main>
+            <PullToRefresh>
+              <main id="main-content" className="flex-grow pb-16 md:pb-0">{children}</main>
+            </PullToRefresh>
             <Footer />
+            <MobileNavBar />
           </ThemeProvider>
         </NextIntlClientProvider>
       </ErrorBoundary>

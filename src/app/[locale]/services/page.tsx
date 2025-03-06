@@ -182,7 +182,7 @@ export default async function ServicesPage({ params }: Props) {
             <div className="inline-block px-4 py-1 rounded-full bg-white/15 backdrop-blur-sm border border-white/30 text-white/95 text-sm font-medium mb-4 animate-slideInRight">
               {t('badge') || 'Expert Prosthetic & Orthotic Solutions'}
             </div>
-            <h1 className="text-3xl md:text-5xl font-bold mb-6 animate-slideInUp">{t('title')}</h1>
+            <h1 className="text-3xl md:text-5xl font-bold mb-6 animate-slideInUp text-white">{t('title')}</h1>
             <p className="text-xl leading-relaxed text-white/90 animate-slideInUp">{t('description')}</p>
           </div>
         </div>
@@ -191,7 +191,7 @@ export default async function ServicesPage({ params }: Props) {
       {/* Services Grid with improved styling */}
       <section className="section bg-white">
         <div className="container-custom">
-          <h2 className="section-title text-white">{t('servicesTitle') || 'Our Comprehensive Services'}</h2>
+          <h2 id="services-title" className="section-title text-primary-600">{t('servicesTitle') || 'Our Comprehensive Services'}</h2>
           <p className="section-subtitle mb-12">{t('servicesSubtitle') || 'Discover our full range of prosthetic and orthotic solutions designed to improve mobility, comfort, and quality of life.'}</p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
@@ -399,7 +399,7 @@ export default async function ServicesPage({ params }: Props) {
         
         <div className="container-custom relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-fadeIn">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-fadeIn text-white">
               {ctaT('section.title')}
             </h2>
             <p className="text-xl text-white/90 mb-8 animate-fadeIn">

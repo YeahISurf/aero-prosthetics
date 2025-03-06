@@ -315,14 +315,14 @@ export default function LocationsSection() {
           
           <div className="relative z-10 flex flex-col md:flex-row items-center justify-between">
             <div className="md:w-2/3 mb-6 md:mb-0">
-              <span className="inline-block px-2 py-1 bg-white/10 text-white/90 rounded-md text-sm font-medium mb-3">{t('virtualConsultation.badge')}</span>
-              <h3 className="text-2xl md:text-3xl font-bold mb-3">{t('virtualConsultation.title')}</h3>
-              <p className="text-white/80 mb-2">{t('virtualConsultation.description')}</p>
+              <span className="inline-block px-2 py-1 bg-white/10 text-white/90 rounded-md text-sm font-medium mb-3">Virtual Care</span>
+              <h3 className="text-2xl md:text-3xl font-bold mb-3 text-white">Virtual Consultations</h3>
+              <p className="text-white/80 mb-2">Get expert prosthetic advice from the comfort of your home with our secure telehealth services.</p>
               <div className="flex items-center mt-4">
-                <svg className="h-5 w-5 text-primary-300 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="h-5 w-5 text-white mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <p className="text-sm text-primary-200">{t('virtualConsultation.feature')}</p>
+                <p className="text-sm text-white">Convenient, private, and personalized consultations for patients who cannot visit our physical locations.</p>
               </div>
             </div>
             <div>
@@ -330,16 +330,10 @@ export default function LocationsSection() {
                 href={`/${locale}/contact`}
                 className="btn bg-white text-blue-600 hover:bg-blue-50 shadow-lg transition-all inline-block"
               >
-                {t('virtualConsultation.cta')}
+                Schedule a Virtual Consultation
               </Link>
             </div>
           </div>
-        </div>
-        
-        <div className="mt-12 text-center">
-          <Link href={`/${locale}/locations`} className="btn-primary bg-gradient-to-r from-primary-500 to-primary-400 shadow-lg hover:shadow-xl transition-all px-8 py-3 rounded-lg">
-            {useTranslations('navigation')('locations')}
-          </Link>
         </div>
       </div>
     </section>

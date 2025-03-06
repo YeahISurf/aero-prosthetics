@@ -1,68 +1,68 @@
 "use client";
 
 import { useState, useEffect, useRef } from 'react';
-import Link from 'next/link';
-import { useTranslations, useLocale } from 'next-intl';
 import { usePathname } from 'next/navigation';
-import { AnimatePresence, motion } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
-import ThemeToggle from '../ui/ThemeToggle';
+import { useTranslations, useLocale } from 'next-intl';
+import Link from 'next/link';
+import { createPortal } from 'react-dom';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
 export default function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
   const t = useTranslations('navigation');
-  const ctaT = useTranslations('cta');
-  const requestInfoText = ctaT('requestInfo');
+  const cta = useTranslations('cta');
   const pathname = usePathname();
   const locale = useLocale();
-  const menuRef = useRef<HTMLDivElement>(null);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-    // Prevent scrolling when menu is open
-    if (!isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-  };
-
-  const closeMenu = () => {
-    setIsOpen(false);
-    document.body.style.overflow = 'auto';
-  };
-
-  // Close menu on route change
+  // Handle mounting (client-side only)
   useEffect(() => {
-    closeMenu();
+    setIsMounted(true);
+    return () => setIsMounted(false);
+  }, []);
+
+  // Handle body scroll locking when menu is open
+  useEffect(() => {
+    const menuElement = menuRef.current;
+    
+    if (isOpen) {
+      // Small delay to ensure the menu is rendered before locking
+      setTimeout(() => {
+        if (menuElement) {
+          disableBodyScroll(menuElement);
+        }
+      }, 100);
+    } else {
+      if (menuElement) {
+        enableBodyScroll(menuElement);
+      }
+    }
+
+    // Cleanup
+    return () => {
+      if (menuElement) {
+        enableBodyScroll(menuElement);
+      }
+    };
+  }, [isOpen]);
+
+  // Close menu on navigation
+  useEffect(() => {
+    setIsOpen(false);
   }, [pathname]);
 
-  // Handle keyboard accessibility
+  // Handle escape key press to close menu
   useEffect(() => {
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && isOpen) {
-        closeMenu();
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen) {
+        setIsOpen(false);
       }
     };
 
     document.addEventListener('keydown', handleEscape);
-    return () => {
-      document.removeEventListener('keydown', handleEscape);
-    };
-  }, [isOpen]);
-
-  // Handle clicking outside to close
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node) && isOpen) {
-        closeMenu();
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
+    return () => document.removeEventListener('keydown', handleEscape);
   }, [isOpen]);
 
   const isActive = (path: string) => {
@@ -70,126 +70,129 @@ export default function MobileMenu() {
   };
 
   return (
-    <div className="md:hidden" ref={menuRef}>
+    <>
       <button
-        onClick={toggleMenu}
-        className="text-gray-700 hover:text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 p-2 rounded-md transition-colors"
+        type="button"
+        onClick={() => setIsOpen(true)}
+        className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-primary-600 hover:bg-gray-100 transition-colors"
         aria-expanded={isOpen}
-        aria-label={isOpen ? "Close menu" : "Open menu"}
+        aria-label="Open main menu"
         aria-controls="mobile-menu"
       >
-        {isOpen ? (
-          <X className="h-6 w-6" />
-        ) : (
-          <Menu className="h-6 w-6" />
-        )}
+        <span className="sr-only">Open main menu</span>
+        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
       </button>
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div 
-            className="fixed top-[70px] left-0 right-0 bottom-0 bg-white shadow-md z-50 overflow-auto"
-            id="mobile-menu"
+      {isMounted && isOpen && createPortal(
+        <div 
+          className="fixed inset-0 z-50 bg-gray-900/50 backdrop-blur-sm"
+          aria-hidden="true"
+          onClick={() => setIsOpen(false)}
+        >
+          <div 
+            ref={menuRef}
+            className="fixed inset-y-0 right-0 max-w-xs w-full bg-white shadow-xl overflow-y-auto"
+            onClick={e => e.stopPropagation()}
             role="dialog"
             aria-modal="true"
             aria-label="Mobile navigation menu"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
+            id="mobile-menu"
           >
-            <nav className="container-custom py-6 flex flex-col space-y-5" aria-label="Mobile Navigation">
-              <Link
-                href={`/${locale}`}
-                onClick={closeMenu}
-                className={`text-base font-medium transition-colors p-2 rounded-md ${
-                  pathname === `/${locale}` ? 'text-primary-500 bg-primary-50 font-semibold' : 'text-gray-700 hover:bg-gray-50'
-                }`}
-                aria-current={pathname === `/${locale}` ? 'page' : undefined}
-              >
-                {t('home')}
-              </Link>
-              <Link
-                href={`/${locale}/about`}
-                onClick={closeMenu}
-                className={`text-base font-medium transition-colors p-2 rounded-md ${
-                  isActive('about') ? 'text-primary-500 bg-primary-50 font-semibold' : 'text-gray-700 hover:bg-gray-50'
-                }`}
-                aria-current={isActive('about') ? 'page' : undefined}
-              >
-                {t('about')}
-              </Link>
-              <Link
-                href={`/${locale}/services`}
-                onClick={closeMenu}
-                className={`text-base font-medium transition-colors p-2 rounded-md ${
-                  isActive('services') ? 'text-primary-500 bg-primary-50 font-semibold' : 'text-gray-700 hover:bg-gray-50'
-                }`}
-                aria-current={isActive('services') ? 'page' : undefined}
-              >
-                {t('services')}
-              </Link>
-              <Link
-                href={`/${locale}/team`}
-                onClick={closeMenu}
-                className={`text-base font-medium transition-colors p-2 rounded-md ${
-                  isActive('team') ? 'text-primary-500 bg-primary-50 font-semibold' : 'text-gray-700 hover:bg-gray-50'
-                }`}
-                aria-current={isActive('team') ? 'page' : undefined}
-              >
-                {t('team')}
-              </Link>
-              <Link
-                href={`/${locale}/locations`}
-                onClick={closeMenu}
-                className={`text-base font-medium transition-colors p-2 rounded-md ${
-                  isActive('locations') ? 'text-primary-500 bg-primary-50 font-semibold' : 'text-gray-700 hover:bg-gray-50'
-                }`}
-                aria-current={isActive('locations') ? 'page' : undefined}
-              >
-                {t('locations')}
-              </Link>
-              <Link
-                href={`/${locale}/contact`}
-                onClick={closeMenu}
-                className={`text-base font-medium transition-colors p-2 rounded-md ${
-                  isActive('contact') ? 'text-primary-500 bg-primary-50 font-semibold' : 'text-gray-700 hover:bg-gray-50'
-                }`}
-                aria-current={isActive('contact') ? 'page' : undefined}
-              >
-                {t('contact')}
-              </Link>
-              <Link
-                href={`/${locale}/resources`}
-                onClick={closeMenu}
-                className={`text-base font-medium transition-colors p-2 rounded-md ${
-                  isActive('resources') ? 'text-primary-500 bg-primary-50 font-semibold' : 'text-gray-700 hover:bg-gray-50'
-                }`}
-                aria-current={isActive('resources') ? 'page' : undefined}
-              >
-                {t('resources')}
-              </Link>
-              <hr className="border-gray-200 my-2" />
-              
-              <div className="flex items-center justify-center py-2">
-                <div className="flex items-center justify-center bg-gray-100 rounded-md p-3">
-                  <span className="text-sm text-gray-700 mr-3">Toggle Theme</span>
-                  <ThemeToggle />
-                </div>
+            <div className="p-4 border-b border-gray-200">
+              <div className="flex items-center justify-between">
+                <Link 
+                  href={`/${locale}`}
+                  className="text-xl font-bold text-primary-600"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Aero Prosthetics
+                </Link>
+                <button
+                  ref={closeButtonRef}
+                  type="button"
+                  className="rounded-md p-2 text-gray-400 hover:text-gray-500 hover:bg-gray-100"
+                  onClick={() => setIsOpen(false)}
+                  aria-label="Close menu"
+                >
+                  <span className="sr-only">Close menu</span>
+                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
               </div>
-              
-              <Link 
-                href={`/${locale}/contact`} 
-                onClick={closeMenu} 
-                className="btn-primary w-full text-center py-3"
-                aria-label={requestInfoText}
-              >
-                {requestInfoText}
-              </Link>
+            </div>
+            <nav className="p-4" aria-label="Mobile navigation">
+              <ul className="space-y-4">
+                <li>
+                  <Link 
+                    href={`/${locale}`} 
+                    className={`block px-3 py-2 rounded-md text-base font-medium ${pathname === `/${locale}` ? 'text-primary-600 bg-primary-50' : 'text-gray-700 hover:bg-gray-50 hover:text-primary-600'}`}
+                    aria-current={pathname === `/${locale}` ? 'page' : undefined}
+                  >
+                    {t('home')}
+                  </Link>
+                </li>
+                <li>
+                  <Link 
+                    href={`/${locale}/about`} 
+                    className={`block px-3 py-2 rounded-md text-base font-medium ${isActive('about') ? 'text-primary-600 bg-primary-50' : 'text-gray-700 hover:bg-gray-50 hover:text-primary-600'}`}
+                    aria-current={isActive('about') ? 'page' : undefined}
+                  >
+                    {t('about')}
+                  </Link>
+                </li>
+                <li>
+                  <Link 
+                    href={`/${locale}/services`} 
+                    className={`block px-3 py-2 rounded-md text-base font-medium ${isActive('services') ? 'text-primary-600 bg-primary-50' : 'text-gray-700 hover:bg-gray-50 hover:text-primary-600'}`}
+                    aria-current={isActive('services') ? 'page' : undefined}
+                  >
+                    {t('services')}
+                  </Link>
+                </li>
+                <li>
+                  <Link 
+                    href={`/${locale}/locations`} 
+                    className={`block px-3 py-2 rounded-md text-base font-medium ${isActive('locations') ? 'text-primary-600 bg-primary-50' : 'text-gray-700 hover:bg-gray-50 hover:text-primary-600'}`}
+                    aria-current={isActive('locations') ? 'page' : undefined}
+                  >
+                    {t('locations')}
+                  </Link>
+                </li>
+                <li>
+                  <Link 
+                    href={`/${locale}/resources`} 
+                    className={`block px-3 py-2 rounded-md text-base font-medium ${isActive('resources') ? 'text-primary-600 bg-primary-50' : 'text-gray-700 hover:bg-gray-50 hover:text-primary-600'}`}
+                    aria-current={isActive('resources') ? 'page' : undefined}
+                  >
+                    {t('resources')}
+                  </Link>
+                </li>
+                <li>
+                  <Link 
+                    href={`/${locale}/contact`} 
+                    className={`block px-3 py-2 rounded-md text-base font-medium ${isActive('contact') ? 'text-primary-600 bg-primary-50' : 'text-gray-700 hover:bg-gray-50 hover:text-primary-600'}`}
+                    aria-current={isActive('contact') ? 'page' : undefined}
+                  >
+                    {t('contact')}
+                  </Link>
+                </li>
+              </ul>
+              <div className="mt-8 pt-6 border-t border-gray-200">
+                <Link 
+                  href={`/${locale}/contact`}
+                  className="w-full btn btn-primary justify-center"
+                >
+                  {cta('contactUs')}
+                </Link>
+              </div>
             </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+          </div>
+        </div>,
+        document.body
+      )}
+    </>
   );
 }

@@ -4,13 +4,18 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #2D3748;
+  --foreground: #1A202C;
   
   /* Animation variables */
   --animation-duration-fast: 0.3s;
   --animation-duration-normal: 0.5s;
   --animation-duration-slow: 0.8s;
   --animation-timing: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Focus styles for better accessibility */
+  --focus-ring-color: rgba(0, 85, 184, 0.6);
+  --focus-ring-width: 3px;
+  --focus-ring-offset: 2px;
 }
 
 /* Dark mode has been removed */
@@ -24,6 +29,17 @@
     color: var(--foreground);
     background: var(--background);
     @apply font-sans text-base antialiased;
+  }
+
+  /* Add focus-visible outline for all interactive elements */
+  :focus-visible {
+    outline: var(--focus-ring-width) solid var(--focus-ring-color);
+    outline-offset: var(--focus-ring-offset);
+  }
+
+  /* Skip to content link - initially hidden but visible on focus */
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50 focus:px-4 focus:py-3 focus:bg-white focus:text-primary-600 focus:font-bold;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -55,11 +71,11 @@
   }
 
   p {
-    @apply mb-4 text-gray-700;
+    @apply mb-4 text-gray-800;
   }
 
   a {
-    @apply text-primary-500 hover:text-primary-600 transition-colors;
+    @apply text-primary-600 hover:text-primary-700 transition-colors font-medium;
   }
 }
 
@@ -69,31 +85,39 @@
   }
 
   .btn {
-    @apply inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2;
+    @apply inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 gap-2;
   }
 
   .btn-primary {
-    @apply btn bg-primary-500 text-white hover:bg-primary-600 focus:ring-primary-500;
+    @apply btn bg-primary-600 text-white hover:bg-primary-700 focus-visible:ring-primary-600;
   }
 
   .btn-secondary {
-    @apply btn bg-white text-primary-500 border border-primary-500 hover:bg-primary-50 focus:ring-primary-500;
+    @apply btn bg-white text-primary-600 border border-primary-600 hover:bg-primary-50 focus-visible:ring-primary-600;
   }
 
   .btn-accent {
-    @apply btn bg-secondary-teal-500 text-white hover:bg-opacity-90 focus:ring-secondary-teal-500;
+    @apply btn bg-secondary-teal-500 text-white hover:bg-opacity-90 focus-visible:ring-secondary-teal-500;
+  }
+
+  .btn-high-contrast {
+    @apply btn bg-gray-900 text-white hover:bg-black focus-visible:ring-gray-900;
+  }
+
+  .reduced-motion {
+    @apply motion-reduce:transform-none motion-reduce:animate-none motion-reduce:transition-none;
   }
 
   .section {
-    @apply py-12 md:py-16 lg:py-20;
+    @apply py-16 md:py-24 lg:py-32;
   }
 
   .section-title {
-    @apply text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12;
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8 md:mb-12 tracking-tight;
   }
 
   .section-subtitle {
-    @apply text-xl text-gray-700 text-center max-w-3xl mx-auto mb-12;
+    @apply text-xl text-gray-800 text-center max-w-3xl mx-auto mb-16 leading-relaxed;
   }
 }
 
@@ -185,6 +209,91 @@
   }
 }
 
+/* Add ripple animation for buttons */
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.animate-ripple {
+  animation: ripple 0.6s linear;
+}
+
+/* Grain texture for depth */
+.bg-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  opacity: 0.03;
+}
+
+/* Shadow utilities */
+.shadow-glow {
+  box-shadow: 0 0 15px rgba(0, 85, 184, 0.4);
+}
+
+.shadow-glow-sm {
+  box-shadow: 0 0 10px rgba(0, 85, 184, 0.25);
+}
+
+.shadow-strong {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Card styles */
+.card {
+  @apply bg-white rounded-lg border border-gray-100 overflow-hidden shadow-sm transition-all duration-300;
+}
+
+.card-hover {
+  @apply hover:shadow-md hover:border-gray-200 hover:translate-y-[-2px];
+}
+
+.card-interactive {
+  @apply cursor-pointer hover:shadow-md hover:border-gray-200 hover:translate-y-[-4px] active:translate-y-[-2px];
+}
+
+.card-highlight {
+  @apply border-primary-100 bg-primary-50/30;
+}
+
+.card-content {
+  @apply p-6;
+}
+
+.card-header {
+  @apply border-b border-gray-100 px-6 py-4;
+}
+
+.card-footer {
+  @apply border-t border-gray-100 px-6 py-4;
+}
+
+/* Glass morphism effect */
+.glass {
+  @apply bg-white bg-opacity-30 backdrop-blur-md border border-white/20 shadow-sm;
+}
+
+.glass-dark {
+  @apply bg-gray-900 bg-opacity-30 backdrop-blur-md border border-gray-700/20 shadow-sm;
+}
+
+/* Enhanced focus ring for interactive elements */
+.focus-ring {
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2;
+}
+
+.focus-ring-within {
+  @apply focus-within:outline-none focus-within:ring-2 focus-within:ring-primary-500 focus-within:ring-offset-2;
+}
+
+/* Gradient text */
+.text-gradient {
+  @apply text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-teal-500;
+}
+
 /* Animation utility classes */
 .animate-fadeIn {
   animation: fadeIn var(--animation-duration-normal) var(--animation-timing) forwards;
@@ -230,4 +339,101 @@
 /* Add support for backface visibility */
 .backface-hidden {
   backface-visibility: hidden;
+}
+
+/* Mobile optimization utilities */
+.tap-target {
+  @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+}
+
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.pt-safe {
+  padding-top: env(safe-area-inset-top, 0);
+}
+
+.pull-to-refresh {
+  overscroll-behavior-y: contain;
+}
+
+/* Touch feedback */
+.touch-feedback {
+  @apply active:bg-gray-100 transition-colors duration-200;
+}
+
+.touch-feedback-dark {
+  @apply active:bg-gray-800 transition-colors duration-200;
+}
+
+/* Input optimizations */
+.mobile-input {
+  @apply px-4 py-3 text-base;
+}
+
+/* Dividers */
+.divider {
+  @apply w-full h-px bg-gray-200 my-12 md:my-16;
+}
+
+.divider-vertical {
+  @apply h-full w-px bg-gray-200 mx-6;
+}
+
+.divider-gradient {
+  @apply w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent my-12 md:my-16;
+}
+
+.divider-dots {
+  @apply flex items-center justify-center space-x-2 my-12 md:my-16;
+}
+
+.divider-dot {
+  @apply w-2 h-2 rounded-full bg-gray-300;
+}
+
+/* Typography enhancements */
+.text-balance {
+  text-wrap: balance;
+}
+
+.text-pretty {
+  text-wrap: pretty;
+}
+
+.heading-xl {
+  @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900;
+}
+
+.heading-lg {
+  @apply text-3xl md:text-4xl font-bold tracking-tight text-gray-900;
+}
+
+.heading-md {
+  @apply text-2xl md:text-3xl font-bold tracking-tight text-gray-900;
+}
+
+.heading-sm {
+  @apply text-xl md:text-2xl font-semibold tracking-tight text-gray-900;
+}
+
+.heading-xs {
+  @apply text-lg md:text-xl font-semibold tracking-tight text-gray-900;
+}
+
+.body-lg {
+  @apply text-lg leading-relaxed text-gray-800;
+}
+
+.body-md {
+  @apply text-base leading-relaxed text-gray-700;
+}
+
+.body-sm {
+  @apply text-sm leading-relaxed text-gray-600;
+}
+
+.caption {
+  @apply text-xs text-gray-500;
 }

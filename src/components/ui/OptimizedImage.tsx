@@ -3,16 +3,72 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { defaultImageLoader, shouldLazyLoad } from '@/lib/performance/imageLoader';
+import { cva, type VariantProps } from 'class-variance-authority';
 
-interface OptimizedImageProps {
+const imageVariants = cva("", {
+  variants: {
+    rounded: {
+      none: "rounded-none",
+      sm: "rounded-sm",
+      md: "rounded-md",
+      lg: "rounded-lg",
+      xl: "rounded-xl",
+      "2xl": "rounded-2xl",
+      "3xl": "rounded-3xl",
+      full: "rounded-full",
+    },
+    shadow: {
+      none: "shadow-none",
+      sm: "shadow-sm",
+      md: "shadow-md",
+      lg: "shadow-lg",
+      xl: "shadow-xl",
+    },
+    hover: {
+      none: "",
+      grow: "transition-transform duration-300 hover:scale-105",
+      lift: "transition-all duration-300 hover:-translate-y-1 hover:shadow-lg",
+      brighten: "transition-all duration-300 hover:brightness-110",
+      zoom: "overflow-hidden [&>img]:transition-transform [&>img]:duration-500 [&>img]:hover:scale-110",
+    },
+    aspect: {
+      auto: "aspect-auto",
+      square: "aspect-square",
+      video: "aspect-video",
+      portrait: "aspect-[3/4]",
+      landscape: "aspect-[4/3]",
+      wide: "aspect-[16/9]",
+      ultrawide: "aspect-[21/9]",
+    },
+    objectFit: {
+      contain: "object-contain",
+      cover: "object-cover",
+      fill: "object-fill",
+      none: "object-none",
+      scaleDown: "object-scale-down",
+    },
+  },
+  defaultVariants: {
+    rounded: "md",
+    shadow: "none",
+    hover: "none",
+    aspect: "auto",
+    objectFit: "cover",
+  },
+});
+
+interface OptimizedImageProps extends VariantProps<typeof imageVariants> {
   src: string;
   alt: string;
   width: number;
   height: number;
   className?: string;
+  containerClassName?: string;
   importance?: 'high' | 'medium' | 'low';
   quality?: number;
   sizes?: string;
+  blurDataURL?: string;
+  progressiveLoading?: boolean;
 }
 
 /**
@@ -21,6 +77,8 @@ interface OptimizedImageProps {
  * - Implements lazy loading based on image importance
  * - Supports responsive images with srcSet
  * - Implements blur-up loading effect
+ * - Supports progressive loading with shimmer effect
+ * - Configurable rounded corners, shadows, and hover effects
  */
 export default function OptimizedImage({
   src,
@@ -28,13 +86,33 @@ export default function OptimizedImage({
   width,
   height,
   className = '',
+  containerClassName = '',
   importance = 'medium',
   quality = 75,
   sizes = '100vw',
+  rounded,
+  shadow,
+  hover,
+  aspect,
+  objectFit,
+  blurDataURL,
+  progressiveLoading = true,
 }: OptimizedImageProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isIntersecting, setIsIntersecting] = useState(false);
   const lazy = shouldLazyLoad(importance);
+  
+  // Generate a simple blur data URL if none provided
+  const defaultBlurDataURL = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZCIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2YzZjRmNiIgLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlNWU3ZWIiIC8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4=";
+  
+  // Combine all variant props
+  const imageClasses = imageVariants({ 
+    rounded, 
+    shadow, 
+    hover, 
+    objectFit,
+    className: className 
+  });
 
   // Set up intersection observer for lazy loading
   useEffect(() => {
@@ -66,8 +144,8 @@ export default function OptimizedImage({
 
   return (
     <div
-      className={`relative overflow-hidden ${className}`}
-      style={{ width, height }}
+      className={`relative overflow-hidden ${containerClassName} ${aspect ? imageVariants({ aspect }) : ''}`}
+      style={{ width: width || 'auto', height: height || 'auto' }}
       data-image-id={src}
     >
       {shouldRender && (
@@ -77,23 +155,22 @@ export default function OptimizedImage({
           width={width}
           height={height}
           quality={quality}
-          className={`transition-opacity duration-500 ${
-            isLoaded ? 'opacity-100' : 'opacity-0'
+          className={`${imageClasses} transition-all duration-700 ${
+            isLoaded ? 'scale-100 blur-0 grayscale-0' : 'scale-110 blur-2xl grayscale'
           }`}
           onLoad={() => setIsLoaded(true)}
           loader={defaultImageLoader}
           sizes={sizes}
           priority={importance === 'high'}
           loading={importance === 'high' ? 'eager' : 'lazy'}
+          placeholder={progressiveLoading ? 'blur' : undefined}
+          blurDataURL={blurDataURL || defaultBlurDataURL}
         />
       )}
 
-      {/* Placeholder/blur-up effect */}
-      {!isLoaded && (
-        <div
-          className="absolute inset-0 bg-gray-200 animate-pulse"
-          style={{ backdropFilter: 'blur(10px)' }}
-        />
+      {/* Placeholder/blur-up effect with shimmer */}
+      {!isLoaded && progressiveLoading && (
+        <div className="absolute inset-0 -translate-x-full animate-shimmer bg-gradient-to-r from-transparent via-white/20 to-transparent" />
       )}
     </div>
   );
