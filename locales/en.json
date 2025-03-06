@@ -34,7 +34,11 @@
         "quote": "Choosing Aero Prosthetics was the best decision I made in my recovery journey.",
         "author": "Michael Johnson, Patient since 2022"
       }
-    }
+    },
+    "home": "Back to Home",
+    "services": "Our Services",
+    "contactCta": "Contact Us",
+    "backToServices": "Back to Services"
   },
   "home": {
     "hero": {
@@ -230,52 +234,78 @@
       "title": "Our Locations",
       "sectionBadge": "Premium Care Centers",
       "subtitle": "Our state-of-the-art facilities are designed to provide the highest level of care and comfort during your prosthetic journey.",
+      "cta": {
+        "title": "Ready to Visit Us?",
+        "description": "Schedule an appointment at one of our convenient locations.",
+        "schedule": "Schedule an Appointment",
+        "appointment": "Book Appointment",
+        "services": "View Our Services"
+      },
+      "overview": {
+        "title": "Our Locations",
+        "description": "We have two convenient locations to serve you in Southern California."
+      },
       "anaheim": {
         "title": "Anaheim Hills",
         "address": "1001 N Weir Canyon Road",
         "city": "Anaheim Hills, CA 92807",
         "phone": "714-385-1000",
-        "established": 2010,
-        "size": "5,600 sq ft",
-        "rating": 4.9,
-        "specialists": 8,
-        "specialFeatures": ["State-of-the-art scanning equipment", "In-house fabrication lab", "Private fitting rooms"],
-        "accessibility": ["Wheelchair accessible", "Reserved parking", "ADA compliant facilities"],
-        "hours": [
-          { "day": "Monday - Thursday", "hours": "8:00 AM - 5:00 PM" },
-          { "day": "Friday", "hours": "8:00 AM - 4:00 PM" },
-          { "day": "Saturday - Sunday", "hours": "Closed" }
-        ]
+        "overview": "Our Anaheim Hills location offers a full range of prosthetic and orthotic services in a modern, comfortable environment.",
+        "description": "Our Anaheim Hills facility features state-of-the-art equipment, private fitting rooms, and experienced specialists dedicated to your care.",
+        "facilities": {
+          "accessible": "Wheelchair Accessible",
+          "parking": "Reserved Parking",
+          "modern": "Modern Facility",
+          "wifi": "Free WiFi",
+          "childFriendly": "Child-Friendly"
+        },
+        "imageAlt": {
+          "exterior": "Exterior of Anaheim Hills location",
+          "interior1": "Reception area at Anaheim Hills",
+          "interior2": "Fitting room at Anaheim Hills"
+        },
+        "services": {
+          "prosthetics": "Lower Limb Prosthetics",
+          "orthotics": "Custom Orthotics",
+          "fittings": "Expert Fittings",
+          "pediatric": "Pediatric Care"
+        }
       },
       "victorville": {
         "title": "Victorville",
         "address": "17189 Yuma Street",
         "city": "Victorville, CA 92395",
         "phone": "760-245-1000",
-        "established": 2015,
-        "size": "4,200 sq ft",
-        "rating": 4.8,
-        "specialists": 6,
-        "specialFeatures": ["3D scanning technology", "Custom fitting lab", "Children's play area"],
-        "accessibility": ["Ground floor location", "Wide doorways", "Accessible restrooms"],
-        "hours": [
-          { "day": "Monday - Thursday", "hours": "8:30 AM - 5:30 PM" },
-          { "day": "Friday", "hours": "8:30 AM - 3:00 PM" },
-          { "day": "Saturday - Sunday", "hours": "Closed" }
-        ]
+        "overview": "Our Victorville location provides comprehensive prosthetic and orthotic services with a focus on patient comfort.",
+        "description": "The Victorville facility includes advanced scanning technology, custom fitting areas, and a team of experienced professionals ready to help.",
+        "facilities": {
+          "accessible": "Fully Accessible",
+          "parking": "Ample Parking",
+          "modern": "Modern Equipment",
+          "wifi": "Complimentary WiFi"
+        },
+        "imageAlt": {
+          "exterior": "Exterior of Victorville location",
+          "interior1": "Waiting area at Victorville",
+          "interior2": "Treatment room at Victorville"
+        },
+        "services": {
+          "prosthetics": "Upper Limb Prosthetics",
+          "orthotics": "Orthotic Solutions",
+          "fittings": "Custom Fittings",
+          "evaluation": "Gait Evaluation"
+        }
       },
-      "directions": "Get Directions",
-      "viewDetails": "View Details",
-      "teamLabel": "Our Team",
-      "specialistsLabel": "specialists available",
-      "hoursLabel": "Hours of Operation",
-      "featuresLabel": "Facility Features",
-      "virtualConsultation": {
-        "badge": "New Service",
-        "title": "Virtual Consultations Available",
-        "description": "Unable to visit us in person? Schedule a virtual consultation with our specialists from the comfort of your home.",
-        "feature": "Secure, HIPAA-compliant video platform",
-        "cta": "Schedule Now"
+      "learnMore": "Learn More",
+      "facilities": "Facility Features",
+      "services": {
+        "title": "Services Offered"
+      },
+      "map": {
+        "title": "Find Us",
+        "description": "Use the map to locate our facilities",
+        "placeholder": "Map loading...",
+        "viewOnGoogle": "View on Google Maps"
       }
     }
   },
@@ -420,7 +450,13 @@
       "title": "Join Our Team",
       "description": "Interested in a career with Aero Prosthetics? We're always looking for talented professionals who share our commitment to excellence and patient care.",
       "cta": "Contact Us About Careers"
-    }
+    },
+    "badge": "Our Expert Team",
+    "meetTeam": "Meet Our Team",
+    "teamIntro": "Our team of certified professionals is dedicated to providing the highest quality prosthetic and orthotic care.",
+    "ctaTitle": "Ready to Work With Our Team?",
+    "ctaDescription": "Schedule a consultation with one of our specialists to discuss your needs.",
+    "exploreServices": "Explore Our Services"
   },
   "locations": {
     "title": "Our Locations",
