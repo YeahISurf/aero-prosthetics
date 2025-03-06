@@ -1,61 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-// Files to copy from src to vercel-deploy
-// These are the same files listed in prepare-vercel-build.cjs
+// For now, we'll focus only on the locations page which is causing issues
 const filesToCopy = [
-  {
-    source: 'src/app/[locale]/page.tsx',
-    destination: 'vercel-deploy/src/app/[locale]/page.tsx'
-  },
-  {
-    source: 'src/app/[locale]/services/page.tsx',
-    destination: 'vercel-deploy/src/app/[locale]/services/page.tsx'
-  },
-  {
-    source: 'src/app/[locale]/services/[service]/page.tsx',
-    destination: 'vercel-deploy/src/app/[locale]/services/[service]/page.tsx'
-  },
-  {
-    source: 'src/app/[locale]/team/page.tsx',
-    destination: 'vercel-deploy/src/app/[locale]/team/page.tsx'
-  },
-  {
-    source: 'src/app/[locale]/team/[member]/page.tsx',
-    destination: 'vercel-deploy/src/app/[locale]/team/[member]/page.tsx'
-  },
-  {
-    source: 'src/app/[locale]/resources/page.tsx',
-    destination: 'vercel-deploy/src/app/[locale]/resources/page.tsx'
-  },
-  {
-    source: 'src/components/layout/LanguageToggle.tsx',
-    destination: 'vercel-deploy/src/components/layout/LanguageToggle.tsx'
-  },
-  {
-    source: 'src/app/[locale]/about/page.tsx',
-    destination: 'vercel-deploy/src/app/[locale]/about/page.tsx'
-  },
-  {
-    source: 'src/app/[locale]/contact/page.tsx',
-    destination: 'vercel-deploy/src/app/[locale]/contact/page.tsx'
-  },
-  {
-    source: 'src/app/[locale]/legal/accessibility/page.tsx',
-    destination: 'vercel-deploy/src/app/[locale]/legal/accessibility/page.tsx'
-  },
-  {
-    source: 'src/app/[locale]/legal/disclaimer/page.tsx',
-    destination: 'vercel-deploy/src/app/[locale]/legal/disclaimer/page.tsx'
-  },
-  {
-    source: 'src/app/[locale]/legal/privacy/page.tsx',
-    destination: 'vercel-deploy/src/app/[locale]/legal/privacy/page.tsx'
-  },
-  {
-    source: 'src/app/[locale]/legal/terms/page.tsx',
-    destination: 'vercel-deploy/src/app/[locale]/legal/terms/page.tsx'
-  },
   {
     source: 'src/app/[locale]/locations/page.tsx',
     destination: 'vercel-deploy/src/app/[locale]/locations/page.tsx'
@@ -76,10 +23,30 @@ function copyFile(source, destination) {
     fs.mkdirSync(destDir, { recursive: true });
   }
 
+  // Read source file content
+  const sourceContent = fs.readFileSync(source, 'utf8');
+  
+  // Check if destination file exists
+  let destContent = '';
+  if (fs.existsSync(destination)) {
+    destContent = fs.readFileSync(destination, 'utf8');
+  }
+  
+  // Compare file contents
+  if (sourceContent === destContent) {
+    console.log(`⚠️ Files are identical: ${source} and ${destination}`);
+    return true;
+  }
+
   // Copy the file
   try {
-    fs.copyFileSync(source, destination);
+    fs.writeFileSync(destination, sourceContent, 'utf8');
     console.log(`✅ Copied ${source} to ${destination}`);
+    
+    // Show some details about the files
+    console.log(`Source file size: ${sourceContent.length} characters`);
+    console.log(`Destination file size: ${fs.readFileSync(destination, 'utf8').length} characters`);
+    
     return true;
   } catch (error) {
     console.error(`❌ Error copying ${source} to ${destination}:`, error);
@@ -88,7 +55,7 @@ function copyFile(source, destination) {
 }
 
 // Copy all files
-console.log('Updating files for Vercel deployment...');
+console.log('Updating locations page for Vercel deployment...');
 
 let successCount = 0;
 let failureCount = 0;
@@ -103,8 +70,7 @@ filesToCopy.forEach(file => {
 });
 
 console.log(`\nUpdate complete: ${successCount} files copied successfully, ${failureCount} files failed.`);
-console.log(`\nYour Vercel deployment files are now up to date with your working files.`);
-console.log(`Next steps:`);
-console.log(`1. Commit these changes: git add . && git commit -m "Update vercel-deploy files"`);
+console.log(`\nNext steps:`);
+console.log(`1. Commit these changes: git add . && git commit -m "Update locations page for Vercel deployment"`);
 console.log(`2. Push to your repository: git push`);
 console.log(`3. Vercel should automatically deploy the updated version`); 
