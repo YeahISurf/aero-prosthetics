@@ -234,79 +234,50 @@
       "title": "Our Locations",
       "sectionBadge": "Premium Care Centers",
       "subtitle": "Our state-of-the-art facilities are designed to provide the highest level of care and comfort during your prosthetic journey.",
-      "cta": {
-        "title": "Ready to Visit Us?",
-        "description": "Schedule an appointment at one of our convenient locations.",
-        "schedule": "Schedule an Appointment",
-        "appointment": "Book Appointment",
-        "services": "View Our Services"
-      },
-      "overview": {
-        "title": "Our Locations",
-        "description": "We have two convenient locations to serve you in Southern California."
-      },
       "anaheim": {
         "title": "Anaheim Hills",
         "address": "1001 N Weir Canyon Road",
         "city": "Anaheim Hills, CA 92807",
         "phone": "714-385-1000",
-        "overview": "Our Anaheim Hills location offers a full range of prosthetic and orthotic services in a modern, comfortable environment.",
-        "description": "Our Anaheim Hills facility features state-of-the-art equipment, private fitting rooms, and experienced specialists dedicated to your care.",
-        "facilities": {
-          "accessible": "Wheelchair Accessible",
-          "parking": "Reserved Parking",
-          "modern": "Modern Facility",
-          "wifi": "Free WiFi",
-          "childFriendly": "Child-Friendly"
-        },
-        "imageAlt": {
-          "exterior": "Exterior of Anaheim Hills location",
-          "interior1": "Reception area at Anaheim Hills",
-          "interior2": "Fitting room at Anaheim Hills"
-        },
-        "services": {
-          "prosthetics": "Lower Limb Prosthetics",
-          "orthotics": "Custom Orthotics",
-          "fittings": "Expert Fittings",
-          "pediatric": "Pediatric Care"
-        }
+        "established": 2010,
+        "rating": 4.9,
+        "specialists": 6,
+        "hours": [
+          { "day": "Monday", "hours": "9:00 AM - 5:00 PM" },
+          { "day": "Tuesday", "hours": "9:00 AM - 5:00 PM" },
+          { "day": "Wednesday", "hours": "9:00 AM - 5:00 PM" },
+          { "day": "Thursday", "hours": "9:00 AM - 5:00 PM" },
+          { "day": "Friday", "hours": "9:00 AM - 5:00 PM" },
+          { "day": "Saturday", "hours": "Closed" },
+          { "day": "Sunday", "hours": "Closed" }
+        ],
+        "accessibility": ["Wheelchair Accessible", "Reserved Parking", "ADA Compliant"]
       },
       "victorville": {
         "title": "Victorville",
         "address": "17189 Yuma Street",
         "city": "Victorville, CA 92395",
         "phone": "760-245-1000",
-        "overview": "Our Victorville location provides comprehensive prosthetic and orthotic services with a focus on patient comfort.",
-        "description": "The Victorville facility includes advanced scanning technology, custom fitting areas, and a team of experienced professionals ready to help.",
-        "facilities": {
-          "accessible": "Fully Accessible",
-          "parking": "Ample Parking",
-          "modern": "Modern Equipment",
-          "wifi": "Complimentary WiFi"
-        },
-        "imageAlt": {
-          "exterior": "Exterior of Victorville location",
-          "interior1": "Waiting area at Victorville",
-          "interior2": "Treatment room at Victorville"
-        },
-        "services": {
-          "prosthetics": "Upper Limb Prosthetics",
-          "orthotics": "Orthotic Solutions",
-          "fittings": "Custom Fittings",
-          "evaluation": "Gait Evaluation"
-        }
+        "established": 2015,
+        "rating": 4.8,
+        "specialists": 4,
+        "hours": [
+          { "day": "Monday", "hours": "9:00 AM - 5:00 PM" },
+          { "day": "Tuesday", "hours": "9:00 AM - 5:00 PM" },
+          { "day": "Wednesday", "hours": "9:00 AM - 5:00 PM" },
+          { "day": "Thursday", "hours": "9:00 AM - 5:00 PM" },
+          { "day": "Friday", "hours": "9:00 AM - 5:00 PM" },
+          { "day": "Saturday", "hours": "Closed" },
+          { "day": "Sunday", "hours": "Closed" }
+        ],
+        "accessibility": ["Wheelchair Accessible", "Ample Parking", "ADA Compliant"]
       },
-      "learnMore": "Learn More",
-      "facilities": "Facility Features",
-      "services": {
-        "title": "Services Offered"
-      },
-      "map": {
-        "title": "Find Us",
-        "description": "Use the map to locate our facilities",
-        "placeholder": "Map loading...",
-        "viewOnGoogle": "View on Google Maps"
-      }
+      "teamLabel": "Our Team",
+      "specialistsLabel": "Specialists",
+      "hoursLabel": "Hours",
+      "featuresLabel": "Accessibility Features",
+      "directions": "Get Directions",
+      "viewDetails": "View Details"
     }
   },
   "about": {
@@ -460,25 +431,53 @@
   },
   "locations": {
     "title": "Our Locations",
-    "description": "Visit one of our convenient Southern California locations",
+    "description": "Visit one of our convenient Southern California locations for personalized prosthetic and orthotic care.",
+    "directions": "Get Directions",
     "cta": {
-      "contactUs": "Contact Us",
-      "learnMore": "Learn More"
+      "title": "Ready to Schedule a Visit?",
+      "description": "Contact us today to schedule an appointment at one of our convenient locations.",
+      "schedule": "Schedule an Appointment",
+      "appointment": "Book Appointment",
+      "services": "View Our Services"
+    },
+    "overview": {
+      "title": "Our Locations",
+      "description": "We have two convenient locations to serve you in Southern California."
     },
     "anaheim": {
       "title": "Anaheim Hills",
       "address": "1001 N Weir Canyon Road",
       "city": "Anaheim Hills, CA 92807",
       "phone": "714-385-1000",
+      "overview": "Our Anaheim Hills location offers a full range of prosthetic and orthotic services in a modern, comfortable environment.",
+      "description": "Our Anaheim Hills facility features state-of-the-art equipment, private fitting rooms, and experienced specialists dedicated to your care.",
+      "facilities": {
+        "accessible": "Wheelchair Accessible",
+        "parking": "Reserved Parking",
+        "modern": "Modern Facility",
+        "wifi": "Free WiFi",
+        "childFriendly": "Child-Friendly"
+      },
+      "imageAlt": {
+        "exterior": "Exterior of Anaheim Hills location",
+        "interior1": "Reception area at Anaheim Hills",
+        "interior2": "Fitting room at Anaheim Hills"
+      },
+      "services": {
+        "prosthetics": "Lower Limb Prosthetics",
+        "orthotics": "Custom Orthotics",
+        "fittings": "Expert Fittings",
+        "pediatric": "Pediatric Care"
+      },
       "hours": {
-        "title": "Hours of Operation",
-        "monday": "Monday: 8:00 AM - 5:00 PM",
-        "tuesday": "Tuesday: 8:00 AM - 5:00 PM",
-        "wednesday": "Wednesday: 8:00 AM - 5:00 PM",
-        "thursday": "Thursday: 8:00 AM - 5:00 PM",
-        "friday": "Friday: 8:00 AM - 4:00 PM",
-        "saturday": "Saturday: Closed",
-        "sunday": "Sunday: Closed"
+        "title": "Business Hours",
+        "monday": "9:00 AM - 5:00 PM",
+        "tuesday": "9:00 AM - 5:00 PM",
+        "wednesday": "9:00 AM - 5:00 PM",
+        "thursday": "9:00 AM - 5:00 PM",
+        "friday": "9:00 AM - 5:00 PM",
+        "saturday": "Closed",
+        "sunday": "Closed"
       }
     },
     "victorville": {
@@ -486,18 +485,44 @@
       "address": "17189 Yuma Street",
       "city": "Victorville, CA 92395",
       "phone": "760-245-1000",
+      "overview": "Our Victorville location provides comprehensive prosthetic and orthotic services with a focus on patient comfort.",
+      "description": "The Victorville facility includes advanced scanning technology, custom fitting areas, and a team of experienced professionals ready to help.",
+      "facilities": {
+        "accessible": "Fully Accessible",
+        "parking": "Ample Parking",
+        "modern": "Modern Equipment",
+        "wifi": "Complimentary WiFi"
+      },
+      "imageAlt": {
+        "exterior": "Exterior of Victorville location",
+        "interior1": "Waiting area at Victorville",
+        "interior2": "Treatment room at Victorville"
+      },
+      "services": {
+        "prosthetics": "Upper Limb Prosthetics",
+        "orthotics": "Orthotic Solutions",
+        "fittings": "Custom Fittings",
+        "evaluation": "Gait Evaluation"
+      },
       "hours": {
-        "title": "Hours of Operation",
-        "monday": "Monday: 8:00 AM - 5:00 PM",
-        "tuesday": "Tuesday: 8:00 AM - 5:00 PM",
-        "wednesday": "Wednesday: 8:00 AM - 5:00 PM",
-        "thursday": "Thursday: 8:00 AM - 5:00 PM",
-        "friday": "Friday: 8:00 AM - 4:00 PM",
-        "saturday": "Saturday: Closed",
-        "sunday": "Sunday: Closed"
+        "title": "Business Hours",
+        "monday": "9:00 AM - 5:00 PM",
+        "tuesday": "9:00 AM - 5:00 PM",
+        "wednesday": "9:00 AM - 5:00 PM",
+        "thursday": "9:00 AM - 5:00 PM",
+        "friday": "9:00 AM - 5:00 PM",
+        "saturday": "Closed",
+        "sunday": "Closed"
       }
     },
-    "directions": "Get Directions"
+    "learnMore": "Learn More",
+    "facilities": "Facility Features",
+    "map": {
+      "title": "Find Us",
+      "description": "Use the map below to locate our facilities.",
+      "placeholder": "Interactive map showing location",
+      "viewOnGoogle": "View on Google Maps"
+    }
   },
   "contact": {
     "title": "Contact Us",

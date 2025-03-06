@@ -233,80 +233,51 @@
     "locations": {
       "title": "Nuestras Ubicaciones",
       "sectionBadge": "Centros de Atención Premium",
-      "subtitle": "Nuestras instalaciones de última generación están diseñadas para proporcionar el más alto nivel de atención y comodidad durante su proceso protésico.",
-      "cta": {
-        "title": "¿Listo para Visitarnos?",
-        "description": "Programe una cita en una de nuestras convenientes ubicaciones.",
-        "schedule": "Programar una Cita",
-        "appointment": "Reservar Cita",
-        "services": "Ver Nuestros Servicios"
-      },
-      "overview": {
-        "title": "Nuestras Ubicaciones",
-        "description": "Tenemos dos ubicaciones convenientes para atenderle en el Sur de California."
-      },
+      "subtitle": "Nuestras instalaciones de vanguardia están diseñadas para proporcionar el más alto nivel de atención y comodidad durante su recorrido protésico.",
       "anaheim": {
         "title": "Anaheim Hills",
         "address": "1001 N Weir Canyon Road",
         "city": "Anaheim Hills, CA 92807",
         "phone": "714-385-1000",
-        "overview": "Nuestra ubicación en Anaheim Hills ofrece una gama completa de servicios protésicos y ortopédicos en un ambiente moderno y cómodo.",
-        "description": "Nuestras instalaciones en Anaheim Hills cuentan con equipos de última generación, salas de adaptación privadas y especialistas experimentados dedicados a su cuidado.",
-        "facilities": {
-          "accessible": "Accesible para Sillas de Ruedas",
-          "parking": "Estacionamiento Reservado",
-          "modern": "Instalaciones Modernas",
-          "wifi": "WiFi Gratuito",
-          "childFriendly": "Amigable para Niños"
-        },
-        "imageAlt": {
-          "exterior": "Exterior de la ubicación de Anaheim Hills",
-          "interior1": "Área de recepción en Anaheim Hills",
-          "interior2": "Sala de adaptación en Anaheim Hills"
-        },
-        "services": {
-          "prosthetics": "Prótesis de Miembros Inferiores",
-          "orthotics": "Ortesis Personalizadas",
-          "fittings": "Adaptaciones Expertas",
-          "pediatric": "Atención Pediátrica"
-        }
+        "established": 2010,
+        "rating": 4.9,
+        "specialists": 6,
+        "hours": [
+          { "day": "Lunes", "hours": "9:00 AM - 5:00 PM" },
+          { "day": "Martes", "hours": "9:00 AM - 5:00 PM" },
+          { "day": "Miércoles", "hours": "9:00 AM - 5:00 PM" },
+          { "day": "Jueves", "hours": "9:00 AM - 5:00 PM" },
+          { "day": "Viernes", "hours": "9:00 AM - 5:00 PM" },
+          { "day": "Sábado", "hours": "Cerrado" },
+          { "day": "Domingo", "hours": "Cerrado" }
+        ],
+        "accessibility": ["Accesible para Sillas de Ruedas", "Estacionamiento Reservado", "Cumple con ADA"]
       },
       "victorville": {
         "title": "Victorville",
         "address": "17189 Yuma Street",
         "city": "Victorville, CA 92395",
         "phone": "760-245-1000",
-        "overview": "Nuestra ubicación en Victorville proporciona servicios protésicos y ortopédicos integrales con un enfoque en la comodidad del paciente.",
-        "description": "Las instalaciones de Victorville incluyen tecnología de escaneo avanzada, áreas de adaptación personalizada y un equipo de profesionales experimentados listos para ayudar.",
-        "facilities": {
-          "accessible": "Totalmente Accesible",
-          "parking": "Amplio Estacionamiento",
-          "modern": "Equipo Moderno",
-          "wifi": "WiFi Complementario"
-        },
-        "imageAlt": {
-          "exterior": "Exterior de la ubicación de Victorville",
-          "interior1": "Área de espera en Victorville",
-          "interior2": "Sala de tratamiento en Victorville"
-        },
-        "services": {
-          "prosthetics": "Prótesis de Miembros Superiores",
-          "orthotics": "Soluciones Ortopédicas",
-          "fittings": "Adaptaciones Personalizadas",
-          "evaluation": "Evaluación de la Marcha"
-        }
+        "established": 2015,
+        "rating": 4.8,
+        "specialists": 4,
+        "hours": [
+          { "day": "Lunes", "hours": "9:00 AM - 5:00 PM" },
+          { "day": "Martes", "hours": "9:00 AM - 5:00 PM" },
+          { "day": "Miércoles", "hours": "9:00 AM - 5:00 PM" },
+          { "day": "Jueves", "hours": "9:00 AM - 5:00 PM" },
+          { "day": "Viernes", "hours": "9:00 AM - 5:00 PM" },
+          { "day": "Sábado", "hours": "Cerrado" },
+          { "day": "Domingo", "hours": "Cerrado" }
+        ],
+        "accessibility": ["Accesible para Sillas de Ruedas", "Amplio Estacionamiento", "Cumple con ADA"]
       },
-      "learnMore": "Más Información",
-      "facilities": "Características de las Instalaciones",
-      "services": {
-        "title": "Servicios Ofrecidos"
-      },
-      "map": {
-        "title": "Encuéntrenos",
-        "description": "Use el mapa para localizar nuestras instalaciones",
-        "placeholder": "Cargando mapa...",
-        "viewOnGoogle": "Ver en Google Maps"
-      }
+      "teamLabel": "Nuestro Equipo",
+      "specialistsLabel": "Especialistas",
+      "hoursLabel": "Horario",
+      "featuresLabel": "Características de Accesibilidad",
+      "directions": "Obtener Indicaciones",
+      "viewDetails": "Ver Detalles"
     }
   },
   "about": {
@@ -460,18 +431,18 @@
   },
   "locations": {
     "title": "Nuestras Ubicaciones",
-    "sectionBadge": "Centros de Atención Premium",
-    "subtitle": "Nuestras instalaciones de última generación están diseñadas para proporcionar el más alto nivel de atención y comodidad durante su proceso protésico.",
+    "description": "Visite una de nuestras convenientes ubicaciones en el sur de California para atención personalizada de prótesis y órtesis.",
+    "directions": "Obtener Indicaciones",
     "cta": {
-      "title": "¿Listo para Visitarnos?",
-      "description": "Programe una cita en una de nuestras convenientes ubicaciones.",
+      "title": "¿Listo para Programar una Visita?",
+      "description": "Contáctenos hoy para programar una cita en una de nuestras convenientes ubicaciones.",
       "schedule": "Programar una Cita",
       "appointment": "Reservar Cita",
       "services": "Ver Nuestros Servicios"
     },
     "overview": {
       "title": "Nuestras Ubicaciones",
-      "description": "Tenemos dos ubicaciones convenientes para atenderle en el Sur de California."
+      "description": "Tenemos dos ubicaciones convenientes para atenderle en el sur de California."
     },
     "anaheim": {
       "title": "Anaheim Hills",
@@ -485,7 +456,7 @@
         "parking": "Estacionamiento Reservado",
         "modern": "Instalaciones Modernas",
         "wifi": "WiFi Gratuito",
-        "childFriendly": "Amigable para Niños"
+        "childFriendly": "Apto para Niños"
       },
       "imageAlt": {
         "exterior": "Exterior de la ubicación de Anaheim Hills",
@@ -493,10 +464,20 @@
         "interior2": "Sala de adaptación en Anaheim Hills"
       },
       "services": {
-        "prosthetics": "Prótesis de Miembros Inferiores",
-        "orthotics": "Ortesis Personalizadas",
+        "prosthetics": "Prótesis de Extremidades Inferiores",
+        "orthotics": "Órtesis Personalizadas",
         "fittings": "Adaptaciones Expertas",
         "pediatric": "Atención Pediátrica"
+      },
+      "hours": {
+        "title": "Horario de Atención",
+        "monday": "9:00 AM - 5:00 PM",
+        "tuesday": "9:00 AM - 5:00 PM",
+        "wednesday": "9:00 AM - 5:00 PM",
+        "thursday": "9:00 AM - 5:00 PM",
+        "friday": "9:00 AM - 5:00 PM",
+        "saturday": "Cerrado",
+        "sunday": "Cerrado"
       }
     },
     "victorville": {
@@ -504,13 +485,13 @@
       "address": "17189 Yuma Street",
       "city": "Victorville, CA 92395",
       "phone": "760-245-1000",
-      "overview": "Nuestra ubicación en Victorville proporciona servicios protésicos y ortopédicos integrales con un enfoque en la comodidad del paciente.",
-      "description": "Las instalaciones de Victorville incluyen tecnología de escaneo avanzada, áreas de adaptación personalizada y un equipo de profesionales experimentados listos para ayudar.",
+      "overview": "Nuestra ubicación en Victorville proporciona servicios completos de prótesis y órtesis con un enfoque en la comodidad del paciente.",
+      "description": "Las instalaciones de Victorville incluyen tecnología de escaneo avanzada, áreas de adaptación personalizadas y un equipo de profesionales experimentados listos para ayudar.",
       "facilities": {
         "accessible": "Totalmente Accesible",
         "parking": "Amplio Estacionamiento",
         "modern": "Equipo Moderno",
-        "wifi": "WiFi Complementario"
+        "wifi": "WiFi Gratuito"
       },
       "imageAlt": {
         "exterior": "Exterior de la ubicación de Victorville",
@@ -518,21 +499,28 @@
         "interior2": "Sala de tratamiento en Victorville"
       },
       "services": {
-        "prosthetics": "Prótesis de Miembros Superiores",
+        "prosthetics": "Prótesis de Extremidades Superiores",
         "orthotics": "Soluciones Ortopédicas",
         "fittings": "Adaptaciones Personalizadas",
         "evaluation": "Evaluación de la Marcha"
+      },
+      "hours": {
+        "title": "Horario de Atención",
+        "monday": "9:00 AM - 5:00 PM",
+        "tuesday": "9:00 AM - 5:00 PM",
+        "wednesday": "9:00 AM - 5:00 PM",
+        "thursday": "9:00 AM - 5:00 PM",
+        "friday": "9:00 AM - 5:00 PM",
+        "saturday": "Cerrado",
+        "sunday": "Cerrado"
       }
     },
-    "learnMore": "Más Información",
+    "learnMore": "Saber Más",
     "facilities": "Características de las Instalaciones",
-    "services": {
-      "title": "Servicios Ofrecidos"
-    },
     "map": {
       "title": "Encuéntrenos",
-      "description": "Use el mapa para localizar nuestras instalaciones",
-      "placeholder": "Cargando mapa...",
+      "description": "Utilice el mapa a continuación para localizar nuestras instalaciones.",
+      "placeholder": "Mapa interactivo que muestra la ubicación",
       "viewOnGoogle": "Ver en Google Maps"
     }
   },
