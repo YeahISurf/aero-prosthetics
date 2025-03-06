@@ -1,7 +1,6 @@
 "use client";
 
 import { useTranslations, useLocale } from 'next-intl';
-import Link from 'next/link';
 import { useState, useEffect, useCallback } from 'react';
 
 // Define TypeScript interfaces for the testimonial data
@@ -28,7 +27,6 @@ interface Metrics {
 
 export default function TestimonialsSection() {
   const t = useTranslations('home.testimonials');
-  const locale = useLocale();
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [direction, setDirection] = useState('right');
@@ -142,7 +140,7 @@ export default function TestimonialsSection() {
         
         {/* Company metrics showcase */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto mb-16 animate-fadeIn" style={{ animationDelay: '0.6s' }}>
-          {Object.entries(metrics).map(([key, item], index) => (
+          {Object.entries(metrics).map(([key, item]) => (
             <div key={key} className="bg-white bg-opacity-80 backdrop-blur-sm rounded-xl shadow-lg p-6 border border-blue-50 transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
               <p className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">{item.value}</p>
               <p className="text-gray-600 text-sm">{item.label}</p>

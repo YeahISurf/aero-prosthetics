@@ -8,7 +8,7 @@
  * @param wait The time to wait between function calls (ms)
  * @returns A throttled version of the function
  */
-export function throttle<T extends (...args: any[]) => any>(fn: T, wait: number): (...args: Parameters<T>) => void {
+export function throttle<T extends (...args: unknown[]) => unknown>(fn: T, wait: number): (...args: Parameters<T>) => void {
   let time = Date.now();
   
   return function(...args: Parameters<T>): void {
@@ -25,7 +25,7 @@ export function throttle<T extends (...args: any[]) => any>(fn: T, wait: number)
  * @param delay The delay in milliseconds
  * @returns A debounced version of the function
  */
-export function debounce<T extends (...args: any[]) => any>(fn: T, delay: number): (...args: Parameters<T>) => void {
+export function debounce<T extends (...args: unknown[]) => unknown>(fn: T, delay: number): (...args: Parameters<T>) => void {
   let timeoutId: ReturnType<typeof setTimeout> | null = null;
   
   return function(...args: Parameters<T>): void {
