@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Run tests
+npm test
+
+# Run ESLint
+echo "Running ESLint..."
+npm run lint
+
+# If ESLint fails, prevent the commit
+if [ $? -ne 0 ]; then
+  echo "ESLint found errors. Please fix them before committing."
+  exit 1
+fi 

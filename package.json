@@ -12,7 +12,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "update-vercel-deploy": "node scripts/update-vercel-deploy.js"
+    "update-vercel-deploy": "node scripts/update-vercel-deploy.js",
+    "prepare": "husky"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^16.0.1",
@@ -42,6 +43,7 @@
     "cross-env": "^7.0.3",
     "eslint": "^9",
     "eslint-config-next": "15.2.0",
+    "husky": "^9.1.7",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "postcss": "^8",
