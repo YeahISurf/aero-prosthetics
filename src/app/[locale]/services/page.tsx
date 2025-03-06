@@ -195,7 +195,7 @@ export default async function ServicesPage({ params }: Props) {
           <p className="section-subtitle mb-12">{t('servicesSubtitle') || 'Discover our full range of prosthetic and orthotic solutions designed to improve mobility, comfort, and quality of life.'}</p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
-            {services.map((service, index) => (
+            {services.map((service) => (
               <Link 
                 key={service.id}
                 href={`/${locale}/services/${service.id}`}

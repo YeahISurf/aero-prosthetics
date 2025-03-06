@@ -1,6 +1,5 @@
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
-import Image from 'next/image';
 import { constructMetadata } from '@/lib/seo/metadata';
 
 type Props = {
@@ -334,7 +333,7 @@ export default async function ResourcesPage({ params }: Props) {
                     <p className="text-sm text-gray-500">{testimonial.location}</p>
                   </div>
                 </div>
-                <blockquote className="text-gray-700 italic">"{testimonial.quote}"</blockquote>
+                <blockquote className="text-gray-700 italic">&quot;{testimonial.quote}&quot;</blockquote>
               </div>
             ))}
           </div>

@@ -1,6 +1,5 @@
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
-import Image from 'next/image';
 import { constructMetadata } from '@/lib/seo/metadata';
 import { ANIMATION_DELAYS } from '@/lib/utils';
 
