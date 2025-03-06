@@ -11,7 +11,8 @@
     "lint": "next lint",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "update-vercel-deploy": "node scripts/update-vercel-deploy.js"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^16.0.1",

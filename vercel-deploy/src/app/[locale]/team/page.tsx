@@ -93,11 +93,38 @@ export default async function TeamPage({ params }: Props) {
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-primary-600 text-white py-16 md:py-24">
-        <div className="container-custom">
+      <section className="relative bg-gradient-to-br from-primary-500 via-primary-400 to-primary-300 text-white overflow-hidden">
+        {/* Premium accent line at top */}
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-100 via-primary-200 to-primary-100"></div>
+        
+        <div className="absolute inset-0 z-0 opacity-15">
+          {/* Enhanced background pattern */}
+          <div 
+            className="w-full h-full bg-[url('/pattern.svg')] bg-repeat"
+            aria-hidden="true"
+            role="presentation"
+          ></div>
+        </div>
+        
+        {/* Subtle particle effect overlay */}
+        <div 
+          className="absolute inset-0 z-0 opacity-15 bg-[radial-gradient(circle,_rgba(255,255,255,0.9)_1px,_transparent_1px)] bg-[length:20px_20px]"
+          aria-hidden="true"
+        ></div>
+        
+        {/* Modern dual-tone gradient overlay */}
+        <div 
+          className="absolute inset-0 bg-gradient-to-tr from-primary-600/30 via-secondary-teal-500/10 to-secondary-teal-500/20 mix-blend-overlay"
+          aria-hidden="true"
+        ></div>
+        
+        <div className="container-custom relative z-10 py-16 md:py-24">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-3xl md:text-4xl font-bold mb-6">{t('title')}</h1>
-            <p className="text-xl leading-relaxed">{t('description')}</p>
+            <div className="inline-block px-4 py-1 rounded-full bg-white/15 backdrop-blur-sm border border-white/30 text-white/95 text-sm font-medium mb-6">
+              {t('badge') || 'Expert Care Providers'}
+            </div>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">{t('title')}</h1>
+            <p className="text-xl leading-relaxed text-white/90">{t('description')}</p>
           </div>
         </div>
       </section>
@@ -105,24 +132,29 @@ export default async function TeamPage({ params }: Props) {
       {/* Team Grid */}
       <section className="section bg-white">
         <div className="container-custom">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <h2 className="section-title">{t('meetTeam') || 'Meet Our Specialists'}</h2>
+            <p className="section-subtitle">{t('teamIntro') || 'Our diverse team of certified specialists brings decades of combined experience to provide you with exceptional prosthetic and orthotic care.'}</p>
+          </div>
+          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {teamMembers.map((member) => (
-              <div key={member.id} className="bg-white rounded-lg shadow-md overflow-hidden transition-all hover:shadow-lg">
-                <div className="h-64 bg-gray-200 relative">
+              <div key={member.id} className="bg-white rounded-lg shadow-lg overflow-hidden transition-all hover:shadow-xl border border-gray-100 hover:border-primary-100">
+                <div className="h-64 bg-gradient-to-br from-primary-50 to-primary-100 relative">
                   {/* Placeholder for team member image */}
-                  <div className="absolute inset-0 flex items-center justify-center text-gray-500">
+                  <div className="absolute inset-0 flex items-center justify-center text-primary-400 font-medium">
                     Team Member Photo
                   </div>
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl font-semibold mb-1 text-gray-900">{member.name}</h3>
-                  <p className="text-primary-600 mb-4">{member.title}</p>
+                  <p className="text-primary-600 mb-4 font-medium">{member.title}</p>
                   <p className="text-gray-700 mb-4 line-clamp-3">
                     {member.bio}
                   </p>
                   <Link 
-                    href={`/team/${member.id}`}
-                    className="text-primary-500 font-medium hover:text-primary-600 inline-flex items-center"
+                    href={`/${locale}/team/${member.id}`}
+                    className="text-primary-500 font-medium hover:text-primary-600 inline-flex items-center transition-colors"
                   >
                     {t('viewProfile')}
                     <svg 
@@ -148,18 +180,23 @@ export default async function TeamPage({ params }: Props) {
       </section>
 
       {/* Team Values Section */}
-      <section className="section bg-gray-50">
-        <div className="container-custom">
-          <h2 className="section-title">{t('values.title')}</h2>
-          <p className="section-subtitle">{t('values.description')}</p>
+      <section className="section bg-gradient-to-br from-gray-50 to-gray-100 relative overflow-hidden">
+        {/* Subtle background pattern */}
+        <div className="absolute inset-0 opacity-10 bg-[url('/pattern.svg')] bg-repeat"></div>
+        
+        <div className="container-custom relative z-10">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <h2 className="section-title">{t('values.title')}</h2>
+            <p className="section-subtitle">{t('values.description')}</p>
+          </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
             {/* Value 1 */}
-            <div className="bg-white rounded-lg shadow-sm p-8">
-              <div className="w-12 h-12 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mb-4">
+            <div className="bg-white rounded-lg shadow-lg p-8 border border-primary-50/50 transition-all hover:shadow-xl">
+              <div className="w-14 h-14 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mb-6">
                 <svg 
                   xmlns="http://www.w3.org/2000/svg" 
-                  className="h-6 w-6" 
+                  className="h-7 w-7" 
                   fill="none" 
                   viewBox="0 0 24 24" 
                   stroke="currentColor"
@@ -172,16 +209,16 @@ export default async function TeamPage({ params }: Props) {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-3 text-gray-900">{t('values.items.0.title')}</h3>
+              <h3 className="text-xl font-semibold mb-4 text-gray-900">{t('values.items.0.title')}</h3>
               <p className="text-gray-700">{t('values.items.0.description')}</p>
             </div>
             
             {/* Value 2 */}
-            <div className="bg-white rounded-lg shadow-sm p-8">
-              <div className="w-12 h-12 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mb-4">
+            <div className="bg-white rounded-lg shadow-lg p-8 border border-primary-50/50 transition-all hover:shadow-xl">
+              <div className="w-14 h-14 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mb-6">
                 <svg 
                   xmlns="http://www.w3.org/2000/svg" 
-                  className="h-6 w-6" 
+                  className="h-7 w-7" 
                   fill="none" 
                   viewBox="0 0 24 24" 
                   stroke="currentColor"
@@ -194,16 +231,16 @@ export default async function TeamPage({ params }: Props) {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-3 text-gray-900">{t('values.items.1.title')}</h3>
+              <h3 className="text-xl font-semibold mb-4 text-gray-900">{t('values.items.1.title')}</h3>
               <p className="text-gray-700">{t('values.items.1.description')}</p>
             </div>
             
             {/* Value 3 */}
-            <div className="bg-white rounded-lg shadow-sm p-8">
-              <div className="w-12 h-12 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mb-4">
+            <div className="bg-white rounded-lg shadow-lg p-8 border border-primary-50/50 transition-all hover:shadow-xl">
+              <div className="w-14 h-14 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mb-6">
                 <svg 
                   xmlns="http://www.w3.org/2000/svg" 
-                  className="h-6 w-6" 
+                  className="h-7 w-7" 
                   fill="none" 
                   viewBox="0 0 24 24" 
                   stroke="currentColor"
@@ -216,7 +253,7 @@ export default async function TeamPage({ params }: Props) {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-3 text-gray-900">{t('values.items.2.title')}</h3>
+              <h3 className="text-xl font-semibold mb-4 text-gray-900">{t('values.items.2.title')}</h3>
               <p className="text-gray-700">{t('values.items.2.description')}</p>
             </div>
           </div>
@@ -226,11 +263,14 @@ export default async function TeamPage({ params }: Props) {
       {/* Join Our Team Section */}
       <section className="section bg-white">
         <div className="container-custom">
-          <div className="bg-primary-50 rounded-lg p-8 md:p-12">
+          <div className="bg-gradient-to-br from-primary-50 to-primary-100 rounded-lg p-8 md:p-12 border border-primary-200/50 shadow-lg">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-2xl md:text-3xl font-bold mb-6 text-primary-600">{t('careers.title')}</h2>
               <p className="text-lg text-gray-700 mb-8">{t('careers.description')}</p>
-              <Link href="/contact" className="btn-primary">
+              <Link 
+                href={`/${locale}/contact`} 
+                className="btn-primary shadow-md hover:shadow-lg transition-all hover:scale-105"
+              >
                 {t('careers.cta')}
               </Link>
             </div>
@@ -239,18 +279,42 @@ export default async function TeamPage({ params }: Props) {
       </section>
 
       {/* CTA Section */}
-      <section className="section bg-primary-600 text-white">
-        <div className="container-custom">
+      <section className="section bg-gradient-to-br from-primary-600 via-primary-500 to-primary-600 text-white relative overflow-hidden">
+        {/* Subtle background pattern */}
+        <div className="absolute inset-0 z-0 opacity-15">
+          <div 
+            className="w-full h-full bg-[url('/pattern.svg')] bg-repeat"
+            aria-hidden="true"
+            role="presentation"
+          ></div>
+        </div>
+        
+        {/* Subtle particle effect overlay */}
+        <div 
+          className="absolute inset-0 z-0 opacity-10 bg-[radial-gradient(circle,_rgba(255,255,255,0.9)_1px,_transparent_1px)] bg-[length:20px_20px]"
+          aria-hidden="true"
+        ></div>
+        
+        <div className="container-custom relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Ready to Meet Our Team?
+              {t('ctaTitle') || 'Ready to Meet Our Team?'}
             </h2>
             <p className="text-xl text-white/90 mb-8">
-              Schedule a consultation to meet with our specialists and learn how we can help you.
+              {t('ctaDescription') || 'Schedule a consultation to meet with our specialists and learn how we can help you achieve optimal mobility and comfort.'}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact" className="btn bg-white text-primary-600 hover:bg-gray-100">
+              <Link 
+                href={`/${locale}/contact`} 
+                className="btn bg-white text-primary-600 hover:bg-primary-50 border border-white/80 shadow-xl transition-all duration-300 hover:scale-105"
+              >
                 {ctaT('contactUs')}
+              </Link>
+              <Link 
+                href={`/${locale}/services`} 
+                className="btn bg-transparent border-2 border-white text-white hover:bg-white/15 transition-all duration-300 hover:border-primary-200 hover:text-primary-100"
+              >
+                {t('exploreServices') || 'Explore Our Services'}
               </Link>
             </div>
           </div>

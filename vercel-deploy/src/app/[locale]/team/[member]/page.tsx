@@ -139,7 +139,7 @@ export default async function TeamMemberPage({ params }: Props) {
       <section className="bg-primary-600 text-white py-16 md:py-24">
         <div className="container-custom">
           <Link 
-            href="/team" 
+            href={`/${locale}/team`}
             className="inline-flex items-center text-white/80 hover:text-white mb-6"
           >
             <svg 
@@ -308,7 +308,7 @@ export default async function TeamMemberPage({ params }: Props) {
               <Link href="/contact" className="btn bg-white text-primary-600 hover:bg-gray-100">
                 {ctaT('contactUs')}
               </Link>
-              <Link href="/team" className="btn bg-transparent border-2 border-white text-white hover:bg-white/10">
+              <Link href={`/${locale}/team`} className="btn bg-transparent border-2 border-white text-white hover:bg-white/10">
                 View All Team Members
               </Link>
             </div>
