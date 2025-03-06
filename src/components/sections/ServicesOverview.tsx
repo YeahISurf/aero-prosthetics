@@ -102,23 +102,25 @@ export default function ServicesOverview() {
                     <p className="text-sm font-medium text-blue-800">{service.technology}</p>
                   </div>
                   <div className="bg-green-50 rounded-lg p-3">
-                    <p className="text-xs text-green-600 uppercase font-medium">Success Rate</p>
-                    <p className="text-sm font-medium text-green-700">{service.successRate}</p>
+                    <p className="text-xs text-green-800 uppercase font-medium">Success Rate</p>
+                    <p className="text-sm font-medium text-green-800">{service.successRate}</p>
                   </div>
                 </div>
                 
-                {/* Learn more link */}
+                {/* Learn more link with descriptive text */}
                 <Link 
                   href={`/${locale}/services/${service.id}`}
                   className="inline-flex items-center text-primary-600 font-medium hover:text-primary-700 transition-colors group-hover:underline"
+                  aria-label={`Learn more about ${service.title}`}
                 >
-                  {learnMoreText}
+                  {`${learnMoreText} about ${service.title}`}
                   <svg 
                     xmlns="http://www.w3.org/2000/svg" 
                     className="h-4 w-4 ml-1 group-hover:translate-x-0.5 transition-transform" 
                     fill="none" 
                     viewBox="0 0 24 24" 
                     stroke="currentColor"
+                    aria-hidden="true"
                   >
                     <path 
                       strokeLinecap="round" 

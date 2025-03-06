@@ -33,7 +33,7 @@ export default function HeroSection() {
     }, 5000);
     
     return () => clearInterval(interval);
-  }, [testimonials.length]);
+  }, [testimonials]); // Include full testimonials array as dependency
   
   const parallaxOffset = scrollY * 0.3;
 
@@ -70,15 +70,24 @@ export default function HeroSection() {
             
             {/* Animated testimonial quote */}
             <div className="relative h-20 mt-4 overflow-hidden">
-              <div className="absolute transition-all duration-700 ease-in-out w-full"
-                   style={{ opacity: 1, transform: `translateY(0)` }}>
-                <p className="font-light italic text-white/80 border-l-4 border-blue-300 pl-4">
-                  {testimonials[currentTestimonial].quote}
-                </p>
-                <p className="text-blue-200 font-medium text-sm mt-1 pl-4">
-                  — {testimonials[currentTestimonial].name}
-                </p>
-              </div>
+              {testimonials.map((testimonial, index) => (
+                <div 
+                  key={index}
+                  className="absolute transition-all duration-700 ease-in-out w-full"
+                  style={{ 
+                    opacity: index === currentTestimonial ? 1 : 0,
+                    transform: `translateY(${index === currentTestimonial ? 0 : 20}px)`,
+                    zIndex: index === currentTestimonial ? 1 : 0
+                  }}
+                >
+                  <p className="font-light italic text-white/80 border-l-4 border-blue-300 pl-4">
+                    {testimonial.quote}
+                  </p>
+                  <p className="text-blue-200 font-medium text-sm mt-1 pl-4">
+                    — {testimonial.name}
+                  </p>
+                </div>
+              ))}
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4 pt-4">

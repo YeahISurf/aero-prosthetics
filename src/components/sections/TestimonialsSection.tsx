@@ -54,8 +54,9 @@ export default function TestimonialsSection() {
   const prevTestimonial = () => {
     setActiveIndex((prevIndex) => (prevIndex - 1 + testimonials.length) % testimonials.length);
   };
-
-  const setTestimonialIndex = (index: number) => {
+  
+  // Define function with explicit type annotation to avoid circular reference
+  const setTestimonialIndex: (index: number) => void = (index) => {
     setActiveIndex(index);
   };
 
@@ -162,21 +163,21 @@ export default function TestimonialsSection() {
                       <div className="mt-auto">
                         <div className="grid grid-cols-2 gap-4 mt-6 pt-6 border-t border-gray-100">
                           <div className="bg-green-50 rounded-lg p-4">
-                            <p className="text-xs text-green-700 uppercase font-bold mb-1">Mobility Improvement</p>
+                            <p className="text-xs text-green-800 uppercase font-bold mb-1">Mobility Improvement</p>
                                 <div className="flex items-center">
                                   <div className="flex-1 bg-gray-200 rounded-full h-2">
-                                    <div className="bg-green-500 h-2 rounded-full" style={{ width: testimonial.mobilityImprovement }}></div>
+                                    <div className="bg-green-600 h-2 rounded-full" style={{ width: testimonial.mobilityImprovement }}></div>
                                   </div>
-                                  <span className="ml-2 text-green-700 font-bold">{testimonial.mobilityImprovement}</span>
+                                  <span className="ml-2 text-green-800 font-bold">{testimonial.mobilityImprovement}</span>
                                 </div>
                               </div>
                               <div className="bg-blue-50 rounded-lg p-4">
-                                <p className="text-xs text-blue-700 uppercase font-bold mb-1">Quality of Life</p>
+                                <p className="text-xs text-blue-800 uppercase font-bold mb-1">Quality of Life</p>
                                 <div className="flex items-center">
                                   <div className="flex-1 bg-gray-200 rounded-full h-2">
-                                    <div className="bg-blue-500 h-2 rounded-full" style={{ width: testimonial.qualityOfLife }}></div>
+                                    <div className="bg-blue-600 h-2 rounded-full" style={{ width: testimonial.qualityOfLife }}></div>
                                   </div>
-                                  <span className="ml-2 text-blue-700 font-bold">{testimonial.qualityOfLife}</span>
+                                  <span className="ml-2 text-blue-800 font-bold">{testimonial.qualityOfLife}</span>
                             </div>
                           </div>
                         </div>
@@ -210,19 +211,21 @@ export default function TestimonialsSection() {
                 </svg>
               </button>
               
-              {/* Dots indicator */}
-              <div className="flex space-x-2">
+              {/* Dots indicator with improved accessibility */}
+              <div className="flex space-x-4">
                 {testimonials.map((_: unknown, index: number) => (
                   <button
                     key={index}
                     onClick={() => setTestimonialIndex(index)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      index === activeIndex 
-                        ? 'bg-primary-600 w-6'
-                        : 'bg-gray-300 hover:bg-gray-400'
-                    }`}
+                    className={`w-12 h-12 flex items-center justify-center p-2 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-opacity-50`}
                     aria-label={`Go to testimonial ${index + 1}`}
-                  />
+                  >
+                    <span className={`block rounded-full transition-all duration-300 ${
+                      index === activeIndex 
+                        ? 'bg-primary-600 w-8 h-4'
+                        : 'bg-gray-300 hover:bg-gray-400 w-4 h-4'
+                    }`}></span>
+                  </button>
                 ))}
               </div>
               

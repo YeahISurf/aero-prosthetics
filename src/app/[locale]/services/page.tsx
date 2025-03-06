@@ -223,13 +223,13 @@ export default async function ServicesPage({ params }: Props) {
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Ready to Experience the Aero Prosthetics Difference?
+              {ctaT('section.title')}
             </h2>
             <p className="text-xl text-white/90 mb-8">
-              Contact us today to schedule a consultation and learn how our personalized prosthetic solutions can enhance your mobility and quality of life.
+              {ctaT('section.description')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact" className="btn bg-white text-primary-600 hover:bg-gray-100">
+              <Link href={`/${locale}/contact`} className="btn bg-white text-primary-600 hover:bg-gray-100">
                 {contactUsText}
               </Link>
             </div>
