@@ -4,11 +4,11 @@ import { constructMetadata } from '@/lib/seo/metadata';
 import Image from 'next/image';
 
 type Props = {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 };
 
 export async function generateMetadata({ params }: Props) {
-  const { locale } = params;
+  const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'contact' });
 
   return constructMetadata({
@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props) {
 }
 
 export default async function ContactPage({ params }: Props) {
-  const { locale } = params;
+  const { locale } = await params;
   // Enable static rendering
   unstable_setRequestLocale(locale);
 
