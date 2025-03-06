@@ -1,0 +1,20 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+npm test
+
+# Check if files need synchronization
+echo \
+Checking
+if
+source
+and
+vercel-deploy
+files
+are
+in
+sync...\
+node scripts/sync-vercel-deploy.js --check > sync_results.txt
+if grep -q \
+Needs
+sync\ sync_results.txt; then

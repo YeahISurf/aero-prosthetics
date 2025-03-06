@@ -13,6 +13,8 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "update-vercel-deploy": "node scripts/update-vercel-deploy.js",
+    "sync-vercel": "node scripts/sync-vercel-deploy.js",
+    "check-sync": "node scripts/sync-vercel-deploy.js --check",
     "prepare": "husky"
   },
   "dependencies": {

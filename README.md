@@ -85,6 +85,9 @@ The repository includes visual references:
 - ✅ Accessibility enhancements (skip-to-content, ARIA attributes, semantic HTML)
 - ✅ HIPAA compliance for contact forms
 - ✅ Google IDX configuration
+- ✅ Testing implementation (Jest and React Testing Library)
+- ✅ Performance optimization (Core Web Vitals improvements)
+- ✅ Vercel deployment synchronization system
 
 ### In Progress / To Do
 - 🔄 CMS integration with Contentful
@@ -92,19 +95,50 @@ The repository includes visual references:
   - Content models defined for all page types
   - Integration with Next.js configured
   - Awaiting client setup of Contentful space and initial content population
-- ✅ Testing implementation (Jest and React Testing Library)
-  - Unit tests for all components
-  - Integration tests for forms and interactive elements
-  - Accessibility testing with jest-axe
-- ✅ Performance optimization (Core Web Vitals improvements)
-  - Image optimization with Next.js Image component
-  - Code splitting and lazy loading
-  - Server-side rendering for critical pages
-  - Static generation for content-heavy pages
 - 🔄 Actual content population
   - Placeholder content currently in use throughout the site
   - Awaiting final content and images from client
   - Translation workflow established for new content
+
+## Vercel Deployment Process
+
+This project uses a special deployment process for Vercel that requires keeping files in sync between your local development environment and the Vercel-specific files.
+
+### Understanding the Deployment Setup
+
+The project has two sets of files:
+1. **Source files** (`src/` directory) - Used during local development
+2. **Vercel-specific files** (`vercel-deploy/` directory) - Used during Vercel deployment
+
+When you run `npm run dev` locally, you're using the files in the `src/` directory. However, when deploying to Vercel, a prebuild script (`scripts/prepare-vercel-build.cjs`) replaces certain files with versions from the `vercel-deploy/` directory.
+
+This approach helps maintain ESLint compliance during the Vercel build process while allowing for more flexible development locally.
+
+### Synchronization Commands
+
+To ensure changes made to source files are properly reflected in the Vercel deployment, we've created synchronization scripts:
+
+- `npm run sync-vercel` - Updates files in `vercel-deploy/` with your latest changes from `src/`
+- `npm run check-sync` - Checks which files need to be synchronized without making changes
+
+### Development Workflow
+
+Follow this workflow to ensure your changes appear properly on both local development and Vercel deployment:
+
+1. Make changes to files in the `src/` directory as normal
+2. Test locally with `npm run dev`
+3. Before committing/deploying, run `npm run sync-vercel` to update the Vercel-specific files
+4. Commit all changes (both in `src/` and `vercel-deploy/`)
+5. Push to deploy on Vercel
+
+### Automated Checks
+
+The system includes automated checks to help prevent deployment issues:
+
+1. A Git pre-push hook (when implemented) checks if files are in sync before pushing
+2. A GitHub workflow verifies synchronization during pull requests
+
+For more detailed information about this system, see [VERCEL-SYNC.md](./VERCEL-SYNC.md).
 
 ## Image Management
 
@@ -260,12 +294,12 @@ The website is fully internationalized with support for English and Spanish. Fol
 
 The website is tested and optimized for the following browsers:
 
-- **Chrome**: Version 100+
-- **Firefox**: Version 100+
-- **Safari**: Version 15+
-- **Edge**: Version 100+
-- **iOS Safari**: Version 15+
-- **Android Chrome**: Version 100+
+- **Chrome**: Version 120+
+- **Firefox**: Version 120+
+- **Safari**: Version 16+
+- **Edge**: Version 120+
+- **iOS Safari**: Version 16+
+- **Android Chrome**: Version 120+
 
 Progressive enhancement techniques ensure core functionality works across all modern browsers, with enhanced features available in newer browser versions.
 
@@ -294,93 +328,131 @@ The website implements several performance optimizations:
 - **Font Loading**: Optimized font loading with font display swap
 - **Minification**: All production code is minified and compressed
 
+## Deployment
+
+The website is deployed on Vercel with the following configuration:
+
+- **Production Environment**: Automatically deployed from the `main` branch
+- **Preview Environments**: Created for pull requests and branches
+- **Custom Domain**: Configured with custom domain and SSL
+- **Environment Variables**: Set up for API keys and configuration
+- **Build Cache**: Enabled for faster deployments
+- **Edge Functions**: Used for internationalization middleware
+
+### Deployment Scripts
+
+The project includes scripts to facilitate deployment:
+
+```bash
+# Prepare files for Vercel deployment
+npm run prebuild
+
+# Update the Vercel deployment directory
+npm run update-vercel-deploy
+
+# Force a new Vercel deployment
+./force-vercel-deploy.sh
+```
+
+### Monitoring
+
+Vercel Analytics and Google Analytics are integrated to monitor:
+- Page load performance
+- User engagement
+- Error tracking
+- Usage patterns
+
 ## Tech Stack
 
-- **Framework:** Next.js with App Router
+- **Framework:** Next.js 15 with App Router
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS
-- **Internationalization:** next-intl
+- **Internationalization:** next-intl v3
 - **Form Handling:** React Hook Form with Yup validation
 - **CMS:** Contentful (headless CMS)
+- **Animation:** Framer Motion
+- **Maps Integration:** @react-google-maps/api
+- **Testing:** Jest with React Testing Library
 
 ## Project Structure
 
 ```
 /
-├── app/                    # Next.js App Router pages
-│   ├── [locale]/           # Language-specific routes
-│   │   ├── page.tsx        # Home page
-│   │   ├── about/          # About section
-│   │   ├── services/       # Services section
-│   │   ├── team/           # Team section
-│   │   ├── locations/      # Locations section
-│   │   ├── contact/        # Contact section
-│   │   └── resources/      # Patient resources
-├── components/             # Reusable React components
-│   ├── layout/             # Layout components
-│   ├── ui/                 # UI components
-│   ├── sections/           # Page sections
-│   └── forms/              # Form components
-├── lib/                    # Utility functions
-│   ├── i18n/               # Internationalization setup
-│   ├── seo/                # SEO utilities
-│   └── validation/         # Form validation schemas
+├── src/                    # Source code directory
+│   ├── app/                # Next.js App Router pages
+│   │   ├── [locale]/       # Language-specific routes
+│   │   │   ├── page.tsx    # Home page
+│   │   │   ├── about/      # About section
+│   │   │   ├── services/   # Services section
+│   │   │   ├── team/       # Team section
+│   │   │   ├── locations/  # Locations section
+│   │   │   ├── contact/    # Contact section
+│   │   │   ├── resources/  # Patient resources
+│   │   │   └── legal/      # Legal pages
+│   │   │   └── [locale]/   # Language-specific routes
+│   ├── components/         # Reusable React components
+│   ├── lib/                # Utility functions
+│   └── types/              # TypeScript type definitions
 ├── public/                 # Static assets
 ├── locales/                # Translation files
 │   ├── en.json             # English translations
-│   └── es.json             # Spanish translations
+│   ├── es.json             # Spanish translations
+│   └── team.json           # Team-specific translations
+├── scripts/                # Build and utility scripts
 ├── middleware.ts           # Next.js middleware for i18n
 ```
 
-## Development Setup
+## Development
 
-### Prerequisites
-- Node.js (v18 or newer)
-- npm or yarn
+### Getting Started
 
-### Installation
-1. Clone the repository
-   ```bash
+1. Clone the repository:
+   ```
    git clone https://github.com/YeahISurf/aero-prosthetics.git
    cd aero-prosthetics
    ```
 
-2. Install dependencies
-   ```bash
+2. Install dependencies:
+   ```
    npm install
    ```
 
-3. Start the development server
-   ```bash
+3. Run the development server:
+   ```
    npm run dev
    ```
 
-### Debugging
-The project includes debugging scripts for Next.js:
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-1. Setup debugging (first time only)
-   ```bash
-   ./setup-debug.ps1
-   ```
+### Building for Production
 
-2. Start the server with debugging enabled
-   ```bash
-   ./start-debug.ps1
-   ```
+```
+npm run build
+npm run start
+```
 
-3. Connect to the debugger using Chrome DevTools or VS Code:
-   - For Chrome: Navigate to chrome://inspect in your browser
-   - For VS Code: Use the 'Next.js: debug server-side' configuration
+### Deploying to Vercel
+
+When deploying to Vercel, make sure to synchronize your local changes with the Vercel-specific files:
+
+```
+npm run sync-vercel
+git add .
+git commit -m "Update Vercel deployment files"
+git push
+```
+
+This ensures that the changes you've made locally will be properly reflected in the Vercel deployment. For more details, see the [Vercel Deployment Process](#vercel-deployment-process) section.
 
 ## Internationalization (i18n)
 
-The website supports English and Spanish languages using next-intl. Translations are stored in JSON files in the `locales` directory:
+The website supports English and Spanish languages using next-intl v3. Translations are stored in JSON files in the `locales` directory:
 - `locales/en.json` - English translations
 - `locales/es.json` - Spanish translations
+- `locales/team.json` - Team-specific translations
 
-### Known Issues
-- Missing translation files for certain routes (e.g., `/team` page) may cause build errors
-- Route parameters need to be properly awaited in Next.js 15 (see error: "Route '/[locale]' used `params.locale`")
+### Language Structure
+The translations follow a hierarchical structure based on page sections and components. Each language file contains identical key structures to ensure consistency across languages.
 
 ## SEO
 
@@ -412,5 +484,9 @@ Contributions to improve the Aero Prosthetics website are welcome. Please follow
 3. Commit your changes (`git commit -m 'Add some amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
+
+This project uses Husky for Git hooks to ensure code quality:
+- Pre-commit hooks run linting and type checking
+- Commit messages should follow conventional commit format
 
 Please ensure your code follows the project's coding standards and includes appropriate tests.
