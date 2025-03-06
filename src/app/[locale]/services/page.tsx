@@ -191,7 +191,7 @@ export default async function ServicesPage({ params }: Props) {
       {/* Services Grid with improved styling */}
       <section className="section bg-white">
         <div className="container-custom">
-          <h2 className="section-title text-primary-600">{t('servicesTitle') || 'Our Comprehensive Services'}</h2>
+          <h2 className="section-title text-white">{t('servicesTitle') || 'Our Comprehensive Services'}</h2>
           <p className="section-subtitle mb-12">{t('servicesSubtitle') || 'Discover our full range of prosthetic and orthotic solutions designed to improve mobility, comfort, and quality of life.'}</p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
