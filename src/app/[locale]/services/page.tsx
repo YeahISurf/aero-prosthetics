@@ -210,13 +210,14 @@ export default async function ServicesPage({ params }: Props) {
                 </div>
                 <div className="px-6 pb-6 mt-auto">
                   <div className="flex items-center text-primary-500 font-medium group-hover:text-primary-600 transition-colors">
-                    {learnMoreText}
+                    {`${learnMoreText} about ${service.title}`}
                     <svg 
                       xmlns="http://www.w3.org/2000/svg" 
                       className="h-4 w-4 ml-2 transform group-hover:translate-x-1 transition-transform" 
                       fill="none" 
                       viewBox="0 0 24 24" 
                       stroke="currentColor"
+                      aria-hidden="true"
                     >
                       <path 
                         strokeLinecap="round" 

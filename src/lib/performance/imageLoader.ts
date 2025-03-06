@@ -16,7 +16,14 @@ export interface ImageLoaderProps {
  */
 export function defaultImageLoader({ src, width, quality = 75 }: ImageLoaderProps): string {
   // If the image is already from an image optimization service or CDN, return as is
-  if (src.startsWith('https://images.ctfassets.net') || src.startsWith('https://cdn.')) {
+  if (src.startsWith('https://images.ctfassets.net') || 
+      src.startsWith('https://cdn.') ||
+      src.includes('vercel.app')) {
+    // For Vercel-hosted images, ensure width parameter is provided
+    if (src.includes('vercel.app') && !src.includes('?w=')) {
+      const separator = src.includes('?') ? '&' : '?';
+      return `${src}${separator}w=${width}&q=${quality}`;
+    }
     return src;
   }
 

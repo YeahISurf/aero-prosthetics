@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { defaultImageLoader, shouldLazyLoad } from '@/lib/performance/imageLoader';
 import { cva, type VariantProps } from 'class-variance-authority';
 
+// Full variants definition with all options for future use
 const imageVariants = cva("", {
   variants: {
     rounded: {
@@ -102,7 +103,7 @@ export default function OptimizedImage({
   const [isIntersecting, setIsIntersecting] = useState(false);
   const lazy = shouldLazyLoad(importance);
   
-  // Generate a simple blur data URL if none provided
+  // Generate a more sophisticated blur data URL if none provided
   const defaultBlurDataURL = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZCIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2YzZjRmNiIgLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlNWU3ZWIiIC8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4=";
   
   // Combine all variant props
