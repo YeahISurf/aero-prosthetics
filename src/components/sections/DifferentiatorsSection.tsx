@@ -1,4 +1,5 @@
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
+import Link from 'next/link';
 
 // Define SVG icons for each differentiator (maps to the items in translation file)
 const ICONS = [
@@ -20,9 +21,34 @@ const ICONS = [
   </svg>
 ];
 
+// Define background gradients for each card - all primary variants
+const CARD_GRADIENTS = [
+  'from-primary-50 via-primary-100/20 to-white', 
+  'from-primary-50/80 via-primary-100/30 to-white', 
+  'from-primary-50/90 via-primary-100/25 to-white', 
+  'from-primary-50/70 via-primary-100/15 to-white', 
+];
+
+// Define icon container background colors - all primary variants
+const ICON_BACKGROUNDS = [
+  'from-primary-100 to-primary-200/70',
+  'from-primary-100/90 to-primary-200/60', 
+  'from-primary-100/80 to-primary-200/50', 
+  'from-primary-100/70 to-primary-200/40', 
+];
+
+// Define icon colors - all primary variants
+const ICON_COLORS = [
+  'text-primary-600',
+  'text-primary-500',
+  'text-primary-600',
+  'text-primary-500',
+];
+
 export default function DifferentiatorsSection() {
   const t = useTranslations('home.differentiators');
-  const items = t.raw('items') as Array<{ title: string; description: string }>;
+  const locale = useLocale();
+  const items = t.raw('items') as Array<{ title: string; description: string; link?: string }>;
   const stats = t.raw('stats') as Array<{ value: string; label: string }>;
 
   // Ensure we have valid arrays to prevent rendering errors
@@ -31,62 +57,87 @@ export default function DifferentiatorsSection() {
   
   return (
     <section className="section relative overflow-hidden">
-      {/* Light and clean gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white via-blue-50/30 to-white z-0"></div>
-      <div className="absolute inset-0 bg-[url('/pattern.svg')] bg-repeat opacity-3 z-0"></div>
+      {/* Enhanced gradient background with subtle pattern */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-white via-primary-50/40 to-white z-0"></div>
+      <div className="absolute inset-0 bg-[url('/pattern.svg')] bg-repeat opacity-5 z-0"></div>
       
-      {/* Subtle blue accent lines */}
-      <div className="absolute left-0 top-20 w-16 h-1 bg-gradient-to-r from-blue-200 to-transparent"></div>
-      <div className="absolute right-0 bottom-20 w-16 h-1 bg-gradient-to-l from-blue-200 to-transparent"></div>
+      {/* Decorative elements */}
+      <div className="absolute -left-20 top-40 w-64 h-64 rounded-full bg-primary-100/30 blur-3xl z-0 animate-float" style={{ animationDelay: '1s' }}></div>
+      <div className="absolute -right-20 bottom-40 w-80 h-80 rounded-full bg-primary-100/20 blur-3xl z-0 animate-float" style={{ animationDelay: '0s' }}></div>
       
       <div className="container-custom relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="section-title text-gray-900 mb-4 relative inline-block">
+        <div className="text-center max-w-3xl mx-auto mb-16 animate-fadeIn" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>
+          <span className="inline-block px-4 py-1 text-sm font-medium bg-primary-100 text-primary-700 rounded-full mb-4 animate-slideInUp" style={{ animationDelay: '0.2s', animationFillMode: 'both' }}>
+            Why Choose Aero Prosthetics
+          </span>
+          <h2 className="section-title text-gray-900 mb-4 relative block animate-slideInUp" style={{ animationDelay: '0.3s', animationFillMode: 'both' }}>
             {t('title')}
-            <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-blue-300 via-blue-400 to-blue-300"></span>
+            <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-primary-300 via-primary-400 to-primary-300 animate-scaleIn" style={{ animationDelay: '0.7s', animationFillMode: 'both' }}></span>
           </h2>
-          <p className="text-lg text-gray-700 mt-6">
+          <p className="text-lg text-gray-700 mt-6 animate-fadeIn" style={{ animationDelay: '0.4s', animationFillMode: 'both' }}>
             {t('subtitle')}
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
-          {safeItems.map((item, index) => (
-            <div 
-              key={index} 
-              className="bg-gradient-to-b from-white via-blue-50/10 to-white rounded-xl shadow-lg p-8 transition-all duration-300 hover:translate-y-[-2px] hover:shadow-md relative overflow-hidden group"
-            >
-              {/* Subtle blue corner accent */}
-              <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-blue-100/30 to-transparent"></div>
-              
-              {/* Icon container with fancy border */}
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-50 to-blue-100/70 text-blue-600 rounded-xl flex items-center justify-center mb-6 shadow-inner border border-blue-100 group-hover:bg-blue-300 group-hover:text-blue-700 transition-colors duration-300">
-                {ICONS[index % ICONS.length]}
-              </div>
-              
-              <h3 className="text-xl font-bold mb-3 text-gray-900">{item.title}</h3>
-              <p className="text-gray-700 mb-6">{item.description}</p>
-              
-              {/* Statistics - added for premium feel */}
-              <div className="pt-4 mt-4 border-t border-gray-100">
-                <div className="flex items-center">
-                  {safeStats.length > 0 && (
-                    <>
-                      <span className="text-xl font-bold text-blue-600">
-                        {safeStats[Math.min(index, safeStats.length - 1)].value}
-                      </span>
-                      <span className="ml-2 text-sm text-gray-500">
-                        {safeStats[Math.min(index, safeStats.length - 1)].label}
-                      </span>
-                    </>
-                  )}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {safeItems.map((item, index) => {
+            // Default link to services page with section anchor
+            const targetLink = item.link || `/${locale}/services#${item.title.toLowerCase().replace(/\s+/g, '-')}`;
+            
+            return (
+              <div 
+                key={index} 
+                className={`bg-gradient-to-br ${CARD_GRADIENTS[index % CARD_GRADIENTS.length]} rounded-xl shadow-lg p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl relative overflow-hidden group animate-fadeIn`}
+                style={{ animationDelay: `${0.5 + index * 0.1}s`, animationFillMode: 'both' }}
+              >
+                {/* Enhanced corner accent with gradient */}
+                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-primary-200/20 to-transparent"></div>
+                
+                {/* Card pattern overlay */}
+                <div className="absolute inset-0 bg-[url('/pattern.svg')] bg-repeat opacity-5"></div>
+                
+                {/* Enhanced icon container with gradient and animated hover effect */}
+                <div className={`w-16 h-16 bg-gradient-to-br ${ICON_BACKGROUNDS[index % ICON_BACKGROUNDS.length]} ${ICON_COLORS[index % ICON_COLORS.length]} rounded-xl flex items-center justify-center mb-6 shadow-md border border-white/50 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
+                  <div className="transform transition-transform duration-500 group-hover:scale-110">
+                    {ICONS[index % ICONS.length]}
+                  </div>
+                </div>
+                
+                <h3 className="text-xl font-bold mb-3 text-gray-900 group-hover:text-primary-700 transition-colors duration-300">{item.title}</h3>
+                <p className="text-gray-700 mb-6 group-hover:text-gray-600 transition-colors duration-300">{item.description}</p>
+                
+                {/* Enhanced statistics with gradient accent */}
+                {safeStats.length > 0 && (
+                  <div className="flex items-center">
+                    <span className={`text-xl font-bold ${ICON_COLORS[index % ICON_COLORS.length]} group-hover:scale-110 transition-transform duration-300`}>
+                      {safeStats[Math.min(index, safeStats.length - 1)].value}
+                    </span>
+                    <span className="ml-2 text-sm text-gray-500">
+                      {safeStats[Math.min(index, safeStats.length - 1)].label}
+                    </span>
+                  </div>
+                )}
+                  
+                {/* Fixed interactive element: functional "Learn more" link */}
+                <div className="mt-4 pt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
+                  <Link 
+                    href={targetLink}
+                    className="text-sm font-medium text-primary-600 flex items-center"
+                  >
+                    {t('learnMoreText') || 'Learn more'}
+                    <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </Link>
                 </div>
               </div>
-              
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
+      
+      {/* Blue to white gradient transition at the bottom - consistent with HeroSection */}
+      <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-white via-white/95 to-transparent lg:hidden"></div>
     </section>
   );
 }

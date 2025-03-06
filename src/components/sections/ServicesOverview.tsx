@@ -1,6 +1,7 @@
 import { useTranslations, useLocale } from 'next-intl';
 import Link from 'next/link';
 import Image from 'next/image';
+import { ANIMATION_DELAYS } from '@/lib/utils';
 
 // SVG icons for each service
 const serviceIcons = [
@@ -53,31 +54,32 @@ export default function ServicesOverview() {
   return (
     <section className="section relative py-24">
       {/* Light clean background with subtle accents */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white via-blue-50/25 to-white z-0"></div>
-      <div className="absolute left-0 top-1/4 w-1/3 h-px bg-gradient-to-r from-transparent via-blue-200 to-transparent"></div>
-      <div className="absolute right-0 bottom-1/4 w-1/3 h-px bg-gradient-to-l from-transparent via-blue-200 to-transparent"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-primary-50/25 to-white z-0"></div>
+      <div className="absolute left-0 top-1/4 w-1/3 h-px bg-gradient-to-r from-transparent via-primary-200 to-transparent"></div>
+      <div className="absolute right-0 bottom-1/4 w-1/3 h-px bg-gradient-to-l from-transparent via-primary-200 to-transparent"></div>
       
       {/* Refined subtle accents */}
-      <div className="absolute right-8 top-20 w-16 h-16 rounded-full bg-blue-100/20 z-0"></div>
-      <div className="absolute left-16 bottom-40 w-24 h-24 rounded-full bg-blue-100/15 z-0"></div>
+      <div className="absolute right-8 top-20 w-16 h-16 rounded-full bg-primary-100/20 z-0"></div>
+      <div className="absolute left-16 bottom-40 w-24 h-24 rounded-full bg-primary-100/15 z-0"></div>
       
       <div className="container-custom relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-20">
-          <span className="inline-block px-3 py-1 text-sm font-medium bg-primary-100 text-primary-800 rounded-full mb-4">{t('sectionBadge')}</span>
-          <h2 className="section-title text-gray-900">{t('title')}</h2>
-          <p className="section-subtitle text-gray-700">{t('description')}</p>
+        <div className="text-center max-w-3xl mx-auto mb-20 animate-fadeIn" style={{ animationDelay: `${ANIMATION_DELAYS.STAGGER_XS}s`, animationFillMode: 'both' }}>
+          <span className="inline-block px-3 py-1 text-sm font-medium bg-primary-100 text-primary-800 rounded-full mb-4 animate-slideInUp" style={{ animationDelay: `${ANIMATION_DELAYS.SECTION_TITLE}s`, animationFillMode: 'both' }}>{t('sectionBadge')}</span>
+          <h2 className="section-title text-gray-900 animate-slideInUp" style={{ animationDelay: `${ANIMATION_DELAYS.SECTION_SUBTITLE}s`, animationFillMode: 'both' }}>{t('title')}</h2>
+          <p className="section-subtitle text-gray-700 animate-slideInUp" style={{ animationDelay: `${ANIMATION_DELAYS.SECTION_CONTENT}s`, animationFillMode: 'both' }}>{t('description')}</p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
           {(serviceItems || []).slice(0, Math.min(serviceItems?.length || 0, 6)).map((service, index) => (
             <div 
               key={service.id} 
-              className="group bg-gradient-to-b from-white via-blue-50/15 to-white rounded-xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-lg relative border border-blue-50"
+              className="group bg-gradient-to-b from-white via-primary-50/15 to-white rounded-xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-lg relative border border-primary-50 animate-fadeIn"
+              style={{ animationDelay: `${ANIMATION_DELAYS.getStaggeredDelay(index, ANIMATION_DELAYS.ITEM_BASE, ANIMATION_DELAYS.STAGGER_XS)}s`, animationFillMode: 'both' }}
             >
               {/* Subtle corner accent */}
-              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-blue-100/30 to-transparent z-0"></div>
+              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-primary-100/30 to-transparent z-0"></div>
               
-              <div className="p-8 relative z-10">
+              <div className="p-6 relative z-10">
                 {/* Icon with premium styling */}
                 <div className="w-16 h-16 flex items-center justify-center bg-gradient-to-br from-primary-50 to-primary-100/70 text-primary-600 rounded-xl mb-6 shadow-sm border border-primary-100/50 group-hover:bg-primary-300 group-hover:text-primary-700 transition-colors duration-300">
                   {service.id && serviceIcons.length > index ? serviceIcons[index] : serviceIcons[0]}
@@ -86,7 +88,7 @@ export default function ServicesOverview() {
                 {/* Title with badge */}
                 <div className="flex justify-between items-start mb-3">
                   <h3 className="text-xl font-bold text-gray-900">{service.title}</h3>
-                  <span className="ml-2 px-2 py-1 bg-blue-50 text-blue-700 text-xs font-medium rounded-full whitespace-nowrap">
+                  <span className="ml-2 px-2 py-1 bg-primary-50 text-primary-700 text-xs font-medium rounded-full whitespace-nowrap">
                     {service.certification}
                   </span>
                 </div>
@@ -97,18 +99,18 @@ export default function ServicesOverview() {
                 
                 {/* Key technology and success rate */}
                 <div className="grid grid-cols-2 gap-2 mb-6">
-                  <div className="bg-blue-50 rounded-lg p-3">
-                    <p className="text-xs text-blue-600 uppercase font-medium">Technology</p>
-                    <p className="text-sm font-medium text-blue-800">{service.technology}</p>
+                  <div className="bg-primary-50 rounded-lg p-3">
+                    <p className="text-xs text-primary-600 uppercase font-medium">Technology</p>
+                    <p className="text-sm font-medium text-primary-800">{service.technology}</p>
                   </div>
-                  <div className="bg-green-50 rounded-lg p-3">
-                    <p className="text-xs text-green-800 uppercase font-medium">Success Rate</p>
-                    <p className="text-sm font-medium text-green-800">{service.successRate}</p>
+                  <div className="bg-secondary-green-500/10 rounded-lg p-3">
+                    <p className="text-xs text-secondary-green-500 uppercase font-medium">Success Rate</p>
+                    <p className="text-sm font-medium text-secondary-green-500">{service.successRate}</p>
                   </div>
                 </div>
                 
                 {/* Learn more link with descriptive text */}
-                <Link 
+                <Link
                   href={`/${locale}/services/${service.id}`}
                   className="inline-flex items-center text-primary-600 font-medium hover:text-primary-700 transition-colors group-hover:underline"
                   aria-label={`Learn more about ${service.title}`}
@@ -136,7 +138,7 @@ export default function ServicesOverview() {
         </div>
         
         {/* Technology showcase - clean, light premium style */}
-        <div className="mt-24 bg-gradient-to-r from-blue-50 via-white to-blue-50 rounded-2xl shadow-lg p-8 border border-blue-100">
+        <div className="mt-24 bg-primary-50/30 backdrop-blur-sm rounded-3xl p-8 md:p-12 border border-primary-100/50 shadow-lg animate-fadeIn" style={{ animationDelay: `${ANIMATION_DELAYS.STAGGER_LG}s`, animationFillMode: 'both' }}>
           <div className="flex flex-col lg:flex-row items-center justify-between">
             <div className="lg:w-1/2 mb-8 lg:mb-0">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">{techShowcase.title}</h3>
@@ -155,12 +157,13 @@ export default function ServicesOverview() {
               </ul>
             </div>
             <div className="lg:w-2/5 relative">
-              <div className="aspect-video w-full rounded-lg overflow-hidden relative">
+              <div className="aspect-video w-full rounded-lg overflow-hidden relative shadow-xl border border-primary-100">
                 <Image
                   src="/uploads/services/technology-showcase.jpg"
                   alt={techShowcase.title || "Technology Showcase"}
                   width={500}
                   height={280}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 500px"
                   className="object-cover w-full h-full"
                   priority
                 />
@@ -169,8 +172,8 @@ export default function ServicesOverview() {
           </div>
         </div>
         
-        <div className="mt-16 text-center">
-            <Link href={`/${locale}/services`} className="btn-primary bg-gradient-to-r from-primary-500 to-primary-400 shadow-lg hover:shadow-xl transition-all px-8 py-3 rounded-lg">
+        <div className="mt-16 text-center animate-fadeIn" style={{ animationDelay: `${ANIMATION_DELAYS.STAGGER_XL}s`, animationFillMode: 'both' }}>
+          <Link href={`/${locale}/services`} className="btn-primary bg-gradient-to-r from-primary-500 to-primary-400 shadow-lg hover:shadow-xl transition-all px-8 py-3 rounded-lg">
             {t('viewAll')}
           </Link>
         </div>

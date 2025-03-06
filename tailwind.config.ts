@@ -6,7 +6,7 @@ export default {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  darkMode: 'class', // Changed from default 'media' to 'class'
+  // Dark mode has been removed
   theme: {
     extend: {
       colors: {

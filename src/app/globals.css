@@ -5,13 +5,15 @@
 :root {
   --background: #ffffff;
   --foreground: #2D3748;
+  
+  /* Animation variables */
+  --animation-duration-fast: 0.3s;
+  --animation-duration-normal: 0.5s;
+  --animation-duration-slow: 0.8s;
+  --animation-timing: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Dark mode is now class-based instead of using prefers-color-scheme */
-.dark {
-  --background: #1A202C;
-  --foreground: #F7FAFC;
-}
+/* Dark mode has been removed */
 
 @layer base {
   html {
@@ -25,7 +27,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-sans font-semibold text-gray-900 dark:text-white;
+    @apply font-sans font-semibold text-gray-900;
   }
 
   h1 {
@@ -53,7 +55,7 @@
   }
 
   p {
-    @apply mb-4 text-gray-700 dark:text-gray-300;
+    @apply mb-4 text-gray-700;
   }
 
   a {
@@ -91,6 +93,141 @@
   }
 
   .section-subtitle {
-    @apply text-xl text-gray-700 dark:text-gray-300 text-center max-w-3xl mx-auto mb-12;
+    @apply text-xl text-gray-700 text-center max-w-3xl mx-auto mb-12;
   }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes progressGrow {
+  from {
+    width: 0;
+    opacity: 0.5;
+  }
+  to {
+    width: var(--progress-width);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(var(--slide-start)) scale(var(--scale-start));
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes flip3d {
+  from {
+    transform: rotateY(var(--rotation-start));
+  }
+  to {
+    transform: rotateY(0deg);
+  }
+}
+
+/* Animation utility classes */
+.animate-fadeIn {
+  animation: fadeIn var(--animation-duration-normal) var(--animation-timing) forwards;
+}
+
+.animate-slideInUp {
+  animation: slideInUp var(--animation-duration-normal) var(--animation-timing) forwards;
+}
+
+.animate-slideInRight {
+  animation: slideInRight var(--animation-duration-normal) var(--animation-timing) forwards;
+}
+
+.animate-pulse {
+  animation: pulse 3s infinite var(--animation-timing);
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-scaleIn {
+  animation: scaleIn var(--animation-duration-normal) var(--animation-timing) forwards;
+}
+
+/* 3D Transformation Utilities */
+.perspective {
+  perspective: 1000px;
+}
+
+.rotateY-0 {
+  transform: rotateY(0deg);
+}
+
+.rotateY-90deg {
+  transform: rotateY(90deg);
+}
+
+.-rotateY-90deg {
+  transform: rotateY(-90deg);
+}
+
+/* Add support for backface visibility */
+.backface-hidden {
+  backface-visibility: hidden;
 }

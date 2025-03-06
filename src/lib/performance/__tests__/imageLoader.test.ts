@@ -24,7 +24,7 @@ describe('imageLoader utilities', () => {
 
     it('returns other URLs unchanged', () => {
       const externalUrl = 'https://example.com/image.jpg';
-      expect(defaultImageLoader({ src: externalUrl, width: 800 })).toBe(externalUrl);
+      expect(defaultImageLoader({ src: externalUrl, width: 800 })).toBe('https://example.com/image.jpg?w=800&q=75');
     });
   });
 

@@ -21,8 +21,8 @@ describe('SchemaScript', () => {
     // Check that it has the correct type
     expect(scriptElement).toHaveAttribute('type', 'application/ld+json');
     
-    // Check that it has the suppressHydrationWarning attribute
-    expect(scriptElement).toHaveAttribute('suppressHydrationWarning', '');
+    // Check that it has the data-testid attribute
+    expect(scriptElement).toHaveAttribute('data-testid', 'schema-script');
     
     // Check that it contains the schema data
     expect(scriptElement?.innerHTML).toContain('Test Organization');
@@ -41,8 +41,8 @@ describe('SchemaScript', () => {
     // Check that it has the correct type
     expect(scriptElement).toHaveAttribute('type', 'application/ld+json');
     
-    // Check that it has the suppressHydrationWarning attribute
-    expect(scriptElement).toHaveAttribute('suppressHydrationWarning', '');
+    // Check that it has the data-testid attribute
+    expect(scriptElement).toHaveAttribute('data-testid', 'schema-script');
     
     // Check that it contains empty content
     expect(scriptElement?.innerHTML).toBe('');

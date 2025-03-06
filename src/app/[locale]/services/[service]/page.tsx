@@ -203,26 +203,38 @@ export default async function ServiceDetailPage({ params }: Props) {
       <section className="bg-primary-600 text-white py-16 md:py-24">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto">
-            <Link 
-              href="/services" 
-              className="inline-flex items-center text-white/80 hover:text-white mb-6"
-            >
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                className="h-4 w-4 mr-1" 
-                fill="none" 
-                viewBox="0 0 24 24" 
-                stroke="currentColor"
-              >
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth={2} 
-                  d="M15 19l-7-7 7-7" 
-                />
-              </svg>
-              Services
-            </Link>
+            <nav className="flex" aria-label="Breadcrumb">
+              <ol className="inline-flex items-center space-x-1 md:space-x-3">
+                <li className="inline-flex items-center">
+                  <Link href={`/${locale}`} className="inline-flex items-center text-sm font-medium text-gray-600 hover:text-primary-600">
+                    <svg className="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+                    </svg>
+                    {ctaT('home')}
+                  </Link>
+                </li>
+                <li>
+                  <div className="flex items-center">
+                    <svg className="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                      <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 9 4-4-4-4"/>
+                    </svg>
+                    <Link href={`/${locale}/services`} className="ml-1 text-sm font-medium text-gray-600 hover:text-primary-600 md:ml-2">
+                      {ctaT('services')}
+                    </Link>
+                  </div>
+                </li>
+                <li aria-current="page">
+                  <div className="flex items-center">
+                    <svg className="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                      <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 9 4-4-4-4"/>
+                    </svg>
+                    <span className="ml-1 text-sm font-medium text-gray-500 md:ml-2">
+                      {serviceData.title}
+                    </span>
+                  </div>
+                </li>
+              </ol>
+            </nav>
             <h1 className="text-3xl md:text-4xl font-bold mb-6">{serviceData.title}</h1>
             <p className="text-xl leading-relaxed">{serviceData.longDescription}</p>
           </div>
@@ -310,12 +322,19 @@ export default async function ServiceDetailPage({ params }: Props) {
             <p className="text-xl text-white/90 mb-8">
               Contact us today to schedule a consultation and learn how our personalized solutions can help you.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact" className="btn bg-white text-primary-600 hover:bg-gray-100">
-                {ctaT('contactUs')}
+            <div className="flex flex-col sm:flex-row justify-center gap-4 my-10">
+              <Link 
+                href={`/${locale}/contact`} 
+                className="btn-primary"
+              >
+                {ctaT('contactCta')}
               </Link>
-              <Link href="/services" className="btn bg-transparent border-2 border-white text-white hover:bg-white/10">
-                Explore Other Services
+              
+              <Link 
+                href={`/${locale}/services`} 
+                className="btn bg-transparent border-2 border-white text-white hover:bg-white/10"
+              >
+                {ctaT('backToServices')}
               </Link>
             </div>
           </div>

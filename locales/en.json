@@ -17,6 +17,9 @@
     "makeAppointment": "Make an Appointment",
     "learnMore": "Learn More",
     "contactUs": "Contact Us",
+    "title": "Ready to Get Started?",
+    "subtitle": "Contact us today to schedule a consultation with our prosthetic specialists.",
+    "findLocation": "Find a Location Near You",
     "section": {
       "badge": "Premium Prosthetic Solutions",
       "title": "Ready to Experience the Aero Prosthetics Difference?",
@@ -41,6 +44,8 @@
       "badge": "Premium Prosthetic Solutions",
       "imageCaption": "Advanced materials for maximum comfort and performance",
       "trustBadge": "TRUSTED BY LEADING INSTITUTIONS",
+      "testimonialSectionLabel": "Client testimonials",
+      "imageAlt": "Advanced carbon fiber prosthetic technology showcasing lightweight and durable design for improved mobility and comfort",
       "testimonials": [
         { "quote": "\"The prosthetic has changed my life. I can now run again.\"", "name": "Michael S." },
         { "quote": "\"Exceptional quality and care. Worth every penny.\"", "name": "Sarah T." },
@@ -50,6 +55,7 @@
     "differentiators": {
       "title": "Why Choose Aero Prosthetics",
       "subtitle": "Discover how our premium approach to prosthetics sets us apart and delivers exceptional results for our patients.",
+      "learnMoreText": "Learn more",
       "items": [
         {
           "title": "Cutting-Edge Technology",
@@ -312,6 +318,17 @@
   "services": {
     "title": "Our Services",
     "description": "Comprehensive prosthetic and orthotic solutions tailored to your needs",
+    "badge": "Expert Prosthetic & Orthotic Solutions",
+    "servicesTitle": "Our Comprehensive Services",
+    "servicesSubtitle": "Discover our full range of prosthetic and orthotic solutions designed to improve mobility, comfort, and quality of life.",
+    "processSubtitle": "Our comprehensive approach ensures you receive personalized care at every step of your journey.",
+    "technologyTitle": "Cutting-Edge Technology",
+    "technologyDescription": "At Aero Prosthetics, we leverage the latest technological advancements to provide superior prosthetic and orthotic solutions. Our commitment to innovation means our patients benefit from devices that are more comfortable, functional, and aesthetically pleasing.",
+    "techPoint1": "Computer-aided design and manufacturing for precision fit",
+    "techPoint2": "Advanced materials that are lightweight and durable",
+    "techPoint3": "Microprocessor-controlled components for responsive movement",
+    "learnMoreAboutTech": "Learn About Our Technology",
+    "findLocation": "Find a Location",
     "categories": [
       {
         "title": "Lower Limb Prosthetics",
@@ -449,7 +466,18 @@
   "contact": {
     "title": "Contact Us",
     "description": "We're here to answer your questions and provide assistance",
+    "hero": {
+      "image": {
+        "alt": "Professional prosthetic hand designed for natural movement and flexibility"
+      }
+    },
+    "cta": {
+      "primary": "Contact Us Today",
+      "secondary": "Find Our Locations"
+    },
     "form": {
+      "heading": "Send Us a Message",
+      "subheading": "Let us know how we can help you. Our team is ready to provide personalized assistance.",
       "title": "Send Us a Message",
       "firstName": "First Name",
       "lastName": "Last Name",
@@ -467,20 +495,54 @@
     "info": {
       "title": "Contact Information",
       "email": "info@aeroprosthetics.com",
-      "phone": "General Inquiries: 714-385-1000"
+      "phone": "General Inquiries: 714-385-1000",
+      "hours": {
+        "title": "Business Hours",
+        "weekdays": "Monday-Friday: 8:00 AM - 5:00 PM",
+        "weekend": "Saturday-Sunday: Closed"
+      }
     },
     "insurance": {
       "title": "Insurance Information",
       "description": "We work with most major insurance providers. Contact us to verify your coverage.",
-      "accepted": "Accepted Insurance Plans"
+      "accepted": "Accepted Insurance Plans",
+      "more": "And many other insurance providers. Contact us to verify your coverage."
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Find answers to common questions about our services and processes",
+      "items": {
+        "1": {
+          "question": "What should I expect during my first consultation?",
+          "answer": "During your first consultation, our specialists will evaluate your needs, discuss your goals, and explain the prosthetic options available to you. We'll take measurements and discuss the process of creating your custom prosthetic solution."
+        },
+        "2": {
+          "question": "How long does it take to receive a prosthetic?",
+          "answer": "The timeline varies depending on the complexity of your prosthetic needs. Typically, the process takes 2-4 weeks from initial consultation to final fitting, but we prioritize urgent cases and can often expedite the process."
+        },
+        "3": {
+          "question": "Does insurance cover prosthetic devices?",
+          "answer": "Most insurance plans, including Medicare and Medicaid, provide some coverage for prosthetic devices. Coverage varies by provider and plan. Our team will help you understand your benefits and assist with insurance authorization."
+        },
+        "4": {
+          "question": "How often should I have my prosthetic device serviced?",
+          "answer": "We recommend a maintenance check every 6 months and a comprehensive evaluation annually. Regular maintenance extends the life of your device and ensures optimal function and comfort."
+        }
+      }
+    },
+    "locations": {
+      "title": "Our Locations",
+      "subtitle": "Visit one of our convenient locations for personalized care"
     }
   },
   "resources": {
     "title": "Patient Resources",
     "description": "Educational materials and information to support your journey",
+    "badge": "Patient-Focused Resources",
     "education": {
       "title": "Educational Materials",
-      "description": "Resources to help you understand your prosthetic or orthotic device"
+      "description": "Resources to help you understand your prosthetic or orthotic device",
+      "requestMaterials": "Request Materials"
     },
     "insurance": {
       "title": "Insurance Information",
@@ -488,15 +550,27 @@
     },
     "faq": {
       "title": "Frequently Asked Questions",
-      "description": "Answers to common questions about our services and care"
+      "description": "Answers to common questions about our services and care",
+      "moreQuestions": "Have more questions?",
+      "contactPrompt": "Contact us for personalized assistance"
     },
     "testimonials": {
       "title": "Patient Testimonials",
-      "description": "Stories and experiences from our patients"
+      "description": "Stories and experiences from our patients",
+      "shareStory": "Share Your Story"
     },
     "care": {
       "title": "Care Guides",
       "description": "Instructions for maintaining your prosthetic or orthotic device"
+    },
+    "videos": {
+      "title": "Instructional Videos",
+      "description": "Visual guides to help you care for and use your prosthetic device",
+      "video1Title": "Understanding Your Prosthetic Device",
+      "video1Description": "Learn about the components and functions of your prosthetic device and how to properly use it for daily activities.",
+      "video2Title": "Care and Maintenance Guide",
+      "video2Description": "Step-by-step instructions for cleaning, maintaining, and troubleshooting your prosthetic device.",
+      "viewLibrary": "View Full Video Library"
     }
   },
   "legal": {

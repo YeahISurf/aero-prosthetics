@@ -17,6 +17,9 @@
     "makeAppointment": "Programar una Cita",
     "learnMore": "Más Información",
     "contactUs": "Contáctenos",
+    "title": "¿Listo para Comenzar?",
+    "subtitle": "Contáctenos hoy para programar una consulta con nuestros especialistas en prótesis.",
+    "findLocation": "Encuentre una Ubicación Cerca de Usted",
     "section": {
       "badge": "Soluciones Protésicas Premium",
       "title": "¿Listo para Experimentar la Diferencia de Aero Prosthetics?",
@@ -35,12 +38,14 @@
   },
   "home": {
     "hero": {
-      "title": "Soluciones Protésicas Innovadoras para Mejorar la Movilidad",
+      "title": "Soluciones Protésicas Innovadoras para una Movilidad Mejorada",
       "subtitle": "Empoderando vidas a través de atención personalizada y tecnología de vanguardia",
       "cta": "Descubra Nuestros Servicios",
       "badge": "Soluciones Protésicas Premium",
-      "imageCaption": "Materiales avanzados para máxima comodidad y rendimiento",
-      "trustBadge": "CONFIANZA DE INSTITUCIONES LÍDERES",
+      "imageCaption": "Materiales avanzados para máximo confort y rendimiento",
+      "trustBadge": "CONFIADO POR INSTITUCIONES LÍDERES",
+      "testimonialSectionLabel": "Testimonios de clientes",
+      "imageAlt": "Tecnología protésica avanzada de fibra de carbono que muestra un diseño ligero y duradero para una mejor movilidad y comodidad",
       "testimonials": [
         { "quote": "\"La prótesis ha cambiado mi vida. Ahora puedo correr de nuevo.\"", "name": "Miguel S." },
         { "quote": "\"Calidad excepcional y atención. Vale cada centavo.\"", "name": "Sara T." },
@@ -49,7 +54,8 @@
     },
     "differentiators": {
       "title": "Por Qué Elegir Aero Prosthetics",
-      "subtitle": "Descubra cómo nuestro enfoque de primera calidad en prótesis nos distingue y ofrece resultados excepcionales para nuestros pacientes.",
+      "subtitle": "Descubra cómo nuestro enfoque premium en prótesis nos distingue y ofrece resultados excepcionales para nuestros pacientes.",
+      "learnMoreText": "Saber más",
       "items": [
         {
           "title": "Tecnología de Vanguardia",
@@ -312,6 +318,17 @@
   "services": {
     "title": "Nuestros Servicios",
     "description": "Soluciones protésicas y ortopédicas integrales adaptadas a sus necesidades",
+    "badge": "Soluciones Protésicas y Ortopédicas Expertas",
+    "servicesTitle": "Nuestros Servicios Integrales",
+    "servicesSubtitle": "Descubra nuestra gama completa de soluciones protésicas y ortopédicas diseñadas para mejorar la movilidad, comodidad y calidad de vida.",
+    "processSubtitle": "Nuestro enfoque integral garantiza que reciba atención personalizada en cada paso de su proceso.",
+    "technologyTitle": "Tecnología de Vanguardia",
+    "technologyDescription": "En Aero Prosthetics, aprovechamos los últimos avances tecnológicos para proporcionar soluciones protésicas y ortopédicas superiores. Nuestro compromiso con la innovación significa que nuestros pacientes se benefician de dispositivos más cómodos, funcionales y estéticamente agradables.",
+    "techPoint1": "Diseño y fabricación asistidos por computadora para un ajuste preciso",
+    "techPoint2": "Materiales avanzados que son ligeros y duraderos",
+    "techPoint3": "Componentes controlados por microprocesador para un movimiento reactivo",
+    "learnMoreAboutTech": "Conozca Nuestra Tecnología",
+    "findLocation": "Encuentre una Ubicación",
     "categories": [
       {
         "title": "Prótesis de Miembros Inferiores",
@@ -448,8 +465,19 @@
   },
   "contact": {
     "title": "Contáctenos",
-    "description": "Estamos aquí para responder sus preguntas y brindarle asistencia",
+    "description": "Estamos aquí para responder a sus preguntas y brindarle asistencia",
+    "hero": {
+      "image": {
+        "alt": "Mano protésica profesional diseñada para un movimiento natural y flexibilidad"
+      }
+    },
+    "cta": {
+      "primary": "Contáctenos Hoy",
+      "secondary": "Encuentre Nuestras Ubicaciones"
+    },
     "form": {
+      "heading": "Envíenos un Mensaje",
+      "subheading": "Háganos saber cómo podemos ayudarle. Nuestro equipo está listo para brindarle asistencia personalizada.",
       "title": "Envíenos un Mensaje",
       "firstName": "Nombre",
       "lastName": "Apellido",
@@ -460,27 +488,61 @@
       "preferredLocation": "Ubicación Preferida",
       "preferredContact": "Método de Contacto Preferido",
       "submit": "Enviar",
-      "required": "Campo requerido",
+      "required": "Campo obligatorio",
       "success": "Su mensaje ha sido enviado con éxito. Nos pondremos en contacto con usted pronto.",
       "error": "Hubo un error al enviar su mensaje. Por favor, inténtelo de nuevo."
     },
     "info": {
       "title": "Información de Contacto",
       "email": "info@aeroprosthetics.com",
-      "phone": "Consultas Generales: 714-385-1000"
+      "phone": "Consultas Generales: 714-385-1000",
+      "hours": {
+        "title": "Horario de Atención",
+        "weekdays": "Lunes-Viernes: 8:00 AM - 5:00 PM",
+        "weekend": "Sábado-Domingo: Cerrado"
+      }
     },
     "insurance": {
-      "title": "Información de Seguro",
+      "title": "Información de Seguros",
       "description": "Trabajamos con la mayoría de los principales proveedores de seguros. Contáctenos para verificar su cobertura.",
-      "accepted": "Planes de Seguro Aceptados"
+      "accepted": "Planes de Seguro Aceptados",
+      "more": "Y muchos otros proveedores de seguros. Contáctenos para verificar su cobertura."
+    },
+    "faq": {
+      "title": "Preguntas Frecuentes",
+      "subtitle": "Encuentre respuestas a preguntas comunes sobre nuestros servicios y procesos",
+      "items": {
+        "1": {
+          "question": "¿Qué debo esperar durante mi primera consulta?",
+          "answer": "Durante su primera consulta, nuestros especialistas evaluarán sus necesidades, discutirán sus objetivos y le explicarán las opciones protésicas disponibles. Tomaremos medidas y discutiremos el proceso de creación de su solución protésica personalizada."
+        },
+        "2": {
+          "question": "¿Cuánto tiempo toma recibir una prótesis?",
+          "answer": "El plazo varía según la complejidad de sus necesidades protésicas. Típicamente, el proceso toma de 2 a 4 semanas desde la consulta inicial hasta el ajuste final, pero priorizamos los casos urgentes y podemos acelerar el proceso."
+        },
+        "3": {
+          "question": "¿El seguro cubre los dispositivos protésicos?",
+          "answer": "La mayoría de los planes de seguro, incluidos Medicare y Medicaid, proporcionan alguna cobertura para dispositivos protésicos. La cobertura varía según el proveedor y el plan. Nuestro equipo le ayudará a entender sus beneficios y le asistirá con la autorización del seguro."
+        },
+        "4": {
+          "question": "¿Con qué frecuencia debo hacer revisar mi dispositivo protésico?",
+          "answer": "Recomendamos un chequeo de mantenimiento cada 6 meses y una evaluación completa anualmente. El mantenimiento regular extiende la vida útil de su dispositivo y garantiza un funcionamiento y comodidad óptimos."
+        }
+      }
+    },
+    "locations": {
+      "title": "Nuestras Ubicaciones",
+      "subtitle": "Visite una de nuestras convenientes ubicaciones para atención personalizada"
     }
   },
   "resources": {
     "title": "Recursos para Pacientes",
     "description": "Materiales educativos e información para apoyar su proceso",
+    "badge": "Recursos Centrados en el Paciente",
     "education": {
       "title": "Materiales Educativos",
-      "description": "Recursos para ayudarle a entender su dispositivo protésico u ortopédico"
+      "description": "Recursos para ayudarle a entender su dispositivo protésico u ortopédico",
+      "requestMaterials": "Solicitar Materiales"
     },
     "insurance": {
       "title": "Información de Seguro",
@@ -488,15 +550,27 @@
     },
     "faq": {
       "title": "Preguntas Frecuentes",
-      "description": "Respuestas a preguntas comunes sobre nuestros servicios y atención"
+      "description": "Respuestas a preguntas comunes sobre nuestros servicios y atención",
+      "moreQuestions": "¿Tiene más preguntas?",
+      "contactPrompt": "Contáctenos para asistencia personalizada"
     },
     "testimonials": {
       "title": "Testimonios de Pacientes",
-      "description": "Historias y experiencias de nuestros pacientes"
+      "description": "Historias y experiencias de nuestros pacientes",
+      "shareStory": "Comparta Su Historia"
     },
     "care": {
       "title": "Guías de Cuidado",
       "description": "Instrucciones para mantener su dispositivo protésico u ortopédico"
+    },
+    "videos": {
+      "title": "Videos Instructivos",
+      "description": "Guías visuales para ayudarle a cuidar y usar su dispositivo protésico",
+      "video1Title": "Entendiendo Su Dispositivo Protésico",
+      "video1Description": "Aprenda sobre los componentes y funciones de su dispositivo protésico y cómo usarlo correctamente para actividades diarias.",
+      "video2Title": "Guía de Cuidado y Mantenimiento",
+      "video2Description": "Instrucciones paso a paso para limpiar, mantener y solucionar problemas de su dispositivo protésico.",
+      "viewLibrary": "Ver Biblioteca Completa de Videos"
     }
   },
   "legal": {

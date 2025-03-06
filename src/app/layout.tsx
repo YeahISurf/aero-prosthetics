@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ClientPreloader from "@/components/ui/ClientPreloader";
 import ClientFontsStylesheet from "@/components/ui/ClientFontsStylesheet";
+import ErrorBoundary from "@/components/ui/ErrorBoundary";
+import ThemeProvider from "@/components/ui/ThemeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -48,8 +50,12 @@ export default function RootLayout({
         <ClientFontsStylesheet geistSans={geistSans} geistMono={geistMono} />
       </head>
       <body className="flex flex-col min-h-screen" suppressHydrationWarning>
-        <ClientPreloader />
-        {children}
+        <ErrorBoundary>
+          <ThemeProvider>
+            <ClientPreloader />
+            {children}
+          </ThemeProvider>
+        </ErrorBoundary>
       </body>
     </html>
   );

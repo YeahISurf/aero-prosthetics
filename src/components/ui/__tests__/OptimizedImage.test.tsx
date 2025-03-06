@@ -4,7 +4,7 @@ import * as imageLoader from '@/lib/performance/imageLoader';
 
 // Mock the imageLoader functions
 jest.mock('@/lib/performance/imageLoader', () => ({
-  defaultImageLoader: jest.fn(({ src }) => src),
+  defaultImageLoader: jest.fn(({ src, width, quality }) => `${src}?w=${width}&q=${quality || 75}`),
   shouldLazyLoad: jest.fn(),
   generateSrcSet: jest.fn(),
 }));

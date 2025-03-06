@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import ErrorBoundary from '@/components/ui/ErrorBoundary';
+import ThemeProvider from "@/components/ui/ThemeProvider";
 
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -53,13 +55,17 @@ export default async function LocaleLayout({
 
   return (
     <>
-      <SchemaScript schema={organizationSchema} />
-      <NextIntlClientProvider locale={locale} messages={messages}>
-        <SkipToContent />
-        <Header />
-        <main id="main-content" className="flex-grow">{children}</main>
-        <Footer />
-      </NextIntlClientProvider>
+      <ErrorBoundary>
+        <SchemaScript schema={organizationSchema} />
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <ThemeProvider>
+            <SkipToContent />
+            <Header />
+            <main id="main-content" className="flex-grow">{children}</main>
+            <Footer />
+          </ThemeProvider>
+        </NextIntlClientProvider>
+      </ErrorBoundary>
     </>
   );
 }

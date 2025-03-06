@@ -27,7 +27,17 @@ export function defaultImageLoader({ src, width, quality = 75 }: ImageLoaderProp
     return `${src}?w=${width}&q=${quality}`;
   }
 
-  return src;
+  // For other external images, add width parameter to comply with Next.js requirements
+  const url = new URL(src, 'https://example.com');
+  url.searchParams.set('w', width.toString());
+  url.searchParams.set('q', quality.toString());
+  
+  // Return only the pathname and search parts if it was a relative URL
+  if (!src.startsWith('http')) {
+    return `${url.pathname}${url.search}`;
+  }
+  
+  return url.toString();
 }
 
 /**

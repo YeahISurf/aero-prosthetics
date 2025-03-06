@@ -11,7 +11,8 @@ export default function SchemaScript({ schema }: SchemaScriptProps) {
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: schema }}
-      suppressHydrationWarning
+      suppressHydrationWarning={true}
+      data-testid="schema-script"
     />
   );
 }

@@ -9,11 +9,12 @@ import CTASection from "@/components/sections/CTASection";
 
 // Define type for params to match Next.js 15 with React 19 requirements
 type Props = {
-  params: Promise<{ locale: string }>;
+  params: { locale: string };
 };
 
 export async function generateMetadata({ params }: Props) {
-  const { locale } = await params;
+  // Get the locale directly
+  const { locale } = params;
   const t = await getTranslations({ locale, namespace: "meta" });
 
   return {
@@ -23,7 +24,8 @@ export async function generateMetadata({ params }: Props) {
 }
 
 export default async function Home({ params }: Props) {
-  const { locale } = await params;
+  // Get the locale directly
+  const { locale } = params;
   // Enable static rendering
   unstable_setRequestLocale(locale);
 
