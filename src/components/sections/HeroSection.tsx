@@ -116,10 +116,10 @@ export default function HeroSection() {
         aria-hidden="true"
       ></div>
       
-      <div className="container-custom relative z-10 py-16 md:py-24 lg:py-32">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="container-custom relative z-10 py-12 md:py-20 lg:py-28">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 items-center">
           <div 
-            className={getAnimationClass("space-y-8", "animate-fadeIn")}
+            className={getAnimationClass("space-y-6 sm:space-y-8", "animate-fadeIn")}
             style={getAnimationStyle(0.2)}
           >
             <div 
@@ -145,7 +145,7 @@ export default function HeroSection() {
             
             {/* Animated testimonial quote - improved with ARIA attributes */}
             <div 
-              className="relative h-20 mt-6"
+              className="relative h-16 sm:h-20 mt-4 sm:mt-6"
               role="region"
               aria-label={t('testimonialSectionLabel') || "Client testimonials"}
               aria-roledescription="carousel"
@@ -165,10 +165,10 @@ export default function HeroSection() {
                   aria-hidden={index !== currentTestimonial}
                 >
                   <blockquote>
-                    <p className="font-light italic text-white/90 border-l-4 border-primary-300 pl-4">
+                    <p className="font-light italic text-white/90 border-l-4 border-primary-300 pl-3 sm:pl-4 text-sm sm:text-base">
                       {testimonial.quote}
                     </p>
-                    <footer className="text-primary-100 font-medium text-sm mt-1 pl-4">
+                    <footer className="text-primary-100 font-medium text-xs sm:text-sm mt-1 pl-3 sm:pl-4">
                       — <cite>{testimonial.name}</cite>
                     </footer>
                   </blockquote>
@@ -177,25 +177,27 @@ export default function HeroSection() {
             </div>
             
             <div 
-              className={getAnimationClass("flex flex-col sm:flex-row gap-4 pt-4", "animate-fadeIn")}
+              className={getAnimationClass("flex flex-col sm:flex-row gap-3 mt-2 sm:mt-4 pb-4 sm:pb-6", "animate-fadeIn")}
               style={getAnimationStyle(0.8)}
             >
               <Link 
                 href={`/${locale}/services`}
-                className="btn bg-white text-primary-600 hover:bg-primary-50 border border-white/80 shadow-xl transition-all duration-300 hover:scale-105"
+                className="btn bg-white text-primary-600 hover:bg-primary-50 border border-white/80 shadow-lg transition-all duration-300 hover:scale-105 px-4 sm:px-5 py-2.5 sm:py-3 text-base font-semibold w-full sm:w-auto justify-center"
+                aria-label={t('cta')}
               >
                 {t('cta')}
               </Link>
               <Link 
                 href={`/${locale}/contact`}
-                className="btn bg-transparent border-2 border-white text-white hover:bg-white/15 transition-all duration-300 hover:border-primary-200 hover:text-primary-100"
+                className="btn bg-transparent border-2 border-white text-white hover:bg-white/15 transition-all duration-300 hover:border-primary-200 hover:text-primary-100 px-4 sm:px-5 py-2.5 sm:py-3 text-base font-semibold w-full sm:w-auto justify-center"
+                aria-label={useTranslations('cta')('contactUs')}
               >
                 {useTranslations('cta')('contactUs')}
               </Link>
             </div>
           </div>
           
-          <div className={getAnimationClass("relative", "animate-fadeIn")} style={getAnimationStyle(0.9)}>
+          <div className={getAnimationClass("relative mt-6 sm:mt-0", "animate-fadeIn")} style={getAnimationStyle(0.9)}>
             {/* Premium hero image with improved shadow and parallax */}
             <div 
               className="relative rounded-lg overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.2)] border border-white/30"

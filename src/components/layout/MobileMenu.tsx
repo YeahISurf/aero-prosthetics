@@ -74,13 +74,13 @@ export default function MobileMenu() {
       <button
         type="button"
         onClick={() => setIsOpen(true)}
-        className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-primary-600 hover:bg-gray-100 transition-colors"
+        className="inline-flex items-center justify-center p-1.5 rounded-md text-gray-700 hover:text-primary-600 hover:bg-gray-100 transition-colors"
         aria-expanded={isOpen}
         aria-label="Open main menu"
         aria-controls="mobile-menu"
       >
         <span className="sr-only">Open main menu</span>
-        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
@@ -100,11 +100,11 @@ export default function MobileMenu() {
             aria-label="Mobile navigation menu"
             id="mobile-menu"
           >
-            <div className="p-4 border-b border-gray-200">
+            <div className="p-3 border-b border-gray-200">
               <div className="flex items-center justify-between">
                 <Link 
                   href={`/${locale}`}
-                  className="text-xl font-bold text-primary-600"
+                  className="text-lg font-bold text-primary-600"
                   onClick={() => setIsOpen(false)}
                 >
                   Aero Prosthetics
@@ -112,23 +112,23 @@ export default function MobileMenu() {
                 <button
                   ref={closeButtonRef}
                   type="button"
-                  className="rounded-md p-2 text-gray-400 hover:text-gray-500 hover:bg-gray-100"
+                  className="rounded-md p-1.5 text-gray-400 hover:text-gray-500 hover:bg-gray-100"
                   onClick={() => setIsOpen(false)}
                   aria-label="Close menu"
                 >
                   <span className="sr-only">Close menu</span>
-                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </button>
               </div>
             </div>
-            <nav className="p-4" aria-label="Mobile navigation">
-              <ul className="space-y-4">
+            <nav className="p-3" aria-label="Mobile navigation">
+              <ul className="space-y-2">
                 <li>
                   <Link 
                     href={`/${locale}`} 
-                    className={`block px-3 py-2 rounded-md text-base font-medium ${pathname === `/${locale}` ? 'text-primary-600 bg-primary-50' : 'text-gray-700 hover:bg-gray-50 hover:text-primary-600'}`}
+                    className={`block px-3 py-1.5 rounded-md text-base font-medium ${pathname === `/${locale}` ? 'text-primary-600 bg-primary-50' : 'text-gray-700 hover:bg-gray-50 hover:text-primary-600'}`}
                     aria-current={pathname === `/${locale}` ? 'page' : undefined}
                   >
                     {t('home')}
@@ -137,7 +137,7 @@ export default function MobileMenu() {
                 <li>
                   <Link 
                     href={`/${locale}/about`} 
-                    className={`block px-3 py-2 rounded-md text-base font-medium ${isActive('about') ? 'text-primary-600 bg-primary-50' : 'text-gray-700 hover:bg-gray-50 hover:text-primary-600'}`}
+                    className={`block px-3 py-1.5 rounded-md text-base font-medium ${isActive('about') ? 'text-primary-600 bg-primary-50' : 'text-gray-700 hover:bg-gray-50 hover:text-primary-600'}`}
                     aria-current={isActive('about') ? 'page' : undefined}
                   >
                     {t('about')}
@@ -146,7 +146,7 @@ export default function MobileMenu() {
                 <li>
                   <Link 
                     href={`/${locale}/services`} 
-                    className={`block px-3 py-2 rounded-md text-base font-medium ${isActive('services') ? 'text-primary-600 bg-primary-50' : 'text-gray-700 hover:bg-gray-50 hover:text-primary-600'}`}
+                    className={`block px-3 py-1.5 rounded-md text-base font-medium ${isActive('services') ? 'text-primary-600 bg-primary-50' : 'text-gray-700 hover:bg-gray-50 hover:text-primary-600'}`}
                     aria-current={isActive('services') ? 'page' : undefined}
                   >
                     {t('services')}
@@ -155,7 +155,7 @@ export default function MobileMenu() {
                 <li>
                   <Link 
                     href={`/${locale}/locations`} 
-                    className={`block px-3 py-2 rounded-md text-base font-medium ${isActive('locations') ? 'text-primary-600 bg-primary-50' : 'text-gray-700 hover:bg-gray-50 hover:text-primary-600'}`}
+                    className={`block px-3 py-1.5 rounded-md text-base font-medium ${isActive('locations') ? 'text-primary-600 bg-primary-50' : 'text-gray-700 hover:bg-gray-50 hover:text-primary-600'}`}
                     aria-current={isActive('locations') ? 'page' : undefined}
                   >
                     {t('locations')}
@@ -164,7 +164,7 @@ export default function MobileMenu() {
                 <li>
                   <Link 
                     href={`/${locale}/resources`} 
-                    className={`block px-3 py-2 rounded-md text-base font-medium ${isActive('resources') ? 'text-primary-600 bg-primary-50' : 'text-gray-700 hover:bg-gray-50 hover:text-primary-600'}`}
+                    className={`block px-3 py-1.5 rounded-md text-base font-medium ${isActive('resources') ? 'text-primary-600 bg-primary-50' : 'text-gray-700 hover:bg-gray-50 hover:text-primary-600'}`}
                     aria-current={isActive('resources') ? 'page' : undefined}
                   >
                     {t('resources')}
@@ -173,17 +173,17 @@ export default function MobileMenu() {
                 <li>
                   <Link 
                     href={`/${locale}/contact`} 
-                    className={`block px-3 py-2 rounded-md text-base font-medium ${isActive('contact') ? 'text-primary-600 bg-primary-50' : 'text-gray-700 hover:bg-gray-50 hover:text-primary-600'}`}
+                    className={`block px-3 py-1.5 rounded-md text-base font-medium ${isActive('contact') ? 'text-primary-600 bg-primary-50' : 'text-gray-700 hover:bg-gray-50 hover:text-primary-600'}`}
                     aria-current={isActive('contact') ? 'page' : undefined}
                   >
                     {t('contact')}
                   </Link>
                 </li>
               </ul>
-              <div className="mt-8 pt-6 border-t border-gray-200">
+              <div className="mt-6 pt-4 border-t border-gray-200">
                 <Link 
                   href={`/${locale}/contact`}
-                  className="w-full btn btn-primary justify-center"
+                  className="w-full btn btn-primary justify-center text-sm py-2"
                 >
                   {cta('contactUs')}
                 </Link>

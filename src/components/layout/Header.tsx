@@ -40,7 +40,7 @@ export default function Header() {
   return (
     <header 
       className={`sticky top-0 z-50 bg-white shadow-sm transition-all duration-300 ${
-        scrolled ? 'py-2' : 'py-4'
+        scrolled ? 'md:py-2 py-1' : 'md:py-4 py-2'
       }`}
       role="banner"
       aria-label="Main navigation"
@@ -48,7 +48,9 @@ export default function Header() {
       <div className="container-custom">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <Logo />
+            <div className="md:scale-100 scale-90 origin-left">
+              <Logo />
+            </div>
             
             {/* Desktop navigation */}
             <nav className="hidden md:flex ml-10 space-x-8" aria-label="Main Menu">
@@ -94,8 +96,8 @@ export default function Header() {
             </nav>
           </div>
           
-          <div className="flex items-center space-x-2 md:space-x-4">
-            <div className="flex items-center">
+          <div className="flex items-center md:space-x-4 space-x-1">
+            <div className="flex items-center md:space-x-2 space-x-1">
               <LanguageToggle />
               <ThemeToggle />
             </div>
