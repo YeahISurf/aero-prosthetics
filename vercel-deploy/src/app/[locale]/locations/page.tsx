@@ -130,8 +130,9 @@ export default async function LocationsPage({ params }: Props) {
                 <Link 
                   href="#anaheim" 
                   className="btn-primary w-full justify-center"
+                  aria-label={`Learn more about ${t('anaheim.title')} location`}
                 >
-                  {t('learnMore')}
+                  {`${t('learnMore')} about ${t('anaheim.title')}`}
                 </Link>
               </div>
             </div>

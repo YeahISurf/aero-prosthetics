@@ -57,16 +57,16 @@ export default function LanguageToggle() {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={toggleDropdown}
-        className="flex items-center space-x-2 text-sm text-gray-700 hover:text-primary-500 rounded-md py-1 px-2 hover:bg-gray-100 transition-colors"
+        className="flex items-center md:space-x-2 text-sm text-gray-700 hover:text-primary-500 rounded-md md:py-1 md:px-2 p-1.5 hover:bg-gray-100 transition-colors"
         aria-expanded={isOpen}
         aria-haspopup="true"
         aria-label="Language selection"
       >
         <Globe size={18} />
-        <span>{locale === 'en' ? 'English' : 'Español'}</span>
+        <span className="hidden md:inline">{locale === 'en' ? 'English' : 'Español'}</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className={`h-4 w-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+          className={`h-4 w-4 transition-transform hidden md:block ${isOpen ? 'rotate-180' : ''}`}
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
