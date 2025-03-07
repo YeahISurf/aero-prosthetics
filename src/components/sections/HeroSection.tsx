@@ -119,11 +119,11 @@ export default function HeroSection() {
       <div className="container-custom relative z-10 py-12 md:py-20 lg:py-28">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 items-center">
           <div 
-            className={getAnimationClass("space-y-6 sm:space-y-8", "animate-fadeIn")}
+            className={getAnimationClass("space-y-4 sm:space-y-6 md:space-y-8", "animate-fadeIn")}
             style={getAnimationStyle(0.2)}
           >
             <div 
-              className={getAnimationClass("inline-block px-4 py-1 rounded-full bg-white/15 backdrop-blur-sm border border-white/30 text-white/95 text-sm font-medium mb-2", "animate-slideInRight")}
+              className={getAnimationClass("inline-block px-2 py-0.5 sm:px-4 sm:py-1 rounded-full bg-white/15 backdrop-blur-sm border border-white/30 text-white/95 text-sm font-medium -mb-1 sm:mb-0", "animate-slideInRight")}
               style={getAnimationStyle(0.4)}
             >
               {t('badge')}
@@ -143,57 +143,62 @@ export default function HeroSection() {
               {t('subtitle')}
             </p>
             
-            {/* Animated testimonial quote - improved with ARIA attributes */}
-            <div 
-              className="relative h-16 sm:h-20 mt-4 sm:mt-6"
-              role="region"
-              aria-label={t('testimonialSectionLabel') || "Client testimonials"}
-              aria-roledescription="carousel"
-            >
-              {testimonials.map((testimonial, index) => (
-                <div 
-                  key={index}
-                  className="absolute transition-all duration-700 ease-in-out w-full"
-                  style={{ 
-                    opacity: index === currentTestimonial ? 1 : 0,
-                    transform: isHydrated && !prefersReducedMotion ? `translateY(${index === currentTestimonial ? 0 : 20}px)` : 'none',
-                    zIndex: index === currentTestimonial ? 1 : 0
-                  }}
-                  role="group"
-                  aria-roledescription="slide"
-                  aria-label={`Testimonial ${index + 1} of ${testimonials.length}`}
-                  aria-hidden={index !== currentTestimonial}
+            {/* Flex container for mobile reordering */}
+            <div className="flex flex-col space-y-4 sm:space-y-6">
+              {/* CTA Buttons */}
+              <div 
+                className={getAnimationClass("flex flex-col sm:flex-row gap-3 order-1 sm:order-2 mt-2 sm:mt-4 pb-0 mb-8 sm:mb-0", "animate-fadeIn")}
+                style={getAnimationStyle(0.7)}
+              >
+                <Link 
+                  href={`/${locale}/services`}
+                  className="btn bg-white text-primary-600 hover:bg-primary-50 border border-white/80 shadow-lg transition-all duration-300 hover:scale-105 px-4 sm:px-5 py-2.5 sm:py-3 text-base font-semibold w-full sm:w-auto justify-center"
+                  aria-label={t('cta')}
                 >
-                  <blockquote>
-                    <p className="font-light italic text-white/90 border-l-4 border-primary-300 pl-3 sm:pl-4 text-sm sm:text-base">
-                      {testimonial.quote}
-                    </p>
-                    <footer className="text-primary-100 font-medium text-xs sm:text-sm mt-1 pl-3 sm:pl-4">
-                      — <cite>{testimonial.name}</cite>
-                    </footer>
-                  </blockquote>
-                </div>
-              ))}
-            </div>
-            
-            <div 
-              className={getAnimationClass("flex flex-col sm:flex-row gap-3 mt-2 sm:mt-4 pb-4 sm:pb-6", "animate-fadeIn")}
-              style={getAnimationStyle(0.8)}
-            >
-              <Link 
-                href={`/${locale}/services`}
-                className="btn bg-white text-primary-600 hover:bg-primary-50 border border-white/80 shadow-lg transition-all duration-300 hover:scale-105 px-4 sm:px-5 py-2.5 sm:py-3 text-base font-semibold w-full sm:w-auto justify-center"
-                aria-label={t('cta')}
+                  {t('cta')}
+                </Link>
+                <Link 
+                  href={`/${locale}/contact`}
+                  className="btn bg-transparent border-2 border-white text-white hover:bg-white/15 transition-all duration-300 hover:border-primary-200 hover:text-primary-100 px-4 sm:px-5 py-2.5 sm:py-3 text-base font-semibold w-full sm:w-auto justify-center"
+                  aria-label={useTranslations('cta')('contactUs')}
+                >
+                  {useTranslations('cta')('contactUs')}
+                </Link>
+              </div>
+              
+              {/* Animated testimonial quote */}
+              <div 
+                className={getAnimationClass("relative h-16 sm:h-20 order-2 sm:order-1", "animate-fadeIn")}
+                role="region"
+                aria-label={t('testimonialSectionLabel') || "Client testimonials"}
+                aria-roledescription="carousel"
+                style={getAnimationStyle(0.8)}
               >
-                {t('cta')}
-              </Link>
-              <Link 
-                href={`/${locale}/contact`}
-                className="btn bg-transparent border-2 border-white text-white hover:bg-white/15 transition-all duration-300 hover:border-primary-200 hover:text-primary-100 px-4 sm:px-5 py-2.5 sm:py-3 text-base font-semibold w-full sm:w-auto justify-center"
-                aria-label={useTranslations('cta')('contactUs')}
-              >
-                {useTranslations('cta')('contactUs')}
-              </Link>
+                {testimonials.map((testimonial, index) => (
+                  <div 
+                    key={index}
+                    className="absolute transition-all duration-700 ease-in-out w-full"
+                    style={{ 
+                      opacity: index === currentTestimonial ? 1 : 0,
+                      transform: isHydrated && !prefersReducedMotion ? `translateY(${index === currentTestimonial ? 0 : 20}px)` : 'none',
+                      zIndex: index === currentTestimonial ? 1 : 0
+                    }}
+                    role="group"
+                    aria-roledescription="slide"
+                    aria-label={`Testimonial ${index + 1} of ${testimonials.length}`}
+                    aria-hidden={index !== currentTestimonial}
+                  >
+                    <blockquote>
+                      <p className="font-light italic text-white/90 border-l-4 border-primary-300 pl-3 sm:pl-4 text-sm sm:text-base">
+                        {testimonial.quote}
+                      </p>
+                      <footer className="text-primary-100 font-medium text-xs sm:text-sm mt-1 pl-3 sm:pl-4">
+                        — <cite>{testimonial.name}</cite>
+                      </footer>
+                    </blockquote>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
           
