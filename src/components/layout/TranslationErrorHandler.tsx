@@ -69,7 +69,7 @@ export default function TranslationErrorHandler({ children }: TranslationErrorHa
   
   // Add a global function to handle missing translations
   useEffect(() => {
-    // @ts-ignore - Add the translations to window for client-side patching
+    // @ts-expect-error - Add the translations to window for client-side patching
     window.__translationPatches = translations;
     
     // Patch the global error handler for React rendering errors
@@ -92,7 +92,7 @@ export default function TranslationErrorHandler({ children }: TranslationErrorHa
     
     return () => {
       window.onerror = originalErrorHandler;
-      // @ts-ignore
+      // @ts-expect-error
       delete window.__translationPatches;
     };
   }, [translations]);

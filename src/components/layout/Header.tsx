@@ -49,21 +49,10 @@ function HeaderSkeleton() {
 }
 
 export default function Header() {
-  // Client-side rendering control
   const [mounted, setMounted] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   
-  // Mark component as mounted on client-side
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-  
-  // If not mounted yet, return skeleton loader
-  if (!mounted) {
-    return <HeaderSkeleton />;
-  }
-  
-  // Only access these hooks after component is mounted
+  // Move hooks outside of conditionals to the top
   const locale = useLocale();
   const pathname = usePathname();
   
@@ -107,6 +96,15 @@ export default function Header() {
     };
   }, [handleScroll]);
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  
+  // If not mounted yet, return skeleton loader
+  if (!mounted) {
+    return <HeaderSkeleton />;
+  }
+  
   const isActive = (path: string) => {
     return pathname.startsWith(`/${locale}/${path}`);
   };

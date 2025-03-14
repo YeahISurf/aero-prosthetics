@@ -341,7 +341,7 @@ export default async function VictorvilleLocationPage({ params }: Props) {
                 </div>
               </div>
               <div className="p-6 flex-1 flex flex-col">
-                <p className="text-gray-600 mb-6 flex-1">Advanced upper limb prosthetic solutions tailored to each patient's unique needs and lifestyle.</p>
+                <p className="text-gray-600 mb-6 flex-1">Advanced upper limb prosthetic solutions tailored to each patient&apos;s unique needs and lifestyle.</p>
                 <Link
                   href={`/${locale}/services`}
                   className="text-secondary-teal-600 font-medium inline-flex items-center"

@@ -22,8 +22,8 @@ export async function generateMetadata({ params }: Props) {
   
   if (!post) {
     return {
-      title: 'Blog Post Not Found',
-      description: 'The requested blog post could not be found.',
+      title: t('notFound.title') || 'Blog Post Not Found',
+      description: t('notFound.description') || 'The requested blog post could not be found.',
     };
   }
 

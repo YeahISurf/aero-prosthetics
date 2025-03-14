@@ -11,11 +11,7 @@ interface LogoProps {
 export default function Logo({ height }: LogoProps = {}) {
   const [mounted, setMounted] = useState(false);
   
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-  
-  // Only use these hooks after component is mounted
+  // Move hooks outside of conditionals to the top
   const locale = useLocale();
   let t;
   try {
@@ -24,6 +20,10 @@ export default function Logo({ height }: LogoProps = {}) {
     // Fallback if translations fail
     t = (key: string) => key === 'title' ? 'Aero Prosthetics' : 'Advanced Prosthetic Solutions';
   }
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   
   // Don't render anything during SSR to prevent hydration issues
   if (!mounted) {

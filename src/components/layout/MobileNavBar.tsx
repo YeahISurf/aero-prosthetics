@@ -38,21 +38,13 @@ function MobileNavBarSkeleton() {
 }
 
 export default function MobileNavBar() {
-  // Client-side only rendering to prevent hydration mismatches
   const [mounted, setMounted] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [atTop, setAtTop] = useState(true);
+  const [atBottom, setAtBottom] = useState(false);
   
-  // Mark component as mounted in client-side only effect
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-  
-  // If not mounted yet, render skeleton loader
-  if (!mounted) {
-    return <MobileNavBarSkeleton />;
-  }
-  
-  // Only access these hooks after component is mounted on the client
+  // Move hooks outside of conditionals to the top
   const pathname = usePathname();
   const locale = useLocale();
   
@@ -66,6 +58,10 @@ export default function MobileNavBar() {
       return fallbackTranslations.navigation[key as keyof typeof fallbackTranslations.navigation] || key;
     };
   }
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     // Function to handle scroll events
@@ -86,8 +82,8 @@ export default function MobileNavBar() {
       // Show the navbar only when scrolled down AND not at the bottom
       const shouldBeVisible = isScrolledDown && !isAtBottom;
       
-      if (shouldBeVisible !== isVisible) {
-        setIsVisible(shouldBeVisible);
+      if (shouldBeVisible !== visible) {
+        setVisible(shouldBeVisible);
       }
     };
 
@@ -105,7 +101,7 @@ export default function MobileNavBar() {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleScroll);
     };
-  }, [isVisible]);
+  }, [visible]);
 
   const isActive = (path: string) => {
     return pathname.startsWith(`/${locale}/${path}`);
@@ -120,11 +116,16 @@ export default function MobileNavBar() {
     }
   };
 
+  // If not mounted yet, render skeleton loader
+  if (!mounted) {
+    return <MobileNavBarSkeleton />;
+  }
+
   // Don't show on desktop and only show on mobile when scrolled down but not at bottom
   return (
     <div 
       className={`md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200 shadow-lg pb-[env(safe-area-inset-bottom)] transition-transform duration-300 ${
-        isVisible ? 'translate-y-0' : 'translate-y-full'
+        visible ? 'translate-y-0' : 'translate-y-full'
       }`}
     >
       <nav className="flex justify-around items-center h-16" aria-label="Mobile navigation">

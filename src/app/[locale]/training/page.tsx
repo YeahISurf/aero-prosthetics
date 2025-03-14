@@ -232,7 +232,7 @@ export default async function TrainingPage({ params }: Props) {
               <div className="relative z-10 max-w-3xl mx-auto text-center">
                 <blockquote>
                   <p className="text-xl md:text-2xl font-medium text-gray-900 italic leading-relaxed mb-6">
-                    "{testimonials[0].quote}"
+                    &quot;{testimonials[0].quote}&quot;
                   </p>
                   <footer className="flex flex-col md:flex-row items-center justify-center">
                     <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center text-primary-700 font-bold text-lg mb-3 md:mb-0 md:mr-4">

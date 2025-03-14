@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import { MetadataRoute } from 'next';
-import { headers } from 'next/headers';
 
 // Dynamic base URL detection
 function getBaseUrl() {

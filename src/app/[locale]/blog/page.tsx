@@ -1,9 +1,7 @@
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import { constructMetadata } from '@/lib/seo/metadata';
-import Image from 'next/image';
-import Link from 'next/link';
 import { BlogListingSchema, BreadcrumbListSchema } from '@/components/ui/BlogSchema';
-import BlogCard, { BlogPost } from '@/components/ui/BlogCard';
+import BlogCard from '@/components/ui/BlogCard';
 import BlogSidebar from '@/components/ui/BlogSidebar';
 import BlogPagination from '@/components/ui/BlogPagination';
 import { getBlogPosts, getCategories, getTags } from '@/lib/blog/getPosts';

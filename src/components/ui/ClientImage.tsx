@@ -8,7 +8,7 @@ interface ClientImageProps extends ImageProps {
   fallbackSrc?: string;
 }
 
-export default function ClientImage({ fallbackStyles, fallbackSrc, ...props }: ClientImageProps) {
+export default function ClientImage({ fallbackStyles, fallbackSrc, alt = "Image", ...props }: ClientImageProps) {
   const [error, setError] = useState(false);
 
   const handleError = () => {
@@ -17,10 +17,10 @@ export default function ClientImage({ fallbackStyles, fallbackSrc, ...props }: C
 
   if (error) {
     if (fallbackSrc) {
-      return <Image {...props} src={fallbackSrc} />;
+      return <Image {...props} src={fallbackSrc} alt={alt} />;
     }
     return <div style={{ ...fallbackStyles }} />;
   }
 
-  return <Image {...props} onError={handleError} />;
+  return <Image {...props} onError={handleError} alt={alt} />;
 } 

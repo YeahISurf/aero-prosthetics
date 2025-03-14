@@ -10,14 +10,14 @@ import { cn } from '@/lib/utils';
 
 export default function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const triggerButtonRef = useRef<HTMLButtonElement>(null);
   const firstFocusableRef = useRef<HTMLElement | null>(null);
   const lastFocusableRef = useRef<HTMLElement | null>(null);
   
-  // Only access these hooks after component is mounted
+  // Move hooks outside of conditionals to the top
   const pathname = usePathname();
   const locale = useLocale();
   
@@ -57,13 +57,13 @@ export default function MobileMenu() {
 
   // Handle mounting (client-side only)
   useEffect(() => {
-    setIsMounted(true);
-    return () => setIsMounted(false);
+    setMounted(true);
+    return () => setMounted(false);
   }, []);
 
   // Handle body scroll locking when menu is open
   useEffect(() => {
-    if (!isMounted) return;
+    if (!mounted) return;
     
     const menuElement = menuRef.current;
     
@@ -101,11 +101,11 @@ export default function MobileMenu() {
         enableBodyScroll(menuElement);
       }
     };
-  }, [isOpen, isMounted]);
+  }, [isOpen, mounted]);
 
   // Handle keyboard accessibility (trap focus within menu when open)
   useEffect(() => {
-    if (!isMounted || !isOpen) return;
+    if (!mounted || !isOpen) return;
     
     const handleKeyDown = (e: KeyboardEvent) => {
       // Close on ESC key
@@ -136,10 +136,10 @@ export default function MobileMenu() {
     
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, isMounted]);
+  }, [mounted, isOpen]);
 
   // Don't render anything during SSR to prevent hydration issues
-  if (!isMounted) return null;
+  if (!mounted) return null;
 
   const isActive = (path: string) => {
     return pathname.startsWith(`/${locale}/${path}`);
@@ -161,7 +161,7 @@ export default function MobileMenu() {
         className="text-gray-700 hover:text-primary-600"
       />
 
-      {isMounted && createPortal(
+      {mounted && createPortal(
         <div 
           className={`fixed inset-0 z-50 bg-gray-900/50 backdrop-blur-sm transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
           aria-hidden={!isOpen}

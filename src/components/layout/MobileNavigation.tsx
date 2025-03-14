@@ -64,17 +64,11 @@ const HamburgerIcon: React.FC<HamburgerIconProps> = ({ isOpen }) => {
 };
 
 export default function MobileNavigation() {
-  // Client-side only rendering check
   const [mounted, setMounted] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   const sheetContentRef = useRef<HTMLDivElement>(null);
   
-  // Mount effect to ensure client-side only rendering
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-  
-  // Only access hooks after component is mounted
+  // Move hooks outside of conditionals to the top
   const pathname = usePathname();
   const locale = useLocale();
   
@@ -100,13 +94,18 @@ export default function MobileNavigation() {
     };
   }
   
+  // Mount effect to ensure client-side only rendering
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  
   // Generate a stable ID based on the component name and the current path
   const stableId = generateStableId(`${MOBILE_NAV_ID}-${pathname}`, MOBILE_NAV_ID);
 
   // Close menu on navigation
   useEffect(() => {
     if (!mounted) return;
-    setIsOpen(false);
+    setOpen(false);
   }, [pathname, mounted]);
 
   // Handle any clicks outside the sheet content to close the menu
@@ -115,11 +114,11 @@ export default function MobileNavigation() {
     
     const handleClickOutside = (event: MouseEvent) => {
       if (
-        isOpen &&
+        open &&
         sheetContentRef.current &&
         !sheetContentRef.current.contains(event.target as Node)
       ) {
-        setIsOpen(false);
+        setOpen(false);
       }
     };
 
@@ -127,7 +126,7 @@ export default function MobileNavigation() {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [isOpen, mounted]);
+  }, [open, mounted]);
 
   // Don't render during SSR to prevent hydration mismatches
   if (!mounted) return null;
@@ -155,15 +154,15 @@ export default function MobileNavigation() {
   };
 
   return (
-    <Sheet open={isOpen} onOpenChange={setIsOpen} id={stableId}>
+    <Sheet open={open} onOpenChange={setOpen} id={stableId}>
       <SheetTrigger asChild>
         <button 
           className="p-2 md:hidden flex items-center justify-center"
-          aria-label={isOpen ? "Close menu" : "Open menu"}
-          aria-expanded={isOpen}
-          onClick={() => setIsOpen(!isOpen)}
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          onClick={() => setOpen(!open)}
         >
-          <HamburgerIcon isOpen={isOpen} />
+          <HamburgerIcon isOpen={open} />
         </button>
       </SheetTrigger>
       <SheetContent 
@@ -182,7 +181,7 @@ export default function MobileNavigation() {
             href={`/${locale}/`}
             className={`text-lg font-medium py-2 ${pathname === `/${locale}` ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
             aria-current={pathname === `/${locale}` ? 'page' : undefined}
-            onClick={() => setIsOpen(false)}
+            onClick={() => setOpen(false)}
           >
             {getT('home')}
           </Link>
@@ -191,7 +190,7 @@ export default function MobileNavigation() {
             href={`/${locale}/about`}
             className={`text-lg font-medium py-2 ${isActive('about') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
             aria-current={isActive('about') ? 'page' : undefined}
-            onClick={() => setIsOpen(false)}
+            onClick={() => setOpen(false)}
           >
             {getT('about')}
           </Link>
@@ -200,7 +199,7 @@ export default function MobileNavigation() {
             href={`/${locale}/solutions`}
             className={`text-lg font-medium py-2 ${isActive('solutions') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
             aria-current={isActive('solutions') ? 'page' : undefined}
-            onClick={() => setIsOpen(false)}
+            onClick={() => setOpen(false)}
           >
             {getT('solutions')}
           </Link>
@@ -209,7 +208,7 @@ export default function MobileNavigation() {
             href={`/${locale}/blog`}
             className={`text-lg font-medium py-2 ${isActive('blog') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
             aria-current={isActive('blog') ? 'page' : undefined}
-            onClick={() => setIsOpen(false)}
+            onClick={() => setOpen(false)}
           >
             {getT('blog')}
           </Link>
@@ -218,7 +217,7 @@ export default function MobileNavigation() {
             href={`/${locale}/training`}
             className={`text-lg font-medium py-2 ${isActive('training') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
             aria-current={isActive('training') ? 'page' : undefined}
-            onClick={() => setIsOpen(false)}
+            onClick={() => setOpen(false)}
           >
             {getT('training')}
           </Link>
@@ -227,7 +226,7 @@ export default function MobileNavigation() {
             href={`/${locale}/locations`}
             className={`text-lg font-medium py-2 ${isActive('locations') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
             aria-current={isActive('locations') ? 'page' : undefined}
-            onClick={() => setIsOpen(false)}
+            onClick={() => setOpen(false)}
           >
             {getT('locations')}
           </Link>
@@ -236,7 +235,7 @@ export default function MobileNavigation() {
             href={`/${locale}/contact`}
             className={`text-lg font-medium py-2 ${isActive('contact') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
             aria-current={isActive('contact') ? 'page' : undefined}
-            onClick={() => setIsOpen(false)}
+            onClick={() => setOpen(false)}
           >
             {getT('contact')}
           </Link>
