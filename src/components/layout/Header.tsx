@@ -56,27 +56,28 @@ export default function Header() {
   const locale = useLocale();
   const pathname = usePathname();
   
-  // Get translations with fallback
-  let t;
+  // Get translations with fallback - initialize with null
+  let navTranslations = null;
+  let ctaTranslations = null;
+  
   try {
-    t = useTranslations('navigation');
-  } catch (error) {
-    // If translation function fails, use a wrapper that returns fallbacks
-    t = (key: string) => {
-      return fallbackTranslations.navigation[key as keyof typeof fallbackTranslations.navigation] || key;
-    };
+    navTranslations = useTranslations('navigation');
+  } catch (_) {
+    // Will use fallback
   }
   
-  // Get CTA translations with fallback
-  let ctaT;
   try {
-    ctaT = useTranslations('cta');
-  } catch (error) {
-    // If translation function fails, use a wrapper that returns fallbacks
-    ctaT = (key: string) => {
-      return fallbackTranslations.cta[key as keyof typeof fallbackTranslations.cta] || key;
-    };
+    ctaTranslations = useTranslations('cta');
+  } catch (_) {
+    // Will use fallback
   }
+  
+  // Create safe translation functions
+  const t = navTranslations || 
+    ((key: string) => fallbackTranslations.navigation[key as keyof typeof fallbackTranslations.navigation] || key);
+  
+  const ctaT = ctaTranslations || 
+    ((key: string) => fallbackTranslations.cta[key as keyof typeof fallbackTranslations.cta] || key);
 
   const handleScroll = useCallback(() => {
     const offset = window.scrollY;
@@ -111,20 +112,18 @@ export default function Header() {
   
   // Safely get translation with fallback
   const getT = (key: string) => {
-    try {
-      return t(key);
-    } catch (error) {
-      return fallbackTranslations.navigation[key as keyof typeof fallbackTranslations.navigation] || key;
+    if (navTranslations) {
+      return navTranslations(key);
     }
+    return fallbackTranslations.navigation[key as keyof typeof fallbackTranslations.navigation] || key;
   };
   
   // Safely get CTA translation with fallback
   const getCta = (key: string) => {
-    try {
-      return ctaT(key);
-    } catch (error) {
-      return fallbackTranslations.cta[key as keyof typeof fallbackTranslations.cta] || key;
+    if (ctaTranslations) {
+      return ctaTranslations(key);
     }
+    return fallbackTranslations.cta[key as keyof typeof fallbackTranslations.cta] || key;
   };
 
   return (

@@ -21,39 +21,40 @@ export default function MobileMenu() {
   const pathname = usePathname();
   const locale = useLocale();
   
-  // Use safe translations
-  let t;
-  let cta;
+  // Use safe translations - initialize with null
+  let navTranslations = null;
+  let ctaTranslations = null;
   
   try {
-    t = useTranslations('navigation');
-  } catch (error) {
-    // Fallback translations
-    t = (key: string) => {
-      const fallbacks: Record<string, string> = {
-        home: 'Home',
-        about: 'About Us',
-        solutions: 'Solutions', 
-        blog: 'Blog',
-        training: 'Training',
-        locations: 'Locations',
-        contact: 'Contact'
-      };
-      return fallbacks[key] || key;
-    };
+    navTranslations = useTranslations('navigation');
+  } catch (_) {
+    // Will use fallback
   }
   
   try {
-    cta = useTranslations('cta');
-  } catch (error) {
-    // Fallback translations
-    cta = (key: string) => {
-      const fallbacks: Record<string, string> = {
-        book_demo: 'Book Demo'
-      };
-      return fallbacks[key] || key;
-    };
+    ctaTranslations = useTranslations('cta');
+  } catch (_) {
+    // Will use fallback
   }
+  
+  // Create fallback functions
+  const navFallbacks: Record<string, string> = {
+    home: 'Home',
+    about: 'About Us',
+    solutions: 'Solutions', 
+    blog: 'Blog',
+    training: 'Training',
+    locations: 'Locations',
+    contact: 'Contact'
+  };
+  
+  const ctaFallbacks: Record<string, string> = {
+    book_demo: 'Book Demo'
+  };
+  
+  // Create safe translation functions
+  const t = navTranslations || ((key: string) => navFallbacks[key] || key);
+  const cta = ctaTranslations || ((key: string) => ctaFallbacks[key] || key);
 
   // Handle mounting (client-side only)
   useEffect(() => {

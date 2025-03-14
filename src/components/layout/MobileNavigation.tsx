@@ -8,7 +8,6 @@ import {
   Sheet,
   SheetContent,
   SheetTrigger,
-  SheetClose,
   SheetTitle,
 } from "@/components/ui/sheet";
 import { cn } from '@/lib/utils';
@@ -72,27 +71,25 @@ export default function MobileNavigation() {
   const pathname = usePathname();
   const locale = useLocale();
   
-  // Get translations with fallback
-  let t;
+  // Initialize translation hooks safely
+  let navTranslations = null;
+  let ctaTranslations = null;
+  
   try {
-    t = useTranslations('navigation');
-  } catch (error) {
-    // If translation function fails, use a wrapper that returns fallbacks
-    t = (key: string) => {
-      return fallbackTranslations.navigation[key as keyof typeof fallbackTranslations.navigation] || key;
-    };
+    navTranslations = useTranslations('navigation');
+  } catch (_) {
+    // Will use fallback
   }
   
-  // Get CTA translations with fallback
-  let ctaT;
   try {
-    ctaT = useTranslations('cta');
-  } catch (error) {
-    // If translation function fails, use a wrapper that returns fallbacks
-    ctaT = (key: string) => {
-      return fallbackTranslations.cta[key as keyof typeof fallbackTranslations.cta] || key;
-    };
+    ctaTranslations = useTranslations('cta');
+  } catch (_) {
+    // Will use fallback
   }
+  
+  // Create safe translation functions
+  const t = navTranslations || 
+    ((key: string) => fallbackTranslations.navigation[key as keyof typeof fallbackTranslations.navigation] || key);
   
   // Mount effect to ensure client-side only rendering
   useEffect(() => {
@@ -137,20 +134,10 @@ export default function MobileNavigation() {
   
   // Safely get translation with fallback
   const getT = (key: string) => {
-    try {
-      return t(key);
-    } catch (error) {
-      return fallbackTranslations.navigation[key as keyof typeof fallbackTranslations.navigation] || key;
+    if (navTranslations) {
+      return navTranslations(key);
     }
-  };
-  
-  // Safely get CTA translation with fallback
-  const getCta = (key: string) => {
-    try {
-      return ctaT(key);
-    } catch (error) {
-      return fallbackTranslations.cta[key as keyof typeof fallbackTranslations.cta] || key;
-    }
+    return fallbackTranslations.navigation[key as keyof typeof fallbackTranslations.navigation] || key;
   };
 
   return (

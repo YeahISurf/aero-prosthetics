@@ -40,24 +40,23 @@ function MobileNavBarSkeleton() {
 export default function MobileNavBar() {
   const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const [atTop, setAtTop] = useState(true);
-  const [atBottom, setAtBottom] = useState(false);
   
   // Move hooks outside of conditionals to the top
   const pathname = usePathname();
   const locale = useLocale();
   
-  // Get translations with fallback
-  let t;
+  // Get translations with fallback - initialize with null
+  let navTranslations = null;
+  
   try {
-    t = useTranslations('navigation');
-  } catch (error) {
-    // If translation function fails, use a wrapper that returns fallbacks
-    t = (key: string) => {
-      return fallbackTranslations.navigation[key as keyof typeof fallbackTranslations.navigation] || key;
-    };
+    navTranslations = useTranslations('navigation');
+  } catch (_) {
+    // Will use fallback
   }
+  
+  // Create safe translation function
+  const t = navTranslations || 
+    ((key: string) => fallbackTranslations.navigation[key as keyof typeof fallbackTranslations.navigation] || key);
 
   useEffect(() => {
     setMounted(true);
@@ -109,11 +108,10 @@ export default function MobileNavBar() {
   
   // Safely get translation with fallback
   const getT = (key: string) => {
-    try {
-      return t(key);
-    } catch (error) {
-      return fallbackTranslations.navigation[key as keyof typeof fallbackTranslations.navigation] || key;
+    if (navTranslations) {
+      return navTranslations(key);
     }
+    return fallbackTranslations.navigation[key as keyof typeof fallbackTranslations.navigation] || key;
   };
 
   // If not mounted yet, render skeleton loader

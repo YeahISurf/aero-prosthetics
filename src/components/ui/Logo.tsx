@@ -1,7 +1,6 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { useLocale } from 'next-intl';
 import { useState, useEffect } from 'react';
 
 interface LogoProps {
@@ -11,15 +10,17 @@ interface LogoProps {
 export default function Logo({ height }: LogoProps = {}) {
   const [mounted, setMounted] = useState(false);
   
-  // Move hooks outside of conditionals to the top
-  const locale = useLocale();
-  let t;
+  // Initialize translation with null and set it safely
+  let companyTranslations = null;
   try {
-    t = useTranslations('footer.company');
-  } catch (error) {
-    // Fallback if translations fail
-    t = (key: string) => key === 'title' ? 'Aero Prosthetics' : 'Advanced Prosthetic Solutions';
+    companyTranslations = useTranslations('footer.company');
+  } catch (e) {
+    // Fallback happens below
   }
+  
+  // Create a safe version of the translation function
+  const t = companyTranslations || 
+    ((key: string) => key === 'title' ? 'Aero Prosthetics' : 'Advanced Prosthetic Solutions');
   
   useEffect(() => {
     setMounted(true);

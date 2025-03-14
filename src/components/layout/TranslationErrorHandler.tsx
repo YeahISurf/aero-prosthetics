@@ -92,7 +92,7 @@ export default function TranslationErrorHandler({ children }: TranslationErrorHa
     
     return () => {
       window.onerror = originalErrorHandler;
-      // @ts-expect-error
+      // @ts-expect-error - Window object doesn't have __translationPatches property in its type definition
       delete window.__translationPatches;
     };
   }, [translations]);

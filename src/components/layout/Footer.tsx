@@ -100,18 +100,25 @@ export default function Footer() {
   // Add state to track if component is mounted (client-side only)
   const [isMounted, setIsMounted] = useState(false);
   
-  // Setup translation hooks with safe defaults
-  let t, nav;
+  // Setup translation hooks with safe defaults using null as initial value
+  let footerTranslations = null;
+  let navTranslations = null;
   
   try {
-    t = useTranslations('footer');
-    nav = useTranslations('navigation');
+    footerTranslations = useTranslations('footer');
   } catch (e) {
-    // This can happen during SSR when translations aren't available yet
-    // We'll handle this by not rendering full content until mounted
-    t = { raw: (key: string) => '' };
-    nav = { raw: (key: string) => '' };
+    // Fallback
   }
+
+  try {
+    navTranslations = useTranslations('navigation');
+  } catch (e) {
+    // Fallback
+  }
+  
+  // Create safe versions that won't throw errors
+  const t = footerTranslations || { raw: (key: string) => '' };
+  const nav = navTranslations || { raw: (key: string) => '' };
   
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
