@@ -148,12 +148,12 @@ export default function Header() {
           </div>
           
           <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-            <nav className="flex space-x-8">
-              <ul className="flex space-x-8">
+            <nav className="flex">
+              <ul className="flex md:space-x-6 lg:space-x-10">
                 <li>
                   <Link 
                     href={`/${locale}`} 
-                    className={`text-sm font-medium ${pathname === `/${locale}` ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
+                    className={`text-sm whitespace-nowrap font-medium px-1 ${pathname === `/${locale}` ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
                     aria-current={pathname === `/${locale}` ? 'page' : undefined}
                   >
                     {getT('home')}
@@ -163,7 +163,7 @@ export default function Header() {
                 <li>
                   <Link 
                     href={`/${locale}/about`} 
-                    className={`text-sm font-medium ${isActive('about') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
+                    className={`text-sm whitespace-nowrap font-medium px-1 ${isActive('about') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
                     aria-current={isActive('about') ? 'page' : undefined}
                   >
                     {getT('about')}
@@ -173,7 +173,7 @@ export default function Header() {
                 <li>
                   <Link 
                     href={`/${locale}/solutions`} 
-                    className={`text-sm font-medium ${isActive('solutions') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
+                    className={`text-sm whitespace-nowrap font-medium px-1 ${isActive('solutions') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
                     aria-current={isActive('solutions') ? 'page' : undefined}
                   >
                     {getT('solutions')}
@@ -183,7 +183,7 @@ export default function Header() {
                 <li>
                   <Link 
                     href={`/${locale}/blog`} 
-                    className={`text-sm font-medium ${isActive('blog') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
+                    className={`text-sm whitespace-nowrap font-medium px-1 ${isActive('blog') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
                     aria-current={isActive('blog') ? 'page' : undefined}
                   >
                     {getT('blog')}
@@ -193,7 +193,7 @@ export default function Header() {
                 <li>
                   <Link
                     href={`/${locale}/training`} 
-                    className={`text-sm font-medium ${isActive('training') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
+                    className={`text-sm whitespace-nowrap font-medium px-1 ${isActive('training') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
                     aria-current={isActive('training') ? 'page' : undefined}
                   >
                     {getT('training')}
@@ -203,7 +203,7 @@ export default function Header() {
                 <li>
                   <Link 
                     href={`/${locale}/locations`} 
-                    className={`text-sm font-medium ${isActive('locations') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
+                    className={`text-sm whitespace-nowrap font-medium px-1 ${isActive('locations') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
                     aria-current={isActive('locations') ? 'page' : undefined}
                   >
                     {getT('locations')}
@@ -213,7 +213,7 @@ export default function Header() {
                 <li>
                   <Link 
                     href={`/${locale}/contact`} 
-                    className={`text-sm font-medium ${isActive('contact') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
+                    className={`text-sm whitespace-nowrap font-medium px-1 ${isActive('contact') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
                     aria-current={isActive('contact') ? 'page' : undefined}
                   >
                     {getT('contact')}
@@ -222,12 +222,12 @@ export default function Header() {
               </ul>
             </nav>
             
-            <div className="ml-8 flex items-center">
+            <div className="ml-8 md:ml-6 lg:ml-10 flex items-center">
               <LanguageToggle />
               
               <Link
                 href={`/${locale}/book-demo`}
-                className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 hover:scale-105 transition-all duration-200"
+                className="ml-6 lg:ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 hover:scale-105 transition-all duration-200"
               >
                 {getCta('book_demo')}
               </Link>
