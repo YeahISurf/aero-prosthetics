@@ -6,17 +6,27 @@
   "navigation": {
     "home": "Home",
     "about": "About Us",
-    "services": "Services",
-    "team": "Our Team",
-    "locations": "Locations",
+    "solutions": "Solutions",
+    "training": "Training",
     "contact": "Contact",
-    "resources": "Patient Resources"
+    "book_demo": "Book Demo",
+    "blog": "Blog",
+    "locations": "Locations"
+  },
+  "common": {
+    "home": "Home",
+    "services": "Our Services",
+    "solutions": "Solutions",
+    "about": "About Us",
+    "contact": "Contact Us",
+    "bookDemo": "Book Demo"
   },
   "cta": {
     "requestInfo": "Request Information",
     "makeAppointment": "Make an Appointment",
     "learnMore": "Learn More",
     "contactUs": "Contact Us",
+    "startJourney": "Begin Your Journey",
     "title": "Ready to Get Started?",
     "subtitle": "Contact us today to schedule a consultation with our prosthetic specialists.",
     "findLocation": "Find a Location Near You",
@@ -38,7 +48,8 @@
     "home": "Back to Home",
     "services": "Our Services",
     "contactCta": "Contact Us",
-    "backToServices": "Back to Services"
+    "backToServices": "Back to Services",
+    "book_demo": "Book Demo"
   },
   "home": {
     "hero": {
@@ -58,31 +69,31 @@
     },
     "differentiators": {
       "title": "Why Choose Aero Prosthetics",
-      "subtitle": "Discover how our premium approach to prosthetics sets us apart and delivers exceptional results for our patients.",
+      "subtitle": "Experience the difference of our advanced prosthetic solutions, backed by innovation, expertise, and a commitment to transforming lives.",
       "learnMoreText": "Learn more",
       "items": [
         {
           "title": "Cutting-Edge Technology",
-          "description": "Advanced 3D printing and custom designs for optimal fit and function"
+          "description": "Pioneering 3D-printed prosthetics with biomechanical optimization for unmatched comfort and functionality"
         },
         {
           "title": "Personalized Care",
-          "description": "Individualized treatment plans tailored to your unique needs"
+          "description": "Custom-tailored solutions designed around your lifestyle, activities, and specific anatomical needs"
         },
         {
           "title": "Comprehensive Support",
-          "description": "Complete rehabilitation services and ongoing assistance"
+          "description": "Lifetime maintenance, regular adjustments, and ongoing rehabilitation services for continued success"
         },
         {
           "title": "Experienced Team",
-          "description": "Specialists with extensive training and expertise"
+          "description": "Board-certified specialists with advanced credentials and decades of combined clinical experience"
         }
       ],
       "stats": [
-        { "value": "98%", "label": "Patient Satisfaction" },
-        { "value": "1,500+", "label": "Custom Solutions" },
-        { "value": "< 0.5%", "label": "Return Rate" },
-        { "value": "24/7", "label": "Support Available" }
+        { "value": "98%", "label": "Patient Satisfaction Rating" },
+        { "value": "1,500+", "label": "Custom Solutions Delivered" },
+        { "value": "< 0.5%", "label": "Adjustment Return Rate" },
+        { "value": "24/7", "label": "Clinical Support Available" }
       ]
     },
     "services": {
@@ -329,7 +340,7 @@
     "badge": "Expert Prosthetic & Orthotic Solutions",
     "servicesTitle": "Our Comprehensive Services",
     "servicesSubtitle": "Discover our full range of prosthetic and orthotic solutions designed to improve mobility, comfort, and quality of life.",
-    "processSubtitle": "Our comprehensive approach ensures you receive personalized care at every step of your journey.",
+    "processSubtitle": "Experience our signature methodology that combines clinical excellence with personalized attention, ensuring you receive world-class care throughout your transformative journey.",
     "technologyTitle": "Cutting-Edge Technology",
     "technologyDescription": "At Aero Prosthetics, we leverage the latest technological advancements to provide superior prosthetic and orthotic solutions. Our commitment to innovation means our patients benefit from devices that are more comfortable, functional, and aesthetically pleasing.",
     "techPoint1": "Computer-aided design and manufacturing for precision fit",
@@ -372,29 +383,82 @@
       }
     ],
     "process": {
-      "title": "Our Process",
+      "title": "Our Premium Care Journey",
       "steps": [
         {
-          "title": "Initial Consultation",
-          "description": "Comprehensive evaluation of your needs and goals"
+          "title": "Expert Consultation",
+          "description": "Comprehensive clinical assessment with our specialists to understand your unique needs, medical history, and lifestyle aspirations"
         },
         {
-          "title": "Custom Design",
-          "description": "Personalized design and measurement for optimal fit"
+          "title": "Precision Design",
+          "description": "Advanced 3D scanning and biomechanical analysis to create a bespoke solution that perfectly aligns with your anatomy and movement patterns"
         },
         {
-          "title": "Fabrication",
-          "description": "Creation of your custom prosthetic or orthotic device"
+          "title": "Master Craftsmanship",
+          "description": "Meticulous fabrication of your custom device using premium materials and cutting-edge technology in our state-of-the-art laboratory"
         },
         {
-          "title": "Fitting & Adjustment",
-          "description": "Precise fitting and necessary adjustments for comfort"
+          "title": "Precision Fitting",
+          "description": "Exacting alignment and personalized adjustments to ensure exceptional comfort, functionality, and aesthetics that complement your lifestyle"
         },
         {
-          "title": "Training & Support",
-          "description": "Guidance on use and ongoing support for optimal outcomes"
+          "title": "Comprehensive Support",
+          "description": "Specialized training, ongoing care, and lifetime adjustments from our dedicated team of specialists to maximize your mobility and independence"
         }
       ]
+    },
+    "benefits": {
+      "badge": "Key Advantages",
+      "title": "Why Choose Our {service}",
+      "description": "Discover how our specialized solutions can improve your mobility and quality of life.",
+      "keyBenefits": "Key Benefits",
+      "availableOptions": "Available Options"
+    },
+    "technology": {
+      "badge": "Cutting-Edge Technology",
+      "title": "Advanced Technology",
+      "description": "Our approach combines cutting-edge technology with personalized care to create prosthetic solutions that truly transform lives."
+    },
+    "gallery": {
+      "badge": "Patient Success Stories",
+      "title": "See Our {service} in Action",
+      "description": "View examples of our custom solutions designed for various needs and lifestyles.",
+      "imageAlt": "Image {number}",
+      "caseStudyTitle": "Case Study {number}",
+      "caseStudyDescription": "A brief description of this {service} solution and its unique benefits."
+    },
+    "journey": {
+      "badge": "Your Path Forward",
+      "title": "Your Prosthetic Journey",
+      "description": "We provide comprehensive support throughout every stage of your prosthetic journey.",
+      "step1": {
+        "title": "Initial Consultation",
+        "description": "Our expert team will conduct a thorough evaluation, discuss your goals, and develop a personalized treatment plan tailored to your specific needs and lifestyle requirements.",
+        "point1": "Medical history and physical assessment",
+        "point2": "Discussion of lifestyle goals and needs",
+        "point3": "Insurance verification and coverage planning"
+      },
+      "step2": {
+        "title": "Design & Fabrication",
+        "description": "Using precise measurements and digital scanning, we create a custom socket and select componentry tailored to your unique anatomy and functional requirements.",
+        "point1": "Digital scanning for precise measurements",
+        "point2": "Component selection for optimal function",
+        "point3": "Test socket fittings for comfort optimization"
+      },
+      "step3": {
+        "title": "Fitting & Training",
+        "description": "We meticulously adjust your prosthesis to ensure optimal alignment, comfort, and function. Our rehabilitation specialists work with you to develop confidence in using your new device.",
+        "point1": "Dynamic alignment for optimal gait",
+        "point2": "Progressive training program for skill development",
+        "point3": "Specialized training for your specific activities"
+      },
+      "step4": {
+        "title": "Ongoing Support",
+        "description": "Our relationship continues with regular check-ups, adjustments, and support. As your needs change or technology advances, we ensure your prosthetic solution continues to enhance your quality of life.",
+        "point1": "Regular maintenance and adjustments",
+        "point2": "Modifications as your body changes",
+        "point3": "Access to newest technology and innovations"
+      }
     }
   },
   "team": {
@@ -539,20 +603,22 @@
   },
   "contact": {
     "title": "Contact Us",
-    "description": "We're here to answer your questions and provide assistance",
+    "description": "We're here to answer your questions and provide personalized assistance",
     "hero": {
+      "badge": "Get in Touch",
       "image": {
-        "alt": "Professional prosthetic hand designed for natural movement and flexibility"
+        "alt": "Advanced prosthetic hand"
       }
     },
     "cta": {
-      "primary": "Contact Us Today",
+      "primary": "Send a Message",
       "secondary": "Find Our Locations"
     },
     "form": {
       "heading": "Send Us a Message",
       "subheading": "Let us know how we can help you. Our team is ready to provide personalized assistance.",
       "title": "Send Us a Message",
+      "description": "Fill out the form below and we'll get back to you as soon as possible.",
       "firstName": "First Name",
       "lastName": "Last Name",
       "email": "Email Address",
@@ -674,25 +740,107 @@
       "title": "Quick Links",
       "home": "Home",
       "about": "About Us",
-      "services": "Services",
-      "team": "Our Team",
-      "locations": "Locations",
+      "solutions": "Solutions",
+      "training": "Training",
       "contact": "Contact",
-      "resources": "Patient Resources"
+      "book_demo": "Book Demo"
     },
     "locations": {
       "title": "Locations",
       "anaheim": "Anaheim Hills",
-      "victorville": "Victorville"
+      "victorville": "Victorville",
+      "anaheiml1": "5775 E Santa Ana Canyon Rd",
+      "anaheiml2": "Suite 110",
+      "anaheiml3": "Anaheim Hills, CA 92807",
+      "anaheimPhone": "+17147714233",
+      "anaheimPhoneFormatted": "(714) 771-4233",
+      "victorvillel1": "16534 Victor St",
+      "victorvillel2": "Suite 300",
+      "victorvillel3": "Victorville, CA 92395",
+      "victorvillePhone": "+17607801061",
+      "victorvillePhoneFormatted": "(760) 780-1061"
     },
     "social": {
       "title": "Connect With Us",
       "facebook": "Facebook",
       "instagram": "Instagram",
       "linkedin": "LinkedIn",
-      "youtube": "YouTube"
+      "youtube": "YouTube",
+      "facebookUrl": "https://facebook.com",
+      "instagramUrl": "https://instagram.com",
+      "linkedinUrl": "https://linkedin.com",
+      "youtubeUrl": "https://youtube.com"
+    },
+    "newsletter": {
+      "description": "Stay up to date with the latest news and updates from Aero Prosthetics.",
+      "emailLabel": "Email Address",
+      "emailPlaceholder": "Your email address",
+      "subscribe": "Subscribe",
+      "subscribing": "Subscribing...",
+      "thankYou": "Thank you for subscribing!",
+      "confirmation": "You'll receive our latest updates in your inbox."
+    },
+    "subscriptionError": "Failed to subscribe. Please try again.",
+    "subscriptionErrorInvalidEmail": "Please enter a valid email address.",
+    "subscriptionErrorNetwork": "Network error. Please check your connection and try again.",
+    "subscriptionErrorDuplicate": "This email is already subscribed to our newsletter.",
+    "legal": {
+      "title": "Legal",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "accessibility": "Accessibility"
+    },
+    "contact": {
+      "email": "info@aeroprosthetics.com",
+      "phone": "+17147714233",
+      "phoneFormatted": "(714) 771-4233"
     },
     "copyright": "© 2025 Aero Prosthetics. All rights reserved.",
     "language": "Language"
+  },
+  "NotFound": {
+    "meta": {
+      "title": "Page Not Found | Aero Prosthetics",
+      "description": "We couldn't find the page you're looking for. Please navigate to our homepage or contact us for assistance."
+    },
+    "heading": "404 - Page Not Found",
+    "message": "Sorry, we couldn't find the page you're looking for. It may have been moved, deleted, or never existed. Let's get you back on track.",
+    "homeButton": "Return to Homepage",
+    "contactButton": "Contact Support"
+  },
+  "blog": {
+    "meta": {
+      "title": "Aero Prosthetics Blog - Latest News and Information",
+      "description": "Stay up to date with the latest advancements in prosthetic technology and patient success stories from Aero Prosthetics."
+    },
+    "hero": {
+      "title": "Aero Prosthetics Blog",
+      "subtitle": "Stay informed about the latest advancements in prosthetic technology and patient success stories."
+    },
+    "categories": {
+      "innovation": "Innovation",
+      "patientStories": "Patient Stories",
+      "research": "Research",
+      "events": "Events",
+      "education": "Education"
+    },
+    "featured_image_alt": "Featured image",
+    "author_avatar_alt": "Author avatar",
+    "author": "By {name}",
+    "readingTime": "{time} min read",
+    "minRead": "min read",
+    "continueReading": "Continue Reading",
+    "backToBlog": "Back to Blog",
+    "sidebar": {
+      "categories": "Categories",
+      "recentPosts": "Recent Posts",
+      "tags": "Popular Tags",
+      "search": "Search",
+      "searchPlaceholder": "Search articles...",
+      "newsletter": "Newsletter",
+      "newsletterDescription": "Subscribe to our newsletter to receive the latest updates and news.",
+      "emailPlaceholder": "Your email address",
+      "subscribe": "Subscribe"
+    }
   }
 }

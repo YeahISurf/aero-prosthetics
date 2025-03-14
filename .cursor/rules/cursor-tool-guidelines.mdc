@@ -1,0 +1,81 @@
+---
+description: Best practices for using Cursor tools for frontend development
+globs: 
+alwaysApply: true
+---
+# Cursor Tool Guidelines
+
+## Rule Information
+- **Name**: Cursor Tool Guidelines
+- **Description**: Best practices for using Cursor tools for frontend development
+
+## Codebase Exploration
+
+### Codebase Search
+- Use for finding semantically relevant code patterns
+- Prefer specific search terms over broad concepts
+- Specify relevant directories for more focused results
+- Useful for finding examples of component patterns or hooks usage
+
+### Read File
+- Read entire files when exploring component architecture
+- Focus on utility files, hooks, and context providers
+- Understand project structure before making changes
+- Look for reusable patterns in existing code
+
+### List Directory
+- Use to understand project organization
+- Explore component hierarchy and file organization
+- Identify naming conventions and patterns
+- Map out important project areas (components, hooks, utilities)
+
+### Grep Search
+- Use for finding exact string matches
+- Ideal for locating specific function calls, imports, or patterns
+- Useful for finding all usages of a component or function
+- Can help identify dependencies and relationships
+
+## Code Modification
+
+### Edit File
+- Group edits to the same file in a single call
+- Maintain consistent styling with existing code
+- Include only necessary context with appropriate comments
+- Follow project naming conventions and patterns
+- Ensure edits are properly typed with TypeScript
+
+### Run Terminal Command
+- Use for dependency installation
+- Run tests after making changes
+- Execute build scripts to verify changes
+- Use for code generation when appropriate
+
+## Context Management
+
+- When working with React components, always check for:
+  - Existing component patterns
+  - Common hooks and utilities
+  - State management patterns
+  - Styling approaches
+
+- For complex frontend tasks:
+  - First explore the architecture
+  - Identify existing patterns
+  - Understand the data flow
+  - Make consistent changes
+
+## Tool Usage Workflow
+
+1. **Explore**: Use codebase_search and list_dir to understand project structure
+2. **Analyze**: Use read_file to understand component patterns and architecture
+3. **Plan**: Identify which files need modification and what changes are needed
+4. **Modify**: Use edit_file to make changes consistent with existing patterns
+5. **Verify**: Run terminal commands to test and validate changes
+
+## Assistant Behavior
+
+- Never refer to tool names when speaking to the user
+- Only call tools when necessary
+- Explain purpose before calling each tool
+- Focus on frontend architecture and patterns
+- Prioritize understanding existing code over creating new patterns 

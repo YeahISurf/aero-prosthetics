@@ -1,0 +1,94 @@
+---
+description: Coding standards for modern JS/TS development
+globs: *.js, *.ts, *.jsx, *.tsx
+alwaysApply: false
+---
+# JavaScript/TypeScript Best Practices
+
+## Rule Information
+- **Name**: JavaScript/TypeScript Best Practices
+- **Description**: Coding standards for modern JS/TS development
+
+## JavaScript Core Guidelines
+
+### Syntax and Features
+- Use modern ES6+ syntax
+- Prefer const over let, avoid var entirely
+- Use arrow functions for callbacks and lexical this
+- Utilize template literals for string interpolation
+- Leverage destructuring for objects and arrays
+- Use spread/rest operators for flexible argument handling
+- Implement default parameters and optional chaining
+- Use nullish coalescing operator (??) over OR (||) when appropriate
+
+### Functions and Modules
+- Write pure functions when possible
+- Keep functions focused on a single responsibility
+- Use named exports for better tree-shaking
+- Avoid default exports for better refactoring and IntelliSense
+- Organize imports logically (React, third-party, local)
+- Implement proper error handling with try/catch
+- Use async/await over promise chains
+- Return early from functions to avoid deep nesting
+
+### Data Handling
+- Use Array methods (map, filter, reduce) over loops when possible
+- Maintain immutability with spread operators
+- Use Sets and Maps for specialized data structures
+- Format dates with modern APIs (Intl, date-fns, etc.)
+- Validate data early in the execution flow
+- Use meaningful variable names that express intent
+
+## TypeScript Specific Guidelines
+
+### Type System
+- Use explicit type annotations for function parameters and return types
+- Create interfaces or types for complex objects
+- Extend interfaces over intersection types when logical
+- Use strict null checking
+- Implement proper generics for reusable components and functions
+- Avoid 'any' type, use 'unknown' when type is truly unknown
+- Use union types for variables that can have multiple types
+- Utilize type guards for narrowing types
+
+### Advanced TypeScript
+- Use mapped types for transforming existing types
+- Implement utility types (Partial, Required, Pick, etc.)
+- Create proper discriminated unions
+- Use declaration merging where appropriate
+- Leverage conditional types for complex type logic
+- Use readonly modifiers for immutable data
+- Implement proper type imports with 'import type'
+- Use 'as const' for literal type inference
+
+## Frontend-Specific JavaScript/TypeScript
+
+### React
+- Use function components with hooks
+- Implement proper component memoization
+- Type props with interfaces or type aliases
+- Use proper event typing for handlers
+- Type state properly with generics
+- Implement exhaustive checks for reducers
+- Type context providers and consumers
+
+### Next.js
+- Use proper types for API routes
+- Type getServerSideProps/getStaticProps returns
+- Implement proper route typing
+- Type data fetching functions properly
+- Handle server/client code boundaries with proper types
+
+## Testing
+- Write typed tests with jest and testing-library
+- Type test fixtures and mocks
+- Use proper assertion types
+- Implement proper typing for custom hooks tests
+- Type test utilities and helpers
+
+## Documentation
+- Use JSDoc for public APIs and complex functions
+- Include proper type information in documentation
+- Document complex type definitions
+- Include examples in documentation
+- Document side effects and potential errors 

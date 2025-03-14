@@ -1,48 +1,36 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
-
-// Only light theme is now available
-type Theme = 'light';
-
-interface ThemeContextType {
-  theme: Theme;
-}
-
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
-
-export function useTheme() {
-  const context = useContext(ThemeContext);
-  if (context === undefined) {
-    throw new Error('useTheme must be used within a ThemeProvider');
-  }
-  return context;
-}
+import { ReactNode, useEffect, useState } from 'react';
+import { ThemeProvider as NextThemesProvider } from 'next-themes';
 
 interface ThemeProviderProps {
   children: ReactNode;
 }
 
-export default function ThemeProvider({ children }: ThemeProviderProps) {
-  // Always use light theme
-  const [theme] = useState<Theme>('light');
-
-  // Initialize theme on mount only (client-side)
+// Create a client-only wrapper component
+const ClientOnly = ({ children }: { children: ReactNode }) => {
+  const [mounted, setMounted] = useState(false);
+  
   useEffect(() => {
-    // Remove dark mode class if present
-    document.documentElement.classList.remove('dark');
-    
-    // Set light mode in localStorage
-    localStorage.setItem('theme', 'light');
+    setMounted(true);
   }, []);
+  
+  if (!mounted) return <>{children}</>; // Still render children but without theme functionality
+  return <>{children}</>;
+};
 
-  const value = {
-    theme,
-  };
-
+export default function ThemeProvider({ children }: ThemeProviderProps) {
   return (
-    <ThemeContext.Provider value={value}>
-      {children}
-    </ThemeContext.Provider>
+    <ClientOnly>
+      <NextThemesProvider 
+        attribute="class"
+        defaultTheme="light"
+        enableSystem={false}
+        forcedTheme="light"
+        disableTransitionOnChange
+      >
+        {children}
+      </NextThemesProvider>
+    </ClientOnly>
   );
 } 

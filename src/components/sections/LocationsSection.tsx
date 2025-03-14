@@ -172,6 +172,7 @@ export default function LocationsSection() {
                 <Link 
                   href={`/${locale}/locations/anaheim`}
                   className="btn bg-white text-primary-600 border border-primary-500 hover:bg-primary-50 text-center"
+                  aria-label={`${t('viewDetails')} - Anaheim Hills Clinic`}
                 >
                   {t('viewDetails')}
                 </Link>
@@ -299,6 +300,7 @@ export default function LocationsSection() {
                 <Link 
                   href={`/${locale}/locations/victorville`}
                   className="btn bg-white text-primary-600 border border-primary-500 hover:bg-primary-50 text-center"
+                  aria-label={`${t('viewDetails')} - Victorville Clinic`}
                 >
                   {t('viewDetails')}
                 </Link>
@@ -329,6 +331,7 @@ export default function LocationsSection() {
               <Link 
                 href={`/${locale}/contact`}
                 className="btn bg-white text-blue-600 hover:bg-blue-50 shadow-lg transition-all inline-block"
+                aria-label="Schedule a Virtual Consultation"
               >
                 Schedule a Virtual Consultation
               </Link>

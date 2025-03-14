@@ -1,16 +1,25 @@
 {
   "meta": {
     "title": "Aero Prosthetics - Soluciones Protésicas Avanzadas",
-    "description": "Aero Prosthetics ofrece soluciones protésicas y ortopédicas de vanguardia con atención personalizada y apoyo integral."
+    "description": "Aero Prosthetics ofrece soluciones protésicas y ortopédicas de vanguardia con atención personalizada y soporte integral."
   },
   "navigation": {
     "home": "Inicio",
     "about": "Nosotros",
-    "services": "Servicios",
-    "team": "Nuestro Equipo",
-    "locations": "Ubicaciones",
+    "solutions": "Soluciones",
+    "training": "Capacitación",
     "contact": "Contacto",
-    "resources": "Recursos para Pacientes"
+    "book_demo": "Reservar Demo",
+    "blog": "Blog",
+    "locations": "Ubicaciones"
+  },
+  "common": {
+    "home": "Inicio",
+    "services": "Nuestros Servicios",
+    "solutions": "Soluciones",
+    "about": "Sobre Nosotros",
+    "contact": "Contáctenos",
+    "bookDemo": "Reservar Demo"
   },
   "cta": {
     "requestInfo": "Solicitar Información",
@@ -38,7 +47,8 @@
     "home": "Volver al Inicio",
     "services": "Nuestros Servicios",
     "contactCta": "Contáctenos",
-    "backToServices": "Volver a Servicios"
+    "backToServices": "Volver a Servicios",
+    "book_demo": "Reservar Demo"
   },
   "home": {
     "hero": {
@@ -58,31 +68,31 @@
     },
     "differentiators": {
       "title": "Por Qué Elegir Aero Prosthetics",
-      "subtitle": "Descubra cómo nuestro enfoque premium en prótesis nos distingue y ofrece resultados excepcionales para nuestros pacientes.",
+      "subtitle": "Experimente la diferencia de nuestras soluciones protésicas avanzadas, respaldadas por innovación, experiencia y un compromiso de transformar vidas.",
       "learnMoreText": "Saber más",
       "items": [
         {
           "title": "Tecnología de Vanguardia",
-          "description": "Impresión 3D avanzada y diseños personalizados para un ajuste y función óptimos"
+          "description": "Prótesis pioneras impresas en 3D con optimización biomecánica para una comodidad y funcionalidad inigualables"
         },
         {
           "title": "Atención Personalizada",
-          "description": "Planes de tratamiento individualizados adaptados a sus necesidades únicas"
+          "description": "Soluciones diseñadas a medida según su estilo de vida, actividades y necesidades anatómicas específicas"
         },
         {
           "title": "Apoyo Integral",
-          "description": "Servicios completos de rehabilitación y asistencia continua"
+          "description": "Mantenimiento de por vida, ajustes regulares y servicios continuos de rehabilitación para un éxito duradero"
         },
         {
           "title": "Equipo Experimentado",
-          "description": "Especialistas con amplia formación y experiencia"
+          "description": "Especialistas certificados con credenciales avanzadas y décadas de experiencia clínica combinada"
         }
       ],
       "stats": [
-        { "value": "98%", "label": "Satisfacción del Paciente" },
-        { "value": "1,500+", "label": "Soluciones Personalizadas" },
-        { "value": "< 0.5%", "label": "Tasa de Devolución" },
-        { "value": "24/7", "label": "Soporte Disponible" }
+        { "value": "98%", "label": "Índice de Satisfacción" },
+        { "value": "1,500+", "label": "Soluciones Personalizadas Entregadas" },
+        { "value": "< 0.5%", "label": "Tasa de Ajustes Posteriores" },
+        { "value": "24/7", "label": "Soporte Clínico Disponible" }
       ]
     },
     "services": {
@@ -316,13 +326,7 @@
     "team": {
       "title": "Nuestro Equipo",
       "description": "Conozca a nuestro dedicado equipo de especialistas comprometidos con su cuidado",
-      "viewAll": "Conocer a Todo Nuestro Equipo",
-      "badge": "Nuestro Equipo Experto",
-      "meetTeam": "Conozca a Nuestro Equipo",
-      "teamIntro": "Nuestro equipo de profesionales certificados está dedicado a proporcionar atención protésica y ortopédica de la más alta calidad.",
-      "ctaTitle": "¿Listo para Trabajar con Nuestro Equipo?",
-      "ctaDescription": "Programe una consulta con uno de nuestros especialistas para discutir sus necesidades.",
-      "exploreServices": "Explorar Nuestros Servicios"
+      "viewAll": "Conocer a Todo Nuestro Equipo"
     },
     "history": {
       "title": "Nuestra Historia",
@@ -401,6 +405,59 @@
           "description": "Orientación sobre el uso y apoyo continuo para resultados óptimos"
         }
       ]
+    },
+    "benefits": {
+      "badge": "Ventajas Principales",
+      "title": "Por Qué Elegir Nuestras {service}",
+      "description": "Descubra cómo nuestras soluciones especializadas pueden mejorar su movilidad y calidad de vida.",
+      "keyBenefits": "Beneficios Clave",
+      "availableOptions": "Opciones Disponibles"
+    },
+    "technology": {
+      "badge": "Tecnología de Vanguardia",
+      "title": "Tecnología Avanzada",
+      "description": "Nuestro enfoque combina tecnología de vanguardia con atención personalizada para crear soluciones protésicas que realmente transforman vidas."
+    },
+    "gallery": {
+      "badge": "Historias de Éxito",
+      "title": "Vea Nuestras {service} en Acción",
+      "description": "Vea ejemplos de nuestras soluciones personalizadas diseñadas para diversas necesidades y estilos de vida.",
+      "imageAlt": "Imagen {number}",
+      "caseStudyTitle": "Caso de Estudio {number}",
+      "caseStudyDescription": "Una breve descripción de esta solución de {service} y sus beneficios únicos."
+    },
+    "journey": {
+      "badge": "Su Camino Adelante",
+      "title": "Su Viaje Protésico",
+      "description": "Proporcionamos apoyo integral durante todas las etapas de su viaje protésico.",
+      "step1": {
+        "title": "Consulta Inicial",
+        "description": "Nuestro equipo de expertos realizará una evaluación exhaustiva, discutirá sus objetivos y desarrollará un plan de tratamiento personalizado adaptado a sus necesidades específicas y requisitos de estilo de vida.",
+        "point1": "Historial médico y evaluación física",
+        "point2": "Discusión de objetivos y necesidades del estilo de vida",
+        "point3": "Verificación de seguro y planificación de cobertura"
+      },
+      "step2": {
+        "title": "Diseño y Fabricación",
+        "description": "Utilizando medidas precisas y escaneo digital, creamos un encaje personalizado y seleccionamos componentes adaptados a su anatomía única y requisitos funcionales.",
+        "point1": "Escaneo digital para mediciones precisas",
+        "point2": "Selección de componentes para una función óptima",
+        "point3": "Pruebas de encaje para optimización de la comodidad"
+      },
+      "step3": {
+        "title": "Ajuste y Entrenamiento",
+        "description": "Ajustamos meticulosamente su prótesis para garantizar una alineación, comodidad y función óptimas. Nuestros especialistas en rehabilitación trabajan con usted para desarrollar confianza en el uso de su nuevo dispositivo.",
+        "point1": "Alineación dinámica para una marcha óptima",
+        "point2": "Programa de entrenamiento progresivo para el desarrollo de habilidades",
+        "point3": "Entrenamiento especializado para sus actividades específicas"
+      },
+      "step4": {
+        "title": "Apoyo Continuo",
+        "description": "Nuestra relación continúa con chequeos regulares, ajustes y apoyo. A medida que sus necesidades cambian o la tecnología avanza, nos aseguramos de que su solución protésica siga mejorando su calidad de vida.",
+        "point1": "Mantenimiento regular y ajustes",
+        "point2": "Modificaciones a medida que cambia su cuerpo",
+        "point3": "Acceso a la tecnología e innovaciones más recientes"
+      }
     }
   },
   "team": {
@@ -413,28 +470,38 @@
     },
     "viewProfile": "Ver Perfil",
     "values": {
-      "title": "Valores de Nuestro Equipo",
-      "description": "Los principios que guían nuestro enfoque de atención al paciente",
+      "title": "Valores del Equipo",
+      "description": "Principios que guían nuestro trabajo diario",
       "items": [
         {
-          "title": "Experiencia",
-          "description": "Nuestro equipo mantiene el más alto nivel de conocimientos y habilidades profesionales"
+          "title": "Integridad",
+          "description": "Mantenemos los más altos estándares éticos en todo lo que hacemos"
+        },
+        {
+          "title": "Empatía",
+          "description": "Nos esforzamos por comprender profundamente las necesidades de cada paciente"
         },
         {
           "title": "Innovación",
-          "description": "Exploramos continuamente nuevas tecnologías y técnicas para mejorar los resultados"
+          "description": "Buscamos constantemente soluciones nuevas y mejoradas"
         },
         {
           "title": "Colaboración",
-          "description": "Trabajamos juntos en todas las disciplinas para proporcionar una atención integral"
+          "description": "Trabajamos juntos para lograr los mejores resultados para nuestros pacientes"
         }
       ]
     },
     "careers": {
-      "title": "Únase a Nuestro Equipo",
-      "description": "¿Interesado en una carrera con Aero Prosthetics? Siempre estamos buscando profesionales talentosos que compartan nuestro compromiso con la excelencia y la atención al paciente.",
+      "title": "Oportunidades de Carrera",
+      "description": "Únase a nuestro equipo de profesionales dedicados",
       "cta": "Contáctenos Sobre Carreras"
-    }
+    },
+    "badge": "Nuestro Equipo Experto",
+    "meetTeam": "Conozca a Nuestro Equipo",
+    "teamIntro": "Nuestro equipo de profesionales certificados está dedicado a proporcionar atención protésica y ortopédica de la más alta calidad.",
+    "ctaTitle": "¿Listo para Trabajar con Nuestro Equipo?",
+    "ctaDescription": "Programe una consulta con uno de nuestros especialistas para discutir sus necesidades.",
+    "exploreServices": "Explorar Nuestros Servicios"
   },
   "locations": {
     "title": "Nuestras Ubicaciones",
@@ -674,25 +741,104 @@
       "title": "Enlaces Rápidos",
       "home": "Inicio",
       "about": "Nosotros",
-      "services": "Servicios",
-      "team": "Nuestro Equipo",
-      "locations": "Ubicaciones",
+      "solutions": "Soluciones",
+      "training": "Formación",
       "contact": "Contacto",
-      "resources": "Recursos para Pacientes"
+      "book_demo": "Reservar Demo"
     },
     "locations": {
       "title": "Ubicaciones",
       "anaheim": "Anaheim Hills",
-      "victorville": "Victorville"
+      "victorville": "Victorville",
+      "anaheiml1": "5775 E Santa Ana Canyon Rd",
+      "anaheiml2": "Suite 110",
+      "anaheiml3": "Anaheim Hills, CA 92807",
+      "anaheimPhone": "+17147714233",
+      "anaheimPhoneFormatted": "(714) 771-4233",
+      "victorvillel1": "16534 Victor St",
+      "victorvillel2": "Suite 300",
+      "victorvillel3": "Victorville, CA 92395",
+      "victorvillePhone": "+17607801061",
+      "victorvillePhoneFormatted": "(760) 780-1061"
     },
     "social": {
       "title": "Conéctese Con Nosotros",
       "facebook": "Facebook",
       "instagram": "Instagram",
       "linkedin": "LinkedIn",
-      "youtube": "YouTube"
+      "youtube": "YouTube",
+      "facebookUrl": "https://facebook.com",
+      "instagramUrl": "https://instagram.com",
+      "linkedinUrl": "https://linkedin.com",
+      "youtubeUrl": "https://youtube.com"
+    },
+    "newsletter": {
+      "description": "Manténgase actualizado con las últimas noticias de Aero Prosthetics.",
+      "emailLabel": "Dirección de Correo Electrónico",
+      "emailPlaceholder": "Su correo electrónico",
+      "subscribe": "Suscribirse",
+      "subscribing": "Suscribiendo...",
+      "thankYou": "¡Gracias por suscribirse!",
+      "confirmation": "Recibirá nuestras últimas actualizaciones en su bandeja de entrada."
+    },
+    "subscriptionError": "No se pudo suscribir. Por favor, inténtelo de nuevo.",
+    "subscriptionErrorInvalidEmail": "Por favor, introduzca una dirección de correo electrónico válida.",
+    "subscriptionErrorNetwork": "Error de red. Por favor, compruebe su conexión e inténtelo de nuevo.",
+    "subscriptionErrorDuplicate": "Este correo electrónico ya está suscrito a nuestro boletín.",
+    "legal": {
+      "title": "Legal",
+      "privacy": "Política de Privacidad",
+      "terms": "Términos de Servicio",
+      "accessibility": "Accesibilidad"
+    },
+    "contact": {
+      "email": "info@aeroprosthetics.com",
+      "phone": "+17147714233",
+      "phoneFormatted": "(714) 771-4233"
     },
     "copyright": "© 2025 Aero Prosthetics. Todos los derechos reservados.",
     "language": "Idioma"
+  },
+  "NotFound": {
+    "meta": {
+      "title": "Página No Encontrada | Aero Prosthetics",
+      "description": "No pudimos encontrar la página que estás buscando. Por favor, navega a nuestra página principal o contáctanos para obtener ayuda."
+    },
+    "heading": "404 - Página No Encontrada",
+    "message": "Lo sentimos, no pudimos encontrar la página que estás buscando. Es posible que haya sido movida, eliminada o nunca haya existido. Vamos a ayudarte a volver al camino correcto.",
+    "homeButton": "Volver a la Página Principal",
+    "contactButton": "Contactar Soporte"
+  },
+  "blog": {
+    "meta": {
+      "title": "Blog de Aero Prosthetics - Últimas Noticias e Información",
+      "description": "Mantente actualizado con las últimas noticias, investigaciones e información sobre prótesis y ortesis del equipo de Aero Prosthetics."
+    },
+    "hero": {
+      "title": "Últimas Noticias e Información",
+      "subtitle": "Perspectivas expertas sobre innovaciones en prótesis y ortesis."
+    },
+    "filters": {
+      "all": "Todos los Artículos",
+      "categories": "Categorías",
+      "search": "Buscar artículos...",
+      "recentPosts": "Artículos Recientes",
+      "popularTags": "Etiquetas Populares"
+    },
+    "categories": {
+      "innovation": "Innovación",
+      "patientStories": "Historias de Pacientes",
+      "research": "Investigación y Desarrollo",
+      "events": "Eventos y Noticias",
+      "education": "Educación"
+    },
+    "readingTime": "{{time}} min de lectura",
+    "publishedOn": "Publicado el {{date}}",
+    "author": "Por {{name}}",
+    "relatedArticles": "Artículos Relacionados",
+    "continueReading": "Continuar Leyendo",
+    "loadMore": "Cargar Más Artículos",
+    "shareArticle": "Compartir este Artículo",
+    "backToBlog": "Volver al Blog"
   }
 }

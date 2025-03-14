@@ -6,6 +6,69 @@ const withNextIntl = createNextIntlPlugin("./src/lib/i18n/config.ts");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Add rewrites to support traditional sitemap.xml URL
+  async rewrites() {
+    return [
+      {
+        source: '/sitemap.xml',
+        destination: '/api/sitemap',
+      },
+    ];
+  },
+  // Enable HTTP/2 for better performance
+  poweredByHeader: false, // Remove the X-Powered-By header for security
+  compress: true, // Enable gzip compression
+  // Add cache headers for better performance
+  async headers() {
+    return [
+      {
+        // Apply these headers to all routes
+        source: '/:path*',
+        headers: [
+          {
+            key: 'X-DNS-Prefetch-Control',
+            value: 'on',
+          },
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=63072000; includeSubDomains; preload',
+          },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'SAMEORIGIN',
+          },
+          {
+            key: 'X-XSS-Protection',
+            value: '1; mode=block',
+          },
+        ],
+      },
+      {
+        // Cache static assets for a year
+        source: '/images/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          }
+        ],
+      },
+      {
+        // Cache CSS and JS for a month with revalidation
+        source: '/_next/static/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=2592000, stale-while-revalidate=86400',
+          }
+        ],
+      },
+    ];
+  },
   images: {
     domains: ['aero-prosthetics.vercel.app'], // Add domain for self-referencing images
     remotePatterns: [
@@ -20,12 +83,16 @@ const nextConfig = {
         pathname: "**",
       },
     ],
+    // Allow unoptimized image placeholders during development
+    unoptimized: process.env.NODE_ENV === 'development',
   },
   // SWC minify is enabled by default in Next.js 15.2
   // Add compiler options for better performance
   compiler: {
     // Remove console.log in production
     removeConsole: process.env.NODE_ENV === 'production',
+    // Enable styled-components
+    styledComponents: true,
   },
   // Optimize bundle size
   experimental: {
@@ -33,6 +100,12 @@ const nextConfig = {
     optimizeCss: true,
     // Optimize Next.js bundle size
     optimizePackageImports: ['next-intl'],
+    // Add bleeding-edge optimizations
+    optimisticClientCache: true,
+    // Improve code generation
+    swcPlugins: [
+      // Removed '@swc/plugin-optimize-react' plugin that's causing issues
+    ],
   },
   // Add webpack optimization for removing unused code
   webpack: (config, { dev, isServer }) => {

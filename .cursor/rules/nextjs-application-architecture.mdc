@@ -1,0 +1,112 @@
+---
+description: Guidelines for structuring and optimizing Next.js applications
+globs: */app/**/*.tsx, */pages/**/*.tsx, next.config.js
+alwaysApply: false
+---
+# Next.js Application Architecture
+
+## Rule Information
+- **Name**: Next.js Application Architecture
+- **Description**: Guidelines for structuring and optimizing Next.js applications
+
+## Next.js App Structure
+
+### App Router (Preferred)
+- Organize routes using the folder-based system
+- Implement page.tsx files for route components
+- Use layout.tsx for shared layouts
+- Implement loading.tsx and error.tsx for loading states and error handling
+- Utilize route groups for logical organization
+- Create proper metadata using metadata objects or generateMetadata function
+- Implement proper SEO with metadata
+
+### Directory Structure
+- Group related components in the components directory
+- Store reusable hooks in the hooks directory
+- Keep API utility functions in the lib directory
+- Place global styles in the styles directory
+- Organize page-specific components close to their pages
+- Use a consistent naming convention across the project
+
+## Server vs. Client Components
+
+### Server Components
+- Default to Server Components for most UI
+- Use Server Components for:
+  - Fetching data
+  - Accessing backend resources directly
+  - Keeping sensitive information on the server
+  - Large dependencies that shouldn't be sent to the client
+- Implement proper data fetching in Server Components
+- Export proper TypeScript types for fetched data
+
+### Client Components
+- Use the "use client" directive at the top of Client Components
+- Implement Client Components for:
+  - Interactive UI elements
+  - Event listeners
+  - useState, useEffect, and other client-side hooks
+  - Browser-only APIs
+- Keep Client Components as small and focused as possible
+- Use the boundary pattern between Server and Client Components
+
+## Data Fetching
+
+### Server-side Data Fetching
+- Use fetch with proper caching options in Server Components
+- Implement React's cache function for deduplication
+- Use revalidatePath/revalidateTag for on-demand revalidation
+- Implement proper error handling for fetch requests
+- Structure data fetching functions logically
+- Create reusable data fetching utilities
+
+### Client-side Data Fetching
+- Use SWR or React Query for client-side data fetching
+- Implement proper loading states
+- Handle errors gracefully
+- Use optimistic updates for better UX
+- Implement proper revalidation strategies
+
+## State Management
+
+- Use React Context for shared state across components
+- Implement Server Actions for form handling and mutations
+- Use URL state for shareable and bookmarkable state
+- Consider specialized state libraries for complex applications
+- Implement proper TypeScript for state
+- Design proper data flow between client and server
+
+## Routing and Navigation
+
+- Use the Link component for client-side navigation
+- Implement the useRouter hook for programmatic navigation
+- Use URL search params for filtering and sorting
+- Create dynamic routes for content-based pages
+- Implement proper parallel routes for complex layouts
+- Use intercepting routes for modal patterns
+
+## Optimization Techniques
+
+### Performance
+- Implement proper image optimization with next/image
+- Use font optimization with next/font
+- Apply Suspense boundaries for streaming
+- Implement proper code splitting
+- Use dynamic imports for large components
+- Monitor Core Web Vitals with proper tools
+
+### SEO
+- Implement proper metadata for all pages
+- Create a proper sitemap.xml
+- Implement robots.txt
+- Use canonical URLs for duplicate content
+- Create proper Open Graph and Twitter card metadata
+- Test SEO with proper tools
+
+## Deployment and Production
+- Configure proper environment variables
+- Implement proper error monitoring
+- Use analytics for user behavior tracking
+- Configure proper caching strategies
+- Implement proper CI/CD pipeline
+- Monitor performance in production 

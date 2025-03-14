@@ -1,0 +1,101 @@
+---
+description: Guidelines for safely and effectively modifying frontend code
+globs: 
+alwaysApply: true
+---
+# Code Modification Workflow
+
+## Rule Information
+- **Name**: Code Modification Workflow
+- **Description**: Guidelines for safely and effectively modifying frontend code
+
+## Before Modifying Code
+
+1. **Understand the Existing Architecture**
+   - Review component hierarchy and relationships
+   - Identify state management patterns in use
+   - Understand data flow between components
+   - Note prop interfaces and typing patterns
+   - Review styling methodology
+
+2. **Check for Similar Patterns**
+   - Search for similar features or components
+   - Review how similar problems are solved
+   - Identify reusable hooks or utilities
+   - Note naming conventions and code style
+
+3. **Plan the Changes**
+   - Determine which files need modification
+   - Plan new files needed, if any
+   - Map out state changes and data flow
+   - Consider edge cases and error states
+   - Plan for responsive behavior
+
+## Making Code Changes
+
+### General Rules
+- Never output code to the user unless requested; use code edit tools instead
+- Use code edit tools at most once per turn
+- Ensure generated code can be run immediately
+- Group edits to the same file in a single edit file call
+- Read existing code before editing unless making very small changes
+- Fix errors only when clear how to do so; avoid uneducated guesses
+- Maintain consistent styling with the existing codebase
+
+### New Components
+- Follow existing naming conventions
+- Implement proper TypeScript interfaces
+- Provide default props when appropriate
+- Include proper JSDoc comments
+- Ensure accessibility compliance
+- Consider performance implications
+- Test on various screen sizes
+
+### Modifying Existing Components
+- Preserve existing prop interfaces
+- Maintain backwards compatibility when possible
+- Add new features without breaking existing ones
+- Consider impact on dependent components
+- Preserve styling and theme consistency
+- Maintain consistent error handling patterns
+
+### State Management Changes
+- Follow existing state patterns (Redux, Context, etc.)
+- Preserve immutability principles
+- Update selectors and reducers correctly
+- Consider performance implications of state changes
+- Test with various state scenarios
+
+## After Making Changes
+
+- Verify changes with appropriate testing:
+  - Unit tests for isolated functionality
+  - Integration tests for component interactions
+  - End-to-end tests for critical user flows
+- Run linters to ensure code style compliance
+- Check for TypeScript errors
+- Verify browser compatibility
+- Test responsive behavior across device sizes
+
+## Common Frontend Modification Scenarios
+
+### Adding New Features
+1. Find similar features in the codebase
+2. Understand how they're implemented
+3. Follow the same patterns and conventions
+4. Integrate with existing state management
+5. Reuse existing components when possible
+
+### Fixing Bugs
+1. Understand the root cause
+2. Consider edge cases and side effects
+3. Add proper error handling
+4. Ensure type safety
+5. Add tests to prevent regression
+
+### Refactoring
+1. Make incremental changes
+2. Preserve functionality and interfaces
+3. Improve performance where possible
+4. Enhance readability and maintainability
+5. Update documentation and comments 

@@ -4,11 +4,11 @@ import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 
 const skeletonVariants = cva(
-  "animate-pulse bg-gray-200 dark:bg-gray-700 rounded overflow-hidden relative",
+  "animate-pulse bg-gray-200 rounded overflow-hidden relative",
   {
     variants: {
       variant: {
-        default: "bg-gray-200 dark:bg-gray-700",
+        default: "bg-gray-200",
         shimmer: "before:absolute before:inset-0 before:-translate-x-full before:animate-shimmer before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent",
       },
       size: {

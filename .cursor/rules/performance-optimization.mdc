@@ -1,0 +1,89 @@
+---
+description: Techniques for optimizing frontend performance and Core Web Vitals
+globs: *.tsx, *.jsx, *.js, *.ts
+alwaysApply: false
+---
+# Performance Optimization
+
+## Rule Information
+- **Name**: Performance Optimization
+- **Description**: Techniques for optimizing frontend performance and Core Web Vitals
+
+## Core Web Vitals
+
+### Largest Contentful Paint (LCP)
+- Optimize for fast initial rendering (under 2.5s)
+- Implement proper image optimization strategies
+- Use server-side rendering or static generation for critical pages
+- Optimize critical rendering path
+- Prioritize loading of above-the-fold content
+
+### First Input Delay (FID) / Interaction to Next Paint (INP)
+- Minimize JavaScript execution time
+- Break up long tasks into smaller chunks
+- Defer non-critical JavaScript
+- Optimize event handlers for frequent interactions
+- Use web workers for complex calculations
+
+### Cumulative Layout Shift (CLS)
+- Set explicit dimensions for images and media elements
+- Reserve space for dynamic content
+- Avoid inserting content above existing content
+- Use transform animations instead of layout-triggering properties
+- Implement proper font loading strategies
+
+## JavaScript Optimization
+
+- Implement code-splitting with dynamic imports
+- Use tree-shaking to eliminate unused code
+- Minimize and optimize dependencies
+- Implement proper bundling strategies
+- Apply module/nomodule pattern for modern browsers
+- Use proper memoization techniques:
+  - React.memo for expensive components
+  - useCallback for callback functions
+  - useMemo for expensive calculations
+
+## Resource Optimization
+
+### Images and Media
+- Use modern image formats (WebP, AVIF)
+- Implement responsive images with srcset and sizes
+- Lazy-load offscreen images
+- Apply proper compression techniques
+- Consider using image CDNs for optimization
+
+### Fonts
+- Use font-display: swap or optional
+- Preload critical fonts
+- Limit font families and weights
+- Use system font fallbacks
+- Consider variable fonts for multiple weights
+
+### CSS and JS
+- Minimize and compress all assets
+- Use code splitting for routes and features
+- Implement critical CSS extraction
+- Avoid render-blocking resources
+- Use service workers for caching
+
+## Rendering Strategies
+
+- Use appropriate rendering method based on content type:
+  - Static Generation (SSG) for stable content
+  - Server-Side Rendering (SSR) for dynamic, SEO-critical content
+  - Client-Side Rendering (CSR) for highly interactive, personalized interfaces
+  - Incremental Static Regeneration (ISR) for content that changes occasionally
+
+- For large lists and tables:
+  - Implement virtualization (react-window, react-virtualized)
+  - Use pagination for large datasets
+  - Implement infinite scrolling with proper throttling
+
+## Monitoring and Analysis
+
+- Use Lighthouse for general performance auditing
+- Implement Web Vitals monitoring in production
+- Analyze bundle sizes with tools like Webpack Bundle Analyzer
+- Set up performance budgets for critical metrics
+- Monitor real user metrics (RUM) for actual user experience 

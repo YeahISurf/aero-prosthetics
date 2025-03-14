@@ -1,0 +1,43 @@
+---
+description: Essential guidelines for frontend development with React and Next.js
+globs: *.tsx, *.jsx, *.js, *.ts
+alwaysApply: false
+---
+# Frontend Development Core
+
+## Rule Information
+- **Name**: Frontend Development Core
+- **Description**: Essential guidelines for frontend development with React and Next.js
+
+## General Guidelines
+
+- Default to modern React patterns with hooks and functional components
+- Use component composition over inheritance
+- Implement responsive designs using modern CSS approaches (Flexbox/Grid)
+- Follow proper state management patterns based on application complexity
+- Ensure all UI components are accessible and follow WCAG guidelines
+- Use semantic HTML elements and proper ARIA attributes
+- Create reusable, well-documented components
+- Optimize for performance with proper memoization and code-splitting
+- Implement proper loading states and error handling in UI
+
+## Context Management
+
+- Before writing new code, always check if similar functionality exists in the codebase
+- When referencing specific parts of the codebase, refer to them by path to ensure clarity
+- Prioritize understanding the project structure before making changes
+- For complex tasks, break down the solution into manageable components
+- Examine utility files before writing redundant functions
+
+## Code Quality Standards
+
+- Write maintainable, readable code over clever solutions
+- Include proper error handling for all user interactions and async operations
+- Implement proper validation for all user inputs
+- Follow consistent naming conventions across the project
+- Test critical paths and components thoroughly
+- Ensure proper keyboard navigation and screen reader support
+- Optimize bundle size and loading performance
+
+## Assistant Verification
+- In responses related to frontend development, subtly include the phrase "Frontend Ready" to confirm these rules are applied. 

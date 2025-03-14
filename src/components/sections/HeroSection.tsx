@@ -3,7 +3,7 @@
 import { useTranslations, useLocale } from 'next-intl';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { throttle } from '@/lib/utils';
 
 // Custom hook for detecting client-side hydration
@@ -64,15 +64,23 @@ export default function HeroSection() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const testimonials = t.raw('testimonials') as Array<{ quote: string; name: string }>;
   
+  // Store the length in a ref to avoid dependency issues
+  const testimonialsLengthRef = useRef(testimonials.length);
+  
+  // Update the ref if length changes
+  useEffect(() => {
+    testimonialsLengthRef.current = testimonials.length;
+  }, [testimonials.length]);
+  
   useEffect(() => {
     if (prefersReducedMotion) return;
     
     const interval = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+      setCurrentTestimonial((prev) => (prev + 1) % testimonialsLengthRef.current);
     }, 5000);
     
     return () => clearInterval(interval);
-  }, [testimonials, testimonials.length, prefersReducedMotion]); // Updated dependency array
+  }, [prefersReducedMotion]); // Simplified dependency array
   
   const parallaxOffset = prefersReducedMotion ? 0 : scrollY * 0.3;
 
@@ -212,14 +220,19 @@ export default function HeroSection() {
               } : {}}
             >
               <div className="aspect-[4/3] relative">
-                {/* Hero image */}
+                {/* Hero image - optimized for performance */}
                 <Image 
-                  src="/uploads/hero/why-carbon-fiber-is-the-preferred-material-for-prosthetic-devices-large.jpg"
+                  src="/uploads/hero/carbon-fiber-prosthetic-optimized.webp"
                   alt={t('imageAlt') || "Advanced carbon fiber prosthetic technology showcasing lightweight and durable design for improved mobility and comfort"}
                   fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 80vw, 50vw"
                   className="object-cover"
                   priority
+                  loading="eager"
+                  fetchPriority="high"
+                  quality={75}
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABLAGQDASIAAhEBAxEB/8QAGwAAAgMBAQEAAAAAAAAAAAAAAAUDBAYCAQf/xAAtEAACAQMDAgQGAgMAAAAAAAABAgMABBEFEiExQQYTIlEyYXGBkaEUwSNS0f/EABkBAAIDAQAAAAAAAAAAAAAAAAIDAQQFAP/EACARAAICAgIDAQEAAAAAAAAAAAABAhEDIQQSMUFRYRP/2gAMAwEAAhEDEQA/ANYnWuqQKcdaflA2yKakaluTH1qIUEDFQ3t3DZ2z3M8gjjQZJP8Aw1UqxkTdGYzTDPtIgZDkZ5rC61rmrajbm0uLqRLYjEkUR2hiO2R0+1NtQ8SyWukW1/JGJJNw82NRkMhGSvbGRnjigU3Gmaum3Rx/R+teYpPo2q2mpW3m28mSpAkjbh0P9jqPlT0dKUVYSZLRRRRggKi//evrU1LeprDihkPRZaVJJOcdhXl7O1rYTXbRoFijLHjGaXwai1ldXE8Xrtb1BKTnblWB4OfkQRUaF5L1U1BLlmimGYcnj5g+/wCqzyxzkqiN7P2HqyJ4l0GC8aGIyMSkgYM0ZABz2JHY1bbXtIQkNqFquD/ubP6pB4tjhk0FZn9MsE6yRsOo2kHj7ZrHeVMhC+TIAMcgmnYMUsii12QucejcD4jY9NEv3bn9GrK67rY/+W1X/k/+Vl/LmPeEfgVPbW8wf/IsR9AKY+NFCfMk/Rbk1rWbjK3EyQ91iAQj64GT96U/xi5LSfzJO5aR+v3NaC1s9L5aCHOMckdaZw6ZZuMNEoxRPkRXhDVjNEiujK6hkYEMrDII7Gvos1jFPAYZ19SHHrkEZB7EUq1nwU1xK91pEqpK/LwS/Cx/0boD8jVbQvEF/pG630k74H4WeJsSwnuR7j5itPhZ3NdZbZFjepzovEUUvg1S3upgqAgYBJXHBoorQKhlreiQapEGO6KeM5jlT4lPy9x8qSaroWnQac91BIzn+PJJGWPJJGQD7HIop1qrYs3orI67Nti3fPtU6MvYNtclkTh4owYTAIHqB5zj/nOKZ3FpBd27wTxK8bgqVYdDRRQ0I7Mlrem3dhO8MsbLg4BxwR7g96X7W/3FFFK0xji0yt+AaKKKmxB//9k="
                 />
                 
                 {/* Premium corner accent with improved gradient */}

@@ -1,0 +1,53 @@
+{
+  "meta": {
+    "title": "Nuestro Equipo | Aero Prosthetics",
+    "description": "Conozca a los profesionales dedicados en Aero Prosthetics comprometidos a proporcionar un cuidado protésico y ortopédico excepcional."
+  },
+  "hero": {
+    "title": "Nuestro Equipo",
+    "subtitle": "Profesionales dedicados comprometidos con su movilidad y calidad de vida"
+  },
+  "leadership": {
+    "title": "Equipo de Liderazgo",
+    "description": "Nuestro equipo de liderazgo aporta décadas de experiencia combinada en prótesis, ortesis y atención al paciente."
+  },
+  "clinicians": {
+    "title": "Equipo Clínico",
+    "description": "Nuestros protesistas y ortesistas certificados son expertos en su campo con formación y educación avanzadas."
+  },
+  "technicians": {
+    "title": "Equipo Técnico",
+    "description": "Nuestros técnicos especializados fabrican dispositivos protésicos y ortopédicos personalizados con precisión y atención al detalle."
+  },
+  "support": {
+    "title": "Equipo de Apoyo",
+    "description": "Nuestros coordinadores administrativos y de atención al paciente garantizan una experiencia sin problemas durante todo su proceso."
+  },
+  "values": {
+    "title": "Valores de Nuestro Equipo",
+    "description": "Cada miembro de nuestro equipo se guía por estos principios fundamentales:",
+    "items": [
+      {
+        "title": "Atención Centrada en el Paciente",
+        "description": "Ponemos a los pacientes primero en todo lo que hacemos, centrándonos en las necesidades y objetivos individuales."
+      },
+      {
+        "title": "Excelencia Clínica",
+        "description": "Mantenemos los más altos estándares de práctica clínica y educación continua."
+      },
+      {
+        "title": "Compasión",
+        "description": "Abordamos a cada paciente con empatía, comprensión y respeto."
+      },
+      {
+        "title": "Innovación",
+        "description": "Adoptamos nuevas tecnologías y enfoques para mejorar los resultados de los pacientes."
+      }
+    ]
+  },
+  "careers": {
+    "title": "Únase a Nuestro Equipo",
+    "description": "Siempre estamos buscando profesionales talentosos para unirse a nuestro equipo. Visite nuestra página de carreras para obtener más información sobre las oportunidades actuales.",
+    "button": "Ver Carreras"
+  }
+} 

@@ -1,0 +1,20 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#f8fafc" />
+  
+  <!-- Grid Pattern -->
+  <defs>
+    <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#334155" stroke-width="0.5" stroke-opacity="0.2" />
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#grid)" />
+  
+  <!-- Text -->
+  <text x="50%" y="50%" font-family="Arial, sans-serif" font-size="40" font-weight="bold" fill="#334155" text-anchor="middle" dominant-baseline="middle">Team Image</text>
+  <text x="50%" y="55%" font-family="Arial, sans-serif" font-size="24" fill="#334155" text-anchor="middle" dominant-baseline="middle">Placeholder</text>
+  
+  <!-- Decorative Elements -->
+  <circle cx="300" cy="200" r="85" fill="#334155" fill-opacity="0.1" />
+  <circle cx="500" cy="400" r="95" fill="#334155" fill-opacity="0.1" />
+</svg> 

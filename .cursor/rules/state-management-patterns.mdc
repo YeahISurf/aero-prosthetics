@@ -1,0 +1,79 @@
+---
+description: Guidelines for different state management approaches based on complexity
+globs: *store*.ts, *context*.tsx, *reducer*.ts, *state*.ts, */hooks/use*.ts
+alwaysApply: false
+---
+# State Management Patterns
+
+## Rule Information
+- **Name**: State Management Patterns
+- **Description**: Guidelines for different state management approaches based on complexity
+
+## State Classification
+
+- **UI State**: Visual/interaction state like toggles, form inputs, animations
+- **Client State**: Local application state that doesn't require server persistence
+- **Server State**: Data from external APIs, requiring synchronization
+- **URL State**: State reflected in and derived from the URL
+- **Form State**: Special category for handling complex forms and validation
+
+## Selecting the Right Approach
+
+### Local Component State
+- **When to use**: For component-specific UI state
+- **Implementation**: `useState` or `useReducer` hooks
+- **Best practices**:
+  - Keep state as close as possible to where it's used
+  - Avoid unnecessary state, derive values when possible
+  - Use `useReducer` for complex state logic
+  - Initialize state properly with meaningful defaults
+
+### Shared/Context State
+- **When to use**: For state shared between multiple components
+- **Implementation**: React Context with proper provider structure
+- **Best practices**:
+  - Create focused contexts for different concerns
+  - Implement proper memoization to prevent unnecessary re-renders
+  - Use context sparingly for truly shared state
+  - Consider code-splitting contexts for better performance
+
+### Application State
+- **When to use**: For complex global state needs
+- **Implementation options**:
+  - **Redux with Redux Toolkit**: For large applications with complex state interactions
+  - **Zustand**: For simpler global state needs with minimal boilerplate
+  - **Jotai/Recoil**: For atomic, granular state management
+- **Best practices**:
+  - Follow immutability principles
+  - Organize state logically by domain/feature
+  - Use proper selectors for performance
+  - Implement proper middleware for side effects
+
+### Server/API State
+- **When to use**: For data from external sources requiring caching, refetching
+- **Implementation options**:
+  - **React Query/SWR**: For managing server state with caching and synchronization
+  - **Apollo Client**: For GraphQL data
+- **Best practices**:
+  - Implement proper loading and error states
+  - Set up intelligent caching and invalidation
+  - Use optimistic updates for better UX
+  - Handle offline scenarios appropriately
+
+## Form State Management
+
+- Use specialized form libraries for complex forms:
+  - **React Hook Form**: Performance-focused with uncontrolled components
+  - **Formik**: More controlled approach with comprehensive validation
+  - **Zod**: For robust schema validation
+- Implement proper validation strategies
+- Handle form submission and error states consistently
+- Consider field-level vs. form-level validation needs
+
+## State Management Anti-Patterns
+
+- Avoid prop drilling through more than 2-3 levels
+- Don't use global state for component-specific concerns
+- Prevent redundant copies of the same state
+- Avoid direct DOM manipulation for state changes
+- Don't mix different state management solutions unnecessarily 

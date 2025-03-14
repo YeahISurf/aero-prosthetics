@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { defaultImageLoader, shouldLazyLoad } from '@/lib/performance/imageLoader';
 import { cva, type VariantProps } from 'class-variance-authority';
@@ -117,7 +117,12 @@ export default function OptimizedImage({
 
   // Set up intersection observer for lazy loading
   useEffect(() => {
-    if (!lazy || isIntersecting) return;
+    if (!lazy || isIntersecting || typeof window === 'undefined') return;
+
+    // Create a stable reference to the element
+    const elementRef = containerRef.current;
+    
+    if (!elementRef) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -129,25 +134,28 @@ export default function OptimizedImage({
       { rootMargin: '200px' } // Start loading when image is 200px from viewport
     );
 
-    const currentElement = document.querySelector(`[data-image-id="${src}"]`);
-    if (currentElement) {
-      observer.observe(currentElement);
-    }
+    // Observe the container element directly instead of using querySelector
+    observer.observe(elementRef);
 
     return () => {
+      if (elementRef) {
+        observer.unobserve(elementRef);
+      }
       observer.disconnect();
     };
   }, [src, lazy, isIntersecting]);
 
+  // Create a ref for the container element
+  const containerRef = useRef<HTMLDivElement>(null);
 
   // Only render the image if it's high priority or has intersected the viewport
   const shouldRender = !lazy || isIntersecting;
 
   return (
     <div
+      ref={containerRef}
       className={`relative overflow-hidden ${containerClassName} ${aspect ? imageVariants({ aspect }) : ''}`}
       style={{ width: width || 'auto', height: height || 'auto' }}
-      data-image-id={src}
     >
       {shouldRender && (
         <Image

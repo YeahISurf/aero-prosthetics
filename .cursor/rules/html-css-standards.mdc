@@ -1,0 +1,103 @@
+---
+description: Accessibility and semantic markup guidelines
+globs: *.html, *.css, *.scss
+alwaysApply: false
+---
+# HTML/CSS Standards
+
+## Rule Information
+- **Name**: HTML/CSS Standards
+- **Description**: Accessibility and semantic markup guidelines for frontend development
+
+## Semantic HTML
+
+### Document Structure
+- Use proper document outline with appropriate heading levels
+- Implement landmarks for screen readers:
+  - `<header>`, `<main>`, `<nav>`, `<footer>`, `<aside>`
+  - `<section>` with proper headings
+  - `<article>` for self-contained content
+- Use proper sectioning elements to create logical document structure
+- Implement metadata with appropriate tags
+
+### Content Elements
+- Use `<p>` for paragraphs, not for spacing
+- Implement proper lists with `<ul>`, `<ol>`, and `<li>`
+- Use `<figure>` and `<figcaption>` for media with captions
+- Apply `<blockquote>` for quoted content
+- Use `<code>`, `<pre>`, and `<kbd>` for code and keyboard input
+- Implement `<details>` and `<summary>` for expandable content
+
+### Interactive Elements
+- Use `<button>` for actions, `<a>` for navigation
+- Implement proper form controls with appropriate types
+- Use `<label>` elements connected to inputs via 'for' attribute
+- Group related form elements with `<fieldset>` and `<legend>`
+- Implement proper data tables with `<caption>`, `<thead>`, `<tbody>`, `<th scope="col/row">`
+
+## Accessibility (WCAG)
+
+### Core Principles
+- **Perceivable**: Information must be presentable in ways all users can perceive
+- **Operable**: Interface elements must be operable by all users
+- **Understandable**: Information and operation must be understandable
+- **Robust**: Content must be robust enough to work with various assistive technologies
+
+### Practical Implementation
+- Add proper alt text to all meaningful images
+- Implement proper ARIA roles and attributes where needed
+- Ensure sufficient color contrast (4.5:1 for normal text, 3:1 for large text)
+- Provide visible focus states for interactive elements
+- Implement keyboard navigation for all interactive elements
+- Use appropriate text sizes (minimum 16px body text)
+- Avoid communicating information through color alone
+- Implement proper form validation with clear error messages
+- Add screen reader only text (`sr-only` class) where needed
+- Create accessible modal dialogs with proper focus management
+
+### ARIA Usage
+- Use ARIA attributes judiciously; native HTML semantics are preferred
+- Implement common patterns:
+  - aria-label, aria-labelledby for non-visible labels
+  - aria-describedby for additional descriptions
+  - aria-expanded for disclosure widgets
+  - aria-controls to associate controls with content
+  - aria-live regions for dynamic content updates
+- Add proper role attributes when HTML semantics are insufficient
+
+## CSS Best Practices
+
+### Organization
+- Group related properties together
+- Follow a consistent order:
+  1. Positioning and layout
+  2. Display and box model
+  3. Typography
+  4. Visual styles
+  5. Animations and transitions
+- Use comments to create logical sections
+- Implement consistent naming conventions (BEM, SMACSS, etc.)
+
+### Responsive Design
+- Use mobile-first approach
+- Implement flexible layouts with percentages, flexbox, and grid
+- Use media queries for breakpoints
+- Avoid fixed dimensions that break layouts
+- Consider device pixel density for images
+- Test on various viewport sizes
+
+### Performance
+- Minimize specificity of selectors
+- Avoid expensive properties (box-shadow, filter, etc.) on animated elements
+- Use transform and opacity for animations
+- Implement critical CSS
+- Avoid excessive nesting in preprocessors
+- Use will-change sparingly and appropriately
+
+### Maintainability
+- Use CSS custom properties for theming and reusable values
+- Implement logical property names where supported
+- Create reusable utility classes for common patterns
+- Document complex or non-obvious CSS
+- Implement consistent naming patterns
+- Use relative units (rem, em) for better accessibility 

@@ -1,0 +1,92 @@
+---
+description: CSS and styling conventions for consistent, maintainable UI development
+globs: *.css, *.scss, *.styled.*, *.styles.*
+alwaysApply: false
+---
+# Styling Best Practices
+
+## Rule Information
+- **Name**: Styling Best Practices
+- **Description**: CSS and styling conventions for consistent, maintainable UI development
+
+## Styling Approaches
+
+### CSS-in-JS
+- **When to use**: For component libraries and design systems
+- **Options**:
+  - **Styled-components**: For complete component styling
+  - **Emotion**: For flexible styling with theming
+- **Best practices**:
+  - Keep styles co-located with components
+  - Implement proper theming with ThemeProvider
+  - Use props for dynamic styling
+  - Avoid excessive nested selectors
+
+### CSS Modules
+- **When to use**: For larger applications and teams
+- **Best practices**:
+  - Organize styles by component
+  - Use composition for shared styles
+  - Keep selectors simple and flat
+  - Use camelCase naming for consistent JS usage
+
+### Utility-First CSS
+- **When to use**: For rapid development and consistent constraints
+- **Options**:
+  - **Tailwind CSS**: For comprehensive utility classes
+- **Best practices**:
+  - Use consistent spacing and sizing scale
+  - Extract common patterns to components
+  - Use variants for responsive and state changes
+  - Follow project conventions for class order
+
+## Design System Implementation
+
+- **Design Tokens**
+  - Create and use variables for colors, spacing, typography
+  - Implement a consistent scale system (4px or 8px grid)
+  - Document token usage and purpose
+  - Ensure proper contrast ratios for accessibility
+
+- **Spacing and Layout**
+  - Use consistent spacing scale
+  - Implement layout components for common patterns
+  - Use Flexbox and Grid for complex layouts
+  - Ensure proper container queries or media queries for responsiveness
+
+- **Typography**
+  - Define a clear type scale
+  - Limit font families and weights
+  - Use relative units (rem, em) for font sizes
+  - Implement proper line-height and letter-spacing
+
+- **Color Usage**
+  - Define semantic color variables (primary, secondary, etc.)
+  - Ensure proper contrast for accessibility
+  - Implement consistent hover/focus states
+  - Support both light and dark modes
+
+## Responsive Design
+
+- Use mobile-first approach
+- Implement proper breakpoints for different device sizes
+- Avoid fixed dimensions that can break layouts
+- Test layouts across various viewport sizes
+- Use container queries for component-level responsiveness
+
+## Animation and Transitions
+
+- Use CSS transitions for simple state changes
+- Implement keyframes for complex animations
+- Consider reduced motion preferences
+- Keep animations subtle and purposeful
+- Use consistent timing functions and durations
+
+## CSS Best Practices
+
+- Organize properties in logical groups
+- Avoid `!important` unless absolutely necessary
+- Use CSS variables for theme-able properties
+- Follow consistent naming conventions
+- Minimize specificity conflicts
+- Consider print styles for content-heavy pages 

@@ -23,6 +23,7 @@ export default function PullToRefresh({
   releaseText = "Release to refresh",
   refreshingText = "Refreshing...",
 }: PullToRefreshProps) {
+  const [mounted, setMounted] = useState(false);
   const [pullDistance, setPullDistance] = useState(0);
   const [refreshing, setRefreshing] = useState(false);
   const startY = useRef(0);
@@ -31,9 +32,14 @@ export default function PullToRefresh({
   const router = useRouter();
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // Mark component as mounted
   useEffect(() => {
-    // Only enable on touch devices
-    if (disabled || typeof window === 'undefined' || !('ontouchstart' in window)) {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    // Only enable on touch devices and only after client-side mounting
+    if (!mounted || disabled || typeof window === 'undefined' || !('ontouchstart' in window)) {
       return;
     }
 
@@ -58,7 +64,9 @@ export default function PullToRefresh({
       const resistance = 0.5;
       const newPullDistance = Math.min(maxPullDistance, delta * resistance);
       
-      if (newPullDistance > 0) {
+      // Only prevent default if we're actually pulling down and we're at the top of the page
+      if (newPullDistance > 0 && window.scrollY <= 0) {
+        // Only preventDefault when we're actually pulling down
         e.preventDefault();
         setPullDistance(newPullDistance);
       }
@@ -113,7 +121,7 @@ export default function PullToRefresh({
       container.removeEventListener('touchend', handleTouchEnd);
       container.removeEventListener('touchcancel', handleTouchCancel);
     };
-  }, [disabled, maxPullDistance, pullDistance, threshold, router]);
+  }, [mounted, disabled, maxPullDistance, pullDistance, threshold, router]);
   
   // Calculate indicator position and label text
   const indicatorHeight = 60;
@@ -127,9 +135,9 @@ export default function PullToRefresh({
       : pullText;
   
   return (
-    <div ref={containerRef} className="relative pull-to-refresh min-h-screen">
-      {/* Pull indicator */}
-      {!disabled && (pullDistance > 0 || refreshing) && (
+    <div ref={containerRef} className="relative min-h-screen">
+      {/* Pull indicator - only shown on client after mounting */}
+      {mounted && !disabled && (pullDistance > 0 || refreshing) && (
         <div 
           className="absolute left-0 right-0 flex flex-col items-center justify-center overflow-hidden z-10 bg-gray-100 transition-transform duration-300 ease-out"
           style={{ 
@@ -151,8 +159,8 @@ export default function PullToRefresh({
       {/* Content container */}
       <div
         style={{ 
-          transform: pullDistance > 0 ? `translateY(${pullDistance}px)` : 'none',
-          transition: pulling.current ? 'none' : 'transform 300ms ease-out',
+          transform: mounted && pullDistance > 0 ? `translateY(${pullDistance}px)` : 'none',
+          transition: mounted && pulling.current ? 'none' : 'transform 300ms ease-out',
         }}
       >
         {children}

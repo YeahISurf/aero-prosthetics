@@ -12,33 +12,70 @@ export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [retries, setRetries] = useState(0);
+  const maxRetries = 3;
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
+    getValues,
   } = useForm<ContactFormData>({
     resolver: yupResolver(contactSchema),
   });
+
+  const handleRetry = () => {
+    if (retries < maxRetries) {
+      setRetries(prev => prev + 1);
+      setSubmitError(false);
+      setErrorMessage('');
+      onSubmit(getValues());
+    } else {
+      setErrorMessage(t('maxRetriesReached'));
+    }
+  };
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
     setSubmitSuccess(false);
     setSubmitError(false);
+    setErrorMessage('');
 
     try {
       // This would be replaced with an actual API call in production
       console.log('Form data:', data);
       
       // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise((resolve, reject) => {
+        setTimeout(() => {
+          // Simulate random failures for testing error handling
+          if (process.env.NODE_ENV === 'development' && Math.random() > 0.8) {
+            reject(new Error('Simulated network error'));
+          } else {
+            resolve(true);
+          }
+        }, 1000);
+      });
       
       setSubmitSuccess(true);
+      setRetries(0);
       reset();
     } catch (error) {
       console.error('Error submitting form:', error);
       setSubmitError(true);
+      
+      // Set appropriate error message based on error type
+      if (error instanceof Error) {
+        if (error.message.includes('network')) {
+          setErrorMessage(t('networkError'));
+        } else {
+          setErrorMessage(error.message || t('error'));
+        }
+      } else {
+        setErrorMessage(t('error'));
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -55,8 +92,17 @@ export default function ContactForm() {
       )}
 
       {submitError && (
-        <div className="mb-6 p-4 bg-secondary-red-500/10 text-secondary-red-500 rounded-md">
-          {t('error')}
+        <div className="mb-6 p-4 bg-secondary-red-500/10 text-secondary-red-500 rounded-md flex flex-col">
+          <p>{errorMessage || t('error')}</p>
+          {retries < maxRetries && (
+            <button
+              type="button"
+              onClick={handleRetry}
+              className="mt-2 self-start text-sm font-medium underline hover:text-secondary-red-600"
+            >
+              {t('retry')}
+            </button>
+          )}
         </div>
       )}
 
@@ -299,13 +345,28 @@ export default function ContactForm() {
           </div>
         </div>
 
-        <div>
+        <div className="mt-8">
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full md:w-auto btn-primary"
+            className={`inline-flex items-center justify-center px-6 py-3 rounded-lg bg-gradient-to-r from-primary-500 to-primary-600 text-white font-semibold shadow-lg hover:shadow-xl hover:from-primary-600 hover:to-primary-700 transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:ring-offset-2 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100 ${isSubmitting ? 'cursor-not-allowed' : ''}`}
           >
-            {isSubmitting ? 'Submitting...' : t('submit')}
+            {isSubmitting ? (
+              <span className="flex items-center">
+                <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                {t('submitting')}
+              </span>
+            ) : (
+              <span className="flex items-center">
+                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                </svg>
+                {t('submit')}
+              </span>
+            )}
           </button>
         </div>
       </form>

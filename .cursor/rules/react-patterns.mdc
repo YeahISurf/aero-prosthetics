@@ -1,0 +1,121 @@
+---
+description: Modern React development patterns and best practices
+globs: *.jsx, *.tsx, */react/**/*
+alwaysApply: false
+---
+# React Patterns
+
+## Rule Information
+- **Name**: React Patterns
+- **Description**: Modern React development patterns and best practices
+
+## Component Architecture
+
+### Functional Components
+- Use function components with hooks over class components
+- Keep components focused on a single responsibility
+- Extract complex logic to custom hooks
+- Implement proper TypeScript interfaces for props
+- Use default props for optional parameters
+- Destructure props at the beginning of components
+- Keep components small and focused (<200 lines as guideline)
+
+### Component Organization
+- Group related components in directories
+- Create index.ts files for clean exports
+- Implement barrel exports for component libraries
+- Co-locate related files (styles, tests, utilities)
+- Use a consistent naming convention (PascalCase for components)
+- Create subcomponents for complex UI elements
+
+### Component Composition
+- Use composition over inheritance
+- Pass children props for flexible components
+- Implement render props pattern for reusable logic
+- Use higher-order components judiciously
+- Apply compound components pattern for related UI elements
+- Implement proper TypeScript for component composition
+
+## Hooks
+
+### Built-in Hooks
+- Use useState for simple component state
+- Apply useReducer for complex state logic
+- Implement useContext for shared state across components
+- Use useEffect for side effects with proper cleanup
+- Apply useRef for DOM references and persistent values
+- Implement useMemo for expensive calculations
+- Use useCallback for functions passed as props
+- Apply useLayoutEffect for DOM measurements
+
+### Custom Hooks
+- Extract reusable logic to custom hooks
+- Name hooks with 'use' prefix
+- Return values in a predictable format
+- Implement proper TypeScript for hook returns
+- Document hook usage and parameters
+- Group related hook logic
+- Test hooks independently
+
+## State Management
+
+### Local State
+- Use useState for simple component state
+- Apply useReducer for complex state transitions
+- Initialize state with proper defaults
+- Avoid derived state when possible
+- Update state immutably
+- Group related state variables
+
+### Context API
+- Create context with meaningful default values
+- Split contexts by domain/concern
+- Implement proper TypeScript for context values
+- Use context providers at appropriate levels
+- Optimize context to prevent unnecessary re-renders
+- Create custom hooks for accessing context
+
+### External State Management
+- Use libraries like Redux, Zustand, or Jotai appropriately
+- Follow library-specific best practices
+- Implement proper TypeScript for state
+- Separate state access from components
+- Create selectors for derived state
+- Implement proper testing for state logic
+
+## Performance Optimization
+
+### Component Memoization
+- Use React.memo for expensive pure components
+- Apply useMemo for expensive calculations
+- Implement useCallback for callback functions
+- Avoid premature optimization
+- Measure performance before and after optimization
+- Use profiling tools to identify bottlenecks
+
+### Rendering Optimization
+- Keep render methods pure and focused
+- Avoid unnecessary re-renders
+- Use key props correctly in lists
+- Implement virtualization for long lists
+- Use lazy loading for components with React.lazy
+- Apply proper Suspense boundaries
+
+## Forms and User Input
+
+- Use controlled components for form elements
+- Implement uncontrolled components when appropriate
+- Use form libraries for complex forms (Formik, React Hook Form)
+- Implement proper validation with libraries like Zod or Yup
+- Handle form submission asynchronously
+- Provide proper feedback for form state
+- Implement accessible form elements
+
+## Error Handling
+
+- Use error boundaries for component errors
+- Implement try/catch for async operations
+- Provide meaningful error messages
+- Create fallback UI for error states
+- Log errors appropriately
+- Implement proper TypeScript for error handling 

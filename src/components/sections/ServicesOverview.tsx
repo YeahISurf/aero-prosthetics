@@ -3,7 +3,17 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ANIMATION_DELAYS } from '@/lib/utils';
 
-// SVG icons for each service
+// Define placeholder images for services - will be replaced with actual images later
+const SERVICE_IMAGES = [
+  '/placeholders/lower-limb-placeholder.svg',
+  '/placeholders/upper-limb-placeholder.svg',
+  '/placeholders/pediatric-placeholder.svg',
+  '/placeholders/orthotics-placeholder.svg',
+  '/placeholders/compression-placeholder.svg',
+  '/placeholders/mastectomy-placeholder.svg',
+];
+
+// SVG icons for each service - keeping array for reference but not using in UI
 const serviceIcons = [
   // Lower Limb Prosthetics
   <svg key="lower-limb" xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -73,18 +83,26 @@ export default function ServicesOverview() {
           {(serviceItems || []).slice(0, Math.min(serviceItems?.length || 0, 6)).map((service, index) => (
             <div 
               key={service.id} 
-              className="group bg-gradient-to-b from-white via-primary-50/15 to-white rounded-xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-lg relative border border-primary-50 animate-fadeIn"
+              className="group bg-gradient-to-b from-white via-primary-50/15 to-white rounded-xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-lg relative border border-primary-50 animate-fadeIn flex flex-col"
               style={{ animationDelay: `${ANIMATION_DELAYS.getStaggeredDelay(index, ANIMATION_DELAYS.ITEM_BASE, ANIMATION_DELAYS.STAGGER_XS)}s`, animationFillMode: 'both' }}
             >
               {/* Subtle corner accent */}
               <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-primary-100/30 to-transparent z-0"></div>
               
-              <div className="p-6 relative z-10">
-                {/* Icon with premium styling */}
-                <div className="w-16 h-16 flex items-center justify-center bg-gradient-to-br from-primary-50 to-primary-100/70 text-primary-600 rounded-xl mb-6 shadow-sm border border-primary-100/50 group-hover:bg-primary-300 group-hover:text-primary-700 transition-colors duration-300">
-                  {service.id && serviceIcons.length > index ? serviceIcons[index] : serviceIcons[0]}
-                </div>
-                
+              {/* Service Image - increased height from h-40 to h-56 */}
+              <div className="w-full h-56 relative overflow-hidden">
+                <Image 
+                  src={SERVICE_IMAGES[index % SERVICE_IMAGES.length]}
+                  alt={service.title}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  priority={index < 3}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-30 group-hover:opacity-10 transition-opacity duration-300"></div>
+              </div>
+              
+              <div className="p-6 relative z-10 flex-grow flex flex-col">
                 {/* Title with badge */}
                 <div className="flex justify-between items-start mb-3">
                   <h3 className="text-xl font-bold text-gray-900">{service.title}</h3>
@@ -94,44 +112,49 @@ export default function ServicesOverview() {
                 </div>
                 
                 {/* Description and details */}
-                <p className="text-gray-700 mb-4">{service.description}</p>
-                <p className="text-gray-600 text-sm mb-6 italic">{service.details}</p>
-                
-                {/* Key technology and success rate */}
-                <div className="grid grid-cols-2 gap-2 mb-6">
-                  <div className="bg-primary-50 rounded-lg p-3">
-                    <p className="text-xs text-primary-600 uppercase font-medium">Technology</p>
-                    <p className="text-sm font-medium text-primary-800">{service.technology}</p>
-                  </div>
-                  <div className="bg-secondary-green-500/10 rounded-lg p-3">
-                    <p className="text-xs text-secondary-green-500 uppercase font-medium">Success Rate</p>
-                    <p className="text-sm font-medium text-secondary-green-500">{service.successRate}</p>
-                  </div>
+                <div className="mb-4">
+                  <p className="text-gray-700 mb-4">{service.description}</p>
+                  <p className="text-gray-600 text-sm italic">{service.details}</p>
                 </div>
                 
-                {/* Learn more link with descriptive text */}
-                <Link
-                  href={`/${locale}/services/${service.id}`}
-                  className="inline-flex items-center text-primary-600 font-medium hover:text-primary-700 transition-colors group-hover:underline"
-                  aria-label={`Learn more about ${service.title}`}
-                >
-                  {`${learnMoreText} about ${service.title}`}
-                  <svg 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    className="h-4 w-4 ml-1 group-hover:translate-x-0.5 transition-transform" 
-                    fill="none" 
-                    viewBox="0 0 24 24" 
-                    stroke="currentColor"
-                    aria-hidden="true"
+                {/* Technology section only - Success Rate removed */}
+                <div className="mt-auto">
+                  <div className="flex items-center mb-4 bg-primary-50 rounded-lg px-3 py-2">
+                    <div className="mr-2">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span className="text-xs text-primary-600 uppercase font-medium block">Technology</span>
+                      <span className="text-sm font-medium text-primary-800">{service.technology}</span>
+                    </div>
+                  </div>
+                  
+                  {/* Learn more link with descriptive text */}
+                  <Link
+                    href={`/${locale}/services/${service.id}`}
+                    className="inline-flex items-center text-primary-600 font-medium hover:text-primary-700 transition-colors group-hover:underline"
+                    aria-label={`Learn more about ${service.title}`}
                   >
-                    <path 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round" 
-                      strokeWidth={2} 
-                      d="M9 5l7 7-7 7" 
-                    />
-                  </svg>
-                </Link>
+                    {`${learnMoreText} about ${service.title}`}
+                    <svg 
+                      xmlns="http://www.w3.org/2000/svg" 
+                      className="h-4 w-4 ml-1 group-hover:translate-x-0.5 transition-transform" 
+                      fill="none" 
+                      viewBox="0 0 24 24" 
+                      stroke="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                        strokeWidth={2} 
+                        d="M9 5l7 7-7 7" 
+                      />
+                    </svg>
+                  </Link>
+                </div>
               </div>
             </div>
           ))}
@@ -173,7 +196,11 @@ export default function ServicesOverview() {
         </div>
         
         <div className="mt-16 text-center animate-fadeIn" style={{ animationDelay: `${ANIMATION_DELAYS.STAGGER_XL}s`, animationFillMode: 'both' }}>
-          <Link href={`/${locale}/services`} className="btn-primary bg-gradient-to-r from-primary-500 to-primary-400 shadow-lg hover:shadow-xl transition-all px-8 py-3 rounded-lg">
+          <Link 
+            href={`/${locale}/services`} 
+            className="btn-primary bg-gradient-to-r from-primary-500 to-primary-400 shadow-lg hover:shadow-xl transition-all px-8 py-3 rounded-lg"
+            aria-label="View All Services"
+          >
             {t('viewAll')}
           </Link>
         </div>

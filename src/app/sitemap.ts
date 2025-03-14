@@ -12,6 +12,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/locations',
     '/contact',
     '/resources',
+    '/solutions',
+    '/training',
+    '/book-demo',
     '/legal/privacy',
     '/legal/terms',
     '/legal/accessibility',
@@ -26,11 +29,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const route of routes) {
       const url = `${baseUrl}/${locale}${route}`;
       
+      // Set priority based on page importance
+      let priority = 0.8;
+      if (route === '') {
+        priority = 1.0; // Homepage gets highest priority
+      } else if (route === '/about' || route === '/services' || route === '/solutions') {
+        priority = 0.9; // Main sections get high priority
+      } else if (route === '/book-demo') {
+        priority = 0.9; // Conversion page gets high priority
+      }
+      
       entries.push({
         url,
         lastModified: new Date(),
         changeFrequency: 'monthly',
-        priority: route === '' ? 1.0 : 0.8,
+        priority,
         // Add hreflang alternates for each locale
         alternates: {
           languages: {
@@ -94,6 +107,33 @@ export default function sitemap(): MetadataRoute.Sitemap {
           languages: {
             'en-US': `${baseUrl}/en/team/${member}`,
             'es-ES': `${baseUrl}/es/team/${member}`,
+          },
+        },
+      });
+    }
+  }
+
+  // Add resource content pages (if they exist)
+  const resources = [
+    'blog',
+    'guides',
+    'faq',
+    'videos',
+  ];
+
+  for (const locale of locales) {
+    for (const resource of resources) {
+      const url = `${baseUrl}/${locale}/resources/${resource}`;
+      
+      entries.push({
+        url,
+        lastModified: new Date(),
+        changeFrequency: 'weekly',
+        priority: 0.7,
+        alternates: {
+          languages: {
+            'en-US': `${baseUrl}/en/resources/${resource}`,
+            'es-ES': `${baseUrl}/es/resources/${resource}`,
           },
         },
       });

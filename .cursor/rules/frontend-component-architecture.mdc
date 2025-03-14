@@ -1,0 +1,67 @@
+---
+description: Best practices for building React components using atomic design
+globs: */components/**/*.tsx, */components/**/*.jsx
+alwaysApply: false
+---
+# Frontend Component Architecture
+
+## Rule Information
+- **Name**: Frontend Component Architecture
+- **Description**: Best practices for building React components using atomic design
+
+## Atomic Design Methodology
+
+- **Atoms**: Basic building blocks
+  - Create reusable UI primitives like buttons, inputs, labels
+  - Keep atoms focused on a single responsibility
+  - Implement proper prop interfaces and defaults
+  - Include accessibility attributes and keyboard handlers
+
+- **Molecules**: Simple component groups
+  - Combine atoms to create form fields, search bars, card headers
+  - Maintain clear component boundaries and responsibilities
+  - Handle internal state when appropriate
+  - Document prop requirements thoroughly
+
+- **Organisms**: Complex UI sections
+  - Assemble molecules into navigation, product cards, dashboards
+  - Implement proper data flow patterns
+  - Handle complex interactions and state
+  - Include proper error handling and loading states
+
+- **Templates**: Page layouts without content
+  - Define consistent page structures
+  - Implement responsive layout containers
+  - Allow for content flexibility
+  - Document usage patterns and constraints
+
+- **Pages**: Complete views with actual content
+  - Implement data fetching and state management
+  - Connect to APIs and services
+  - Handle routing and navigation
+  - Manage page-level side effects
+
+## Component Composition
+
+- Use React's children prop for flexible component composition
+- Implement slots pattern for complex layouts
+- Use higher-order components judiciously and document thoroughly
+- Leverage render props for component logic reuse
+- Follow the single responsibility principle
+
+## Props Management
+
+- Define explicit TypeScript interfaces for all props
+- Document all props including types, defaults, and requirements
+- Provide sensible defaults for optional props
+- Validate props with PropTypes in JavaScript projects
+- Destructure props at the top of components for clarity
+- Use prop spreading sparingly and intentionally
+
+## Performance Considerations
+
+- Implement React.memo for expensive pure components
+- Use useCallback for functions passed as props
+- Apply useMemo for expensive calculations
+- Avoid unnecessary re-renders through proper component structure
+- Implement proper key props for list rendering 

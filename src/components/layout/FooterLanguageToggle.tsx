@@ -60,7 +60,7 @@ export default function FooterLanguageToggle() {
         className="flex items-center space-x-2 text-sm text-white hover:text-white/80 rounded-md py-1 px-2 transition-all duration-200 hover:scale-105"
         aria-expanded={isOpen}
         aria-haspopup="true"
-        aria-label="Language selection"
+        aria-label={`Language: ${locale === 'en' ? 'English' : 'Español'}`}
       >
         <Globe size={18} />
         <span>{locale === 'en' ? 'English' : 'Español'}</span>

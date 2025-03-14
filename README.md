@@ -3,6 +3,7 @@
 A bilingual (English/Spanish) website for Aero Prosthetics, a division of Aero Mobility Inc., specializing in prosthetic and orthotic solutions.
 
 [![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-blue.svg)](https://github.com/YeahISurf/aero-prosthetics)
+[![Last Updated](https://img.shields.io/badge/Last%20Updated-March%202024-green.svg)](https://github.com/YeahISurf/aero-prosthetics)
 
 ## Website Overview
 
@@ -490,3 +491,32 @@ This project uses Husky for Git hooks to ensure code quality:
 - Commit messages should follow conventional commit format
 
 Please ensure your code follows the project's coding standards and includes appropriate tests.
+
+## Recent Updates
+
+As of March 2024, we've made the following improvements:
+
+- Enhanced UI component library with responsive design patterns
+- Updated form components for better accessibility
+- Improved responsive card layouts for consistent mobile experience
+- Added toast notifications for better user feedback
+- Refined sheet components for modals and slide-out panels
+
+## GitHub Repository
+
+The project is hosted on GitHub at [https://github.com/YeahISurf/aero-prosthetics](https://github.com/YeahISurf/aero-prosthetics). To contribute or report issues:
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+For development team members with direct access:
+```
+git clone https://github.com/YeahISurf/aero-prosthetics.git
+git pull origin main # Always pull latest changes before working
+git add .
+git commit -m "Description of changes"
+git push origin main
+```

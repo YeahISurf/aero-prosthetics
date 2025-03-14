@@ -12,6 +12,7 @@ import PullToRefresh from "@/components/ui/PullToRefresh";
 import SchemaScript from "@/components/ui/SchemaScript";
 import SkipToContent from "@/components/ui/SkipToContent";
 import { generateMedicalOrganizationSchema, organizationData } from "@/lib/seo/schema";
+import TranslationErrorHandler from "@/components/layout/TranslationErrorHandler";
 
 type Props = {
   children: React.ReactNode;
@@ -61,13 +62,15 @@ export default async function LocaleLayout({
         <SchemaScript schema={organizationSchema} />
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ThemeProvider>
-            <SkipToContent />
-            <Header />
-            <PullToRefresh>
-              <main id="main-content" className="flex-grow pb-16 md:pb-0">{children}</main>
-            </PullToRefresh>
-            <Footer />
-            <MobileNavBar />
+            <TranslationErrorHandler>
+              <SkipToContent />
+              <Header />
+              <PullToRefresh>
+                <main id="main-content" className="flex-grow pb-16 md:pb-0">{children}</main>
+              </PullToRefresh>
+              <Footer />
+              <MobileNavBar />
+            </TranslationErrorHandler>
           </ThemeProvider>
         </NextIntlClientProvider>
       </ErrorBoundary>
