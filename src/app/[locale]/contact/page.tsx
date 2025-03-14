@@ -63,7 +63,7 @@ export default async function ContactPage({ params }: Props) {
         </div>
       </section>
       
-      {/* Enhanced Contact Us Section */}
+      {/* Contact Us Section */}
       <section className="section bg-white py-16 lg:py-24">
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -118,7 +118,7 @@ export default async function ContactPage({ params }: Props) {
             <div className="order-1 lg:order-2">
               <div className="relative rounded-xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-transform duration-300">
                 <Image
-                  src="/images/Resolute-Advance-of-the-Determined-Spirit.jpeg"
+                  src="/images/Resolute Advance of the Determined Spirit.jpeg"
                   alt="Advanced prosthetic hand technology"
                   width={600}
                   height={700}
