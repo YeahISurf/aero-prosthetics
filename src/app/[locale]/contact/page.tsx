@@ -50,7 +50,7 @@ export default async function ContactPage({ params }: Props) {
             <div className="order-1 lg:order-2 relative">
               <div className="relative rounded-xl overflow-hidden shadow-xl">
                 <Image
-                  src="/prosthetic-hand.jpg"
+                  src="/images/Resolute Advance of the Determined Spirit.jpeg"
                   alt={t('hero.image.alt')}
                   width={600}
                   height={400}
