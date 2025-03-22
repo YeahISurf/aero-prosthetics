@@ -807,7 +807,12 @@
     "heading": "404 - Página No Encontrada",
     "message": "Lo sentimos, no pudimos encontrar la página que estás buscando. Es posible que haya sido movida, eliminada o nunca haya existido. Vamos a ayudarte a volver al camino correcto.",
     "homeButton": "Volver a la Página Principal",
-    "contactButton": "Contactar Soporte"
+    "contactButton": "Contactar Soporte",
+    "helpfulLinks": "Estos enlaces pueden ser útiles",
+    "productsLink": "Explorar Nuestros Productos",
+    "aboutLink": "Sobre Nosotros",
+    "resourcesLink": "Recursos",
+    "faqLink": "Preguntas Frecuentes"
   },
   "blog": {
     "meta": {

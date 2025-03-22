@@ -49,8 +49,20 @@ export default async function LocaleLayout({
   let messages;
   try {
     messages = (await import(`../../../locales/${locale}.json`)).default;
-  } catch {
-    notFound();
+  } catch (error) {
+    console.error(`Failed to load translations for locale: ${locale}`, error);
+    
+    // Attempt to fall back to English if another locale fails
+    if (locale !== 'en') {
+      try {
+        messages = (await import(`../../../locales/en.json`)).default;
+        console.info(`Falling back to 'en' locale for missing locale: ${locale}`);
+      } catch {
+        notFound();
+      }
+    } else {
+      notFound();
+    }
   }
 
   // Generate organization schema

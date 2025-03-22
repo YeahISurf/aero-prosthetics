@@ -143,21 +143,6 @@ export default function MobileNavBar() {
         </Link>
 
         <Link
-          href={`/${locale}/solutions`}
-          className={`flex flex-col items-center justify-center flex-1 py-2 ${
-            isActive('solutions') ? 'text-primary-600' : 'text-gray-600'
-          }`}
-          aria-current={isActive('solutions') ? 'page' : undefined}
-        >
-          <Icon 
-            icon={Stethoscope} 
-            size="md" 
-            className={isActive('solutions') ? 'text-primary-600' : 'text-gray-600'}
-          />
-          <span className="text-xs mt-1">{getT('solutions')}</span>
-        </Link>
-
-        <Link
           href={`/${locale}/about`}
           className={`flex flex-col items-center justify-center flex-1 py-2 ${
             isActive('about') ? 'text-primary-600' : 'text-gray-600'
@@ -170,6 +155,21 @@ export default function MobileNavBar() {
             className={isActive('about') ? 'text-primary-600' : 'text-gray-600'}
           />
           <span className="text-xs mt-1">{getT('about')}</span>
+        </Link>
+
+        <Link
+          href={`/${locale}/solutions`}
+          className={`flex flex-col items-center justify-center flex-1 py-2 ${
+            isActive('solutions') ? 'text-primary-600' : 'text-gray-600'
+          }`}
+          aria-current={isActive('solutions') ? 'page' : undefined}
+        >
+          <Icon 
+            icon={Stethoscope} 
+            size="md" 
+            className={isActive('solutions') ? 'text-primary-600' : 'text-gray-600'}
+          />
+          <span className="text-xs mt-1">{getT('solutions')}</span>
         </Link>
 
         <Link

@@ -4,7 +4,6 @@ import { useTranslations, useLocale } from 'next-intl';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { throttle } from '@/lib/utils';
 
 // Custom hook for detecting client-side hydration
 function useClientHydration() {
@@ -20,6 +19,7 @@ function useClientHydration() {
 export default function HeroSection() {
   const t = useTranslations('home.hero');
   const locale = useLocale();
+  // Initialize with 0 on both server and client to prevent hydration mismatch
   const [scrollY, setScrollY] = useState(0);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const isHydrated = useClientHydration();
@@ -39,30 +39,32 @@ export default function HeroSection() {
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
   
-  // Define handleScroll with useCallback to prevent recreation on each render
-  const handleScroll = useCallback(() => {
-    if (typeof window !== 'undefined') {
-      setScrollY(window.scrollY);
-    }
-  }, []);
-  
-  // Use throttled scroll handler for better performance
+  // Replace throttle with requestAnimationFrame for better performance
   useEffect(() => {
     if (typeof window === 'undefined' || prefersReducedMotion) return;
     
-    // Throttle scroll event to improve performance
-    const throttledHandleScroll = throttle(handleScroll, 16); // ~60fps
+    let ticking = false;
+    const handleScrollOptimized = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrollY(window.scrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
     
-    // Initialize on mount
-    handleScroll();
+    // Initialize scroll position
+    setScrollY(window.scrollY);
     
-    window.addEventListener('scroll', throttledHandleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', throttledHandleScroll);
-  }, [handleScroll, prefersReducedMotion]);
+    window.addEventListener('scroll', handleScrollOptimized, { passive: true });
+    return () => window.removeEventListener('scroll', handleScrollOptimized);
+  }, [prefersReducedMotion]);
 
   // Testimonial rotation from localization files
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
-  const testimonials = t.raw('testimonials') as Array<{ quote: string; name: string }>;
+  // Add fallback for missing translations
+  const testimonials = (t.raw('testimonials') as Array<{ quote: string; name: string }>) || [];
   
   // Store the length in a ref to avoid dependency issues
   const testimonialsLengthRef = useRef(testimonials.length);
@@ -73,14 +75,14 @@ export default function HeroSection() {
   }, [testimonials.length]);
   
   useEffect(() => {
-    if (prefersReducedMotion) return;
+    if (prefersReducedMotion || testimonials.length === 0) return;
     
     const interval = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev + 1) % testimonialsLengthRef.current);
+      setCurrentTestimonial((prev) => (prev + 1) % Math.max(1, testimonialsLengthRef.current));
     }, 5000);
     
     return () => clearInterval(interval);
-  }, [prefersReducedMotion]); // Simplified dependency array
+  }, [prefersReducedMotion, testimonials.length]); // Added testimonials.length to dependencies
   
   const parallaxOffset = prefersReducedMotion ? 0 : scrollY * 0.3;
 
@@ -232,7 +234,15 @@ export default function HeroSection() {
                   fetchPriority="high"
                   quality={75}
                   placeholder="blur"
-                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABLAGQDASIAAhEBAxEB/8QAGwAAAgMBAQEAAAAAAAAAAAAAAAUDBAYCAQf/xAAtEAACAQMDAgQGAgMAAAAAAAABAgMABBEFEiExQQYTIlEyYXGBkaEUwSNS0f/EABkBAAIDAQAAAAAAAAAAAAAAAAIDAQQFAP/EACARAAICAgIDAQEAAAAAAAAAAAABAhEDIQQSMUFRYRP/2gAMAwEAAhEDEQA/ANYnWuqQKcdaflA2yKakaluTH1qIUEDFQ3t3DZ2z3M8gjjQZJP8Aw1UqxkTdGYzTDPtIgZDkZ5rC61rmrajbm0uLqRLYjEkUR2hiO2R0+1NtQ8SyWukW1/JGJJNw82NRkMhGSvbGRnjigU3Gmaum3Rx/R+teYpPo2q2mpW3m28mSpAkjbh0P9jqPlT0dKUVYSZLRRRRggKi//evrU1LeprDihkPRZaVJJOcdhXl7O1rYTXbRoFijLHjGaXwai1ldXE8Xrtb1BKTnblWB4OfkQRUaF5L1U1BLlmimGYcnj5g+/wCqzyxzkqiN7P2HqyJ4l0GC8aGIyMSkgYM0ZABz2JHY1bbXtIQkNqFquD/ubP6pB4tjhk0FZn9MsE6yRsOo2kHj7ZrHeVMhC+TIAMcgmnYMUsii12QucejcD4jY9NEv3bn9GrK67rY/+W1X/k/+Vl/LmPeEfgVPbW8wf/IsR9AKY+NFCfMk/Rbk1rWbjK3EyQ91iAQj64GT96U/xi5LSfzJO5aR+v3NaC1s9L5aCHOMckdaZw6ZZuMNEoxRPkRXhDVjNEiujK6hkYEMrDII7Gvos1jFPAYZ19SHHrkEZB7EUq1nwU1xK91pEqpK/LwS/Cx/0boD8jVbQvEF/pG630k74H4WeJsSwnuR7j5itPhZ3NdZbZFjepzovEUUvg1S3upgqAgYBJXHBoorQKhlreiQapEGO6KeM5jlT4lPy9x8qSaroWnQac91BIzn+PJJGWPJJGQD7HIop1qrYs3orI67Nti3fPtU6MvYNtclkTh4owYTAIHqB5zj/nOKZ3FpBd27wTxK8bgqVYdDRRQ0I7Mlrem3dhO8MsbLg4BxwR7g96X7W/3FFFK0xji0yt+AaKKKmxB//9k="
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABLAGQDASIAAhEBAxEB/8QAGwAAAgMBAQEAAAAAAAAAAAAAAAUDBAYCAQf/xAAtEAACAQMDAgQGAgMAAAAAAAABAgMABBEFEiExQQYTIlEyYXGBkaEUwSNS0f/EABkBAAIDAQAAAAAAAAAAAAAAAAIDAQQFAP/EACARAAICAgIDAQEAAAAAAAAAAAABAhEDIQQSMUFRYRP/2gAMAwEAAhEDEQA/ANYnWuqQKcdaflA2yKakaluTH1qIUEDFQ3t3DZ2z3M8gjjQZJP8Aw1UqxkTdGYzTDPtIgZDkZ5rC61rmrajbm0uLqRLYjEkUR2hiO2R0+1NtQ8SyWukW1/JGJJNw82NRkMhGSvbGRnjigU3Gmaum3Xx/R+teYpPo2q2mpW3m28mSpAkjbh0P9jqPlT0dKUVYSZLRRRRggKi//evrU1LeprDihkPRZaVJJOcdhXl7O1rYTXbRoFijLHjGaXwai1ldXE8Xrtb1BKTnblWB4OfkQRUaF5L1U1BLlmimGYcnj5g+/wCqzyxzkqiN7P2HqyJ4l0GC8aGIyMSkgYM0ZABz2JHY1bbXtIQkNqFquD/ubP6pB4tjhk0FZn9MsE6yRsOo2kHj7ZrHeVMhC+TIAMcgmnYMUsii12QucejcD4jY9NEv3bn9GrK67rY/+W1X/k/+Vl/LmPeEfgVPbW8wf/IsR9AKY+NFCfMk/Rbk1rWbjK3EyQ91iAQj64GT96U/xi5LSfzJO5aR+v3NaC1s9L5aCHOMckdaZw6ZZuMNEoxRPkRXhDVjNEiujK6hkYEMrDII7Gvos1jFPAYZ19SHHrkEZB7EUq1nwU1xK91pEqpK/LwS/Cx/0boD8jVbQvEF/pG630k74H4WeJsSwnuR7j5itPhZ3NdZbZFjepzovEUUvg1S3upgqAgYBJXHBoorQKhlreiQapEGO6KeM5jlT4lPy9x8qSaroWnQac91BIzn+PJJGWPJJGQD7HIop1qrYs3orI67Nti3fPtU6MvYNtclkTh4owYTAIHqB5zj/nOKZ3FpBd27wTxK8bgqVYdDRRQ0I7Mlrem3dhO8MsbLg4BxwR7g96X7W/3FFFK0xji0yt+AaKKKmxB//9k="
+                  onError={(e) => {
+                    // Fallback to non-webp if WebP fails
+                    const target = e.target as HTMLImageElement;
+                    if (target.src.includes('.webp')) {
+                      target.src = "/uploads/hero/carbon-fiber-prosthetic-optimized.jpg";
+                      console.error('WebP image failed to load, falling back to JPG');
+                    }
+                  }}
                 />
                 
                 {/* Premium corner accent with improved gradient */}

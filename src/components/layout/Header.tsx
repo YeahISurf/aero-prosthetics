@@ -182,16 +182,6 @@ export default function Header() {
                 
                 <li>
                   <Link 
-                    href={`/${locale}/blog`} 
-                    className={`text-sm whitespace-nowrap font-medium px-1 ${isActive('blog') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
-                    aria-current={isActive('blog') ? 'page' : undefined}
-                  >
-                    {getT('blog')}
-                  </Link>
-                </li>
-                
-                <li>
-                  <Link
                     href={`/${locale}/training`} 
                     className={`text-sm whitespace-nowrap font-medium px-1 ${isActive('training') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
                     aria-current={isActive('training') ? 'page' : undefined}
@@ -207,6 +197,16 @@ export default function Header() {
                     aria-current={isActive('locations') ? 'page' : undefined}
                   >
                     {getT('locations')}
+                  </Link>
+                </li>
+                
+                <li>
+                  <Link 
+                    href={`/${locale}/blog`} 
+                    className={`text-sm whitespace-nowrap font-medium px-1 ${isActive('blog') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
+                    aria-current={isActive('blog') ? 'page' : undefined}
+                  >
+                    {getT('blog')}
                   </Link>
                 </li>
                 

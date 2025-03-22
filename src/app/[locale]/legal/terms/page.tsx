@@ -38,6 +38,9 @@ export default async function TermsOfServicePage({ params }: Props) {
             <p>
               Please read these Terms carefully before using our Website. By using the Website, you accept and agree to be bound by these Terms. If you do not agree to these Terms, you must not access or use the Website.
             </p>
+            <p>
+              These Terms constitute a legally binding agreement between you and Aero Prosthetics regarding your use of the Website. If you are accessing the Website on behalf of a company or other legal entity, you represent that you have the authority to bind such entity to these Terms.
+            </p>
           </section>
 
           <section className="mb-8">
@@ -57,6 +60,60 @@ export default async function TermsOfServicePage({ params }: Props) {
           </section>
 
           <section className="mb-8">
+            <h2 className="text-2xl font-semibold mb-4">HIPAA Compliance and Privacy</h2>
+            <p>
+              As a healthcare provider, Aero Prosthetics is subject to the Health Insurance Portability and Accountability Act of 1996 (HIPAA) and its implementing regulations. We are committed to maintaining the privacy and security of your protected health information (PHI) in accordance with HIPAA and other applicable laws.
+            </p>
+            <p>
+              Any PHI collected through the Website or through our services is handled in accordance with our Privacy Policy and our Notice of Privacy Practices, which is available upon request. By using this Website, you acknowledge that you have read and understand our Privacy Policy, which is incorporated into these Terms by reference.
+            </p>
+            <p>
+              While we implement appropriate technical and organizational measures to protect your information, no method of transmission over the Internet or electronic storage is 100% secure. By using our Website, you acknowledge this inherent risk.
+            </p>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold mb-4">Telehealth Services</h2>
+            <p>
+              If Aero Prosthetics offers telehealth or remote consultation services through this Website, the following additional terms apply:
+            </p>
+            <ul>
+              <li>
+                Telehealth services may not be appropriate for all conditions, and in-person consultations may be required in certain circumstances.
+              </li>
+              <li>
+                Technical failures may occur during telehealth sessions. If a telehealth session is interrupted due to technical issues, we will attempt to reconnect or reschedule.
+              </li>
+              <li>
+                You are responsible for ensuring that you have appropriate technology and internet connectivity to participate in telehealth services.
+              </li>
+              <li>
+                Telehealth services are subject to the laws and regulations of the state in which you are located at the time of service, which may differ from the laws and regulations of the state in which our providers are licensed.
+              </li>
+              <li>
+                You must provide accurate and complete information about your physical location, identity, and medical condition when using telehealth services.
+              </li>
+            </ul>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold mb-4">User Accounts and Security</h2>
+            <p>
+              Certain features of the Website may require you to create an account. When you create an account, you agree to:
+            </p>
+            <ul>
+              <li>Provide accurate and complete information</li>
+              <li>Maintain the security and confidentiality of your account credentials</li>
+              <li>Promptly update your account information if it changes</li>
+              <li>Notify us immediately of any unauthorized access to your account</li>
+              <li>Accept responsibility for all activities that occur under your account</li>
+            </ul>
+            <p>
+              We reserve the right to disable any user account at any time if, in our opinion, you have failed to comply with these Terms or if we suspect unauthorized or fraudulent use of your account.
+            </p>
+          </section>
+
+          <section className="mb-8">
             <h2 className="text-2xl font-semibold mb-4">User Conduct</h2>
             <p>
               By using this Website, you agree to:
@@ -68,6 +125,8 @@ export default async function TermsOfServicePage({ params }: Props) {
               <li>Not attempt to gain unauthorized access to, interfere with, damage, or disrupt any parts of the Website, the server on which the Website is stored, or any server, computer, or database connected to the Website</li>
               <li>Not attack the Website via a denial-of-service attack or a distributed denial-of-service attack</li>
               <li>Not use any robot, spider, or other automatic device, process, or means to access the Website for any purpose, including monitoring or copying any of the material on the Website</li>
+              <li>Not introduce any viruses, Trojan horses, worms, logic bombs, or other harmful material to the Website</li>
+              <li>Not interfere with the proper functioning of the Website</li>
             </ul>
           </section>
 
@@ -109,6 +168,19 @@ export default async function TermsOfServicePage({ params }: Props) {
           </section>
 
           <section className="mb-8">
+            <h2 className="text-2xl font-semibold mb-4">Third-Party Links and Content</h2>
+            <p>
+              The Website may contain links to third-party websites, resources, or services that are not owned or controlled by Aero Prosthetics. We have no control over, and assume no responsibility for, the content, privacy policies, or practices of any third-party websites or services.
+            </p>
+            <p>
+              You acknowledge and agree that Aero Prosthetics shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with the use of or reliance on any such content, goods, or services available on or through any such websites or services.
+            </p>
+            <p>
+              We strongly advise you to read the terms and conditions and privacy policies of any third-party websites or services that you visit.
+            </p>
+          </section>
+
+          <section className="mb-8">
             <h2 className="text-2xl font-semibold mb-4">Limitation of Liability</h2>
             <p>
               TO THE FULLEST EXTENT PROVIDED BY LAW, IN NO EVENT WILL AERO PROSTHETICS, ITS AFFILIATES, OR THEIR LICENSORS, SERVICE PROVIDERS, EMPLOYEES, AGENTS, OFFICERS, OR DIRECTORS BE LIABLE FOR DAMAGES OF ANY KIND, UNDER ANY LEGAL THEORY, ARISING OUT OF OR IN CONNECTION WITH YOUR USE, OR INABILITY TO USE, THE WEBSITE, ANY WEBSITES LINKED TO IT, ANY CONTENT ON THE WEBSITE OR SUCH OTHER WEBSITES, INCLUDING ANY DIRECT, INDIRECT, SPECIAL, INCIDENTAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO, PERSONAL INJURY, PAIN AND SUFFERING, EMOTIONAL DISTRESS, LOSS OF REVENUE, LOSS OF PROFITS, LOSS OF BUSINESS OR ANTICIPATED SAVINGS, LOSS OF USE, LOSS OF GOODWILL, LOSS OF DATA, AND WHETHER CAUSED BY TORT (INCLUDING NEGLIGENCE), BREACH OF CONTRACT, OR OTHERWISE, EVEN IF FORESEEABLE.
@@ -122,6 +194,32 @@ export default async function TermsOfServicePage({ params }: Props) {
             <h2 className="text-2xl font-semibold mb-4">Indemnification</h2>
             <p>
               You agree to defend, indemnify, and hold harmless Aero Prosthetics, its affiliates, licensors, and service providers, and its and their respective officers, directors, employees, contractors, agents, licensors, suppliers, successors, and assigns from and against any claims, liabilities, damages, judgments, awards, losses, costs, expenses, or fees (including reasonable attorneys&apos; fees) arising out of or relating to your violation of these Terms or your use of the Website, including, but not limited to, any use of the Website&apos;s content, services, and products other than as expressly authorized in these Terms.
+            </p>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold mb-4">Accessibility Statement</h2>
+            <p>
+              Aero Prosthetics is committed to making its Website accessible to all users, including those with disabilities. We strive to comply with the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA and other applicable accessibility standards.
+            </p>
+            <p>
+              If you encounter any accessibility barriers on our Website or need assistance accessing any content, please contact us at info@aeroprosthetics.com. We welcome your feedback and suggestions for improving the accessibility of our Website.
+            </p>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold mb-4">Dispute Resolution</h2>
+            <p>
+              Any dispute, claim, or controversy arising out of or relating to these Terms or the breach, termination, enforcement, interpretation, or validity thereof, including the determination of the scope or applicability of this agreement to arbitrate, shall be determined by arbitration in Orange County, California, before one arbitrator.
+            </p>
+            <p>
+              The arbitration shall be administered by JAMS pursuant to its Comprehensive Arbitration Rules and Procedures. Judgment on the award may be entered in any court having jurisdiction.
+            </p>
+            <p>
+              This clause shall not preclude parties from seeking provisional remedies in aid of arbitration from a court of appropriate jurisdiction. The arbitrator may, in the award, allocate all or part of the costs of the arbitration, including the fees of the arbitrator and the reasonable attorneys&apos; fees of the prevailing party.
+            </p>
+            <p>
+              YOU UNDERSTAND THAT BY AGREEING TO THESE TERMS, YOU AND AERO PROSTHETICS ARE EACH WAIVING THE RIGHT TO A JURY TRIAL OR TO PARTICIPATE IN A CLASS ACTION.
             </p>
           </section>
 
@@ -153,6 +251,9 @@ export default async function TermsOfServicePage({ params }: Props) {
             <p>
               Your continued use of the Website following the posting of revised Terms means that you accept and agree to the changes. You are expected to check this page from time to time so you are aware of any changes, as they are binding on you.
             </p>
+            <p>
+              For material changes that significantly affect your rights or how we use your information, we will provide more prominent notice, such as an email notification or a banner on our Website.
+            </p>
           </section>
 
           <section className="mb-8">
@@ -171,7 +272,7 @@ export default async function TermsOfServicePage({ params }: Props) {
 
           <section>
             <p className="text-sm text-gray-500">
-              Last Updated: February 28, 2025
+              Last Updated: May 15, 2024
             </p>
           </section>
         </div>

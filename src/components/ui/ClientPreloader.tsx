@@ -1,7 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { useState, useEffect, createContext, useContext } from 'react';
+import { useState, useEffect, createContext, useContext, useRef } from 'react';
 
 // Context for tracking loading state globally
 export const LoadingContext = createContext({
@@ -37,24 +37,55 @@ const Preloader = dynamic(() => import('./Preloader'), {
 export default function ClientPreloader() {
   const [isLoading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
+  const initialized = useRef(false);
   
   useEffect(() => {
-    const handleLoad = () => {
-      // Set progress to at least 50% when main content is hydrated
-      setProgress((current) => Math.max(current, 50));
+    // Prevent double initialization due to React StrictMode or other causes
+    if (initialized.current) return;
+    initialized.current = true;
+    
+    // Initial progress increment
+    setProgress(10);
+    
+    // Use requestAnimationFrame for smoother progress updates
+    const incrementProgress = () => {
+      setProgress((current) => {
+        // Slowly increment up to 90% before complete
+        if (current < 90) {
+          return Math.min(90, current + (90 - current) / 10);
+        }
+        return current;
+      });
       
-      // If the document is already complete, we can skip waiting for interactions
-      if (document.readyState === 'complete') {
+      if (progress < 90 && isLoading) {
+        requestAnimationFrame(incrementProgress);
+      }
+    };
+    
+    requestAnimationFrame(incrementProgress);
+    
+    const handleLoad = () => {
+      // Set progress to 100% when document is complete
+      const completeLoad = () => {
         setProgress(100);
         setTimeout(() => setLoading(false), 500);
+      };
+      
+      // If the document is already complete, finish loading
+      if (document.readyState === 'complete') {
+        completeLoad();
         return;
       }
       
-      // Listen for first user interaction to hide loader if still showing
+      // Listen for load event
+      window.addEventListener('load', completeLoad, { once: true });
+      
+      // Listen for first user interaction as a fallback
       const handleInteraction = () => {
         // Only close on interaction after certain time has passed
         if (Date.now() - startTime > 1000) {
-          setLoading(false);
+          setProgress((current) => Math.max(current, 95));
+          setTimeout(() => setLoading(false), 300);
           cleanup();
         }
       };
@@ -64,16 +95,17 @@ export default function ClientPreloader() {
         window.removeEventListener('keydown', handleInteraction);
         window.removeEventListener('scroll', handleInteraction);
         window.removeEventListener('touchstart', handleInteraction);
+        window.removeEventListener('load', completeLoad);
       };
       
       const startTime = Date.now();
       
-      // After 7 seconds, force loader to close for fallback
+      // After 5 seconds, force loader to close for fallback (reduced from 7 seconds)
       const fallbackTimer = setTimeout(() => {
         setProgress(100);
         setTimeout(() => setLoading(false), 300);
         cleanup();
-      }, 7000);
+      }, 5000);
       
       // Add interaction listeners (for fallback if load event doesn't fire)
       window.addEventListener('click', handleInteraction, { passive: true });
@@ -88,10 +120,13 @@ export default function ClientPreloader() {
     };
     
     // Use a small delay to avoid immediate execution during hydration
-    const timer = setTimeout(handleLoad, 100);
+    const timer = setTimeout(() => {
+      setProgress(30); // Jump to 30% after initial delay
+      handleLoad();
+    }, 50); // Reduced delay for faster response
     
     return () => clearTimeout(timer);
-  }, []);
+  }, [isLoading, progress]);
   
   // Use the client-only wrapper to ensure this only renders on the client side
   return (

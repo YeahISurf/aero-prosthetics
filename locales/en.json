@@ -806,7 +806,12 @@
     "heading": "404 - Page Not Found",
     "message": "Sorry, we couldn't find the page you're looking for. It may have been moved, deleted, or never existed. Let's get you back on track.",
     "homeButton": "Return to Homepage",
-    "contactButton": "Contact Support"
+    "contactButton": "Contact Support",
+    "helpfulLinks": "You might find these links helpful",
+    "productsLink": "Explore Our Products",
+    "aboutLink": "About Us",
+    "resourcesLink": "Resources",
+    "faqLink": "Frequently Asked Questions"
   },
   "blog": {
     "meta": {

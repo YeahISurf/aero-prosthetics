@@ -192,15 +192,6 @@ export default function MobileNavigation() {
           </Link>
           
           <Link
-            href={`/${locale}/blog`}
-            className={`text-lg font-medium py-2 ${isActive('blog') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
-            aria-current={isActive('blog') ? 'page' : undefined}
-            onClick={() => setOpen(false)}
-          >
-            {getT('blog')}
-          </Link>
-          
-          <Link
             href={`/${locale}/training`}
             className={`text-lg font-medium py-2 ${isActive('training') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
             aria-current={isActive('training') ? 'page' : undefined}
@@ -216,6 +207,15 @@ export default function MobileNavigation() {
             onClick={() => setOpen(false)}
           >
             {getT('locations')}
+          </Link>
+          
+          <Link
+            href={`/${locale}/blog`}
+            className={`text-lg font-medium py-2 ${isActive('blog') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
+            aria-current={isActive('blog') ? 'page' : undefined}
+            onClick={() => setOpen(false)}
+          >
+            {getT('blog')}
           </Link>
           
           <Link
