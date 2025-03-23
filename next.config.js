@@ -92,8 +92,6 @@ const nextConfig = {
         pathname: "**",
       },
     ],
-    // Allow unoptimized image placeholders during development
-    unoptimized: process.env.NODE_ENV === 'development',
   },
   // SWC minify is enabled by default in Next.js 15.2
   // Add compiler options for better performance
@@ -103,18 +101,13 @@ const nextConfig = {
     // Enable styled-components
     styledComponents: true,
   },
+  // External packages that should be handled by the server
+  serverExternalPackages: [],
   // Optimize bundle size
   experimental: {
-    // Use optimized caching for improved build performance
-    optimizeCss: true,
+    // Use turbo for faster builds (implicit in Next.js 15+)
     // Optimize Next.js bundle size
-    optimizePackageImports: ['next-intl'],
-    // Add bleeding-edge optimizations
-    optimisticClientCache: true,
-    // Improve code generation
-    swcPlugins: [
-      // Removed '@swc/plugin-optimize-react' plugin that's causing issues
-    ],
+    optimizePackageImports: ['next-intl', 'react-icons', 'lucide-react'],
   },
   // Add webpack optimization for removing unused code
   webpack: (config, { dev, isServer }) => {
@@ -153,8 +146,7 @@ const nextConfig = {
         }
       };
 
-      // Retain 353-addda649c3cd7a33.js but make it load dynamically
-      // This will ensure it's not loaded on initial page load but kept for future use
+      // Improve caching with deterministic ids
       config.optimization.moduleIds = 'deterministic';
       config.optimization.chunkIds = 'deterministic';
     }
