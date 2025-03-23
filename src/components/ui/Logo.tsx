@@ -2,12 +2,15 @@
 
 import { useTranslations } from 'next-intl';
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import { cn } from '@/lib/utils';
 
 interface LogoProps {
   height?: number;
+  className?: string;
 }
 
-export default function Logo({ height }: LogoProps = {}) {
+export default function Logo({ height, className }: LogoProps = {}) {
   const [mounted, setMounted] = useState(false);
   
   // Initialize translation with null and set it safely
@@ -30,25 +33,32 @@ export default function Logo({ height }: LogoProps = {}) {
   if (!mounted) {
     // Return a placeholder with similar dimensions to prevent layout shift
     return (
-      <div className="flex items-center space-x-2" aria-hidden="true">
+      <div className={cn("flex items-center space-x-2", className)} aria-hidden="true">
         <div className="md:w-10 md:h-10 w-8 h-8 bg-gray-200 rounded-md" />
         <div className="h-12 w-32 bg-gray-100 rounded" />
       </div>
     );
   }
 
-  // Scale based on provided height or use default responsive sizing
-  const logoSize = height ? { height: `${height}px` } : {};
-  const iconSize = height ? { width: `${height * 0.8}px`, height: `${height * 0.8}px` } : {};
+  // When height is provided, use it; otherwise use a reasonable default
+  const logoHeight = height || 150;
+  
+  // For display inside the header, we want to ensure the icon is prominent
+  // Calculate width based on the height to maintain proper aspect ratio
+  const logoWidth = Math.round(logoHeight * 1.5);
   
   return (
-    <div className="flex items-center space-x-2" style={logoSize}>
-      {/* Placeholder logo - replace with actual logo later */}
-      <div 
-        className="bg-primary-500 rounded-md flex items-center justify-center flex-shrink-0"
-        style={iconSize || { width: 'auto', height: 'auto' }}
-      >
-        <span className="text-white font-bold md:text-xl text-lg">AP</span>
+    <div className={cn("flex items-center space-x-3", className)}>
+      <div className="flex-shrink-0 pr-4">
+        <Image 
+          src="/images/logo.svg"
+          alt="Aero Prosthetics Logo"
+          width={logoWidth}
+          height={logoHeight}
+          className="object-contain"
+          priority={true}
+          style={{ maxHeight: `${logoHeight}px` }}
+        />
       </div>
       <div>
         <h1 className="md:text-xl text-lg font-bold text-primary-600 leading-none">{t('title')}</h1>

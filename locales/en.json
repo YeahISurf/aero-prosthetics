@@ -503,9 +503,14 @@
   "locations": {
     "title": "Our Locations",
     "description": "Visit one of our convenient Southern California locations for personalized prosthetic and orthotic care.",
+    "sectionBadge": "Premier Care Centers",
+    "subtitle": "Visit one of our premier locations for personalized prosthetic and orthotic care",
+    "overview": {
+      "title": "Our Locations",
+      "badge": "Find a Location Near You",
+      "description": "We have two convenient locations to serve you in Southern California."
+    },
     "directions": "Get Directions",
-    "sectionBadge": "Premium Care Centers",
-    "subtitle": "Our state-of-the-art facilities are designed to provide the highest level of care and comfort during your prosthetic journey.",
     "hoursLabel": "Hours",
     "primaryPhone": "714-385-1000",
     "services": {
@@ -518,10 +523,6 @@
       "appointment": "Book Appointment",
       "services": "View Our Services",
       "call": "Call Us Now"
-    },
-    "overview": {
-      "title": "Our Locations",
-      "description": "We have two convenient locations to serve you in Southern California."
     },
     "anaheim": {
       "title": "Anaheim Hills",

@@ -8,6 +8,7 @@ import {
   anaheimLocationData, 
   victorvilleLocationData 
 } from '@/lib/seo/schema';
+import ClientMapsWrapper from '@/components/maps/ClientMapsWrapper';
 
 // Cache-busting update: This file was modified with sync test on March 6, 2023
 // Define type for params to match Next.js 15 with React 19 requirements
@@ -37,6 +38,28 @@ export default async function LocationsPage({ params }: Props) {
   // Generate location schemas
   const anaheimSchema = generateLocalBusinessSchema(anaheimLocationData);
   const victorvilleSchema = generateLocalBusinessSchema(victorvilleLocationData);
+
+  // Location data for maps
+  const locationData = [
+    {
+      name: t('anaheim.title'),
+      position: { lat: anaheimLocationData.geo.latitude, lng: anaheimLocationData.geo.longitude },
+      address: anaheimLocationData.address.streetAddress,
+      city: `${anaheimLocationData.address.addressLocality}, ${anaheimLocationData.address.addressRegion} ${anaheimLocationData.address.postalCode}`,
+      phone: anaheimLocationData.telephone,
+      phoneFormatted: t('anaheim.phone'),
+      badge: 'Flagship Location'
+    },
+    {
+      name: t('victorville.title'),
+      position: { lat: victorvilleLocationData.geo.latitude, lng: victorvilleLocationData.geo.longitude },
+      address: victorvilleLocationData.address.streetAddress,
+      city: `${victorvilleLocationData.address.addressLocality}, ${victorvilleLocationData.address.addressRegion} ${victorvilleLocationData.address.postalCode}`,
+      phone: victorvilleLocationData.telephone,
+      phoneFormatted: t('victorville.phone'),
+      badge: 'Regional Center'
+    }
+  ];
 
   return (
     <>
@@ -86,16 +109,35 @@ export default async function LocationsPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Location Overview Section - Enhanced with modern card design */}
-      <section className="py-20 bg-gray-50">
-        <div className="container-custom">
+      {/* Locations Overview with Google Maps Integration */}
+      <section className="py-20 relative overflow-hidden bg-gray-50">
+        {/* Subtle background pattern */}
+        <div className="absolute inset-0 opacity-5 z-0 bg-[radial-gradient(circle,_rgba(0,0,0,0.8)_1px,_transparent_1px)] bg-[length:20px_20px]"></div>
+        
+        <div className="container-custom relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">{t('overview.title')}</h2>
-            <p className="text-xl text-gray-700">{t('overview.description')}</p>
+            <span className="inline-block px-3 py-1 text-sm font-medium bg-primary-100 text-primary-700 rounded-full mb-4">
+              {t('overview.badge')}
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('overview.title')}</h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-primary-300 via-primary-400 to-primary-300 mx-auto mb-6"></div>
+            <p className="text-lg text-gray-700">{t('overview.description')}</p>
           </div>
           
+          {/* Interactive Google Map */}
+          <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
+            <div className="aspect-[16/9] w-full relative h-[600px]">
+              <ClientMapsWrapper 
+                locations={locationData} 
+                zoom={8} 
+                height="100%"
+              />
+            </div>
+          </div>
+          
+          {/* Enhanced Location Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            {/* Enhanced Location Cards */}
+            {/* Anaheim Location Card */}
             <div className="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-2 border border-gray-100">
               <div className="h-72 relative">
                 <Image
@@ -137,6 +179,7 @@ export default async function LocationsPage({ params }: Props) {
               </div>
             </div>
             
+            {/* Victorville Location Card */}
             <div className="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-2 border border-gray-100">
               <div className="h-72 relative">
                 <Image
@@ -180,7 +223,7 @@ export default async function LocationsPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Anaheim Location - Enhanced with modern section design */}
+      {/* Anaheim Location Section */}
       <section id="anaheim" className="py-20 relative overflow-hidden">
         {/* Subtle background pattern */}
         <div className="absolute inset-0 opacity-5 z-0 bg-[radial-gradient(circle,_rgba(0,0,0,0.8)_1px,_transparent_1px)] bg-[length:20px_20px]"></div>
@@ -189,14 +232,13 @@ export default async function LocationsPage({ params }: Props) {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
             <div className="lg:col-span-5">
               <div className="sticky top-24">
+                {/* Location Map */}
                 <div className="bg-gradient-to-br from-primary-50 to-white p-1 rounded-xl shadow-lg mb-8">
-                  <div className="rounded-lg overflow-hidden">
-                    <Image
-                      src="/images/locations/anaheim-location.jpg"
-                      alt={t('anaheim.title')}
-                      width={600}
-                      height={400}
-                      className="w-full h-auto object-cover"
+                  <div className="h-[350px] rounded-lg overflow-hidden">
+                    <ClientMapsWrapper 
+                      locations={[locationData[0]]}
+                      zoom={15}
+                      height="350px"
                     />
                   </div>
                 </div>
@@ -462,14 +504,14 @@ export default async function LocationsPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Victorville Location - Enhanced with modern section design */}
+      {/* Victorville Location Section */}
       <section id="victorville" className="py-20 relative overflow-hidden bg-gray-50">
         {/* Subtle background pattern */}
         <div className="absolute inset-0 opacity-5 z-0 bg-[radial-gradient(circle,_rgba(0,0,0,0.8)_1px,_transparent_1px)] bg-[length:20px_20px]"></div>
         
         <div className="container-custom relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-            <div className="lg:col-span-7">
+            <div className="lg:col-span-7 order-2 lg:order-1">
               <div className="mb-10">
                 <h2 className="text-3xl font-bold mb-6 text-gray-900">{t('victorville.title')}</h2>
                 <div className="h-1 w-20 bg-secondary-teal-500 mb-8"></div>
@@ -686,24 +728,23 @@ export default async function LocationsPage({ params }: Props) {
               </div>
             </div>
             
-            <div className="lg:col-span-5">
+            <div className="lg:col-span-5 order-1 lg:order-2">
               <div className="sticky top-24">
-                <div className="bg-gradient-to-br from-secondary-teal-50 to-white p-1 rounded-xl shadow-lg mb-8">
-                  <div className="rounded-lg overflow-hidden">
-                    <Image
-                      src="/images/locations/victorville-location.jpg"
-                      alt={t('victorville.title')}
-                      width={600}
-                      height={400}
-                      className="w-full h-auto object-cover"
+                {/* Location Map */}
+                <div className="bg-gradient-to-br from-teal-50 to-white p-1 rounded-xl shadow-lg mb-8">
+                  <div className="h-[350px] rounded-lg overflow-hidden">
+                    <ClientMapsWrapper 
+                      locations={[locationData[1]]}
+                      zoom={15}
+                      height="350px"
                     />
                   </div>
                 </div>
                 
                 <div className="grid grid-cols-2 gap-4 mb-8">
                   <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
-                    <div className="bg-secondary-teal-100 rounded-full p-2 w-10 h-10 flex items-center justify-center mb-4">
-                      <svg className="h-5 w-5 text-secondary-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <div className="bg-teal-100 rounded-full p-2 w-10 h-10 flex items-center justify-center mb-4">
+                      <svg className="h-5 w-5 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </div>
@@ -714,8 +755,8 @@ export default async function LocationsPage({ params }: Props) {
                   </div>
                   
                   <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
-                    <div className="bg-secondary-teal-100 rounded-full p-2 w-10 h-10 flex items-center justify-center mb-4">
-                      <svg className="h-5 w-5 text-secondary-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <div className="bg-teal-100 rounded-full p-2 w-10 h-10 flex items-center justify-center mb-4">
+                      <svg className="h-5 w-5 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>
                     </div>
@@ -726,14 +767,14 @@ export default async function LocationsPage({ params }: Props) {
                   </div>
                 </div>
                 
-                <div className="p-6 bg-secondary-teal-500 text-white rounded-xl shadow-lg mb-8">
+                <div className="p-6 bg-secondary-teal-600 text-white rounded-xl shadow-lg mb-8">
                   <h3 className="text-xl font-semibold mb-4">Ready to Visit?</h3>
-                  <p className="text-secondary-teal-100 mb-6">
+                  <p className="text-teal-100 mb-6">
                     Schedule your appointment today and take the first step towards improved mobility and comfort.
                   </p>
                   <Link 
                     href={`/${locale}/contact`} 
-                    className="btn bg-white text-secondary-teal-600 hover:bg-secondary-teal-50 w-full justify-center"
+                    className="btn bg-white text-secondary-teal-600 hover:bg-teal-50 w-full justify-center"
                   >
                     {t('cta.schedule')}
                   </Link>
@@ -745,7 +786,7 @@ export default async function LocationsPage({ params }: Props) {
       </section>
       
       {/* Map Section - Enhanced with modern design */}
-      <section className="py-20 relative">
+      <section id="find-us" className="py-20 relative">
         <div className="container-custom">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">{t('map.title') || 'Find Us'}</h2>
@@ -753,16 +794,51 @@ export default async function LocationsPage({ params }: Props) {
           </div>
           
           <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
-            <div className="aspect-[16/9] w-full relative">
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13233.380646840284!2d-117.7887105!3d33.8578871!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x4b8c427b9ae94ce7!2sAERO%20Prosthetics%20%26%20Orthotics!5e0!3m2!1sen!2sus!4v1647288822430!5m2!1sen!2sus" 
-                className="absolute inset-0 w-full h-full border-0" 
-                allowFullScreen 
-                loading="lazy"
-                title={t('map.title') || 'Location Map'}
-                aria-label="Map showing our locations in Anaheim Hills and Victorville"
-              ></iframe>
+            {/* Set explicit height for map container */}
+            <div style={{ height: '600px', width: '100%' }} className="relative">
+              <ClientMapsWrapper 
+                locations={locationData} 
+                zoom={9}
+                height="100%"
+              />
             </div>
+          </div>
+          
+          {/* Add location quick links */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
+            {locationData.map((location, index) => (
+              <div key={index} className="bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow">
+                <div className="flex items-start">
+                  <div className="bg-primary-100 rounded-full p-3 mr-4">
+                    <svg className="h-6 w-6 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold mb-2">{location.name}</h3>
+                    <p className="text-gray-700 mb-1">{location.address}</p>
+                    <p className="text-gray-700 mb-3">{location.city}</p>
+                    <p className="text-gray-700 mb-4">
+                      <a href={`tel:${location.phone}`} className="text-primary-600 hover:underline">
+                        {location.phoneFormatted || location.phone}
+                      </a>
+                    </p>
+                    <a 
+                      href={`https://maps.google.com/?q=${location.address}, ${location.city}`} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-primary-600 hover:underline inline-flex items-center"
+                    >
+                      {t('directions')}
+                      <svg className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

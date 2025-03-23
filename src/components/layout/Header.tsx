@@ -135,10 +135,10 @@ export default function Header() {
       aria-label="Main navigation"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4 md:justify-start md:space-x-10">
-          <div className="flex justify-start lg:w-0 lg:flex-1">
+        <div className="flex items-center justify-between py-3 md:py-4">
+          <div className="flex-shrink-0">
             <Link href={`/${locale}`} aria-label="Home" className="block">
-              <Logo height={40} />
+              <Logo height={50} className="sm:h-[55px] md:h-[60px] lg:h-[65px] xl:h-[70px]" />
             </Link>
           </div>
           
@@ -147,13 +147,13 @@ export default function Header() {
             <MobileNavigation />
           </div>
           
-          <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+          <div className="hidden md:flex items-center justify-end space-x-2 md:flex-1">
             <nav className="flex">
-              <ul className="flex md:space-x-6 lg:space-x-10">
+              <ul className="flex md:space-x-6 lg:space-x-8 xl:space-x-12">
                 <li>
                   <Link 
                     href={`/${locale}`} 
-                    className={`text-sm whitespace-nowrap font-medium px-1 ${pathname === `/${locale}` ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
+                    className={`text-xs md:text-sm whitespace-nowrap font-medium px-2 ${pathname === `/${locale}` ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
                     aria-current={pathname === `/${locale}` ? 'page' : undefined}
                   >
                     {getT('home')}
@@ -163,7 +163,7 @@ export default function Header() {
                 <li>
                   <Link 
                     href={`/${locale}/about`} 
-                    className={`text-sm whitespace-nowrap font-medium px-1 ${isActive('about') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
+                    className={`text-xs md:text-sm whitespace-nowrap font-medium px-2 ${isActive('about') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
                     aria-current={isActive('about') ? 'page' : undefined}
                   >
                     {getT('about')}
@@ -173,7 +173,7 @@ export default function Header() {
                 <li>
                   <Link 
                     href={`/${locale}/solutions`} 
-                    className={`text-sm whitespace-nowrap font-medium px-1 ${isActive('solutions') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
+                    className={`text-xs md:text-sm whitespace-nowrap font-medium px-2 ${isActive('solutions') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
                     aria-current={isActive('solutions') ? 'page' : undefined}
                   >
                     {getT('solutions')}
@@ -183,7 +183,7 @@ export default function Header() {
                 <li>
                   <Link 
                     href={`/${locale}/training`} 
-                    className={`text-sm whitespace-nowrap font-medium px-1 ${isActive('training') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
+                    className={`text-xs md:text-sm whitespace-nowrap font-medium px-2 ${isActive('training') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
                     aria-current={isActive('training') ? 'page' : undefined}
                   >
                     {getT('training')}
@@ -193,7 +193,7 @@ export default function Header() {
                 <li>
                   <Link 
                     href={`/${locale}/locations`} 
-                    className={`text-sm whitespace-nowrap font-medium px-1 ${isActive('locations') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
+                    className={`text-xs md:text-sm whitespace-nowrap font-medium px-2 ${isActive('locations') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
                     aria-current={isActive('locations') ? 'page' : undefined}
                   >
                     {getT('locations')}
@@ -203,7 +203,7 @@ export default function Header() {
                 <li>
                   <Link 
                     href={`/${locale}/blog`} 
-                    className={`text-sm whitespace-nowrap font-medium px-1 ${isActive('blog') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
+                    className={`text-xs md:text-sm whitespace-nowrap font-medium px-2 ${isActive('blog') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
                     aria-current={isActive('blog') ? 'page' : undefined}
                   >
                     {getT('blog')}
@@ -213,7 +213,7 @@ export default function Header() {
                 <li>
                   <Link 
                     href={`/${locale}/contact`} 
-                    className={`text-sm whitespace-nowrap font-medium px-1 ${isActive('contact') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
+                    className={`text-xs md:text-sm whitespace-nowrap font-medium px-2 ${isActive('contact') ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'} transition-colors duration-200`}
                     aria-current={isActive('contact') ? 'page' : undefined}
                   >
                     {getT('contact')}
@@ -222,12 +222,12 @@ export default function Header() {
               </ul>
             </nav>
             
-            <div className="ml-8 md:ml-6 lg:ml-10 flex items-center">
+            <div className="ml-3 md:ml-4 lg:ml-6 xl:ml-8 flex items-center">
               <LanguageToggle />
               
               <Link
                 href={`/${locale}/book-demo`}
-                className="ml-6 lg:ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 hover:scale-105 transition-all duration-200"
+                className="ml-2 md:ml-3 lg:ml-4 xl:ml-6 whitespace-nowrap inline-flex items-center justify-center px-2 md:px-3 lg:px-4 py-1.5 md:py-2 border border-transparent rounded-md shadow-sm text-xs md:text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 hover:scale-105 transition-all duration-200"
               >
                 {getCta('book_demo')}
               </Link>

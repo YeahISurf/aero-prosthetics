@@ -138,9 +138,7 @@ export default function OptimizedImage({
     observer.observe(elementRef);
 
     return () => {
-      if (elementRef) {
-        observer.unobserve(elementRef);
-      }
+      // Safely cleanup observer
       observer.disconnect();
     };
   }, [src, lazy, isIntersecting]);
