@@ -69,6 +69,8 @@ if (fs.existsSync(vercelDeployDir)) {
     'src/app/[locale]/legal/privacy/page.tsx',
     'src/app/[locale]/legal/terms/page.tsx',
     'src/app/[locale]/locations/page.tsx',
+    'src/app/[locale]/locations/anaheim/page.tsx',
+    'src/app/[locale]/locations/victorville/page.tsx',
   ];
 
   // Copy each file

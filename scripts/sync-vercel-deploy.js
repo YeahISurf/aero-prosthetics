@@ -10,28 +10,48 @@
 const fs = require('fs');
 const path = require('path');
 
-// Get the list of files from prepare-vercel-build.cjs
+// Get the list of files from update-vercel-deploy.js
 let filesToSync = [];
 try {
-  // Read the prepare-vercel-build.cjs file to extract file mappings
-  const prepareVercelBuildPath = path.join(__dirname, 'prepare-vercel-build.cjs');
-  const prepareVercelBuildContent = fs.readFileSync(prepareVercelBuildPath, 'utf8');
+  // Read the update-vercel-deploy.js file to extract file mappings
+  const updateVercelDeployPath = path.join(__dirname, 'update-vercel-deploy.js');
   
-  // Extract the filesToCopy array using regex
-  const fileArrayMatch = prepareVercelBuildContent.match(/const filesToCopy = \[([\s\S]*?)\];/);
-  if (fileArrayMatch && fileArrayMatch[1]) {
-    // Parse each file entry
-    const fileEntriesText = fileArrayMatch[1];
-    const fileEntryRegex = /{[\s\S]*?source:\s*'(.*?)',[\s\S]*?destination:\s*'(.*?)'[\s\S]*?}/g;
+  // Import the filesToCopy array directly from the file
+  const updateVercelDeploy = require('./update-vercel-deploy');
+  filesToSync = updateVercelDeploy.filesToCopy;
+  
+  // If there's no exported filesToCopy, parse the file content
+  if (!filesToSync || !Array.isArray(filesToSync)) {
+    const content = fs.readFileSync(updateVercelDeployPath, 'utf8');
     
-    let match;
-    while ((match = fileEntryRegex.exec(fileEntriesText)) !== null) {
-      const [_, source, destination] = match;
-      filesToSync.push({ source, destination });
+    // Extract the filesToCopy array using regex
+    const match = content.match(/const filesToCopy\s*=\s*\[([\s\S]*?)\];/);
+    if (match && match[1]) {
+      const entries = match[1].match(/{\s*source:\s*['"](.+?)['"]\s*,\s*destination:\s*['"](.+?)['"]\s*}/g);
+      
+      if (entries) {
+        filesToSync = entries.map(entry => {
+          const sourceMatch = entry.match(/source:\s*['"](.+?)['"]/);
+          const destinationMatch = entry.match(/destination:\s*['"](.+?)['"]/);
+          
+          if (sourceMatch && destinationMatch) {
+            return {
+              source: sourceMatch[1],
+              destination: destinationMatch[1]
+            };
+          }
+          return null;
+        }).filter(Boolean);
+      }
     }
   }
+  
+  if (!filesToSync || !filesToSync.length) {
+    console.error('No files to sync found in update-vercel-deploy.js');
+    process.exit(1);
+  }
 } catch (error) {
-  console.error('Error reading prepare-vercel-build.cjs:', error);
+  console.error('Error reading update-vercel-deploy.js:', error);
   process.exit(1);
 }
 
@@ -39,12 +59,13 @@ try {
 const checkMode = process.argv.includes('--check');
 let needsSync = false;
 
+console.log(`Found ${filesToSync.length} files to sync.`);
+
 // Process each file
 filesToSync.forEach(file => {
   try {
-    // We need to reverse the mapping - copy from destination to source in vercel-deploy
-    const srcPath = path.join(process.cwd(), file.destination);
-    const vercelDeployPath = path.join(process.cwd(), file.source);
+    const srcPath = file.source;
+    const vercelDeployPath = file.destination;
     
     if (!fs.existsSync(srcPath)) {
       console.log(`🚫 Source file not found: ${srcPath}`);
@@ -71,16 +92,16 @@ filesToSync.forEach(file => {
       needsSync = true;
       
       if (checkMode) {
-        console.log(`⚠️ Needs sync: ${file.destination} -> ${file.source}`);
+        console.log(`⚠️ Needs sync: ${srcPath} -> ${vercelDeployPath}`);
       } else {
         fs.copyFileSync(srcPath, vercelDeployPath);
-        console.log(`✅ Synced: ${file.destination} -> ${file.source}`);
+        console.log(`✅ Synced: ${srcPath} -> ${vercelDeployPath}`);
       }
     } else {
-      console.log(`✓ Already in sync: ${file.destination}`);
+      console.log(`✓ Already in sync: ${srcPath}`);
     }
   } catch (error) {
-    console.error(`Error processing file ${file.destination}:`, error);
+    console.error(`Error processing file ${file.source}:`, error);
   }
 });
 

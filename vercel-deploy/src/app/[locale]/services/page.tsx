@@ -200,6 +200,7 @@ export default async function ServicesPage({ params }: Props) {
                 key={service.id}
                 href={`/${locale}/services/${service.id}`}
                 className="group flex flex-col h-full bg-white hover:bg-gray-50 rounded-xl shadow-lg overflow-hidden transform transition-all duration-200 hover:shadow-xl hover:-translate-y-1"
+                aria-label={`${learnMoreText} about ${service.title}`}
               >
                 <div className="p-6 flex-grow">
                   <div className="w-12 h-12 mb-4 flex items-center justify-center rounded-lg bg-primary-100 text-primary-600">
@@ -209,7 +210,7 @@ export default async function ServicesPage({ params }: Props) {
                   <p className="text-gray-700 mb-4">{service.description}</p>
                 </div>
                 <div className="px-6 pb-6 mt-auto">
-                  <div className="flex items-center text-primary-500 font-medium group-hover:text-primary-600 transition-colors">
+                  <span className="flex items-center text-primary-500 font-medium group-hover:text-primary-600 transition-colors">
                     {`${learnMoreText} about ${service.title}`}
                     <svg 
                       xmlns="http://www.w3.org/2000/svg" 
@@ -226,7 +227,7 @@ export default async function ServicesPage({ params }: Props) {
                         d="M9 5l7 7-7 7" 
                       />
                     </svg>
-                  </div>
+                  </span>
                 </div>
               </Link>
             ))}
