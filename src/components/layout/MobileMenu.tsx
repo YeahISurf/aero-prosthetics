@@ -21,41 +21,25 @@ export default function MobileMenu() {
   const pathname = usePathname();
   const locale = useLocale();
   
-  // Use safe translations - initialize with null
-  let navTranslations = null;
-  let ctaTranslations = null;
+  // Call hooks unconditionally
+  const nav = useTranslations('navigation');
+  const cta = useTranslations('cta');
   
-  try {
-    navTranslations = useTranslations('navigation');
-  } catch (_) {
-    // Will use fallback
-  }
-  
-  try {
-    ctaTranslations = useTranslations('cta');
-  } catch (_) {
-    // Will use fallback
-  }
-  
-  // Create fallback functions
-  const navFallbacks: Record<string, string> = {
+  // Create fallback translations inline
+  const navFallbacks: { [key: string]: string } = {
     home: 'Home',
     about: 'About Us',
-    solutions: 'Solutions', 
+    solutions: 'Solutions',
     blog: 'Blog',
     training: 'Training',
     locations: 'Locations',
-    contact: 'Contact'
-  };
-  
-  const ctaFallbacks: Record<string, string> = {
-    book_demo: 'Book Demo'
+    contact: 'Contact',
+    book_demo: 'Book a Demo',
   };
   
   // Create safe translation functions
-  const t = navTranslations || ((key: string) => navFallbacks[key] || key);
-  const cta = ctaTranslations || ((key: string) => ctaFallbacks[key] || key);
-
+  const t = nav || ((key: string) => navFallbacks[key] || key);
+  
   // Handle mounting (client-side only)
   useEffect(() => {
     setMounted(true);
@@ -139,12 +123,8 @@ export default function MobileMenu() {
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [mounted, isOpen]);
 
-  // Don't render anything during SSR to prevent hydration issues
+  // If not mounted yet, return null to avoid hydration errors
   if (!mounted) return null;
-
-  const isActive = (path: string) => {
-    return pathname.startsWith(`/${locale}/${path}`);
-  };
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -167,10 +147,19 @@ export default function MobileMenu() {
           className={`fixed inset-0 z-50 bg-gray-900/50 backdrop-blur-sm transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
           aria-hidden={!isOpen}
           onClick={() => setIsOpen(false)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              setIsOpen(false);
+            }
+          }}
+          role="button"
+          tabIndex={-1}
+          aria-label="Close menu overlay"
         >
           <div 
             ref={menuRef}
             className={`fixed inset-y-0 right-0 max-w-xs w-full bg-white shadow-xl overflow-y-auto transform transition-transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
+            // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
             onClick={e => e.stopPropagation()}
             role="dialog"
             aria-modal={isOpen}

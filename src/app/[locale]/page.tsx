@@ -12,14 +12,54 @@ type Props = {
   params: Promise<{ locale: string }>;
 };
 
+// Define site base URL (can be moved to a config file later)
+const siteBaseUrl = "https://aeroprosthetics.com"; 
+const locales = ['en', 'es']; // Define supported locales here
+
 export async function generateMetadata({ params }: Props) {
-  // Get the locale from Promise
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "meta" });
+  const currentLocale = locale || 'en'; // Ensure locale is defined
+  const t = await getTranslations({ locale: currentLocale, namespace: "meta" });
+  
+  // Removed header-based pathname and canonicalUrl derivation
+  // const headersList = headers();
+  // const pathname = headersList.get('x-next-pathname') || '';
+  // const canonicalUrl = `${siteBaseUrl}${pathname}`;
+
+  // Derive relative paths from locale
+  const canonicalRelativePath = `/${currentLocale}`;
+  const languageAlternates: { [key: string]: string } = {};
+  locales.forEach(loc => {
+    languageAlternates[loc] = `/${loc}`;
+  });
+
+  const pageTitle = t("title");
+  const pageDescription = t("description");
 
   return {
-    title: t("title"),
-    description: t("description"),
+    title: pageTitle,
+    description: pageDescription,
+    alternates: {
+      canonical: canonicalRelativePath, // Use relative canonical path
+      languages: languageAlternates,    // Use relative language paths
+    },
+    openGraph: {
+      title: pageTitle, 
+      description: pageDescription, 
+      url: `${siteBaseUrl}${canonicalRelativePath}`, // Use absolute URL for OG
+      // ... existing OG images etc. ...
+    },
+    twitter: {
+      title: pageTitle, // Use page title
+      description: pageDescription, // Use page description
+      // Add specific Twitter image for homepage if available
+      // images: [
+      //   {
+      //     url: '/twitter-homepage-image.png',
+      //     alt: pageTitle,
+      //   }
+      // ],
+    },
   };
 }
 

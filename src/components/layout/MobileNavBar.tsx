@@ -7,19 +7,6 @@ import { useLocale, useTranslations } from 'next-intl';
 import { Home, Info, Stethoscope, MapPin, Phone } from 'lucide-react';
 import { Icon } from '../ui/Icon';
 
-// Fallback translations
-const fallbackTranslations = {
-  navigation: {
-    home: 'Home',
-    about: 'About Us',
-    solutions: 'Solutions',
-    blog: 'Blog',
-    training: 'Training',
-    locations: 'Locations',
-    contact: 'Contact'
-  }
-};
-
 // Server-side skeleton component that matches client structure
 function MobileNavBarSkeleton() {
   return (
@@ -38,28 +25,18 @@ function MobileNavBarSkeleton() {
 }
 
 export default function MobileNavBar() {
-  const [mounted, setMounted] = useState(false);
-  const [visible, setVisible] = useState(true);
-  
-  // Move hooks outside of conditionals to the top
   const pathname = usePathname();
   const locale = useLocale();
-  
-  // Get translations with fallback - initialize with null
-  let navTranslations = null;
-  
-  try {
-    navTranslations = useTranslations('navigation');
-  } catch (_) {
-    // Will use fallback
-  }
-  
-  // Create safe translation function
-  const t = navTranslations || 
-    ((key: string) => fallbackTranslations.navigation[key as keyof typeof fallbackTranslations.navigation] || key);
 
+  // Call hooks unconditionally
+  const nav = useTranslations('navigation');
+
+  // State for mount and scroll
+  const [isMounted, setIsMounted] = useState(false);
+  const [visible, setVisible] = useState(true);
+  
   useEffect(() => {
-    setMounted(true);
+    setIsMounted(true);
   }, []);
 
   useEffect(() => {
@@ -105,17 +82,9 @@ export default function MobileNavBar() {
   const isActive = (path: string) => {
     return pathname.startsWith(`/${locale}/${path}`);
   };
-  
-  // Safely get translation with fallback
-  const getT = (key: string) => {
-    if (navTranslations) {
-      return navTranslations(key);
-    }
-    return fallbackTranslations.navigation[key as keyof typeof fallbackTranslations.navigation] || key;
-  };
 
   // If not mounted yet, render skeleton loader
-  if (!mounted) {
+  if (!isMounted) {
     return <MobileNavBarSkeleton />;
   }
 
@@ -139,7 +108,7 @@ export default function MobileNavBar() {
             size="md" 
             className={pathname === `/${locale}` ? 'text-primary-600' : 'text-gray-600'}
           />
-          <span className="text-xs mt-1">{getT('home')}</span>
+          <span className="text-xs mt-1">{nav('home')}</span>
         </Link>
 
         <Link
@@ -154,7 +123,7 @@ export default function MobileNavBar() {
             size="md" 
             className={isActive('about') ? 'text-primary-600' : 'text-gray-600'}
           />
-          <span className="text-xs mt-1">{getT('about')}</span>
+          <span className="text-xs mt-1">{nav('about')}</span>
         </Link>
 
         <Link
@@ -169,7 +138,7 @@ export default function MobileNavBar() {
             size="md" 
             className={isActive('solutions') ? 'text-primary-600' : 'text-gray-600'}
           />
-          <span className="text-xs mt-1">{getT('solutions')}</span>
+          <span className="text-xs mt-1">{nav('solutions')}</span>
         </Link>
 
         <Link
@@ -184,7 +153,7 @@ export default function MobileNavBar() {
             size="md" 
             className={isActive('locations') ? 'text-primary-600' : 'text-gray-600'}
           />
-          <span className="text-xs mt-1">{getT('locations')}</span>
+          <span className="text-xs mt-1">{nav('locations')}</span>
         </Link>
 
         <Link
@@ -199,7 +168,7 @@ export default function MobileNavBar() {
             size="md" 
             className={isActive('contact') ? 'text-primary-600' : 'text-gray-600'}
           />
-          <span className="text-xs mt-1">{getT('contact')}</span>
+          <span className="text-xs mt-1">{nav('contact')}</span>
         </Link>
       </nav>
     </div>

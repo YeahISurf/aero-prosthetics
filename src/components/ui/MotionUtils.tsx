@@ -28,6 +28,7 @@ interface MotionSafeProps {
   children: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 }
 

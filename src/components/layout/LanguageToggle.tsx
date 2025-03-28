@@ -60,7 +60,7 @@ export default function LanguageToggle() {
         className="flex items-center md:space-x-2 text-sm text-gray-700 hover:text-primary-500 rounded-md md:py-1 md:px-2 p-1.5 hover:bg-gray-100 transition-colors"
         aria-expanded={isOpen}
         aria-haspopup="true"
-        aria-label="Language selection"
+        aria-label={`Change language, current language: ${locale === 'en' ? 'English' : 'Español'}`}
       >
         <Globe size={18} />
         <span className="hidden md:inline">{locale === 'en' ? 'English' : 'Español'}</span>

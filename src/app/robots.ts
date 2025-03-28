@@ -50,6 +50,10 @@ export default function robots(): MetadataRoute.Robots {
           '/legal/',
         ],
       },
+      {
+        userAgent: 'PerplexityBot',
+        allow: '/',
+      },
     ],
     sitemap: [
       `${baseUrl}/sitemap.xml`,

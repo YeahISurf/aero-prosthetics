@@ -13,22 +13,6 @@ import {
 import { cn } from '@/lib/utils';
 import { generateStableId } from '@/lib/useStableId';
 
-// Fallback translations
-const fallbackTranslations = {
-  navigation: {
-    home: 'Home',
-    about: 'About Us',
-    solutions: 'Solutions',
-    blog: 'Blog',
-    training: 'Training',
-    locations: 'Locations',
-    contact: 'Contact'
-  },
-  cta: {
-    book_demo: 'Book Demo'
-  }
-};
-
 // Create a stable, deterministic ID that will be the same on client and server
 // Use the pathname as a consistent input to generate a stable ID
 const MOBILE_NAV_ID = 'mobile-nav';
@@ -67,29 +51,12 @@ export default function MobileNavigation() {
   const [open, setOpen] = useState(false);
   const sheetContentRef = useRef<HTMLDivElement>(null);
   
-  // Move hooks outside of conditionals to the top
-  const pathname = usePathname();
+  // Call hooks unconditionally
   const locale = useLocale();
+  const pathname = usePathname();
   
-  // Initialize translation hooks safely
-  let navTranslations = null;
-  let ctaTranslations = null;
-  
-  try {
-    navTranslations = useTranslations('navigation');
-  } catch (_) {
-    // Will use fallback
-  }
-  
-  try {
-    ctaTranslations = useTranslations('cta');
-  } catch (_) {
-    // Will use fallback
-  }
-  
-  // Create safe translation functions
-  const t = navTranslations || 
-    ((key: string) => fallbackTranslations.navigation[key as keyof typeof fallbackTranslations.navigation] || key);
+  // Call hooks unconditionally
+  const nav = useTranslations('navigation');
   
   // Mount effect to ensure client-side only rendering
   useEffect(() => {
@@ -131,14 +98,6 @@ export default function MobileNavigation() {
   const isActive = (path: string) => {
     return pathname.startsWith(`/${locale}/${path}`);
   };
-  
-  // Safely get translation with fallback
-  const getT = (key: string) => {
-    if (navTranslations) {
-      return navTranslations(key);
-    }
-    return fallbackTranslations.navigation[key as keyof typeof fallbackTranslations.navigation] || key;
-  };
 
   return (
     <Sheet open={open} onOpenChange={setOpen} id={stableId}>
@@ -170,7 +129,7 @@ export default function MobileNavigation() {
             aria-current={pathname === `/${locale}` ? 'page' : undefined}
             onClick={() => setOpen(false)}
           >
-            {getT('home')}
+            {nav('home')}
           </Link>
           
           <Link
@@ -179,7 +138,7 @@ export default function MobileNavigation() {
             aria-current={isActive('about') ? 'page' : undefined}
             onClick={() => setOpen(false)}
           >
-            {getT('about')}
+            {nav('about')}
           </Link>
           
           <Link
@@ -188,7 +147,7 @@ export default function MobileNavigation() {
             aria-current={isActive('solutions') ? 'page' : undefined}
             onClick={() => setOpen(false)}
           >
-            {getT('solutions')}
+            {nav('solutions')}
           </Link>
           
           <Link
@@ -197,7 +156,7 @@ export default function MobileNavigation() {
             aria-current={isActive('training') ? 'page' : undefined}
             onClick={() => setOpen(false)}
           >
-            {getT('training')}
+            {nav('training')}
           </Link>
           
           <Link
@@ -206,7 +165,7 @@ export default function MobileNavigation() {
             aria-current={isActive('locations') ? 'page' : undefined}
             onClick={() => setOpen(false)}
           >
-            {getT('locations')}
+            {nav('locations')}
           </Link>
           
           <Link
@@ -215,7 +174,7 @@ export default function MobileNavigation() {
             aria-current={isActive('blog') ? 'page' : undefined}
             onClick={() => setOpen(false)}
           >
-            {getT('blog')}
+            {nav('blog')}
           </Link>
           
           <Link
@@ -224,7 +183,7 @@ export default function MobileNavigation() {
             aria-current={isActive('contact') ? 'page' : undefined}
             onClick={() => setOpen(false)}
           >
-            {getT('contact')}
+            {nav('contact')}
           </Link>
         </div>
       </SheetContent>

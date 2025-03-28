@@ -83,7 +83,6 @@ const mapOptions = {
 };
 
 export default function LocationMap({ locations, center, zoom = 10, height = '500px' }: LocationMapProps) {
-  const [map, setMap] = useState<google.maps.Map | null>(null);
   const [selectedLocation, setSelectedLocation] = useState<Location | null>(null);
   const locale = useLocale();
   
@@ -106,7 +105,6 @@ export default function LocationMap({ locations, center, zoom = 10, height = '50
 
   const onLoad = useCallback((map: google.maps.Map) => {
     console.log('Map loaded successfully');
-    setMap(map);
     
     // If we have multiple locations, fit the map to show all markers
     if (locations.length > 1) {
@@ -123,7 +121,7 @@ export default function LocationMap({ locations, center, zoom = 10, height = '50
   }, [locations]);
 
   const onUnmount = useCallback(() => {
-    setMap(null);
+    // setMap(null);
   }, []);
 
   return (

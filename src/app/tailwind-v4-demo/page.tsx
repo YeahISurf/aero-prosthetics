@@ -122,11 +122,19 @@ export default function TailwindV4Demo() {
             
             <div 
               role="option"
-              className="rounded-md bg-gray-200 px-4 py-2 aria-selected:bg-green-600 aria-selected:text-white cursor-pointer"
+              className="rounded-md bg-gray-200 px-4 py-2 aria-selected:bg-green-600 aria-selected:text-white cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
               aria-selected="false"
+              tabIndex={0}
               onClick={(e) => {
                 const isSelected = e.currentTarget.getAttribute('aria-selected') === 'true';
                 e.currentTarget.setAttribute('aria-selected', isSelected ? 'false' : 'true');
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  const isSelected = e.currentTarget.getAttribute('aria-selected') === 'true';
+                  e.currentTarget.setAttribute('aria-selected', isSelected ? 'false' : 'true');
+                }
               }}
             >
               Selectable Option

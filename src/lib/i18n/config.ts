@@ -9,6 +9,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
   const messages = (await import(`../../../locales/${locale}.json`)).default;
   
   // If the locale is not the default (en), also load the default locale messages as fallback
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let fallbackMessages: Record<string, any> = {};
   if (locale !== 'en') {
     // We're loading the fallback messages for explicit fallbacks
@@ -29,6 +30,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
           try {
             const keyPath = match[1];
             const parts = keyPath.split('.');
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             let fallback: any = fallbackMessages;
             for (const part of parts) {
               fallback = fallback?.[part];
@@ -38,7 +40,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
             if (typeof fallback === 'string') {
               return fallback;
             }
-          } catch (e) {
+          } catch /* removed unused e */ {
             // If fallback resolution fails, return empty string
           }
         }

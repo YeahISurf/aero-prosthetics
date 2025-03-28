@@ -79,7 +79,6 @@ const nextConfig = {
     ];
   },
   images: {
-    domains: ['aero-prosthetics.vercel.app'], // Add domain for self-referencing images
     remotePatterns: [
       {
         protocol: "https",

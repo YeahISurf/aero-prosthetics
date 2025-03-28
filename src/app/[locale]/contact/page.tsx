@@ -365,6 +365,17 @@ export default async function ContactPage({ params }: Props) {
           </div>
         </div>
       </section>
+
+      {/* Call to Action */}
+      <section aria-labelledby="cta-heading" className="mt-20 text-center">
+        <h2 id="cta-heading" className="text-3xl font-bold text-gray-900 mb-4">{t('cta.title')}</h2>
+        <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+          {t('cta.description').replace("'", "&apos;")}
+        </p>
+        <Link href={`/${locale}/book-demo`} className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 transition">
+          {t('cta.button')}
+        </Link>
+      </section>
     </>
   );
 }

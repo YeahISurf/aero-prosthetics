@@ -1,6 +1,8 @@
-import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
+import { unstable_setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Metadata } from 'next';
 import { constructMetadata } from '@/lib/seo/metadata';
 import { ANIMATION_DELAYS } from '@/lib/utils';
 
@@ -158,7 +160,7 @@ export default async function AboutPage({ params }: Props) {
               Expert Specialists
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-5 relative animate-slideInUp" style={{ animationDelay: '0.3s', animationFillMode: 'both' }}>
-              {t('team.title')}
+              {t('team.title').replace("'", "&apos;")}
             </h2>
             <p className="text-lg text-gray-700 mt-4 leading-relaxed animate-fadeIn max-w-2xl mx-auto" style={{ animationDelay: '0.4s', animationFillMode: 'both' }}>
               {t('team.description')}

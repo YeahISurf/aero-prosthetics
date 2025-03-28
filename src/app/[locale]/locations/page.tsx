@@ -141,7 +141,7 @@ export default async function LocationsPage({ params }: Props) {
             <div className="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-2 border border-gray-100">
               <div className="h-72 relative">
                 <Image
-                  src="/images/locations/anaheim-location.jpg"
+                  src="/uploads/locations/anaheim-exterior.jpg"
                   alt={t('anaheim.title')}
                   fill
                   className="object-cover"
@@ -183,7 +183,7 @@ export default async function LocationsPage({ params }: Props) {
             <div className="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-2 border border-gray-100">
               <div className="h-72 relative">
                 <Image
-                  src="/images/locations/victorville-location.jpg"
+                  src="/uploads/locations/victorville-exterior.jpg"
                   alt={t('victorville.title')}
                   fill
                   className="object-cover"
@@ -333,7 +333,7 @@ export default async function LocationsPage({ params }: Props) {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div className="aspect-video relative rounded-lg overflow-hidden">
                       <Image 
-                        src="/images/locations/anaheim-exterior.jpg" 
+                        src="/uploads/locations/anaheim-exterior.jpg"
                         alt={t('anaheim.imageAlt.exterior')}
                         fill
                         className="object-cover"
@@ -341,7 +341,7 @@ export default async function LocationsPage({ params }: Props) {
                     </div>
                     <div className="aspect-video relative rounded-lg overflow-hidden">
                       <Image 
-                        src="/images/locations/anaheim-interior-1.jpg" 
+                        src="/uploads/locations/anaheim-interior-1.jpg"
                         alt={t('anaheim.imageAlt.interior1')}
                         fill
                         className="object-cover"
@@ -349,7 +349,7 @@ export default async function LocationsPage({ params }: Props) {
                     </div>
                     <div className="aspect-video relative rounded-lg overflow-hidden">
                       <Image 
-                        src="/images/locations/anaheim-interior-2.jpg" 
+                        src="/uploads/locations/anaheim-interior-2.jpg"
                         alt={t('anaheim.imageAlt.interior2')}
                         fill
                         className="object-cover"
@@ -679,7 +679,7 @@ export default async function LocationsPage({ params }: Props) {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div className="aspect-video relative rounded-lg overflow-hidden">
                       <Image 
-                        src="/images/locations/victorville-exterior.jpg" 
+                        src="/uploads/locations/victorville-exterior.jpg"
                         alt={t('victorville.imageAlt.exterior')}
                         fill
                         className="object-cover"
@@ -687,7 +687,7 @@ export default async function LocationsPage({ params }: Props) {
                     </div>
                     <div className="aspect-video relative rounded-lg overflow-hidden">
                       <Image 
-                        src="/images/locations/victorville-interior-1.jpg" 
+                        src="/uploads/locations/victorville-interior-1.jpg"
                         alt={t('victorville.imageAlt.interior1')}
                         fill
                         className="object-cover"
@@ -695,7 +695,7 @@ export default async function LocationsPage({ params }: Props) {
                     </div>
                     <div className="aspect-video relative rounded-lg overflow-hidden">
                       <Image 
-                        src="/images/locations/victorville-interior-2.jpg" 
+                        src="/uploads/locations/victorville-interior-2.jpg"
                         alt={t('victorville.imageAlt.interior2')}
                         fill
                         className="object-cover"

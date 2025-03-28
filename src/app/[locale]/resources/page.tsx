@@ -163,8 +163,8 @@ export default async function ResourcesPage({ params }: Props) {
                 <p className="text-gray-700 mb-4">
                   Learn about the different components of prosthetic devices and how they work together to provide optimal function and comfort for daily activities.
                 </p>
-                <a 
-                  href="#" 
+                <button
+                  type="button"
                   className="btn-primary inline-flex items-center text-sm"
                 >
                   Download Guide
@@ -182,7 +182,7 @@ export default async function ResourcesPage({ params }: Props) {
                       d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" 
                     />
                   </svg>
-                </a>
+                </button>
               </div>
             </div>
             
@@ -201,8 +201,8 @@ export default async function ResourcesPage({ params }: Props) {
                 <p className="text-gray-700 mb-4">
                   Essential tips and guidelines for maintaining and caring for your orthotic device to ensure longevity, comfort, and optimal function every day.
                 </p>
-                <a 
-                  href="#" 
+                <button 
+                  type="button"
                   className="btn-primary inline-flex items-center text-sm"
                 >
                   Download Guide
@@ -220,7 +220,7 @@ export default async function ResourcesPage({ params }: Props) {
                       d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" 
                     />
                   </svg>
-                </a>
+                </button>
               </div>
             </div>
             
@@ -239,8 +239,8 @@ export default async function ResourcesPage({ params }: Props) {
                 <p className="text-gray-700 mb-4">
                   A comprehensive guide for new users on adapting to prosthetic and orthotic devices, including tips for daily activities and overcoming common challenges.
                 </p>
-                <a 
-                  href="#" 
+                <button 
+                  type="button"
                   className="btn-primary inline-flex items-center text-sm"
                 >
                   Download Guide
@@ -258,7 +258,7 @@ export default async function ResourcesPage({ params }: Props) {
                       d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" 
                     />
                   </svg>
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -386,9 +386,12 @@ export default async function ResourcesPage({ params }: Props) {
           </div>
           
           <div className="text-center mt-12">
-            <a href="#" className="btn-primary">
+            <button 
+              type="button" 
+              className="btn-primary"
+            >
               {t('videos.viewLibrary') || 'View Full Video Library'}
-            </a>
+            </button>
           </div>
         </div>
       </section>

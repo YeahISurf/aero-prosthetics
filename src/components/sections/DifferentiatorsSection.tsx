@@ -1,6 +1,5 @@
-import { useTranslations, useLocale } from 'next-intl';
-import Link from 'next/link';
-import Image from 'next/image';
+import React from 'react';
+import { useTranslations } from 'next-intl';
 
 // Define SVG icons for each differentiator (maps to the items in translation file)
 const ICONS = [
@@ -22,14 +21,6 @@ const ICONS = [
   </svg>
 ];
 
-// Enhanced gradient variations for more visual interest
-const CARD_GRADIENTS = [
-  'from-primary-50 via-primary-100/20 to-white', 
-  'from-primary-50/80 via-primary-100/30 to-white', 
-  'from-primary-50/90 via-primary-100/25 to-white', 
-  'from-primary-50/70 via-primary-100/15 to-white', 
-];
-
 // Define icon container background colors with enhanced gradients
 const ICON_BACKGROUNDS = [
   'from-primary-100 to-primary-200',
@@ -46,17 +37,9 @@ const ICON_COLORS = [
   'text-primary-600',
 ];
 
-// Added subtle border accents for cards
-const CARD_BORDERS = [
-  'border-primary-200/60',
-  'border-primary-200/50',
-  'border-primary-200/70',
-  'border-primary-200/50'
-];
-
 export default function DifferentiatorsSection() {
   const t = useTranslations('home.differentiators');
-  const locale = useLocale();
+
   const items = t.raw('items') as Array<{ title: string; description: string; link?: string }>;
 
   // Ensure we have valid arrays to prevent rendering errors

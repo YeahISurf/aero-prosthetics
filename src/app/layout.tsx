@@ -7,6 +7,7 @@ import ErrorBoundary from "@/components/ui/ErrorBoundary";
 import ThemeProvider from "@/components/ui/ThemeProvider";
 import Script from 'next/script';
 import ClientSchemaWrapper from "@/components/ui/ClientSchemaWrapper";
+import AxeDevTools from "@/components/dev/AxeDevTools";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,57 +23,6 @@ const geistMono = Geist_Mono({
   preload: true,
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://aeroprosthetics.com"),
-  title: {
-    default: "Aero Prosthetics | Advanced Prosthetic Solutions",
-    template: "%s | Aero Prosthetics"
-  },
-  description: "Advanced prosthetic solutions with personalized care for improved mobility and quality of life",
-  keywords: ["prosthetics", "orthotics", "medical devices", "mobility solutions", "healthcare"],
-  formatDetection: {
-    telephone: true,
-    email: true,
-    address: true,
-  },
-  applicationName: "Aero Prosthetics",
-  authors: [{ name: "Aero Prosthetics Team" }],
-  creator: "Aero Prosthetics",
-  publisher: "Aero Prosthetics",
-  referrer: "origin-when-cross-origin",
-  robots: {
-    index: true,
-    follow: true,
-    nocache: false,
-    googleBot: {
-      index: true,
-      follow: true,
-    },
-  },
-  icons: {
-    icon: '/favicon.ico',
-    // Only reference assets that exist
-    // apple: '/apple-icon.png', // This was causing a 404 if the file doesn't exist
-  },
-  openGraph: {
-    type: "website",
-    title: "Aero Prosthetics | Advanced Prosthetic Solutions",
-    description: "Advanced prosthetic solutions with personalized care for improved mobility and quality of life",
-    siteName: "Aero Prosthetics",
-    url: "https://aeroprosthetics.com",
-    locale: "en_US",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Aero Prosthetics | Advanced Prosthetic Solutions",
-    description: "Advanced prosthetic solutions with personalized care for improved mobility and quality of life",
-  },
-  verification: {
-    // google: "verification-code", // Add when available
-    // yandex: "verification-code", // Add when available
-  },
-};
-
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
@@ -81,75 +31,120 @@ export const viewport: Viewport = {
   colorScheme: 'light',
 };
 
+const locales = ['en', 'es'];
+const siteBaseUrl = "https://aeroprosthetics.com";
+
+export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
+  const locale = params.locale || 'en';
+
+  return {
+    metadataBase: new URL(siteBaseUrl),
+    title: {
+      default: "Aero Prosthetics | Advanced Prosthetic Solutions",
+      template: "%s | Aero Prosthetics"
+    },
+    description: "Advanced prosthetic solutions with personalized care for improved mobility and quality of life",
+    keywords: ["prosthetics", "orthotics", "medical devices", "mobility solutions", "healthcare"],
+    formatDetection: {
+      telephone: true,
+      email: true,
+      address: true,
+    },
+    applicationName: "Aero Prosthetics",
+    authors: [{ name: "Aero Prosthetics Team" }],
+    creator: "Aero Prosthetics",
+    publisher: "Aero Prosthetics",
+    referrer: "origin-when-cross-origin",
+    robots: {
+      index: true,
+      follow: true,
+      nocache: false,
+      googleBot: {
+        index: true,
+        follow: true,
+      },
+    },
+    icons: {
+      icon: [
+        { url: '/favicon.ico', type: 'image/x-icon', sizes: 'any' },
+        { url: '/icon-16x16.png', type: 'image/png', sizes: '16x16' },
+        { url: '/icon-32x32.png', type: 'image/png', sizes: '32x32' },
+      ],
+      apple: [
+        { url: '/apple-icon.png' },
+        { url: '/apple-icon-180x180.png', sizes: '180x180', type: 'image/png' },
+      ],
+    },
+    openGraph: {
+      type: "website",
+      title: "Aero Prosthetics | Advanced Prosthetic Solutions",
+      description: "Advanced prosthetic solutions with personalized care for improved mobility and quality of life",
+      siteName: "Aero Prosthetics",
+      url: siteBaseUrl,
+      locale: locale === 'en' ? 'en_US' : 'es_ES',
+      images: [
+        {
+          url: '/og-image.png',
+          width: 1200,
+          height: 630,
+          alt: 'Aero Prosthetics - Advanced Prosthetic Solutions',
+          type: 'image/png',
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Aero Prosthetics | Advanced Prosthetic Solutions",
+      description: "Advanced prosthetic solutions with personalized care for improved mobility and quality of life",
+      site: '@YourTwitterHandle', 
+      creator: '@CreatorTwitterHandle', 
+      images: [
+        { 
+          url: '/twitter-image.png',
+          alt: 'Aero Prosthetics - Advanced Prosthetic Solutions',
+        }
+      ],
+    },
+    verification: {
+      // google: "verification-code",
+      // yandex: "verification-code",
+    },
+  };
+}
+
 export default function RootLayout({
   children,
+  params
 }: Readonly<{
   children: React.ReactNode;
+  params: { locale: string };
 }>) {
+  const locale = params?.locale || 'en';
+
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head suppressHydrationWarning>
+    // suppressHydrationWarning is necessary here because next-themes modifies
+    // the className and potentially style attributes on the html tag client-side
+    // after initial server render, causing a hydration mismatch.
+    <html lang={locale} suppressHydrationWarning>
+      <head>
         <ClientFontsStylesheet geistSans={geistSans} geistMono={geistMono} />
         
-        {/* Use client wrapper for schema.org script */}
         <ClientSchemaWrapper />
-        
-        {/* Add hydration error debugging - will help identify the problem */}
-        <Script
-          id="hydration-debug"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              // Log detailed hydration errors
-              const originalConsoleError = console.error;
-              console.error = function() {
-                if (arguments[0] && typeof arguments[0] === 'string' && arguments[0].includes('Hydration failed')) {
-                  console.log('[HYDRATION DEBUG]', arguments[0]);
-                  const stack = new Error().stack || '';
-                  console.log('[HYDRATION STACK]', stack);
-                  
-                  // Try to extract node info
-                  try {
-                    const nodeInfo = arguments[1] && arguments[1].parentNode ? {
-                      nodeType: arguments[1].nodeType,
-                      nodeName: arguments[1].nodeName,
-                      id: arguments[1].id,
-                      className: arguments[1].className,
-                      childNodes: arguments[1].childNodes.length
-                    } : 'No node info';
-                    console.log('[HYDRATION NODE]', nodeInfo);
-                  } catch (e) {
-                    console.log('[HYDRATION NODE] Error getting node info:', e);
-                  }
-                }
-                return originalConsoleError.apply(console, arguments);
-              };
-            `
-          }}
-        />
       </head>
-      <body className="flex flex-col min-h-screen bg-white text-gray-900" suppressHydrationWarning>
+      <body className="flex flex-col min-h-screen bg-white text-gray-900">
         <ErrorBoundary>
           <ThemeProvider>
-            {/* Use a client-only wrapper for the preloader */}
             <ClientPreloader />
-            {/* Wrap children in div with suppressHydrationWarning */}
-            <div suppressHydrationWarning>{children}</div>
+            <div>{children}</div>
           </ThemeProvider>
         </ErrorBoundary>
 
-        {/* Move accessibility script to lazyOnload */}
         <Script
           strategy="lazyOnload"
           id="accessibility-script"
           dangerouslySetInnerHTML={{
             __html: `
               document.addEventListener('DOMContentLoaded', function() {
-                if (!document.querySelector('main')) {
-                  const mainContent = document.querySelector('#main-content');
-                  if (mainContent) mainContent.setAttribute('role', 'main');
-                }
-                
                 const clickableElements = document.querySelectorAll('.btn, .card-interactive, [role="button"]');
                 clickableElements.forEach(element => {
                   if (!element.getAttribute('tabindex')) element.setAttribute('tabindex', '0');
@@ -158,6 +153,7 @@ export default function RootLayout({
             `
           }}
         />
+        {process.env.NODE_ENV === 'development' && <AxeDevTools />}
       </body>
     </html>
   );

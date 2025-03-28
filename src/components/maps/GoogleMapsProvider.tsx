@@ -1,14 +1,14 @@
 'use client';
 
 import { ReactNode } from 'react';
-import { useJsApiLoader } from '@react-google-maps/api';
+import { useJsApiLoader, Libraries } from '@react-google-maps/api';
 
 interface GoogleMapsProviderProps {
   children: ReactNode;
 }
 
 // Libraries to load with Google Maps
-const libraries = ['places'];
+const libraries: Libraries = ['places'];
 
 export default function GoogleMapsProvider({ children }: GoogleMapsProviderProps) {
   // Get Google Maps API key from environment variables
@@ -16,7 +16,7 @@ export default function GoogleMapsProvider({ children }: GoogleMapsProviderProps
 
   const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: apiKey,
-    libraries: libraries as any,
+    libraries: libraries,
   });
 
   if (loadError) {

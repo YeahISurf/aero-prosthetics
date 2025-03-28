@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useServerInsertedHTML } from 'next/navigation';
 
 interface ClientFontsStylesheetProps {
@@ -29,10 +29,8 @@ export default function ClientFontsStylesheet({
   });
   
   // Also apply styles on the client side to ensure they're available
-  const [mounted, setMounted] = useState(false);
-  
   useEffect(() => {
-    setMounted(true);
+    // Only run on client
   }, []);
   
   // Return null as we're inserting the styles via useServerInsertedHTML

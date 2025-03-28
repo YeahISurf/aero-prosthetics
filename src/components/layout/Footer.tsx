@@ -15,10 +15,15 @@ interface SocialLinkProps {
   icon: React.ReactNode;
 }
 
+// Define a minimal type for the translation function object
+type TranslationFunction = {
+  raw: (key: string) => string | undefined;
+} | null | undefined;
+
 // Helper function with enhanced debugging for translation issues
-const getSafeTranslation = (t: any, key: string, defaultValue: string): string => {
+const getSafeTranslation = (t: TranslationFunction, key: string, defaultValue: string): string => {
   try {
-    // Check if the translation function exists
+    // Check if the translation function exists and has the raw method
     if (!t || typeof t.raw !== 'function') {
       return defaultValue;
     }
@@ -32,16 +37,16 @@ const getSafeTranslation = (t: any, key: string, defaultValue: string): string =
     }
     
     return translation;
-  } catch (e) {
+  } catch {
     // If translation lookup fails, return the default value
     return defaultValue;
   }
 };
 
 // Helper for navigation translations with enhanced debugging
-const getSafeNavTranslation = (nav: any, key: string, defaultValue: string): string => {
+const getSafeNavTranslation = (nav: TranslationFunction, key: string, defaultValue: string): string => {
   try {
-    // Check if the translation function exists
+    // Check if the translation function exists and has the raw method
     if (!nav || typeof nav.raw !== 'function') {
       return defaultValue;
     }
@@ -55,7 +60,7 @@ const getSafeNavTranslation = (nav: any, key: string, defaultValue: string): str
     }
     
     return translation;
-  } catch (e) {
+  } catch {
     // If translation lookup fails, return the default value
     return defaultValue;
   }
@@ -100,25 +105,9 @@ export default function Footer() {
   // Add state to track if component is mounted (client-side only)
   const [isMounted, setIsMounted] = useState(false);
   
-  // Setup translation hooks with safe defaults using null as initial value
-  let footerTranslations = null;
-  let navTranslations = null;
-  
-  try {
-    footerTranslations = useTranslations('footer');
-  } catch (e) {
-    // Fallback
-  }
-
-  try {
-    navTranslations = useTranslations('navigation');
-  } catch (e) {
-    // Fallback
-  }
-  
-  // Create safe versions that won't throw errors
-  const t = footerTranslations || { raw: (key: string) => '' };
-  const nav = navTranslations || { raw: (key: string) => '' };
+  // Call hooks unconditionally at the top level
+  const t = useTranslations('footer');
+  const nav = useTranslations('navigation');
   
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);

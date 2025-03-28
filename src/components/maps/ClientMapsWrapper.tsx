@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode } from 'react';
+import React from 'react';
 import dynamic from 'next/dynamic';
 
 // Dynamically import map components with client-side rendering

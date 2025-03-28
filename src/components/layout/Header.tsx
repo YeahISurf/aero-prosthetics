@@ -49,36 +49,16 @@ function HeaderSkeleton() {
 }
 
 export default function Header() {
+  const locale = useLocale();
+  const pathname = usePathname();
+
+  // Use useMemo to memoize the translation functions
+  const nav = useTranslations('navigation');
+  const cta = useTranslations('cta');
+
   const [mounted, setMounted] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   
-  // Move hooks outside of conditionals to the top
-  const locale = useLocale();
-  const pathname = usePathname();
-  
-  // Get translations with fallback - initialize with null
-  let navTranslations = null;
-  let ctaTranslations = null;
-  
-  try {
-    navTranslations = useTranslations('navigation');
-  } catch (_) {
-    // Will use fallback
-  }
-  
-  try {
-    ctaTranslations = useTranslations('cta');
-  } catch (_) {
-    // Will use fallback
-  }
-  
-  // Create safe translation functions
-  const t = navTranslations || 
-    ((key: string) => fallbackTranslations.navigation[key as keyof typeof fallbackTranslations.navigation] || key);
-  
-  const ctaT = ctaTranslations || 
-    ((key: string) => fallbackTranslations.cta[key as keyof typeof fallbackTranslations.cta] || key);
-
   const handleScroll = useCallback(() => {
     const offset = window.scrollY;
     if (offset > 50) {
@@ -112,16 +92,16 @@ export default function Header() {
   
   // Safely get translation with fallback
   const getT = (key: string) => {
-    if (navTranslations) {
-      return navTranslations(key);
+    if (nav) {
+      return nav(key);
     }
     return fallbackTranslations.navigation[key as keyof typeof fallbackTranslations.navigation] || key;
   };
   
   // Safely get CTA translation with fallback
   const getCta = (key: string) => {
-    if (ctaTranslations) {
-      return ctaTranslations(key);
+    if (cta) {
+      return cta(key);
     }
     return fallbackTranslations.cta[key as keyof typeof fallbackTranslations.cta] || key;
   };
@@ -137,8 +117,17 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between py-3 md:py-4">
           <div className="flex-shrink-0">
-            <Link href={`/${locale}`} aria-label="Home" className="block">
-              <Logo height={50} className="sm:h-[55px] md:h-[60px] lg:h-[65px] xl:h-[70px]" />
+            <Link 
+              href={`/${locale}`} 
+              aria-label="Aero Prosthetics - Home"
+              className="block"
+            >
+              <Logo 
+                height={50} 
+                className="sm:h-[55px] md:h-[60px] lg:h-[65px] xl:h-[70px]" 
+                companyName={nav('companyName')}
+                tagline={nav('tagline')}
+              />
             </Link>
           </div>
           

@@ -1,6 +1,7 @@
 import { unstable_setRequestLocale } from 'next-intl/server';
 import { getTranslations } from 'next-intl/server';
 import NotFoundSimple from '../not-found-simple';
+import Link from 'next/link';
 
 // Define type for params to match Next.js 15 with React 19 requirements
 type Props = {
@@ -32,9 +33,12 @@ export default async function NotFoundTestPage({ params }: Props) {
       <div className="min-h-screen flex flex-col items-center justify-center">
         <h1 className="text-4xl font-bold mb-4">404 - Page Not Found</h1>
         <p className="mb-6">Sorry, we couldn't find the page you're looking for.</p>
-        <a href="/" className="px-6 py-3 bg-blue-600 text-white rounded-lg">
-          Return to Homepage
-        </a>
+        <div className="mt-6">
+          <Link href="/" className="text-base font-medium text-primary-600 hover:text-primary-500">
+            Go back home
+            <span aria-hidden="true"> &rarr;</span>
+          </Link>
+        </div>
       </div>
     );
   }

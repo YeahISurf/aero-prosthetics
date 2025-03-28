@@ -4,6 +4,7 @@ import React from 'react';
 
 interface SchemaOrgProps {
   type: 'AboutPage' | 'WebPage' | 'Organization' | 'Person' | string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: Record<string, any>;
 }
 
@@ -26,11 +27,13 @@ export function AboutPageSchema({
   name,
   description,
   url,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   organization,
 }: {
   name: string;
   description: string;
   url: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   organization?: Record<string, any>;
 }) {
   const aboutData = {

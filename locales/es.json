@@ -11,7 +11,9 @@
     "contact": "Contacto",
     "book_demo": "Reservar Demo",
     "blog": "Blog",
-    "locations": "Ubicaciones"
+    "locations": "Ubicaciones",
+    "companyName": "Aero Prosthetics",
+    "tagline": "Soluciones Protésicas Avanzadas"
   },
   "common": {
     "home": "Inicio",
@@ -29,6 +31,7 @@
     "title": "¿Listo para Comenzar?",
     "subtitle": "Contáctenos hoy para programar una consulta con nuestros especialistas en prótesis.",
     "findLocation": "Encuentre una Ubicación Cerca de Usted",
+    "startJourney": "Comience Su Camino",
     "section": {
       "badge": "Soluciones Protésicas Premium",
       "title": "¿Listo para Experimentar la Diferencia de Aero Prosthetics?",
@@ -42,7 +45,8 @@
       "testimonial": {
         "quote": "Elegir Aero Prosthetics fue la mejor decisión que tomé en mi proceso de recuperación.",
         "author": "Michael Johnson, Paciente desde 2022"
-      }
+      },
+      "book_demo": "Reservar Demo"
     },
     "home": "Volver al Inicio",
     "services": "Nuestros Servicios",
@@ -261,7 +265,9 @@
           { "day": "Sábado", "hours": "Cerrado" },
           { "day": "Domingo", "hours": "Cerrado" }
         ],
-        "accessibility": ["Accesible para Sillas de Ruedas", "Estacionamiento Reservado", "Cumple con ADA"]
+        "accessibility": ["Accesible en Silla de Ruedas", "Estacionamiento Reservado", "Cumple con ADA"],
+        "exterior": "Vista exterior de la ubicación de Anaheim Hills (Placeholder)",
+        "interior1": "Vista interior de las instalaciones de Anaheim Hills (Placeholder)"
       },
       "victorville": {
         "title": "Victorville",
@@ -294,7 +300,12 @@
       "hoursLabel": "Horario",
       "featuresLabel": "Características de Accesibilidad",
       "directions": "Obtener Indicaciones",
-      "viewDetails": "Ver Detalles"
+      "viewDetails": "Ver Detalles",
+      "overview": {
+        "badge": "Ubicaciones Estratégicas",
+        "title": "Nuestras Ubicaciones",
+        "description": "Contamos con dos ubicaciones convenientes para atenderle en el sur de California."
+      }
     }
   },
   "about": {
@@ -524,7 +535,8 @@
     },
     "overview": {
       "title": "Nuestras Ubicaciones",
-      "description": "Contamos con dos ubicaciones convenientes para atenderle en el sur de California."
+      "description": "Contamos con dos ubicaciones convenientes para atenderle en el sur de California.",
+      "badge": "Ubicaciones Estratégicas"
     },
     "anaheim": {
       "title": "Anaheim Hills",
@@ -559,7 +571,8 @@
         { "day": "Viernes", "hours": "9:00 AM - 5:00 PM" },
         { "day": "Sábado", "hours": "Cerrado" },
         { "day": "Domingo", "hours": "Cerrado" }
-      ]
+      ],
+      "viewDetails": "Ver Detalles"
     },
     "victorville": {
       "title": "Victorville",
@@ -593,7 +606,8 @@
         { "day": "Viernes", "hours": "9:00 AM - 5:00 PM" },
         { "day": "Sábado", "hours": "Cerrado" },
         { "day": "Domingo", "hours": "Cerrado" }
-      ]
+      ],
+      "viewDetails": "Ver Detalles"
     },
     "learnMore": "Saber Más",
     "facilities": "Características de las Instalaciones",
@@ -613,6 +627,9 @@
       }
     },
     "cta": {
+      "title": "¿Preguntas? Estamos Aquí Para Ayudar",
+      "description": "Nuestro equipo de especialistas está listo para responder a sus consultas y ayudarle en cada paso del camino",
+      "button": "Contáctenos Hoy",
       "primary": "Contáctenos Hoy",
       "secondary": "Encuentre Nuestras Ubicaciones"
     },
@@ -631,7 +648,9 @@
       "submit": "Enviar",
       "required": "Campo obligatorio",
       "success": "Su mensaje ha sido enviado con éxito. Nos pondremos en contacto con usted pronto.",
-      "error": "Hubo un error al enviar su mensaje. Por favor, inténtelo de nuevo."
+      "error": "Hubo un error al enviar su mensaje. Por favor, inténtelo de nuevo.",
+      "successMessage": "Gracias por contactarnos. Nos pondremos en contacto pronto.",
+      "name": "Nombre"
     },
     "info": {
       "title": "Información de Contacto",
@@ -821,7 +840,8 @@
     },
     "hero": {
       "title": "Últimas Noticias e Información",
-      "subtitle": "Perspectivas expertas sobre innovaciones en prótesis y ortesis."
+      "subtitle": "Perspectivas expertas sobre innovaciones en prótesis y ortesis.",
+      "badge": "Noticias y Actualizaciones"
     },
     "filters": {
       "all": "Todos los Artículos",
@@ -844,6 +864,9 @@
     "continueReading": "Continuar Leyendo",
     "loadMore": "Cargar Más Artículos",
     "shareArticle": "Compartir este Artículo",
-    "backToBlog": "Volver al Blog"
+    "backToBlog": "Volver al Blog",
+    "title": "Blog",
+    "subtitle": "Manténgase actualizado con las últimas noticias, conocimientos y avances en tecnología protésica y ortopédica.",
+    "next": "Siguiente"
   }
 }

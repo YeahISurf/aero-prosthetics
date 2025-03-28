@@ -8,10 +8,12 @@
     "about": "About Us",
     "solutions": "Solutions",
     "training": "Training",
+    "locations": "Locations",
+    "blog": "Blog",
     "contact": "Contact",
     "book_demo": "Book Demo",
-    "blog": "Blog",
-    "locations": "Locations"
+    "companyName": "Aero Prosthetics",
+    "tagline": "Advanced Prosthetic Solutions"
   },
   "common": {
     "home": "Home",
@@ -262,7 +264,9 @@
           { "day": "Saturday", "hours": "Closed" },
           { "day": "Sunday", "hours": "Closed" }
         ],
-        "accessibility": ["Wheelchair Accessible", "Reserved Parking", "ADA Compliant"]
+        "accessibility": ["Wheelchair Accessible", "Reserved Parking", "ADA Compliant"],
+        "exterior": "Exterior view of the Anaheim Hills location (Placeholder)",
+        "interior1": "Interior view of the Anaheim Hills facility (Placeholder)"
       },
       "victorville": {
         "title": "Victorville",

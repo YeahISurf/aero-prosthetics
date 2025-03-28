@@ -1,12 +1,10 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLoading } from './ClientPreloader';
 
 export default function Preloader() {
   const { isLoading, setLoading, progress, setProgress } = useLoading();
-  const resourcesLoaded = useRef(0);
-  const totalResources = useRef(0);
   const [animationState, setAnimationState] = useState<'initial' | 'loading' | 'complete'>('initial');
   
   useEffect(() => {

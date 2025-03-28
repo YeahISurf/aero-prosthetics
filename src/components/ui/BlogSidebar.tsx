@@ -1,9 +1,9 @@
 "use client";
 
+import React from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
 import { BlogPost } from './BlogCard';
 
 type Category = {

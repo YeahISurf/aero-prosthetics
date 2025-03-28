@@ -2,6 +2,11 @@ import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { constructMetadata } from '@/lib/seo/metadata';
+import SchemaScript from '@/components/ui/SchemaScript';
+import { 
+  generateMedicalSpecialtySchema, 
+  generateBreadcrumbListSchema,
+} from '@/lib/seo/schema';
 
 type Props = {
   params: Promise<{ locale: string; service: string }>;
@@ -177,12 +182,13 @@ export async function generateMetadata({ params }: Props) {
   if (!serviceData) return {};
 
   // NOTE: Translation variable removed for deployment - will be added back in future development
-  await getTranslations({ locale, namespace: 'services' });
+  const t = await getTranslations({ locale, namespace: 'services' });
 
   return constructMetadata({
     title: serviceData.title,
     description: serviceData.description,
     keywords: ['prosthetics', 'orthotics', service, 'medical devices'],
+    path: `/${locale}/services/${service}`,
   });
 }
 
@@ -196,9 +202,29 @@ export default async function ServiceDetailPage({ params }: Props) {
   
   // Get translations for CTA section
   const ctaT = await getTranslations({ locale, namespace: 'cta' });
+  const commonT = await getTranslations({ locale, namespace: 'common' });
+
+  // Generate Schemas
+  const serviceSchema = generateMedicalSpecialtySchema({
+    name: serviceData.title,
+    description: serviceData.description,
+    url: `https://aeroprosthetics.com/${locale}/services/${service}`,
+    medicalSpecialty: serviceData.id,
+  });
+
+  const breadcrumbItems = [
+    { name: commonT('breadcrumbHome') || 'Home', item: `https://aeroprosthetics.com/${locale}` },
+    { name: commonT('breadcrumbServices') || 'Services', item: `https://aeroprosthetics.com/${locale}/services` },
+    { name: serviceData.title, item: `https://aeroprosthetics.com/${locale}/services/${service}` },
+  ];
+  const breadcrumbSchema = generateBreadcrumbListSchema(breadcrumbItems, `https://aeroprosthetics.com/${locale}/services/${service}`);
 
   return (
     <>
+      {/* Inject Schemas */}
+      <SchemaScript schema={serviceSchema} />
+      <SchemaScript schema={breadcrumbSchema} />
+
       {/* Hero Section */}
       <section className="bg-primary-600 text-white py-16 md:py-24">
         <div className="container-custom">
@@ -219,7 +245,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                       <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 9 4-4-4-4"/>
                     </svg>
                     <Link href={`/${locale}/services`} className="ml-1 text-sm font-medium text-gray-600 hover:text-primary-600 md:ml-2">
-                      {ctaT('services')}
+                      {commonT('breadcrumbServices') || 'Services'}
                     </Link>
                   </div>
                 </li>

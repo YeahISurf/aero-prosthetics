@@ -46,7 +46,7 @@ const commonTranslations: Record<string, Record<string, string>> = {
 };
 
 // Tracking missing translations for logging
-let missingTranslations: Set<string> = new Set();
+const missingTranslations: Set<string> = new Set();
 
 interface TranslationErrorHandlerProps {
   children: ReactNode;
